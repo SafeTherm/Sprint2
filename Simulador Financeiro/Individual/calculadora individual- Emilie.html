@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+</head>
+<body>
+    <div class="centralizar">
+    <h1>Calculadora</h1>
+
+    <p>Informe a quantidade de medicamentos</p>
+    <input type="number" id="input_qtdMedicamentos"><br><br>
+
+    <p>Informe quanto custa cada medicamento</p>
+    <input type="number" id="input_valorUnidade"><br><br>
+
+    <p>Informe em porcentagem quanto você perde durante o transporte</p> 
+    <input type="number" id="input_perdasTransporte"><br><br>
+
+    <button onclick="analisar()">Calcular redução</button><br><br>
+    <div id="div_mensagem"></div>
+    </div>
+
+</body>
+</html>
+
+<script>
+function analisar() {
+    var quantidadeMedicamentos = Number(input_qtdMedicamentos.value);
+    var valorUnidade = Number(input_valorUnidade.value);
+    var perdasTransporte = Number(input_perdasTransporte.value); // Porcentagem que perde ao mês com transporte
+
+    // Cálculo:
+    var valorTotalMedicamento = quantidadeMedicamentos * valorUnidade; // VALOR TOTAL DE MEDICAMENTOS R$
+
+    var perdasPorMes = (valorTotalMedicamento * perdasTransporte) / 100; // PERDAS EM R$ 
+
+    var sobrouTransporte = valorTotalMedicamento - perdasPorMes; // sobrou X R$
+
+    var reducaoTransporte = (perdasPorMes * 0.15); // 15% QUE ESTABELECEMOS PARA REDUÇÃO NO TRANSPORTE
+
+    var reducaoTotal = reducaoTransporte; // Redução total
+    var perdasTotais = perdasPorMes; // Perdas totais no transporte
+
+    div_mensagem.innerHTML = `
+        <div style="color: black">
+            <b>${quantidadeMedicamentos} medicamentos custando R$ ${valorUnidade} a unidade totaliza R$: ${valorTotalMedicamento}</b><br><br>
+            Dos R$ ${valorTotalMedicamento}, você perde R$ ${perdasPorMes} no transporte.<br><br>
+            Você perde ao todo R$ ${perdasTotais} durante o transporte e armazenamento.<br><br>
+            <b style="color: green">Reduzirá ao todo R$ ${reducaoTotal} com nossa solução tecnológica!</b><br><br>
+        </div>
+    `;
+}</script>
