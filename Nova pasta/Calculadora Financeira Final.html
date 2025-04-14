@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira - Medicamentos Termolábeis SafeTherm</title>
+</head>
+
+<body>
+    <h1>Simulador Financeiro do Monitoramento de Medicamentos Termolábeis - SafeTherm</h1>
+    <h2>Parâmetros de Entrada</h2>
+
+    <!-- Campo de entrada para quantidade de transferências por ano -->
+    Quantidade de Transferências de Medicamentos Por Ano:
+    <input type="text" id="imput_qtdTransferencia_ano"><br>
+
+    <!-- Campo para o custo total por cada transferência -->
+    Custo Total Por Transferência de Medicamentos:
+    <input type="text" id="imput_custoMedicamentos"><br>
+
+    <!-- Campo para a quantidade de veículos na frota -->
+    Qual a Quantidade de Veículos da Sua Frota?
+    <input type="text" id="imput_qtdVeiculos"><br>
+
+    <!-- Campo para o percentual de perdas financeiras atuais -->
+    Percentual Atual de Perdas (%):
+    <input type="text" id="imput_percentual_perdasAtual"><br>
+
+    <!-- Campo para o valor anual das multas evitadas -->
+    Multas Anuais Evitadas (R$):
+    <input type="text" id="imput_multasAnuais"><br>
+
+    <!-- Botão que dispara a análise quando clicado -->
+    <button onclick="analisar()">Resultados</button><br><br>
+
+    <!-- Seção que exibe os resultados da simulação -->
+    <h2>Resultados Financeiros</h2>
+
+    <!-- Exibição dos resultados em blocos separados (divs vazias inicialmente) -->
+    Prejuízo Financeiro Sem SafeTherm:
+    <div id="div_custoAtual"></div><br>
+
+    Custo Total com SafeTherm (Reduzido):
+    <div id="div_custoSafe"></div><br>
+
+    Economia Total Anual com SafeTherm:
+    <div id="div_economiaAnualSafe"></div><br>
+
+    Investimento no Sistema SafeTherm:
+    <div id="div_investimentoSafe"></div><br>
+
+    ROI (Meses para Payback):
+    <div id="div_roi"></div><br>
+
+    Perdas Financeiras Atuais Sem a SafeTherm:
+    <div id="div_perdasAtuais"></div><br>
+
+    Perdas Reduzidas com SafeTherm:
+    <div id="div_perdaSafe"></div><br>
+
+    <!-- Informações sobre conformidade com a norma da ANVISA -->
+    <h3>Conformidade ANVISA RDC 304/2019</h3>
+    Temperatura Monitorada: 2°C a 8°C<br><br>
+    Umidade Máxima: 60%<br><br>
+
+    <!-- Bloco onde será exibida a projeção de 5 anos -->
+    <h3>Projeção de 5 Anos</h3>
+    <div id="div_projecao"></div>
+</body>
+
+</html>
+<script>
+    function analisar() {
+        // Captura dos valores digitados e conversão para número
+        var qtdTransferencia_ano = Number(imput_qtdTransferencia_ano.value) // número de transferências por ano
+        var custoMedicamentos = Number(imput_custoMedicamentos.value) // custo por transferência
+        var percentual_perdasAtual = Number(imput_percentual_perdasAtual.value) / 100 // percentual de perdas convertido para decimal
+        var multasAnuais = Number(imput_multasAnuais.value) // valor das multas que seriam evitadas
+        var qtdVeiculos = Number(imput_qtdVeiculos.value) // número de veículos
+
+        // Cálculo do valor movimentado anualmente com medicamentos
+        var valorTotal = qtdTransferencia_ano * custoMedicamentos
+
+        // Cálculo do valor perdido atualmente com base no percentual de perdas
+        var perdaAtual = valorTotal * percentual_perdasAtual
+
+        // Suposição de redução de 15% nas perdas com SafeTherm
+        var perdaSafe = perdaAtual * 0.85
+
+        // Economia gerada ao reduzir as perdas
+        var economiaPerdas = perdaAtual - perdaSafe
+
+        // Economia adicional ao evitar multas
+        var economiaMultas = multasAnuais
+
+        // Custo total atual (perdas + multas)
+        var custoAtual = perdaAtual + multasAnuais
+
+        // Custo após implantação do sistema (considerando perdas reduzidas e multas eliminadas)
+        var custoComSistema = perdaSafe + 0
+
+        // Economia total ao ano com a solução SafeTherm
+        var economiaAnualSafe = custoAtual - custoComSistema
+
+        // Investimento necessário (R$ 70 por veículo)
+        var custoSistema = qtdVeiculos * 70
+
+        // Cálculo do ROI (retorno do investimento em meses)
+        var roi = Math.round((custoSistema / economiaAnualSafe) * 12)
+
+        // Exibição dos valores calculados nos respectivos elementos da página
+        div_custoAtual.innerHTML = `R$ ${custoAtual.toFixed(2)}`
+        // O valor total gasto com as transferências de medicamentos é multiplicado pelo 
+        // percentual de perdas, para calcular quanto se perde anualmente com falhas no 
+        // transporte.
+
+        div_custoSafe.innerHTML = `R$ ${custoComSistema.toFixed(2)}`
+        // A perda atual é reduzida em 15% com o uso do sistema SafeTherm,
+        // simulando uma melhora nas condições de transporte.
+
+        div_economiaAnualSafe.innerHTML = `R$ ${economiaAnualSafe.toFixed(2)}`
+        // A diferença entre o custo atual e o custo com o sistema representa 
+        // a economia anual obtida com a redução de perdas e multas.
+        
+        div_investimentoSafe.innerHTML = `R$ ${custoSistema.toFixed(2)}`
+        // O investimento necessário para implantar o SafeTherm é calculado com 
+        // base no número de veículos da frota, multiplicando por R$ 70 por veículo.
+
+        div_roi.innerHTML = `${roi} meses`
+        // O ROI é calculado dividindo o valor do investimento pela economia anual 
+        // e convertendo para meses, para indicar o tempo necessário para o retorno financeiro.
+
+        div_perdasAtuais.innerHTML = `R$ ${perdaAtual.toFixed(2)}`
+        // Soma as perdas atuais (perda de medicamentos) com o valor das multas anuais 
+        // evitadas para calcular o custo total sem o sistema.
+
+        div_perdaSafe.innerHTML = `R$ ${perdaSafe.toFixed(2)}`
+        // O custo total com o SafeTherm é calculado com base nas perdas reduzidas e 
+        // assumindo que as multas foram eliminadas.
+
+        // Limpa a projeção anterior
+        div_projecao.innerHTML = ""
+
+        // Variáveis para controlar o saldo ao longo dos anos
+        var investimentoRestante = custoSistema // quanto ainda falta pagar do investimento
+        var saldoAcumulado = 0 // saldo total acumulado com os lucros
+
+        // Loop de 5 anos para mostrar a projeção de economia/lucro
+        for (var ano = 1; ano <= 5; ano++) {
+            var economiaAno = economiaAnualSafe; // economia gerada no ano
+            var pagamento = 0 // valor usado para abater o investimento
+
+            // Verifica se ainda há investimento a ser pago
+            if (investimentoRestante > 0) {
+                if (economiaAno >= investimentoRestante) {
+                    pagamento = investimentoRestante
+                    investimentoRestante = 0
+                } else {
+                    pagamento = economiaAno
+                    investimentoRestante -= economiaAno
+                }
+            }
+
+            // Lucro do ano é a economia que sobra após abater o investimento
+            var lucroAno = economiaAno - pagamento
+
+            // Soma o lucro ao saldo acumulado
+            saldoAcumulado += lucroAno
+
+            // Exibição dos resultados do ano atual na div de projeção
+            div_projecao.innerHTML += `
+                <br>
+                <div><b>Ano:</b> ${ano}</div>
+                <div><b>Perdas com a SafeTherm:</b> R$ ${perdaSafe.toFixed(2)}</div>
+                <div><b>Economia do ano:</b> R$ ${economiaAno.toFixed(2)}</div>
+                <div><b>Pagamento do investimento:</b> R$ ${pagamento.toFixed(2)}</div>
+                <div><b>Lucro do ano:</b> R$ ${lucroAno.toFixed(2)}</div>
+                <div><b>Saldo acumulado:</b> R$ ${saldoAcumulado.toFixed(2)}</div>
+            `;
+        }
+    }
+</script>
