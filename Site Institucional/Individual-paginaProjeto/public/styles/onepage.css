@@ -477,7 +477,7 @@ header nav .menu-primario ul {
 .texto1 {
     color: #ffffff;
     text-align: left;
-    font-family: "SofiaSans-Light", sans-serif;
+    font-family: "PostNoBillsJaffna-Bold", sans-serif;
     font-size: 20px;
     font-weight: 300px;
     position: absolute;
@@ -489,7 +489,7 @@ header nav .menu-primario ul {
 
 .texto2 {
     text-align: left;
-    font-family: "SofiaSans-Bold", sans-serif;
+    font-family: "PostNoBillsJaffna-Bold", sans-serif;
     font-size: 15px;
     font-weight: 500;
     position: absolute;
@@ -501,7 +501,7 @@ header nav .menu-primario ul {
 
 .texto2 .span_voce_pode {
     color: #ffffff;
-    font-family: "SofiaSans-Bold", sans-serif;
+    font-family: "PostNoBillsJaffna-Bold", sans-serif;
     font-size: 20px;
     line-height: 119.93%;
     letter-spacing: 0.2em;
