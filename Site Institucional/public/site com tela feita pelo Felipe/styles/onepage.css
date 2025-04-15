@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Sofia Sans", sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 100%;
+    background: #fff;
+}
+
+header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    top: 20px;
+    width: 100%;
+    align-items: center;
+    z-index: 9999;
+}
+
+header a h1 span {
+    color: #ff7f00;
+}
+
+header a h1 {
+    color: #000000;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    gap: 60px;
+}
+
+header nav .menu-primario {
+    display: block;
+    flex-direction: row;
+    width: 50%;
+}
+
+header nav .menu-primario ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+    align-items: center;
+    background: #232323;
+    color: #fff;
+}
+
+header nav .menu-secundario {
+    display: block;
+    flex-direction: row;
+    width: 50%;
+}
+
+header nav .menu-secundario ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+    align-items: center;
+    background: #ececec;
+    color: #232323;
+
+}
+
+header nav .menu-secundario ul,
+header nav .menu-primario ul {
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.home {
+    width: 100%;
+    height: 900px;
+    border: 1px solid green;
+}
+
+.projeto {
+    width: 100%;
+    height: 900px;
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.sobre {
+    width: 100%;
+    height: 900px;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.mensagem_contato {
+    width: 100%;
+    height: 225px;
+    border: 1px solid rgb(191, 255, 0);
+}
+
+
+
+/* CSS da página de contato*/
+
+.contato {
+    height: 900px;
+    border: 1px solid rgb(8, 0, 255);
+    background-image: url(../assets/img/Fundo_contato.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.contato .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.poligono1 {
+    display: flex;
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: flex-end;
+}
+
+.poligono2 {
+    display: flex;
+    width: auto;
+    height: 100%;
+    flex-direction: column-reverse;
+    align-self: flex-end;
+    rotate: 180deg;
+}
+
+.poligono img {
+    width: 100px;
+    height: 340px;
+}
+
+.card {
+    display: flex;
+    position: relative;
+    background-color: #EEEEEE;
+    width: 100%;
+    height: 391px;
+    border-radius: 15px 0px 15px 15px
+}
+
+.formulario {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: -35px;
+    background-color: #EEEEEE;
+    border-radius: 15px 15px 0px 0px;
+    width: 122px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Lado direito da Página */
+.direito {
+    width: 30%;
+    height: 100%;
+    position: relative;
+}
+
+.botao {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.botao .botao-whatzapp {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #ff7f00;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao .botao-whatzapp img {
+    width: 25px;
+    height: 25px;
+    display: flex;
+}
+
+.botao .botao-email {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #ff7f00;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao .botao-email img {
+    width: 25px;
+    height: 25px;
+    display: flex;
+}
+
+.celular {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    padding-left: 5%;
+}
+
+.celular img {
+    width: 340px;
+    height: 380px;
+}
+
+.botao {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    top: 330px;
+    right: -40px;
+    gap: 10px;
+}
+
+.botao button {
+    background: none;
+    border: none;
+}
+
+.botao .botao-whatzapp {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #ff7f00;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao .botao-whatzapp img {
+    width: 25px;
+    height: 25px;
+    display: flex;
+}
+
+.botao .botao-email {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #ff7f00;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao .botao-email img {
+    width: 25px;
+    height: 25px;
+    display: flex;
+}
+
+/* Lado esquerdo da Página */
+.card .esquerda {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.esquerda .Na-safeTherme- {
+    width: 30%;
+    height: auto;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    align-self: center;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.esquerda .Na-safeTherme- span {
+    color: #ff7f00;
+}
+
+.esquerda .cadastro {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 60px;
+}
+
+.esquerda .cadastro .campo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.esquerda .cadastro .campo span {
+    font-family: "Poppins";
+    font-size: 10px;
+}
+
+.esquerda .cadastro .campo input {
+    display: flex;
+    padding-left: 15px;
+    font-family: "Poppins";
+    font-size: 10px;
+    height: 30px;
+    width: 100%;
+    border: none;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+.esquerda .cadastro .campo-mensagem span {
+    font-family: "Poppins";
+    font-size: 10px;
+}
+
+.esquerda .cadastro .campo-mensagem input {
+    display: flex;
+    padding-left: 15px;
+    font-family: "Poppins";
+    font-size: 10px;
+    height: 110px;
+    width: 100%;
+    border: none;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    padding-bottom: 60px;
+}
+
+.cadastro .botao-aoao {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-top: 10px;
+    gap: 10px;
+}
+
+.cadastro .botao-aoao button {
+    background: none;
+    border: none;
+}
+
+.cadastro .botao-enviar {
+    width: 100px;
+    height: 35px;
+    display: flex;
+    background-color: #ff7f00;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+    font-size: 15px;
+}
+
+.cadastro .botao-enviar span {
+    color: #fff;
+    display: flex;
+}
+
+.cadastro .botao-enviar img {
+    width: 35px;
+    height: 17.5px;
+    display: flex;
+}
+
+.cadastro .botao-lixeira {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 6px;
+    background-color: #000000;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro .botao-lixeira img {
+    width: 20px;
+    height: 35px;
+    display: flex;
+}
+
+.esquerdo .botao-button {
+    flex-direction: row;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.separador {
+    flex-direction: row;
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
+    width: 5px;
+    height: 67%;
+    background-color: #ff7f00;
+    position: relative;
+    border-radius: 5px;
+}
+
+.separador::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ececec;
+    border: 2px solid #ff7f00;
+}
+
+@font-face .titulo {
+    font-family: 'Post No Bills Jaffna Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Post No Bills Jaffna Bold'), url('PostNoBillsJaffna-Bold.woff') format('woff');
+    }
+    
+.container * {
+    box-sizing: border-box;
+}
+
+.projeto {
+    display: flex;
+    background-color: #232323;
+    height: 720px;
+    position: relative;
+}
+
+.titulo {
+    color: #fff;
+    text-align: left;
+    font-size: 64px;
+    font-weight: 700px;
+    position: absolute;
+    height: 86px;
+    width: 176px;
+    left: 86px;
+    top: 50px;
+}

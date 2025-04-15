@@ -1,478 +1,453 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+*{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: "Poppins", sans-serif;
+     text-decoration: none;
+     list-style: none;
+ }
+ 
+ body{
+     display: flex;
+     flex-direction: column;
+     margin: auto;
+     max-width: 1900px;
+     background: #232323;
+ }
+ header{
+     position: fixed;
+     display: flex;
+     justify-content: space-between;
+     padding: 0px 60px;
+     top: 25px;
+     width: 100%;
+     align-items: center;
+     z-index: 999;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Sofia Sans", sans-serif;
-    text-decoration: none;
-    list-style: none;
-}
-
-body {
+ }
+ header .box-nav-logo{
     display: flex;
-    flex-direction: column;
-    margin: auto;
-    max-width: 100%;
-    background: #fff;
-}
-
-header {
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 5%;
-    padding-right: 5%;
-    top: 20px;
-    width: 100%;
-    align-items: center;
-    z-index: 9999;
-}
-
-header a h1 span {
-    color: #ff7f00;
-}
-
-header a h1 {
-    color: #000000;
-}
-
-header nav {
-    display: flex;
-    flex-direction: row;
-    width: 700px;
-    gap: 60px;
-}
-
-header nav .menu-primario {
-    display: block;
-    flex-direction: row;
-    width: 50%;
-}
-
-header nav .menu-primario ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    height: 100%;
-    align-items: center;
-    background: #232323;
-    color: #fff;
-}
-
-header nav .menu-secundario {
-    display: block;
-    flex-direction: row;
-    width: 50%;
-}
-
-header nav .menu-secundario ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    height: 100%;
-    align-items: center;
-    background: #ececec;
-    color: #232323;
-
-}
-
-header nav .menu-secundario ul,
-header nav .menu-primario ul {
-    height: 40px;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    font-weight: 200;
-}
-
-.home {
-    width: 100%;
-    height: 900px;
-    border: 1px solid green;
-}
-
-.projeto {
-    width: 100%;
-    height: 900px;
-    border: 1px solid rgb(255, 0, 0);
-}
-
-.sobre {
-    width: 100%;
-    height: 900px;
-    border: 1px solid rgb(0, 0, 0);
-}
-
-.mensagem_contato {
-    width: 100%;
-    height: 225px;
-    border: 1px solid rgb(191, 255, 0);
-}
-
-
-
-/* CSS da página de contato*/
-
-.contato {
-    height: 900px;
-    border: 1px solid rgb(8, 0, 255);
-    background-image: url(../assets/img/Fundo_contato.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
-.contato .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-.poligono1 {
-    display: flex;
-    width: auto;
-    height: 100%;
-    flex-direction: column;
-    align-self: flex-start;
-    justify-content: flex-end;
-}
-
-.poligono2 {
-    display: flex;
-    width: auto;
-    height: 100%;
-    flex-direction: column-reverse;
-    align-self: flex-end;
-    rotate: 180deg;
-}
-
-.poligono img {
-    width: 100px;
-    height: 340px;
-}
-
-.card {
-    display: flex;
-    position: relative;
-    background-color: #EEEEEE;
-    width: 100%;
-    height: 391px;
-    border-radius: 15px 0px 15px 15px
-}
-
-.formulario {
-    display: flex;
-    position: absolute;
-    right: 0;
-    top: -35px;
-    background-color: #EEEEEE;
-    border-radius: 15px 15px 0px 0px;
-    width: 122px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Lado direito da Página */
-.direito {
-    width: 30%;
-    height: 100%;
-    position: relative;
-}
-
-.botao {
-    width: 100%;
-    height: 20%;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.botao .botao-whatzapp {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    border-radius: 100%;
-    background-color: #ff7f00;
-    justify-content: center;
-    align-items: center;
-}
-
-.botao .botao-whatzapp img {
-    width: 25px;
-    height: 25px;
-    display: flex;
-}
-
-.botao .botao-email {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    border-radius: 100%;
-    background-color: #ff7f00;
-    justify-content: center;
-    align-items: center;
-}
-
-.botao .botao-email img {
-    width: 25px;
-    height: 25px;
-    display: flex;
-}
-
-.celular {
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
-    height: 100%;
-    padding-left: 5%;
-}
-
-.celular img {
-    width: 340px;
-    height: 380px;
-}
-
-.botao {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: absolute;
-    top: 330px;
-    right: -40px;
-    gap: 10px;
-}
-
-.botao button {
-    background: none;
-    border: none;
-}
-
-.botao .botao-whatzapp {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    border-radius: 100%;
-    background-color: #ff7f00;
-    justify-content: center;
-    align-items: center;
-}
-
-.botao .botao-whatzapp img {
-    width: 25px;
-    height: 25px;
-    display: flex;
-}
-
-.botao .botao-email {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    border-radius: 100%;
-    background-color: #ff7f00;
-    justify-content: center;
-    align-items: center;
-}
-
-.botao .botao-email img {
-    width: 25px;
-    height: 25px;
-    display: flex;
-}
-
-/* Lado esquerdo da Página */
-.card .esquerda {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    justify-content: left;
-    align-items: flex-start;
-}
-
-.esquerda .Na-safeTherme- {
-    width: 30%;
-    height: auto;
-    flex-direction: row;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 12px;
-    align-self: center;
-    text-align: right;
-    padding-right: 10px;
-}
-
-.esquerda .Na-safeTherme- span {
-    color: #ff7f00;
-}
-
-.esquerda .cadastro {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding: 60px;
-}
-
-.esquerda .cadastro .campo {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: auto;
-}
-
-.esquerda .cadastro .campo span {
-    font-family: "Poppins";
-    font-size: 10px;
-}
-
-.esquerda .cadastro .campo input {
-    display: flex;
-    padding-left: 15px;
-    font-family: "Poppins";
-    font-size: 10px;
-    height: 30px;
-    width: 100%;
-    border: none;
-    background-color: #D9D9D9;
-    border-radius: 10px;
-}
-
-.esquerda .cadastro .campo-mensagem span {
-    font-family: "Poppins";
-    font-size: 10px;
-}
-
-.esquerda .cadastro .campo-mensagem input {
-    display: flex;
-    padding-left: 15px;
-    font-family: "Poppins";
-    font-size: 10px;
-    height: 110px;
-    width: 100%;
-    border: none;
-    background-color: #D9D9D9;
-    border-radius: 10px;
-    padding-bottom: 60px;
-}
-
-.cadastro .botao-aoao {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-top: 10px;
-    gap: 10px;
-}
-
-.cadastro .botao-aoao button {
-    background: none;
-    border: none;
-}
-
-.cadastro .botao-enviar {
-    width: 100px;
-    height: 35px;
-    display: flex;
-    background-color: #ff7f00;
-    border-radius: 6px;
-    justify-content: center;
-    align-items: center;
-    font-family: "Poppins";
-    font-size: 15px;
-}
-
-.cadastro .botao-enviar span {
-    color: #fff;
-    display: flex;
-}
-
-.cadastro .botao-enviar img {
-    width: 35px;
-    height: 17.5px;
-    display: flex;
-}
-
-.cadastro .botao-lixeira {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    border-radius: 6px;
-    background-color: #000000;
-    justify-content: center;
-    align-items: center;
-}
-
-.cadastro .botao-lixeira img {
-    width: 20px;
-    height: 35px;
-    display: flex;
-}
-
-.esquerdo .botao-button {
-    flex-direction: row;
-    background: none;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.separador {
-    flex-direction: row;
-    display: flex;
-    align-self: center;
     justify-content: flex-start;
-    width: 5px;
-    height: 67%;
-    background-color: #ff7f00;
-    position: relative;
-    border-radius: 5px;
-}
-
-.separador::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #ececec;
-    border: 2px solid #ff7f00;
-}
-
-@font-face .titulo {
-    font-family: 'Post No Bills Jaffna Bold';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Post No Bills Jaffna Bold'), url('PostNoBillsJaffna-Bold.woff') format('woff');
-    }
+    width: 30%;
     
-.container * {
-    box-sizing: border-box;
+ }
+ header .box-nav-btn{
+    display: flex;
+    justify-content: flex-end;
+    width: 30%;
+ }
+ header a h1 span{
+     color: #ff7f00;
+ }
+ header a h1{
+     color: #000000;
+ }
+ header nav{
+     display: flex;
+     flex-direction: row;
+     width: 700px;
+     gap: 60px;
+
+ }
+ header nav .menu-primario{
+     display: block;
+     flex-direction: row;
+     width: 50%;
+ }
+ header nav .menu-primario ul{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-evenly;
+     height: 100%;
+     align-items: center;
+     background: #232323;
+     color: #fff;
+ }
+ header nav .menu-secundario{
+     display: block;
+     flex-direction: row;
+     width: 50%;
+ }
+ header nav .menu-secundario ul{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-evenly;
+     height: 100%;
+     align-items: center;
+     background: #ececec;
+     color: #232323;
+ 
+ }
+
+ header nav .menu-primario ul{
+    border: 1px solid #fff;
+ }
+ 
+ header nav .menu-primario ul li a{
+    color: #fff;
+ }
+ header nav .menu-secundario ul li a{
+    color: #232323;
+    font-weight: 400;
+ }
+ .effectHover, header nav ul li{
+    transition: .5s;
 }
 
-.projeto {
+header nav ul li:hover{
+    transform: translateY(-5px);
+}
+
+.effectHover:hover{
+    color: #ff7f00;
+}
+
+ header nav .menu-secundario ul,
+ header nav .menu-primario ul{
+     height: 40px;  
+     border-radius: 10px;
+     font-size: 1.2rem;
+     font-weight: 200;
+     
+ }
+ header .botao-login{
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    width: 140px;
+    height: 40px;
+    border-radius: 0px 10px 0px 10px;
+    color: #fff;
+    background: #ff7f00;
+    font-size: 1.2rem;
+    font-family:'Post No Bills Jaffna Bold';
+    font-weight:bold;
+    position: relative;
+    transition: .6s;
+ }
+
+ .botao-login:hover{
+    background-color: #fff;
+    color: #ff7f00;
+    box-shadow: 2px 2px 50px 0px #ffffff4f;
+}
+
+
+ .botao-login:hover::after{
+    opacity: 1;
+    transform: translateX(480%);
+}
+
+.botao-login::after{
+    content: '';
+    background: url(../assets/icon/Truck.png) no-repeat center center;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20%;
+    left: 0; 
+    opacity: 0; 
+    transition: 1s;
+}
+
+
+
+
+ .home{
     display: flex;
-    background-color: #232323;
-    height: 720px;
+    justify-content: center;
+    align-items: center;
+     width: 100%;
+     height: 100vh;
+ }
+ .projeto{
+     width: 100%;
+     height: 100vh;
+     background-color: #232323;
+ }
+ .sobre{
+     width: 100%;
+     height: 100vh;
+     border: 1px solid rgb(0, 0, 0);
+ }
+ .mensagem_contato{
+     width: 100%;
+     height: 25vh;
+     border: 1px solid rgb(191, 255, 0);
+ }
+ .contato{
+     width: 100%;
+     height: 100vh;
+     border: 1px solid rgb(8, 0, 255);
+ }
+ 
+ .container{
+     width: 100%;
+     height: 100%;
+ }
+
+.home .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.home .img_personagem{
+    position: absolute;
+    width: 40%;
+    bottom: 10px;
+    z-index: 1;
+
+}
+.home .trianguloEscuro{
+    top: 0;
+    position: absolute;
+    right: 0px;
+    width: 37%;
+}
+.home .trianguloClaro{
+    bottom: 0;
+    position: absolute;
+    left: 20px;
+    width: 37%;
+    z-index: 0;
+}
+
+.home .container .box_left{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+}
+.home .container .box_left .conteudo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10%;
+    width: 75%;
+    height: 100%;
+    gap: 30px;
+    z-index: 2;
+}
+
+.home .container .box_left .conteudo .titulo_home{
+    margin-top: 13%;
+    text-align: center;
+    font-size: 3rem;
+    width: 65%;
+    font-family:'Post No Bills Jaffna Bold';
+    font-weight:bold;
+}
+.home .container .box_left .conteudo .titulo_home span{
+    font-family:'Post No Bills Jaffna Bold';
+    font-weight:bold;
+}
+.home .container .box_left .conteudo span{
+    color: #ff7f00;
+}
+.home .container .box_left .conteudo .text{
+    text-align: center;
+    font-size: 1.2rem;
+    width: 65%;
+}
+
+.home .container .box_left .conteudo .botoes{
+    width: 50%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#saiba_mais{
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    width: 47%;
+    height: 100%;
+    border-radius: 10px 0px 10px 0px;
+    background-color: #0051FF;
+    color: #fff;
+    font-weight: 600;
+    font-size: larger;
+    font-family: "Sofia Sans", sans-serif;
+}
+#cadastrar{
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    width: 47%;
+    height: 100%;
+    border: 1px solid #ff7f00;
+    border-radius: 10px 0px 10px 0px;
+    color: #ff7f00;
+    font-weight: 600;
+    font-size: 1.2em;
+    background-color: #fff;
+    font-family: "Sofia Sans", sans-serif;
+}
+
+
+.projeto .container .box_left{
+    width: 50%;
+    height: 100%;
+    padding: 5% 0 0 5%;
     position: relative;
 }
 
-.titulo {
+.projeto .container .box_left #titulo_projeto{
     color: #fff;
-    text-align: left;
-    font-size: 64px;
-    font-weight: 700px;
+    font-family:'Post No Bills Jaffna Bold';
+    font-weight:bold;
+    font-size: 3rem;
+}
+.projeto .container .box_left #text{
+    width: 58%;
+    color: #fff;
+    font-family:'Sofia Sans';
+    font-size: 1rem;
+    font-weight: 200;
+    margin-top: 4%;
+}
+.projeto .container .box_left #text-info{
+    width: 58%;
+    margin-top: 2%;
+    color: #fff;
+    font-family:'Sofia Sans';
+    font-size: 1.1rem;
+    letter-spacing: 2.5px;
+    font-weight: 600;
+}
+
+.projeto .container .box_left #text-info span{
+    color: #0051FF;
+    text-decoration: underline;
+}
+
+.projeto .container .box_left .botao_contato{
+    display: block;
+    margin-top: 4%;
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    background: #0051FF;
+    font-size: .9rem;
+    letter-spacing: 2.2px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 10px 0px 10px 0px;
+    transition: .5s;
+}
+
+.projeto .container .box_left .botao_contato:hover{
+    background: #fff;
+    color: #000;
+    box-shadow: 2px 2px 50px 0px #ffffff4f;
+
+}
+
+
+.projeto .container .box_left .box_cards{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+
+.projeto .container .box_left .box_cards .cards{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.projeto .container .box_left .box_cards .card{
+    width: 200px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #272727;
+    border-radius: 8px;
+    box-shadow: -8px 8px 8px -2px #00000050;
+    position: relative;
+    transition: .5s;
+}
+.projeto .container .box_left .box_cards .card:hover{
+    background-color: #000;
+    transform: scale(1.1);
+}
+.projeto .container .box_left .box_cards .card .titulo-card{
     position: absolute;
-    height: 86px;
-    width: 176px;
-    left: 86px;
-    top: 50px;
+    top: -20px;
+    left: 0;
+    font-weight: 200;
+    font-size: .9rem;
+    color: #fff;
+    font-family: 'Sofia Sans';
+}
+.projeto .container .box_left .box_cards .card p{
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 200;
+    width: 160px;
+}
+
+.projeto .container .box_left .box_cards .card span{
+    color: #0051FF;
+}
+.projeto .container .box_left .box_cards .card_1{
+    margin-top: 45px;
+}
+
+.projeto .container .box_left .box_cards .card_2{
+    margin-top: 5px;
+}
+
+
+.projeto .container .box_left .box_cards .cards .botao_prox{
+    margin-right: 5%;
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 1.2rem;
+    background: transparent;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.projeto .container .box_left .box_cards .cards .botao_prox:hover{
+    background: #000000;
+    border: 1px solid #000;
+    transform: scale(1.1);
+}
+
+
+
+.home .container .box_right{
+    width: 50%;
+    height: 100%;
+    background-color: #232323;
+}
+.projeto .container .box_left .rolamento{
+    position: absolute;
+    width: 200px;
+    height: 5px;
+    bottom: 5%;
+    left: 34%;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.projeto .container .box_left .rolamento .prox_card{
+    background: #0051FF;
+    height: 100%;
+    width: 30%;
 }

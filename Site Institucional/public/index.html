@@ -1,134 +1,111 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/onepage.css">
-    <title>Safe Therm</title>
-</head>
-
-<body>
-    <header>
-        <a href="">
-            <h1>Safe <span>Therm</span></h1>
-        </a>
-        <nav>
-            <div class="menu-primario">
-                <ul>
-                    <li>home</li>
-                    <li>projeto</li>
-
-                </ul>
-            </div>
-
-
-            <div class="menu-secundario">
-                <ul>
-                    <li>sobre</li>
-                    <li>contato</li>
-                </ul>
-            </div>
-
-        </nav>
-        <a href="">entrar</a>
-    </header>
-    <section class="home">
-        <div class="container">
-            <p>Home Seu codigo aqui</p>
+ <html lang="pt-br">
+ 
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="styles/onepage.css">
+     <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
+     <title>Safe Therm</title>
+ </head>
+ 
+ <body>
+     <header>
+        <div class="box-nav-logo">
+            <a href="">
+                <h1>Safe <span>Therm</span></h1>
+            </a>
         </div>
-    </section>
-    <section class="projeto">
-        <div class="container">
-            <div class="titulo">Projeto</div>
-            <img class="imagem_caminhão" src="assets/img/">
+         
+         <nav>
+             <div class="menu-primario">
+                 <ul>
+                     <li><a href="" class="effectHover">home</a></li>
+                     <li><a href="" class="effectHover">projeto</a></li>
+ 
+                 </ul>
+             </div>
+ 
+ 
+             <div class="menu-secundario">
+                 <ul>
+                     <li><a href="" class="effectHover">sobre</a></li>
+                     <li><a href="" class="effectHover">contato</a></li>
+                 </ul>
+             </div>
+ 
+         </nav>
+         <div class="box-nav-btn">
+            <a href="" class="botao-login">entrar</a>
+         </div>
+     </header>
+     <section class="home">
+        <img src="assets/img/triangulo cinza escuro.png" alt="" class="trianguloEscuro">
+        <img src="assets/img/homeIMG person.png" class="img_personagem">
+         <div class="container">
+             <div class="box_left">
+                <div class="conteudo">
+                    <h1 class="titulo_home">A inovação que <span>preserva</span> a saúde.</h1>
+                    <p class="text">Transportando <span>confiança</span> e colhendo resultados que transformam a <span>saúde.</span></p>
+                    <div class="botoes">
+                        <a href="" id="saiba_mais">saiba mais</a>
+                        <a href="" id="cadastrar">cadastrar</a>
+                    </div>
+                </div>
+             </div>
+             <div class="box_right">
+                <div class="conteudo">
+
+                </div>
+             </div>
+         </div>
+         <img src="assets/img/triangulos cinza claro.png" alt="" class="trianguloClaro">
+     </section>
+     <section class="projeto">
+         <div class="container">
             
-        </div>
-    </section>
-    <section class="sobre">
-        <div class="container">
-            <p>Sobre Seu codigo aqui</p>
+                <div class="box_left">
+                    <h1 id="titulo_projeto">Projeto</h1>
+                    <p id="text">Estamos prontos para responder às suas dúvidas, fornecer mais informações sobre nossos serviços ou auxiliar com qualquer questão que você tenha.</p>
+                    <p id="text-info">Você pode clicar no botão abaixo para utilizar o <span id="text-info">formulário</span>.</p>
+                    <a href="#" class="botao_contato">contato</a>
 
-        </div>
-    </section>
-    <div class="mensagem_contato">
-
-    </div>
-    <section class="contato">
-
-        <div class="container">
-            <div class="poligono poligono1">
-                <img src="assets/img/poligono-contato.png" alt="Polígono 1">
-            </div>
-            <div class="card">
-                <div class="formulario">
-                    formulário
-                </div>
-                <div class="direito">
-                    <div class="botao">
-                        <div class="botao-whatzapp">
-                            <button onclick="botao_whatzapp()">
-                                <img src="assets/img/whatszapp.png" alt="">
-                            </button>
-                        </div>
-                        <div class="botao-email">
-                            <button onclick="botao_email()">
-                                <img src="assets/img/Email.png" alt="">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="celular">
-                        <img src="assets/img/celular-mao.png" alt="">
-                    </div>
-                </div>
-                <div class="esquerda">
-                    <div class="Na-safeTherme-">
-                        <p>Na <span> Safe Therm</span>, estamos à disposição para responder a toda as suas dúvidas e
-                            oferecer <span> soluções </span>
-                            seguras e <span> rápidas </span>. Preencha o formulário ao lado ou entre em contato pelo
-                            nosso telefone ou
-                            e-mail. Nossa equipe está pronta para atendê-lo com o máximo de <span> eficiência </span> e
-                            <span> segurança</span>.
-                        </p>
-                    </div>
-                    <div class="separador"></div>
-                    <div class="cadastro">
-                        <div class="campo">
-                            <span>nome</span>
-                            <input type="text" id="nome" placeholder="Seu nome completo">
-                        </div>
-                        <div class="campo">
-                            <span>email</span>
-                            <input type="text" id="email" placeholder="Seu email para contato">
-                        </div>
-                        <div class="campo">
-                            <span>telefone</span>
-                            <input type="text" id="telefone" placeholder="(11) 00000 - 0000">
-                        </div>
-                        <div class="campo-mensagem">
-                            <span>Mensagem</span>
-                            <input type="text" id="mensagem" placeholder="escrever mensagem">
-                        </div>
-                        <div class="botao-aoao">
-                            <div class="botao-lixeira">
-                                <button onclick="botao_lixeira()">
-                                    <img src="assets/img/lixeira.png" alt="">
-                                </button>
+                    <div class="box_cards">
+                        <div class="cards">
+                            <div class="card card_1">
+                                <h1 class="titulo-card">Parceria</h1>
+                                <p>Valorizamos <span>relações</span> de <span>longo prazo</span> com nossos clientes e parceiros, baseadas em <span>confiança</span> e <span>colaboração</span>.</p>
                             </div>
-                            <div class="botao-enviar">
-                                <button onclick="botao_enviar()">
-                                    <span>enviar<img src="assets/img/enviar.png" alt=""></span>
-                                </button>
+                            <div class="card card_2">
+                                <h1 class="titulo-card">Responsabilidade</h1>
+                                <p>Atuamos com <span>ética</span> e <span>responsabilidade</span>, priorizando a <span>segurança</span> e o impacto positivo na <span>saúde</span> pública.</p>
                             </div>
+                            <button class="botao_prox">></button>
+                        </div>
+                        <div class="rolamento">
+                            <div class="prox_card"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="poligono poligono2">
-                <img src="assets/img/poligono-contato.png" alt="Polígono 2">
-            </div>
-        </div>
-    </section>
-</body>
-
-</html>
+            
+         </div>
+     </section>
+     <section class="sobre">
+         <div class="container">
+             <p>Sobre Seu codigo aqui</p>
+ 
+         </div>
+     </section>
+     <div class="mensagem_contato">
+ 
+     </div>
+     <section class="contato">
+         <div class="container">
+             <p>Contato Seu codigo aqui</p>
+ 
+         </div>
+     </section>
+ 
+ </body>
+ 
+ </html>
