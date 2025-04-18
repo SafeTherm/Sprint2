@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/styles/styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card_sup">
+      <div class="card">
+        <div class="texto_titulo">
+          Temperatura - Veículo 1
+        </div>
+        <div>
+          <div id="texto_titulo_grafico" class="texto_titulo_grafico">
+            Temperatura ao longo do Tempo
+          </div>
+          <canvas id="grf_temp"></canvas>
+        </div>
+        <div>
+          <div id="texto_titulo_grafico" class="texto_titulo_grafico">
+            Comparação dos Sensores de Temperatura
+          </div>
+          <canvas id="grf_temperatura_comparação"></canvas>
+        </div>
+        <div class="indicador">
+          <div class="avaliação">
+            <div id="div_condicao" class="condicao">
+              <div class="texto_condicao">
+                BOM
+              </div>
+              <img src="assets/img/bom.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card_inf">
+      <div class="card">
+        <div class="texto_titulo">
+          Umidade - Veículo 1
+        </div>
+        <div>
+          <div id="texto_titulo_grafico" class="texto_titulo_grafico">
+            Umidade ao longo do Tempo
+          </div>
+          <canvas id="grf_umi"></canvas>
+        </div>
+        <div>
+          <div id="texto_titulo_grafico" class="texto_titulo_grafico">
+            Comparação dos Sensores de Umidade
+          </div>
+          <canvas id="grf_umidade_comparação"></canvas>
+        </div>
+        <div class="indicador">
+          <div class="avaliação">
+            <div id="div_condicao" class="condicao">
+              <div class="texto_condicao">
+                ALERTA
+              </div>
+              <img src="assets/img/alerta.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+<script>
+  // GRÁFICO DE TEMPERATURA
+  const ctx_temp = document.getElementById('grf_temp');
+
+  new Chart(ctx_temp, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
+      datasets: [{
+        label: 'Temperatura - Sensor Sup',
+        data: [4, 5, 8, 3, 3, 4, 3, 5, 5, 4],
+        borderWidth: 2,
+        backgroundColor: 'rgb(255, 0, 111)',
+        borderColor: 'rgb(255, 0, 111)'
+      },
+      {
+        label: 'Temperatura - Sensor Inf',
+        data: [3, 2, 2, 3, 3, 4, 3, 3, 3, 2],
+        borderWidth: 2,
+        backgroundColor: 'rgb(70, 70, 249)',
+        borderColor: 'rgb(70, 70, 249)'
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          ticks: {
+            stepSize: 1,
+            callback: function (value) {
+              return Math.floor(value);
+            }
+          },
+          min: -1,
+          max: 10
+        }
+      }
+    }
+  },);
+
+  // GRÁFICO DE COMPARAÇÃO DE TEMPERATURA
+  const graficBar_temp_comp = document.getElementById('grf_temperatura_comparação');
+  
+  new Chart(graficBar_temp_comp, {
+    type: 'bar',
+    data: {
+      labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
+      datasets: [{
+        label: 'Sensor de Temp Superior',
+        data: [4, 5, 8, 3, 3, 4, 3, 5, 5, 4],
+        borderWidth: 2,
+        backgroundColor: 'rgb(255, 0, 111)'
+      },
+      {
+        label: 'Sensor de Temp inf',
+        data: [3, 2, 2, 3, 3, 4, 3, 3, 3, 2],
+        borderWidth: 2,
+        backgroundColor: 'rgb(70, 70, 249)'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // GRÁFICO DE UMIDADE
+  const ctx_umi = document.getElementById('grf_umi');
+
+  new Chart(ctx_umi, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
+      datasets: [{
+        label: 'Umidade - Sensor Sup',
+        data: [60, 70, 65, 60, 70, 65, 55, 60, 55, 55],
+        borderWidth: 2,
+        backgroundColor: 'rgb(255, 0, 111)',
+        borderColor: 'rgb(255, 0, 111)'
+      },
+      {
+        label: 'Umidade - Sensor Inf',
+        data: [55, 60, 55, 55, 60, 60, 65, 55, 50, 50],
+        borderWidth: 2,
+        backgroundColor: 'rgb(70, 70, 249)',
+        borderColor: 'rgb(70, 70, 249)'
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          ticks: {
+            stepSize: 5,
+            callback: function (value) {
+              return Math.floor(value);
+            }
+          },
+          min: 20,
+          max: 85
+        }
+      }
+    }
+  });
+
+  // GRÁFICO  DE COMPARAÇÃO UMIDADE
+  const graficBar_umi_comp = document.getElementById('grf_umidade_comparação');
+  
+  new Chart(graficBar_umi_comp, {
+    type: 'bar',
+    data: {
+      labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
+      datasets: [{
+        label: 'Sensor de Umidade Superior',
+        data: [60, 70, 65, 60, 70, 65, 55, 60, 55, 55],
+        borderWidth: 2,
+        backgroundColor: 'rgb(255, 0, 111)'
+      },
+      {
+        label: 'Sensor de Umidade inf',
+        data: [55, 60, 55, 55, 60, 60, 65, 55, 50, 50],
+        borderWidth: 2,
+        backgroundColor: 'rgb(70, 70, 249)'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
