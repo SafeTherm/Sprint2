@@ -18,10 +18,8 @@
                 <ul>
                     <li>Home</li>
                     <li>Projeto</li>
-
                 </ul>
             </div>
-
 
             <div class="menu-secundario">
                 <ul>
@@ -30,100 +28,53 @@
                     <li>Login</li>
                 </ul>
             </div>
-
         </nav>
         <a href="">entrar</a>
     </header>
+
     <section class="home">
         <div class="container">
-            <p>Home Seu codigo aqui</p>
+            <p>Home Seu código aqui</p>
         </div>
     </section>
+
     <section class="projeto">
         <div class="container">
-            <div class="projeto">
-                <div class="titulo">Projeto</div>
-                <img class="imagem-caminhao" src="assets/img/Mask group.png" />
-                <img class="polygon-1" src="assets/img/Polygon 1.png" >
-                <img class="polygon-2a" src="assets/img/Polygon 2.png">
-                <img class="polygon-3" src="assets/img/Polygon 3.png" >
-                <img class="polygon-4" src="assets/img/Polygon 4.png" >
-                <img class="polygon-5" src="assets/img/Polygon 5.png" >
-
-                <img class="polygon-6" src="assets/img/Polygon 6.png" />
-                <img class="polygon-7" src="assets/img/Polygon 7.png" />
-                <div class="ellipse-7"></div>
-                <div class="ellipse-8"></div>
-                <div class="ellipse-9"></div>
-                <div class="ellipse-10"></div>
-                <div class="texto1">
-                    Estamos prontos para responder às suas dúvidas, fornecer mais informações
-                    sobre nossos serviços ou auxiliar com qualquer questão que você tenha.
-                </div>
-                <div class="texto2">
-                    <span>
-                        <span class="span_voce_pode">Você pode clicar no botão abaixo para utilizar o
-                        </span> 
-                        <span class="span_formulario">formulário</span>
-                        <span class="final-formulario">.</span>
-
-                        <!-- div de titulo contendo os titulos do carrosel -->
-
-                </div>
-                <div class="responsabilidade">Responsabilidade</div>
-                <div class="parceria">Parceria</div>
-                <div class="ellipse-11"></div>
-                <img class="right" src="assets/img/Right.png" />
-                <div class="rectangle-20"></div>
-                <div class="rectangle-21"></div>
-            </div>
-
+            <!-- Seu conteúdo do projeto -->
         </div>
-        <!-- Retangulo do carrosel -->
-        <div class="rectangle-17"></div>
-        <button><div class="contato">contato</div></button>
-        <div class="rectangle-18"></div>
-        <div class="rectangle-19"></div>
-
-        <div class="estrutura_responsabilidade">
-            <span>
-                <span class="atuamos"> Atuamos com </span>
-                <span class="etica-span"> ética </span>
-                <span class="e"> e </span>
-                <span class="responsabilidade-span2"> responsabilidade </span>
-                <span class="priorizando"> , priorizando a </span>
-                <span class="segurança-span3"> segurança </span>
-                <span class="impacto"> e o impacto positivo na </span>
-                <span class="saude-span4"> saúde </span>
-                <span class="publica"> pública. </span>
-            </span>
-        </div>
-
-        <div class="Estrutura-Parceria"> <span>
-            <span class="valorizamos"> Valorizamos </span>
-                <span class="relaçoes-span1"> relações </span>
-                <span class="de"> de </span>
-                <span
-                    class="longoPrazo-span2"> longo prazo </span>
-                <span class="comNossosClientes"> com nossos clientes e parceiros, baseadas em </span>
-                <span class="confiança-span3"> confiança </span>
-                <span class="e-1"> e </span>
-                <span class="colaboraçao-span4"> colaboração</span>
-                <span class="final-box1">.</span>
-            </span>
-
-
     </section>
 
     <section class="login">
         <div class="login-container">
-          <h2>Área do Cliente</h2>
-          <form>
-            <input type="text" placeholder="Login" required>
-            <input type="password" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-          </form>
+            <h2>Área do Cliente</h2>
+            <form id="loginForm">
+                <input type="text" id="input_login" placeholder="Login" required>
+                <input type="password" id="input_senha" placeholder="Senha" required>
+                <button onclick="validar()">Entrar</button>
+            
         </div>
-      </section>
 
-      
+    </section>
+
+    <script>
+       
+       function validar(){
+
+            // Recuperar os valores dos campos de login e senha
+            var login = input_login.value;
+            var senha = input_login.value;
+
+            // Validação simples (ajuste conforme necessário)
+            if (login == "usuario" && senha == "senha123") {
+                alert("Login bem-sucedido!");
+               
+            } else {
+                // Exibe uma mensagem de erro
+                alert("Erro no Login e/ou senha!");
+            }
+        };
+    
+    </script>
+</body>
+
+</html>
