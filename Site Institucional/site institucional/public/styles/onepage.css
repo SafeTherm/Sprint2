@@ -120,7 +120,6 @@ header nav .menu-primario ul {
 .contato {
     height: 900px;
     border: 1px solid rgb(8, 0, 255);
-    background-image: url(../assets/img/Fundo_contato.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -886,7 +885,6 @@ header nav .menu-primario ul {
 }
 
 .login {
-    background-image: url(../assets/imgs/bg-jelly-fish-para_outras_pags.png);
     justify-content: center;
     display: flex;
     align-items: center;
@@ -897,7 +895,7 @@ header nav .menu-primario ul {
     justify-content: center;
     align-items: center;
     color: rgb(207, 36, 36);
-    background-color: rgb(170, 162, 162);
+    background-color: rgb(119, 13, 114);
     border-radius: 25px;
     margin: 20px;
     padding: 20px;

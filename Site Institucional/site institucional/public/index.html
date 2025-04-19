@@ -118,10 +118,33 @@
     <section class="login">
         <div class="login-container">
           <h2>Área do Cliente</h2>
-          <form>
-            <input type="text" placeholder="Login" required>
-            <input type="password" placeholder="Senha" required>
+          <form id="login-form">
+            <input type="text" id="login" placeholder="Login" required>
+            <input type="password" id="senha" placeholder="Senha" required>
             <button type="submit">Entrar</button>
           </form>
+          <p id="mensagem"></p>
         </div>
       </section>
+
+
+<script>
+  var form = document.getElementById("login-form");
+  var login = document.getElementById("login");
+  var senha = document.getElementById("senha");
+  var mensagem = document.getElementById("mensagem");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // Evita o envio real do formulário
+
+    if (login.value === "usuário" && senha.value === "senha") {
+      mensagem.textContent = "Login feito com sucesso";
+      mensagem.style.color = "green";
+    } else {
+      mensagem.textContent = "Erro no Login/ou Senha";
+      mensagem.style.color = "red";
+    }
+  });
+</script>
+</body>
+</html>
