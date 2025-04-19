@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador SafeTherm</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+      width: 320px;
+    }
+
+    .container h2 {
+      background-color: #ff7900;
+      color: white;
+      padding: 10px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .container input[type="text"],
+    .container input[type="number"],
+    .container select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .container select {
+      background-color: white;
+    }
+
+    #div_multas {
+      margin-bottom: 20px;
+    }
+
+    .container .btn-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .container .btn-row button {
+      flex: 1;
+      padding: 12px 0;
+      font-size: 14px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .reset-btn {
+      background-color: black;
+      color: white;
+    }
+
+    .reset-btn:hover {
+      background-color: #333;
+    }
+
+    .container button:last-child {
+      background-color: #ff7900;
+      color: white;
+    }
+
+    .container button:last-child:hover {
+      background-color: #e36900;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Parâmetros de Entrada</h2>
+
+    <label for="valor">valor em medicamentos transportado anualmente</label>
+    <input type="text" id="valor" placeholder="insira">
+
+    <label for="veiculos">qual a quantidade de veículos da sua frota?</label>
+    <input type="text" id="veiculos" placeholder="ex: 5">
+
+    <label for="perdas">percentual de perdas devido temperatura e umidade(%)</label>
+    <input type="text" id="perdas" placeholder="ex: 10">
+
+    <label for="multas">Recebeu multas?</label>
+    <select id="multas" onchange="mostrarCampoMultas()">
+      <option value="2">NÃO</option>
+      <option value="1">SIM</option>
+    </select>
+
+    <div id="div_multas"></div>
+
+    <div class="btn-row">
+      <button type="reset" class="reset-btn">🗑️</button>
+      <button type="button">resultados</button>
+    </div>
+  </div>
+
+  <script>
+    function mostrarCampoMultas() {
+      const select = document.getElementById('multas');
+      const div = document.getElementById('div_multas');
+
+      if (select.value === "1") {
+        div.innerHTML = `
+          <label for="valorMultas">qual valor total das multas? (R$)</label>
+          <input type="text" id="valorMultas" placeholder="ex: 1000">
+        `;
+      } else {
+        div.innerHTML = '';
+      }
+    }
+  </script>
+</body>
+</html>

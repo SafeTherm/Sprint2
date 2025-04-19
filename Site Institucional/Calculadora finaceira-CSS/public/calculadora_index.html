@@ -4,33 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../public/styles/style.css">
     <title>Calculadora Financeira - Medicamentos Termolábeis SafeTherm</title>
 </head>
-
+<div class="teste">
 <body>
+    
     <h1>Simulador Financeiro do Monitoramento de Medicamentos Termolábeis - SafeTherm</h1>
+    <div class="container">
     <h2>Parâmetros de Entrada</h2>
 
     Valor em Medicamentos Transportados Anualmente:
-    <input type="text" id="imput_valorTotal"><br>
+    <br>
+    <input type="text" id="imput_valorTotal"> <br>
 
     Qual a Quantidade de Veículos da Sua Frota?
+    <br>
     <input type="text" id="imput_qtdVeiculos"><br>
 
     Porcentual Atual de Perdas devido temperatura/umidade(%):
     <input type="text" id="imput_percentual_perdasAtual"><br>
 
 
-    Recebeu multas?
+    <p id="multas">Recebeu multas?</p>
     <select onchange="select_m()" id="select_multas">
         <option value="2">Não</option>
         <option value="1">Sim</option>
     </select>
-    <div id="div_multas"></div>
 
-
+    <div id="div_multas">
     <button onclick="analisar()">Resultados</button><br><br>
+    </div>
+</div>
+</section>
+
 
     <h2>Resultados Financeiros</h2>
     Prejuízo Financeiro Sem SafeTherm:
@@ -60,8 +67,9 @@
     <h3>Projeção de 5 Anos</h3>
     <div id="div_projecao"></div>
 </body>
-
+</div>
 </html>
+
 
 <script>
     function select_m() {
@@ -69,9 +77,11 @@
 
         if (multas === 1) {
             div_multas.innerHTML = `Qual o valor total das multas? (R$):
-        <input type="text" id="imput_multasAnuais"><br>`
+        <input type="text" id="imput_multasAnuais"><br>
+        <button onclick="analisar()">resultados</button>`
         } else {
-            div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">`
+            div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">
+            <button onclick="analisar()">resultados</button>`
         }
     }
     function analisar() {
