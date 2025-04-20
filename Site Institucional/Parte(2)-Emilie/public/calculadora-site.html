@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="style.css">
     <title>Calculadora Financeira - Medicamentos Termolábeis SafeTherm</title>
 </head>
+    <body>
+        <div class="body">
 
-<div class="body">
-
-    <div class="teste">
-
-        <body>
+            <div class="teste">
 
             <h1>Simulador Financeiro do Monitoramento de Medicamentos Termolábeis - SafeTherm</h1>
             <div class="container">
@@ -103,9 +101,11 @@
 
         if (multas === 1) {
             div_multas.innerHTML = `Qual o valor total das multas? (R$):
-        <input type="text" id="imput_multasAnuais"><br>`
+        <input type="text" id="imput_multasAnuais"><br>
+        <button onclick="analisar()">Resultados</button><br><br>`
         } else {
-            div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">`
+            div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">
+            <button onclick="analisar()">Resultados</button><br><br>`
         }
     }
     function analisar() {
