@@ -118,7 +118,7 @@
                 <form class="formulario" id="login-form">
                     <div class="campo">
                         <span>Login</span>
-                        <input id="login" type="text" placeholder="Login">
+                        <input id="input-login" type="text" placeholder="login">
                     </div>
                     <div class="campo">
                         <span>Senha:</span>
@@ -147,14 +147,14 @@
     <script>
         function validar() {
             var form = document.getElementById("login-form");
-            var login = document.getElementById("login");
-            var senha = document.getElementById("senha");
+            var loginInput = document.getElementById("input-login");
+            var senhaInput = document.getElementById("senha");
             var mensagem = document.getElementById("mensagem");
 
             form.addEventListener("submit", function (e) {
                 e.preventDefault();
 
-                if (login.value === "usuário" && senha.value === "senha") {
+                if (loginInput.value === "login" && senhaInput.value === "senha") {
                     mensagem.textContent = "Login feito com sucesso";
                     mensagem.style.color = "green";
                 } else {
