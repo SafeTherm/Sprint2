@@ -7,37 +7,55 @@
     <link rel="stylesheet" href="style.css">
     <title>Calculadora Financeira - Medicamentos Termolábeis SafeTherm</title>
 </head>
-    <body>
-        <div class="body">
 
-            <div class="teste">
+<div class="body">
+
+    <div class="teste">
+
+        <body>
 
             <h1>Simulador Financeiro do Monitoramento de Medicamentos Termolábeis - SafeTherm</h1>
             <div class="container">
-                <h2>Parâmetros de Entrada</h2>
-
-                Valor em Medicamentos Transportados Anualmente:
-                <br>
-                <input type="text" id="imput_valorTotal"> <br>
-
-                Qual a Quantidade de Veículos da Sua Frota?
-                <br>
-                <input type="text" id="imput_qtdVeiculos"><br>
-
-                Porcentual Atual de Perdas devido temperatura/umidade(%):
-                <input type="text" id="imput_percentual_perdasAtual"><br>
-
-
-                <p id="multas">Recebeu multas?</p>
-                <select onchange="select_m()" id="select_multas">
-                    <option value="2">Não</option>
-                    <option value="1">Sim</option>
-                </select>
-
-                <div id="div_multas">
-                    <button onclick="analisar()">Resultados</button><br><br>
+                <div class="parametros">
+                    <h2>Parâmetros de Entrada</h2>
+                    <div>
+                        <div class="txt">
+                            Valor em Medicamentos Transportados Anualmente:
+                        </div>
+                        <input type="text" id="imput_valorTotal"> <br>
+                    </div>
+                    <div>
+                        <div class="txt">
+                            Qual a Quantidade de Veículos da Sua Frota?
+                        </div>
+                        <input type="text" id="imput_qtdVeiculos"><br>
+                    </div>
+                    <div>
+                        <div class="txt">
+                            Porcentual Atual de Perdas devido temperatura/umidade(%):
+                        </div>
+                        <input type="text" id="imput_percentual_perdasAtual"><br>
+                    </div>
+                    <div class="slct">
+                        Recebeu multas?
+                        <select onchange="select_m()" id="select_multas">
+                            <option value="2">Não</option>
+                            <option value="1">Sim</option>
+                        </select>
+                    </div>
+                    <div id="div_multas">
+                    </div>
+                    <div class="botao_parametros">
+                        <div class="botao_apagar">
+                            <button onclick="apagar()">
+                                <img src="assets/img/lixeira.png" alt="">
+                            </button>
+                        </div>
+                        <div class="botao_multas">
+                            <button onclick="analisar()">Resultados</button><br><br>
+                        </div>
+                    </div>
                 </div>
-
                 <div class="rectangle-197">
                     <div class="texto-resultado ">
                         <h2>Resultados Financeiros</h2>
@@ -92,6 +110,7 @@
 
         </body>
     </div>
+</div>
 
 </html>
 
@@ -99,13 +118,15 @@
     function select_m() {
         var multas = Number(select_multas.value);
 
-        if (multas === 1) {
-            div_multas.innerHTML = `Qual o valor total das multas? (R$):
-        <input type="text" id="imput_multasAnuais"><br>
-        <button onclick="analisar()">Resultados</button><br><br>`
+        if (multas == 1) {
+            div_multas.innerHTML = `<div>
+                        <div class="txt">
+                        Qual o valor total das multas? (R$):
+                        </div>
+                        <input type="text" id="imput_multasAnuais"><br>
+                    </div>`
         } else {
-            div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">
-            <button onclick="analisar()">Resultados</button><br><br>`
+            div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">`
         }
     }
     function analisar() {

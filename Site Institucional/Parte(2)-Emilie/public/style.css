@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,121 +8,167 @@
 }
 
 
-.body {
-    display: flex; 
-    background-image: url(assets/img/Rectangle\ 195.png);
-    background-color: black; 
+body {
+    display: flex;
+    background-color: rgb(170, 155, 155);
     width: 100%;
-    height: 800px; 
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
+    align-items: center;
 }
 
-.container  {
+.container {
     background-color: white;
-    width: 500px;
+    width: 50%;
     border-radius: 18px 0 18px 0;
-    padding: 20px;
-
+    padding: 2%;
+    margin-left: 4%;
 }
 
+.teste {
+    width: 100%;
+    height: 100%;
+}
 
-
-.container h2{
+.container h2 {
     color: #ff7f00;
     border-radius: 12px;
     text-align: center;
-
 }
 
 .container input {
-    width: 450px;
+    width: 100%;
     padding: 16px 12px 12px;
     font-size: 16px;
     border: 2px solid #333;
     border-radius: 12px;
     outline: none;
-    margin: 10px;
+    margin-bottom: 7%;
 }
 
-
+.txt {
+    display: flex;
+    width: auto;
+    border-left: solid 7px #ffffff;
+    border-right: solid 7px #ffffff;
+    justify-content: center;
+    margin-left: 2%;
+    margin-top: -0.5%;
+    background-color: #ffffff;
+    position: absolute;
+}
 select {
     background-color: #1e1e1e;
     color: white;
-    font-weight: bold;
-    width: 60px;
-    height: 30px;
-    border-radius: 10px;
+    font-size: 125%;
+    width: 15%;
+    height: 100%;
+    border-radius: 8px;
     text-align: center;
     cursor: pointer;
 
 }
 
-.container button {
-    background-color: #ff7f00;
-    color: white;
+.botao_parametros {
+    margin-top: 7%;
+    display: flex;
+    width: 100%;
+    gap: 5%;
+}
+
+.slct {
+    margin-left: 5%;
+    align-items: center;
+    display: flex;
+    margin-bottom: 7%;
+    gap: 5%;
+}
+.botao_apagar img {
+    width: 50%;
+    height: auto;
+}
+
+.botao_apagar {
+    width: 10%;
+}
+
+.container .botao_apagar button {
+    background-color: #232323;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.botao_multas {
+    width: 90%;
+}
+
+.container .botao_multas button {
+    width: 100%;
+    font-family: Arial;
     font-weight: bold;
-    border: none;
-    height: 40px;
-    width:450px;
-    border-radius: 10px;
-    margin: 10px;
-    cursor: pointer;
-    font-size: 18px;
+    color: #ffffff;
+    font-size: 100%;
+    background-color: #ff7f00;
+    border-radius: 12px;
+    height: 100%;
 }
-
-#multas {
-    margin-bottom: 20px;
-}
-
 
 .rectangle-197 {
-    background: #232323; 
-    margin: 50px; /*margem do retangulo*/
-    border-radius: 20px; 
-    height: auto; 
-    width: 500px; 
-    position: absolute; 
-    top: 0; 
-    right: 0; 
-    padding: 20px; 
-    display: flex; 
-    flex-direction: column; /* colocar itens na vertical*/
-    justify-content: flex-start; 
-    align-items: stretch; /* itens preenchem a largura do retangulo*/
+    background: #232323;
+    margin: 3%;
+    /*margem do retangulo*/
+    border-radius: 20px;
+    height: auto;
+    width: 40%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    /* colocar itens na vertical*/
+    justify-content: flex-start;
+    align-items: stretch;
+    /* itens preenchem a largura do retangulo*/
 }
 
 .text22 {
-    font-size: 15px; 
+    font-size: 15px;
     text-align: center;
-    margin-bottom: 25px 0; /*espaço embaixo do titulo */
 }
 
 .resultado {
-    background: #333; 
-    border: 1px solid #555; 
-    border-radius: 3px; 
+    background: #333;
+    border: 1px solid #555;
+    border-radius: 10px;
     padding: 12px;
-    margin-bottom: 5px; 
-    color: white; 
-    font-size: 13px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
+    margin-bottom: 5px;
+    color: white;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-h2, h3 {
-    margin: 10px 0; 
-    color: white; 
-    font-size: 21px;
+h2,
+h3 {
+    margin: 10px 0;
+    color: white;
+    font-size: 23px;
+    margin-bottom: 5%;
 }
 
 .botao {
-    margin: 20px 0; 
-    color: white; 
-    border: none; 
-    padding: 10px 0px; 
-    border-radius: 5px; 
-    
+    margin: 20px 0;
+    color: white;
+    border: none;
+    padding: 10px 0px;
+    border-radius: 5px;
+
 }
