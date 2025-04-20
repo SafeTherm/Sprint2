@@ -884,82 +884,83 @@ header nav .menu-primario ul {
     top: 520px;
 }
 
+/* Login */
+
 .login {
-    justify-content: center;
+    justify-content: center; 
     display: flex;
-    align-items: center;
-    height: 500px;
-}
-
-.login .container {
-    justify-content: center;
-    align-items: center;
-    color: rgb(207, 36, 36);
-    background-color: rgb(119, 13, 114);
-    border-radius: 25px;
-    margin: 20px;
-    padding: 20px;
-    width: 500px;
-}
-
-.login .card-login {
+    align-items: center; 
+    min-height: 100vh; 
+    background-color: #f0f0f0; 
+  }
+  
+   
+  .login .card-login {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    width: 50%;
+  }
+  
+  .login .formulario {
     width: 100%;
-}
-
-.login .formulario {
-    width: 80%;
     border-radius: 18px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.login input {
-    border-radius: 8px;
-}
-
-.login .campo {
+  }
+  
+  .login .campo {
     display: flex;
     flex-direction: column;
-    width: 100%;
-}
-
-.login .campo input::placeholder {
-    text-align: center;
-}
-
-.login .botao {
-    background: #f4135c;
+    margin-bottom: 1px; 
+    margin-top: 120px;
+  }
+  
+  .login .campo span {
+    opacity: 0.7;
+    font-weight: bold;
+    margin-bottom: 5px; 
+    margin-top: 120px;
+  }
+  
+  .login input {
+    border-radius: 8px;
+    padding: 10px; 
+    border: 1px solid #333; 
+    background-color: #222;
+    color: #fff; 
+  }
+  
+  .login .campo input::placeholder {
+    color: #ccc;
+    text-align: left; 
+    
+  }
+  
+  .login .botao {
+    background: #ff7f00;
     color: white;
     border-radius: 5px;
-}
-
-.login .container span {
-    opacity: 60%;
+    padding: 10px 15px; 
+    cursor: pointer; 
+    border: none; 
     font-weight: bold;
-}
-
-.login .container h2 {
-    opacity: 60%;
+    }
+  
+  .login .botao:hover {
+    background: #e67300;
+  }
+  
+  .login .container h2 {
+    color: #fff; 
+    opacity: 0.8;
     font-weight: bold;
-}
-
-.cadastro .container {
-    width: 100%;
-}
-
-.login .card-cadastro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.login button {
-    margin-top: 3%;
-}
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #mensagem {
+    color: #f44336;
+    margin-top: 10px;
+    text-align: center;
+  }
