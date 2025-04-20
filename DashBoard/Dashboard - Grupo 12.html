@@ -11,87 +11,142 @@
 
 <body>
   <div class="container">
-    <div class="card_sup">
-      <div class="card">
-        <div class="texto_titulo">
-          Temperatura - Veículo 1
+    <div class="barra_lateral">
+      <div class="titulo_br">
+        <div class="titulo_barra_lateral">
+          <img src="assets/img/logo.png" alt="">
+          <div>SafeTherm</div>
         </div>
-        <div>
-          <div id="texto_titulo_grafico" class="texto_titulo_grafico">
-            Temperatura ao longo do Tempo
+      </div>
+      <div class="barra_lateral_img">
+      <div class="texto_br">
+        <div class="br_mensagem">
+          <img src="assets/img/mensagem.png" alt="">
+          <div>Mensagem</div>
+        </div>
+        <div class="br_help">
+          <img src="assets/img/help.png" alt="">
+          <div>Help</div>
+        </div>
+        <div class="br_configuracao">
+          <img src="assets/img/configuracao.png" alt="">
+          <div>Configurações</div>
+        </div>
+        <div class="br_sair">
+          <img src="assets/img/sair.png" alt="">
+          <div>Sair</div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="card_total">
+      <div class="card_sup">
+        <div class="card">
+          <div class="texto_titulo">
+            <div>
+              Temperatura - Veículo 1
+            </div>
+            <img src="assets/img/temperatura.png" alt="">
           </div>
-          <canvas id="grf_temp"></canvas>
-        </div>
-        <div>
-          <div id="texto_titulo_grafico" class="texto_titulo_grafico">
-            Comparação dos Sensores de Temperatura
+          <div>
+            <div id="texto_titulo_grafico" class="texto_titulo_grafico">
+              Temperatura ao longo do Tempo
+            </div>
+            <canvas id="grf_temp_média"></canvas>
           </div>
-          <canvas id="grf_temperatura_comparação"></canvas>
-        </div>
-        <div class="indicador">
-          <div class="avaliação">
-            <div id="div_condicao" class="condicao">
-              <div class="texto_condicao">
-                BOM
+          <div>
+            <div id="texto_titulo_grafico" class="texto_titulo_grafico">
+              Comparação dos Sensores de Temperatura
+            </div>
+            <canvas id="grf_temperatura_comparação"></canvas>
+          </div>
+          <div class="indicador">
+            <div class="avaliação">
+              <div id="div_condicao" class="condicao">
+                <div class="texto_condicao">
+                  BOM
+                </div>
+                <img src="assets/img/bom.png">
               </div>
-              <img src="assets/img/bom.png">
+            </div>
+            <div class="info">
+              <div class="titulo_info">Temperatura</div>
+              <div>
+                <div class="info_txt_geral"></div>
+                <div class="info_text">
+                  <img src="assets/img/bom.png" alt=""> Ideal: 4°C à 5°C
+                </div>
+                <div class="info_text">
+                  <img src="assets/img/alerta.png" alt=""> Atenção: menor 3°C ou maior 7°C
+                </div>
+                <div class="info_text">
+                  <img src="assets/img/perigo.png" alt=""> Perigo: menor 2°C ou maior 8°C
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="card_inf">
-      <div class="card">
-        <div class="texto_titulo">
-          Umidade - Veículo 1
-        </div>
-        <div>
-          <div id="texto_titulo_grafico" class="texto_titulo_grafico">
-            Umidade ao longo do Tempo
+      <div class="card_inf">
+        <div class="card">
+          <div class="texto_titulo">
+            <div>
+              Umidade - Veículo 1
+            </div>
+            <img src="assets/img/umidade.png" alt="">
           </div>
-          <canvas id="grf_umi"></canvas>
-        </div>
-        <div>
-          <div id="texto_titulo_grafico" class="texto_titulo_grafico">
-            Comparação dos Sensores de Umidade
+          <div>
+            <div id="texto_titulo_grafico" class="texto_titulo_grafico">
+              Umidade ao longo do Tempo
+            </div>
+            <canvas id="grf_umi_média"></canvas>
           </div>
-          <canvas id="grf_umidade_comparação"></canvas>
-        </div>
-        <div class="indicador">
-          <div class="avaliação">
-            <div id="div_condicao" class="condicao">
-              <div class="texto_condicao">
-                ALERTA
+          <div>
+            <div id="texto_titulo_grafico" class="texto_titulo_grafico">
+              Comparação dos Sensores de Umidade
+            </div>
+            <canvas id="grf_umidade_comparação"></canvas>
+          </div>
+          <div class="indicador">
+            <div class="avaliação">
+              <div id="div_condicao" class="condicao">
+                <div class="texto_condicao">
+                  ALERTA
+                </div>
+                <img src="assets/img/alerta.png">
               </div>
-              <img src="assets/img/alerta.png">
+            </div>
+            <div class="info">
+              Umidade <br>
+              <div class="info_text">
+                <img src="assets/img/bom.png" alt=""> Ideal: 60%
+              </div>
+              <div class="info_text">
+                <img src="assets/img/alerta.png" alt=""> Atenção: menor 45% ou menor 65%
+              </div>
+              <div class="info_text">
+                <img src="assets/img/perigo.png" alt="">  menor 30% ou menor 75%
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </body>
 
 </html>
 <script>
   // GRÁFICO DE TEMPERATURA
-  const ctx_temp = document.getElementById('grf_temp');
+  const ctx_temp = document.getElementById('grf_temp_média');
 
   new Chart(ctx_temp, {
     type: 'line',
     data: {
       labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
       datasets: [{
-        label: 'Temperatura - Sensor Sup',
-        data: [4, 5, 8, 3, 3, 4, 3, 5, 5, 4],
-        borderWidth: 2,
-        backgroundColor: 'rgb(255, 0, 111)',
-        borderColor: 'rgb(255, 0, 111)'
-      },
-      {
-        label: 'Temperatura - Sensor Inf',
-        data: [3, 2, 2, 3, 3, 4, 3, 3, 3, 2],
+        label: 'Temperatura Média',
+        data: [3.5, 3.5, 5.0, 3.0, 3.0, 4.0, 3.0, 4.0, 4.0, 3.0],
         borderWidth: 2,
         backgroundColor: 'rgb(70, 70, 249)',
         borderColor: 'rgb(70, 70, 249)'
@@ -116,7 +171,7 @@
 
   // GRÁFICO DE COMPARAÇÃO DE TEMPERATURA
   const graficBar_temp_comp = document.getElementById('grf_temperatura_comparação');
-  
+
   new Chart(graficBar_temp_comp, {
     type: 'bar',
     data: {
@@ -144,22 +199,15 @@
   });
 
   // GRÁFICO DE UMIDADE
-  const ctx_umi = document.getElementById('grf_umi');
+  const ctx_umi = document.getElementById('grf_umi_média');
 
   new Chart(ctx_umi, {
     type: 'line',
     data: {
       labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
       datasets: [{
-        label: 'Umidade - Sensor Sup',
-        data: [60, 70, 65, 60, 70, 65, 55, 60, 55, 55],
-        borderWidth: 2,
-        backgroundColor: 'rgb(255, 0, 111)',
-        borderColor: 'rgb(255, 0, 111)'
-      },
-      {
-        label: 'Umidade - Sensor Inf',
-        data: [55, 60, 55, 55, 60, 60, 65, 55, 50, 50],
+        label: 'Umidade Média',
+        data: [57.5, 65.0, 60.0, 57.5, 65.0, 62.5, 60.0, 57.5, 52.5, 52.5],
         borderWidth: 2,
         backgroundColor: 'rgb(70, 70, 249)',
         borderColor: 'rgb(70, 70, 249)'
@@ -184,7 +232,7 @@
 
   // GRÁFICO  DE COMPARAÇÃO UMIDADE
   const graficBar_umi_comp = document.getElementById('grf_umidade_comparação');
-  
+
   new Chart(graficBar_umi_comp, {
     type: 'bar',
     data: {
