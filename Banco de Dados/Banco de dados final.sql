@@ -108,6 +108,7 @@ CONSTRAINT fkSensorDados
 CREATE TABLE unidade (
 idUnidade INT,
 fkRepresentante INT,
+nomeUnidade VARCHAR(60),
 cepUnidade CHAR(8),
 estado CHAR(5),
 telefoneUnidade VARCHAR(13),
@@ -172,10 +173,10 @@ VALUES
 (4, 4, 6.00, 78.0, '2025-04-02');
 
 -- INSERT PARA A TABELA 'UNIDADE'
-INSERT INTO unidade (idUnidade, fkRepresentante, cepUnidade, estado, telefoneUnidade, emailUnidade)
+INSERT INTO unidade (idUnidade, fkRepresentante, nomeUnidade, cepUnidade, estado, telefoneUnidade, emailUnidade)
 VALUES 
-(1, 1, '05010000', 'SP', '11-3030-3030', 'unidade1@saude.com'),
-(2, 3, '20020000', 'RJ', '21-4040-4040', 'unidade2@saude.com');
+(1, 1, 'Unidade 1','05010000', 'SP', '11-3030-3030', 'unidade1@saude.com'),
+(2, 3, 'Unidade XPTO','20020000', 'RJ', '21-4040-4040', 'unidade2@saude.com');
 
 -- SELECTS
 
@@ -234,7 +235,7 @@ ds.dtAlerta AS "Data do Alerta"
 		JOIN sensor AS s ON ds.fkSensor = s.idSensor;
         
 -- UNIDADE E SEUS REPRESENTANTES
-SELECT  u.idUnidade AS "ID Unidade",
+SELECT  u.nomeUnidade AS "Nome da Unidade",
 u.estado AS "Estado",
 u.emailUnidade AS "Email da Unidade",
 f.nomeFuncionario AS "Representante",
