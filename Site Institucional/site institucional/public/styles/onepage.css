@@ -944,7 +944,7 @@ header nav .menu-primario ul {
     background: #ff7f00;
     color: white;
     border-radius: 15px;
-    padding: 10px 20px; 
+    padding: 15% 28%; 
     cursor: pointer; 
     border: none; 
     font-weight: bold;
@@ -972,3 +972,38 @@ header nav .menu-primario ul {
     margin-top: 10px;
     text-align: center;
   }
+
+  .sobre {
+    background-color: #000;   
+    color: #fff;
+    padding: 80px 20px; /* Aumentei um pouco o padding para melhor espaçamento */
+    width: 100%;
+}
+
+.sobre .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-size: 1.1rem; 
+    line-height: 1.6;
+}
+
+.sobre .texto1 {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: justify; 
+    hyphens: auto; 
+}
+
+/* Adicionando responsividade */
+@media (max-width: 768px) {
+    .sobre {
+        padding: 60px 15px;
+    }
+    
+    .sobre .container,
+    .sobre .texto1 {
+        font-size: 1rem;
+    }
+}
