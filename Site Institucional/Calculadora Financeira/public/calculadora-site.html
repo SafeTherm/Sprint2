@@ -33,7 +33,7 @@
             </div>
             <div class="slct">
                 Recebeu multas?
-                <select on="select_m()" id="select_multas">
+                <select onchange="select_m()" id="select_multas">
                     <option value="2">Não</option>
                     <option value="1">Sim</option>
                 </select>
@@ -101,9 +101,6 @@
             div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">`;
         }
     }
-
-    // Executa a função a cada 0,1 segundo (100 milissegundos)
-    setInterval(select_m, 100);
 </script>
 <script>
     function analisar() {
