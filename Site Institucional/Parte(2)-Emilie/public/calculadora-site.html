@@ -8,127 +8,105 @@
     <title>Calculadora Financeira - Medicamentos Termolábeis SafeTherm</title>
 </head>
 
-<div class="body">
-
-    <div class="teste">
-
-        <body>
-
-            <h1>Simulador Financeiro do Monitoramento de Medicamentos Termolábeis - SafeTherm</h1>
-            <div class="container">
-                <div class="parametros">
-                    <h2>Parâmetros de Entrada</h2>
-                    <div>
-                        <div class="txt">
-                            Valor em Medicamentos Transportados Anualmente:
-                        </div>
-                        <input type="text" id="imput_valorTotal"> <br>
-                    </div>
-                    <div>
-                        <div class="txt">
-                            Qual a Quantidade de Veículos da Sua Frota?
-                        </div>
-                        <input type="text" id="imput_qtdVeiculos"><br>
-                    </div>
-                    <div>
-                        <div class="txt">
-                            Porcentual Atual de Perdas devido temperatura/umidade(%):
-                        </div>
-                        <input type="text" id="imput_percentual_perdasAtual"><br>
-                    </div>
-                    <div class="slct">
-                        Recebeu multas?
-                        <select onchange="select_m()" id="select_multas">
-                            <option value="2">Não</option>
-                            <option value="1">Sim</option>
-                        </select>
-                    </div>
-                    <div id="div_multas">
-                    </div>
-                    <div class="botao_parametros">
-                        <div class="botao_apagar">
-                            <button onclick="apagar()">
-                                <img src="assets/img/lixeira.png" alt="">
-                            </button>
-                        </div>
-                        <div class="botao_multas">
-                            <button onclick="analisar()">Resultados</button><br><br>
-                        </div>
-                    </div>
+<body>
+    <h1>Simulador Financeiro do Monitoramento de Medicamentos Termolábeis - SafeTherm</h1>
+    <div class="container">
+        <div class="parametros">
+            <h2>Parâmetros de Entrada</h2>
+            <div>
+                <div class="txt">
+                    Valor em Medicamentos Transportados Anualmente:
                 </div>
-                <div class="rectangle-197">
-                    <div class="texto-resultado ">
-                        <h2>Resultados Financeiros</h2>
-                        <div class="resultado">
-                            Prejuízo Financeiro Sem SafeTherm:
-                            <div id="div_custoAtual"></div>
-                        </div>
-                        <br>
-
-                        <div class="resultado">
-                            Custo Total com SafeTherm (Reduzido):
-                            <div id="div_custoSafe"></div>
-                        </div>
-                        <br>
-
-                        <div class="resultado">
-                            Economia Total Anual com SafeTherm:
-                            <div id="div_economiaAnualSafe"></div>
-                        </div>
-                        <br>
-
-                        <div class="resultado">
-                            Investimento no Sistema SafeTherm:
-                            <div id="div_investimentoSafe"></div>
-                        </div>
-                        <br>
-
-                        <div class="resultado">
-                            ROI (Meses para Payback):
-                            <div id="div_roi"></div>
-                        </div>
-                        <br>
-
-                        <h3>Conformidade ANVISA RDC 304/2019</h3>
-                        <div class="resultado">
-                            Temperatura Monitorada: 2°C a 8°C
-                        </div>
-                        <br>
-
-                        <div class="botao">
-                            <h3>Projeção de 5 Anos:</h3>
-                            <div id="div_projecao"></div>
-                            <button onclick="ver()">ver</button>
-                        </div>
-
-
-                    </div>
-
-
+                <input type="text" id="imput_valorTotal"> <br>
+            </div>
+            <div>
+                <div class="txt">
+                    Qual a Quantidade de Veículos da Sua Frota?
+                </div>
+                <input type="text" id="imput_qtdVeiculos"><br>
+            </div>
+            <div>
+                <div class="txt">
+                    Porcentual Atual de Perdas devido temperatura/umidade(%):
+                </div>
+                <input type="text" id="imput_percentual_perdasAtual"><br>
+            </div>
+            <div class="slct">
+                Recebeu multas?
+                <select on="select_m()" id="select_multas">
+                    <option value="2">Não</option>
+                    <option value="1">Sim</option>
+                </select>
+            </div>
+            <div id="div_multas">
+            </div>
+            <div class="botao_parametros">
+                <div class="botao_apagar">
+                    <button onclick="apagar()">
+                        <img src="assets/img/lixeira.png" alt="">
+                    </button>
+                </div>
+                <div class="botao_multas">
+                    <button onclick="analisar()">Resultados</button><br><br>
                 </div>
             </div>
-
-        </body>
+        </div>
+        <div class="rectangle-197">
+            <div class="texto-resultado ">
+                <h2>Resultados Financeiros</h2>
+                <div class="resultado">
+                    Prejuízo Financeiro Sem SafeTherm:
+                    <div id="div_custoAtual"></div>
+                </div>
+                <div class="resultado">
+                    Custo Total com SafeTherm (Reduzido):
+                    <div id="div_custoSafe"></div>
+                </div>
+                <div class="resultado">
+                    Economia Total Anual com SafeTherm:
+                    <div id="div_economiaAnualSafe"></div>
+                </div>
+                <div class="resultado">
+                    Investimento no Sistema SafeTherm:
+                    <div id="div_investimentoSafe"></div>
+                </div>
+                <div class="resultado">
+                    ROI (Meses para Payback):
+                    <div id="div_roi"></div>
+                </div>
+                <h3>Conformidade ANVISA RDC 304/2019</h3>
+                <div class="resultado">
+                    Temperatura Monitorada: 2°C a 8°C
+                </div>
+            </div>
+            <div class="Projecao">
+                <h3>Projeção de 5 Anos:</h3>
+                <div id="div_projecao"></div>
+                <button onclick="ver()">ver</button>
+            </div>
+        </div>
     </div>
-</div>
+
+</body>
 
 </html>
-
 <script>
     function select_m() {
         var multas = Number(select_multas.value);
-
         if (multas == 1) {
             div_multas.innerHTML = `<div>
-                        <div class="txt">
-                        Qual o valor total das multas? (R$):
-                        </div>
-                        <input type="text" id="imput_multasAnuais"><br>
-                    </div>`
+                <div class="txt">Qual o valor total das multas? (R$):</div>
+                <input type="text" id="imput_multasAnuais"><br>
+            </div>`;
         } else {
-            div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">`
+            div_multas.innerHTML = `<input type="hidden" id="imput_multasAnuais" value="0">`;
         }
     }
+
+    // Executa a função a cada 0,1 segundo (100 milissegundos)
+    setInterval(select_m, 100);
+</script>
+<script>
     function analisar() {
         var multas = Number(select_multas.value)
 
