@@ -82,7 +82,6 @@
             <div class="Projecao">
                 <h3>Projeção de 5 Anos:</h3>
                 <div id="div_projecao"></div>
-                <button onclick="ver()">ver</button>
             </div>
         </div>
     </div>
@@ -165,6 +164,23 @@
         var investimentoRestante = custoSistema;
         var saldoAcumulado = 0;
 
+        var tabela = `
+        <table border="1">
+        <thead>
+            <tr>
+                <th>Ano</th>
+                <th>Perdas com a SafeTherm</th>
+                <th>Economia do ano</th>
+                <th>Pagamento do Investimento</th>
+                <th>Lucro do Ano</th>
+                <th>Saldo acumulado</th>
+            </tr>
+        </thead>
+        <tbody>
+`;
+
+        
+
         for (var ano = 1; ano <= 5; ano++) {
             var economiaAno = economiaAnualSafe;
             var pagamento = 0;
@@ -183,15 +199,22 @@
             var lucroAno = economiaAno - pagamento;
             saldoAcumulado += lucroAno;
 
-            div_projecao.innerHTML += `
-                <br>
-                <div><b>Ano:</b> ${ano}</div>
-                <div><b>Perdas com a SafeTherm:</b> R$ ${perdaSafe.toFixed(2)}</div>
-                <div><b>Economia do ano:</b> R$ ${economiaAno.toFixed(2)}</div>
-                <div><b>Pagamento do investimento:</b> R$ ${pagamento.toFixed(2)}</div>
-                <div><b>Lucro do ano:</b> R$ ${lucroAno.toFixed(2)}</div>
-                <div><b>Saldo acumulado:</b> R$ ${saldoAcumulado.toFixed(2)}</div>
-            `;
+            tabela += `
+        <tr>
+            <td>${ano}</td>
+            <td>R$ ${perdaSafe.toFixed(2)}</td>
+            <td>R$ ${economiaAno.toFixed(2)}</td>
+            <td>R$ ${pagamento.toFixed(2)}</td>
+            <td>R$ ${lucroAno.toFixed(2)}</td>
+            <td>R$ ${saldoAcumulado.toFixed(2)}</td>
+        </tr> `
         }
+        tabela += `
+        </tbody>
+    </table>
+`;
+        div_projecao.innerHTML = tabela
     }
+
+    
 </script>
