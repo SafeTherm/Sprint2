@@ -137,6 +137,7 @@ select {
     justify-content: center;
     align-items: center;
     border-radius: 12px;
+    cursor: pointer;
 }
 
 .botao_multas {
@@ -153,6 +154,7 @@ select {
     border-radius: 12px;
     height: 100%;
     border: none;
+    cursor: pointer;
 }
 
 .rectangle-197 {

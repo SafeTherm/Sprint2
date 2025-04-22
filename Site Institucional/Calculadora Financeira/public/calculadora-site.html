@@ -201,5 +201,24 @@
         }
         projecao += `</table>`
         div_projecao.innerHTML = projecao
+    
     }
+
+    function apagar() {
+
+var valorMedicamentos = Number(imput_valorTotal.value);
+var qntVeiculos = Number(imput_qtdVeiculos.value);
+var percentualPerdas = Number (imput_percentual_perdasAtual.value);
+var valorMultas = Number (imput_multasAnuais.value);
+
+
+// Limpando os campos de input
+imput_valorTotal.value = "";
+imput_qtdVeiculos.value = "";
+imput_percentual_perdasAtual.value = "";
+imput_multasAnuais.value = "";
+
+}
+
+
 </script>
