@@ -21,6 +21,10 @@
       <div class="barra_lateral_img">
       <div class="texto_br">
         <div class="br_configuracao">
+          <img src="assets/img/relatorios.png" alt="">
+          <div>Relátorios</div>
+        </div>
+        <div class="br_configuracao">
           <img src="assets/img/configuracao.png" alt="">
           <div>Configurações</div>
         </div>
@@ -66,13 +70,13 @@
               <div>
                 <div class="info_txt_geral"></div>
                 <div class="info_text">
-                  <img src="assets/img/bom.png" alt=""> Ideal: 4°C à 5°C
+                  <img src="assets/img/bom.png" alt=""> <div>Ideal: <span>4°C</span></div>
                 </div>
                 <div class="info_text">
-                  <img src="assets/img/alerta.png" alt=""> Atenção: menor 3°C ou maior 7°C
+                  <img src="assets/img/alerta.png" alt=""> <div>Atenção: menor <span>3°C</span> ou maior <span>7°C</span></div>
                 </div>
                 <div class="info_text">
-                  <img src="assets/img/perigo.png" alt=""> Perigo: menor 2°C ou maior 8°C
+                  <img src="assets/img/perigo.png" alt=""> <div>Perigo: menor <span>2°C</span> ou maior <span>8°C</span></div>
                 </div>
               </div>
             </div>
@@ -111,13 +115,14 @@
             <div class="info">
               Umidade <br>
               <div class="info_text">
-                <img src="assets/img/bom.png" alt=""> Ideal: 60%
+                <img src="assets/img/bom.png" alt=""> 
+                <div>Ideal: <span>60%</span></div>
               </div>
               <div class="info_text">
-                <img src="assets/img/alerta.png" alt=""> Atenção: menor 45% ou menor 65%
+                <img src="assets/img/alerta.png" alt=""> <div>Atenção: menor <span>45%</span> ou menor <span>65%</span></div>
               </div>
               <div class="info_text">
-                <img src="assets/img/perigo.png" alt="">  menor 30% ou menor 75%
+                <img src="assets/img/perigo.png" alt=""> <div>Perigo: menor <span>30%</span> ou menor <span>75%</span></div>
               </div>
             </div>
           </div>
@@ -137,9 +142,44 @@
     data: {
       labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
       datasets: [{
+        label: 'Temp Ideal',
+        data: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+        borderWidth: 1,
+        backgroundColor: '#00bf63',
+        borderColor: '#00bf63'
+      },
+      {
+        label: 'Temp Atenção',
+        data: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+        borderWidth: 1,
+        backgroundColor: '#ffcc00',
+        borderColor: '#ffcc00'
+      },
+      {
+        label: 'Temp Atenção',
+        data: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+        borderWidth: 1,
+        backgroundColor: '#ffcc00',
+        borderColor: '#ffcc00'
+      },
+      {
+        label: 'Temp Perigo',
+        data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        borderWidth: 1,
+        backgroundColor: '#ff3131',
+        borderColor: '#ff3131'
+      },
+      {
+        label: 'Temp Perigo',
+        data: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        borderWidth: 1,
+        backgroundColor: '#ff3131',
+        borderColor: '#ff3131'
+      },
+      {
         label: 'Temperatura Média',
         data: [3.5, 3.5, 5.0, 3.0, 3.0, 4.0, 3.0, 4.0, 4.0, 3.0],
-        borderWidth: 2,
+        borderWidth: 3,
         backgroundColor: 'rgb(70, 70, 249)',
         borderColor: 'rgb(70, 70, 249)'
       }
@@ -168,7 +208,8 @@
     type: 'bar',
     data: {
       labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
-      datasets: [{
+      datasets: [
+      {
         label: 'Sensor de Temp Superior',
         data: [4, 5, 8, 3, 3, 4, 3, 5, 5, 4],
         borderWidth: 2,
@@ -197,10 +238,46 @@
     type: 'line',
     data: {
       labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05', '12:06', '12:07', '12:08', '12:09'],
-      datasets: [{
+      datasets: [
+      {
+        label: 'Umi Ideal',
+        data: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60],
+        borderWidth: 1,
+        backgroundColor: '#00bf63',
+        borderColor: '#00bf63'
+      },
+      {
+        label: 'Umi Atenção',
+        data: [45, 45, 45, 45, 45, 45, 45, 45, 45, 45],
+        borderWidth: 1,
+        backgroundColor: '#ffcc00',
+        borderColor: '#ffcc00'
+      },
+      {
+        label: 'Umi Atenção',
+        data: [65, 65, 65, 65, 65, 65, 65, 65, 65, 65],
+        borderWidth: 1,
+        backgroundColor: '#ffcc00',
+        borderColor: '#ffcc00'
+      },
+      {
+        label: 'Umi Perigo',
+        data: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+        borderWidth: 1,
+        backgroundColor: '#ff3131',
+        borderColor: '#ff3131'
+      },
+      {
+        label: 'Umi Perigo',
+        data: [75, 75, 75, 75, 75, 75, 75, 75, 75, 75],
+        borderWidth: 1,
+        backgroundColor: '#ff3131',
+        borderColor: '#ff3131'
+      },  
+      {
         label: 'Umidade Média',
         data: [57.5, 65.0, 60.0, 57.5, 65.0, 62.5, 60.0, 57.5, 52.5, 52.5],
-        borderWidth: 2,
+        borderWidth: 3,
         backgroundColor: 'rgb(70, 70, 249)',
         borderColor: 'rgb(70, 70, 249)'
       }
