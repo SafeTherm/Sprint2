@@ -53,7 +53,8 @@
         </div>
         <div class="rectangle-197">
             <div class="texto-resultado ">
-                <h2>Resultados Financeiros</h2>
+                <h3>Resultados Financeiros</h3>
+                <h2>Simulação reduzindo 15% do precentual de perdas</h2>
                 <div class="resultado">
                     Prejuízo Financeiro Sem SafeTherm:
                     <div id="div_custoAtual"></div>
@@ -79,9 +80,7 @@
                     Temperatura Monitorada: 2°C a 8°C
                 </div>
             </div>
-            <div class="projecao">
-                <h3>Projeção de 5 Anos:</h3>
-                <div id="div_projecao" class="tabela"></div>
+            <div id="div_projecao_aparecer" class="projecao">
             </div>
         </div>
     </div>
@@ -154,7 +153,9 @@
         div_economiaAnualSafe.innerHTML = `R$ ${economiaAnualSafe.toFixed(2)}`;
         div_investimentoSafe.innerHTML = `R$ ${custoSistema.toFixed(2)}`;
         div_roi.innerHTML = `${roi} ${meses}`;
-
+        div_projecao_aparecer.innerHTML = `
+        <h3>Projeção de 5 Anos:</h3> 
+        <div id="div_projecao" class="tabela"></div>`
 
         // Projeção de 5 anos
         var investimentoRestante = custoSistema;
