@@ -2,14 +2,12 @@
 const serialport = require('serialport');
 const express = require('express');
 const mysql = require('mysql2');
-
 // constantes para configurações
 const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
 const HABILITAR_OPERACAO_INSERIR = true;
-
 // função para comunicação serial
 const serial = async (
     valoresSensorTemperatura,
@@ -22,7 +20,7 @@ const serial = async (
             host: '127.0.0.1',
             user: 'aluno',
             password: 'Sptech#2024',
-            database: 'dadosSensor',
+            database: 'transporte_de_medicamentos_termolabeis',
             port: 3307
         }
     ).promise();
@@ -53,6 +51,7 @@ const serial = async (
         const valores = data.split(';');
         const sensorTemperatura = parseFloat(valores[0]);
         const sensorUmidade = parseFloat(valores[1]);
+        
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorTemperatura.push(sensorUmidade);
@@ -60,21 +59,27 @@ const serial = async (
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
-
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(   
-
-                'INSERT INTO dados (temperatura, umidade, nomeDHT, nomeLM) VALUES (?, ?, ?, ?)',
-                [sensorTemperatura, null, null, 'LM35']
+               ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (?, ?, ?)',
+                [1, sensorTemperatura, sensorUmidade]
 
             );
-
             await poolBancoDados.execute(   
-
-                'INSERT INTO dados (temperatura, umidade, nomeDHT, nomeLM) VALUES (?, ?, ?, ?)',
-                [null, sensorUmidade, 'DHT11', null]
-                
-            );
+                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (?, ?, ?)',
+                 [2, sensorTemperatura, sensorUmidade]
+ 
+             );
+             await poolBancoDados.execute(   
+                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (?, ?, ?)',
+                 [3, sensorTemperatura, sensorUmidade]
+ 
+             );
+             await poolBancoDados.execute(   
+                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (?, ?, ?)',
+                 [4, sensorTemperatura, sensorUmidade]
+ 
+             );
             console.log("valores inseridos no banco: ", sensorUmidade + ", " + sensorTemperatura);
 
         }
