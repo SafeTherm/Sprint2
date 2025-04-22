@@ -53,7 +53,8 @@
         </div>
         <div class="rectangle-197">
             <div class="texto-resultado ">
-                <h2>Resultados Financeiros</h2>
+                <h3>Resultados Financeiros</h3>
+                <h2>Simulação reduzindo 20% do percentual de perdas</h2>
                 <div class="resultado">
                     Prejuízo Financeiro Sem SafeTherm:
                     <div id="div_custoAtual"></div>
@@ -79,9 +80,7 @@
                     Temperatura Monitorada: 2°C a 8°C
                 </div>
             </div>
-            <div class="projecao">
-                <h3>Projeção de 5 Anos:</h3>
-                <div id="div_projecao" class="tabela"></div>
+            <div id="div_projecao_aparecer" class="projecao">
             </div>
         </div>
     </div>
@@ -121,7 +120,7 @@
         // perdaAtual: é o valor em numero INT da porcentagem de perdas que ele tem no ano
         var perdaAtual = valorTotal * percentual_perdasAtual
         // perdaSafe: é o valor da perda atual com uma redução de 15%
-        var perdaSafe = perdaAtual * 0.85; // Redução de 15%
+        var perdaSafe = perdaAtual * 0.80; // Redução de 20%
         // economiaPerdas: é a diferença entre o valor das perdas sem sistema e com o sistema
         var economiaPerdas = perdaAtual - perdaSafe
         // economiaMultas: é o valor de multas anuais
@@ -156,6 +155,9 @@
         div_roi.innerHTML = `${roi} ${meses}`;
 
 
+        div_projecao_aparecer.innerHTML = `
+        <h3>Projeção de 5 Anos:</h3>
+                <div id="div_projecao" class="tabela"></div>`
         // Projeção de 5 anos
         var investimentoRestante = custoSistema;
         var saldoAcumulado = 0;
