@@ -297,11 +297,22 @@ header nav ul li:hover{
 }
 
 
+.projeto .container{
+    display: flex;
+}
 .projeto .container .box_left{
     width: 50%;
     height: 100%;
     padding: 5% 0 0 5%;
     position: relative;
+}
+.projeto .container .box_right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    padding: 5% 0 0 5%;
 }
 
 .projeto .container .box_left #titulo_projeto{
@@ -442,6 +453,8 @@ header nav ul li:hover{
 }
 .projeto .container .box_left .rolamento{
     position: absolute;
+    display: flex;
+    flex-direction: row;
     width: 200px;
     height: 5px;
     bottom: 5%;
@@ -454,7 +467,99 @@ header nav ul li:hover{
 .projeto .container .box_left .rolamento .prox_card{
     background: #0051FF;
     height: 100%;
-    width: 30%;
+    width: 25%;
+}
+.projeto .container .box_right .box_carrossel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: -150px;
+    width: 70%;
+    height: 60%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.projeto .box_right .box_carrossel #btn_anterior{
+    position: absolute;
+    left: 20px;
+    top: 47%;
+    width: 36px;
+    height: 39px;
+    border: none;
+    background: transparent;
+    background-image: url("../assets/img/anterior.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    transition: .6s;
+}
+
+.projeto .box_right .box_carrossel #btn_prox{
+    position: absolute;
+    right: 20px;
+    top: 47%;
+    width: 36px;
+    height: 39px;
+    border: none;
+    background: transparent;
+    background-image: url("../assets/img/proximo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    transition: .6s;
+}   
+
+.projeto .box_right .box_carrossel #btn_prox:hover,
+.projeto .box_right .box_carrossel #btn_anterior:hover{
+    transform: scale(1.2);
+}
+
+.projeto .box_right .box_carrossel .box,
+.projeto .box_right .box_carrossel #div_imgCarrossel{
+    width: 100%;
+    height: 100%;
+}
+
+#div_imgCarrossel img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.projeto .box_right .box_carrossel #circles{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    bottom: 5%;
+    left: 35%;
+    right: 35%;
+    width: 130px;
+    height: 30px;
+}
+#circles .circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 30px;
+    border: 1px solid #fff;
+}
+
+#circle1{
+    background-color: #0051ff62;
+}
+
+.projeto .box_right{
+    position: relative;
+}
+
+.projeto .box_right #triangulos_projetos{
+    position: absolute;
+    bottom: 0;
 }
 
 
