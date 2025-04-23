@@ -42,7 +42,7 @@
             <div>
               Temperatura - Veículo 1
             </div>
-            <img src="assets/img/temperatura.png" alt="">
+            <img src="assets/img/temperatura2.png" alt="">
           </div>
           <div>
             <div id="texto_titulo_grafico" class="texto_titulo_grafico">
@@ -89,7 +89,7 @@
             <div>
               Umidade - Veículo 1
             </div>
-            <img src="assets/img/umidade.png" alt="">
+            <img src="assets/img/umidade2.png" alt="">
           </div>
           <div>
             <div id="texto_titulo_grafico" class="texto_titulo_grafico">
@@ -194,12 +194,13 @@
               return Math.floor(value);
             }
           },
-          min: -1,
-          max: 10
+          min: 0,
+          max: 8.5
         }
       }
     }
-  },);
+  });
+
 
   // GRÁFICO DE COMPARAÇÃO DE TEMPERATURA
   const graficBar_temp_comp = document.getElementById('grf_temperatura_comparação');
@@ -225,7 +226,12 @@
     options: {
       scales: {
         y: {
-          beginAtZero: true
+          ticks: {
+            stepSize: 1,
+            callback: function (value) {
+              return Math.floor(value);
+            }
+          },
         }
       }
     }
@@ -322,7 +328,14 @@
     options: {
       scales: {
         y: {
-          beginAtZero: true
+          ticks: {
+            stepSize: 5,
+            callback: function (value) {
+              return Math.floor(value);
+            }
+          },
+          min: 20,
+          max: 85
         }
       }
     }

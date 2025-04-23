@@ -26,7 +26,7 @@ body {
 
 .barra_lateral {
   width: 13%;
-  height: 100%;
+  height: 101%;
   background-color: #232323;
   display: flex;
   flex-direction: column;
@@ -88,7 +88,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 55%;
+  height: 60%;
   padding-right: 2%;
 }
 
@@ -97,7 +97,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 55%;
+  height: 60%;
   margin-top: 3%;
   padding-right: 2%;
 }
@@ -143,11 +143,10 @@ body {
 .indicador {
   display: flex;
   flex-direction: column;
-  width: 10%;
+  width: 12%;
   height: auto;
   align-items: center;
-  justify-content: flex-start;
-  margin-top: 4%;
+  margin-top: 6%;;
 }
 
 .avaliacao {
@@ -192,13 +191,13 @@ body {
   background-color: #232323;
   color: #ffff;
   width: 100%;
-  border-left: solid 5px #ffff;
-  border-right: solid 5px #ffff;
+  border-left: solid 5px #232323;
+  border-right: solid 5px #232323;
 }
 
 /* Gráfico (canvas) ajustado */
 canvas {
-  width: 160%;
+  width: 147%;
   height: auto;
   max-height: 100%;
   display: block;
@@ -211,13 +210,12 @@ canvas {
 }
 
 .texto_titulo_grafico {
-  font-size: 18px;
+  font-size: 15 px;
   display: flex;
   color: #ffff;
   align-items: flex-end;
-  font-family: "Lalezar";
-  font-weight: lighter;
-  margin-top: 3%;
+  font-family: "arial";
+  margin-top: 8%;
 }
 
 .info {
