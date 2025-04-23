@@ -1,16 +1,17 @@
 CREATE DATABASE transporte_de_medicamentos_termolabeis;
 USE transporte_de_medicamentos_termolabeis;
 
+
 CREATE TABLE transportadora_cliente (
-idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-nomeEmpresa VARCHAR(60),
-cnpj CHAR(14),
-telefoneEmpresa CHAR(13),
-emailEmpresa VARCHAR(60),
+idTransportadora_cliente INT PRIMARY KEY AUTO_INCREMENT,
+nomeTransportadora_cliente VARCHAR(60),
+cnpjTransportadora_cliente CHAR(14),
+telefoneTransportadora_cliente CHAR(13),
+emailTransportadora_cliente VARCHAR(60),
 CONSTRAINT chkTel
-	CHECK (telefoneEmpresa like '__-____-____'),
-CONSTRAINT chkEmail
-	CHECK (emailEmpresa like '%@%.com')
+	CHECK (telefoneTransportadora_cliente like '__-____-____'),
+CONSTRAINT chkEmailTransportadora
+	CHECK (emailTransportadora_cliente like '%@%.com')
 );
 
  CREATE TABLE funcionario (
@@ -20,20 +21,21 @@ CONSTRAINT chkEmail
 	PRIMARY KEY (idFuncionario, fkTransportadora),
  CONSTRAINT fkFuncionarioEmpresa
 	FOREIGN KEY (fkTransportadora)
-		REFERENCES transportadora_cliente(idEmpresa),
+		REFERENCES transportadora_cliente(idTransportadora_cliente),
  nomeFuncionario VARCHAR(60),
  cargoFuncionario CHAR(18),
  cpfFuncionario CHAR(11),
  emailFucionarioPessoal VARCHAR(60),
  telefoneFuncionario VARCHAR(14),
  CONSTRAINT chkCargo
-	CHECK (cargoFuncionario IN ('Representante', 'Funcionario')),
+	CHECK (cargoFuncionario IN ('Representante', 'Motorista')),
  CONSTRAINT chkTel1
 	CHECK (telefoneFuncionario like '__-_____-____'),
 CONSTRAINT chkEmail1
 	CHECK (emailFucionarioPessoal like '%@%.com'),
  cep CHAR(8)
  );
+ 
  
  CREATE TABLE login (
  idLogin INT,
@@ -66,7 +68,7 @@ placaVeiculo CHAR(10),
 modelo VARCHAR(25),
 CONSTRAINT fkVeiculoEmpresa
 	FOREIGN KEY (fkEmpresaTransportadora)
-		REFERENCES transportadora_cliente(idEmpresa),
+		REFERENCES transportadora_cliente(idTransportadora_cliente),
         
 CONSTRAINT fkVeiculoFuncionario
 	FOREIGN KEY (fkVeiculoFuncionario)
@@ -93,10 +95,8 @@ CONSTRAINT chkVeiculoSensor
 );
 
 CREATE TABLE dadosSensor (
-idDados INT,
+idDados INT primary key auto_increment,
 fkSensor INT,
-CONSTRAINT pkComposta2
-	PRIMARY KEY (idDados, fkSensor),
 temperatura DECIMAL(5,2),
 umidade DECIMAL(5,2),
 dtAlerta DATE,
@@ -122,7 +122,7 @@ CONSTRAINT chkEmail3
 -- INSERTS
 
 -- INSERT PARA A TABELA 'TRANSPORTADORA CLIENTE'
-INSERT INTO transportadora_cliente (nomeEmpresa, cnpj, telefoneEmpresa, emailEmpresa) VALUES
+INSERT INTO transportadora_cliente (nomeTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente, emailTransportadora_cliente) VALUES
 ('TransMed Ltda', '12345678000199', '11-3456-7890', 'contato@transmed.com'),
 ('SaudeLog', '98765432000188', '21-1234-5678', 'atendimento@saudelog.com');
 
@@ -130,9 +130,9 @@ INSERT INTO transportadora_cliente (nomeEmpresa, cnpj, telefoneEmpresa, emailEmp
 INSERT INTO funcionario (idFuncionario, fkTransportadora, nomeFuncionario, cargoFuncionario, cpfFuncionario, emailFucionarioPessoal, telefoneFuncionario, cep)
 VALUES 
 (1, 1, 'Carlos Silva', 'Representante', '12345678901', 'carlos@exemplo.com', '11-98765-4321', '01001000'),
-(2, 1, 'Ana Pereira', 'Funcionario', '98765432100', 'ana@exemplo.com', '11-91234-5678', '02002000'),
+(2, 1, 'Ana Pereira', 'Motorista', '98765432100', 'ana@exemplo.com', '11-91234-5678', '02002000'),
 (3, 2, 'João Oliveira', 'Representante', '45678912300', 'joao@exemplo.com', '21-99876-5432', '03003000'),
-(4, 2, 'Luiza Silva', 'Funcionario', '98765432100', 'luizasilva@exemplo.com', '11-95554-5558', '06006000');
+(4, 2, 'Luiza Silva', 'Motorista', '98765432100', 'luizasilva@exemplo.com', '11-95554-5558', '06006000');
 
 -- INSERT PARA A TABELA 'LOGIN'
 INSERT INTO login (idLogin, fkFuncionario, emailLogin, senhaAcesso)
@@ -162,6 +162,7 @@ VALUES
 ('LM35', 'ATIVO', '2025-02-20', 2),
 ('DHT11', 'INATIVO', '2024-12-05', 1),
 ('LM35', 'INATIVO', '2024-12-06', 2);	
+
 select * from sensor;
 
 -- INSERT PARA A TABELA 'dadoSensor'
@@ -171,6 +172,7 @@ VALUES
 (2, 2, 6.00, 78.0, '2025-04-02'),
 (3, 3, 4.85, 82.1, '2025-04-03'),
 (4, 4, 6.00, 78.0, '2025-04-02');
+
 
 -- INSERT PARA A TABELA 'UNIDADE'
 INSERT INTO unidade (idUnidade, fkRepresentante, nomeUnidade, cepUnidade, estado, telefoneUnidade, emailUnidade)
@@ -193,24 +195,24 @@ SELECT * FROM unidade;
 SELECT  f.nomeFuncionario AS "Nome do Funcionário",
 f.emailFucionarioPessoal AS "Email Pessoal",
 f.cargoFuncionario AS "Cargo do Funcionario",
-t.nomeEmpresa AS "Empresa",
-t.emailEmpresa AS "Email da Empresa",
-t.telefoneEmpresa AS "Telefone da Empresa"
+t.nomeTransportadora_cliente AS "Empresa",
+t.emailTransportadora_cliente AS "Email da Empresa",
+t.telefoneTransportadora_cliente AS "Telefone da Empresa"
 	FROM funcionario AS f
 		JOIN transportadora_cliente AS t
-		ON f.fkTransportadora = t.idEmpresa;
+		ON f.fkTransportadora = t.idTransportadora_cliente;
     
 -- INFORMAÇÕES DOS VEÍCULOS
 SELECT  v.placaVeiculo AS "Placa",
 v.modelo AS "Modelo",
 f.nomeFuncionario AS "Motorista",
-t.nomeEmpresa AS "Empresa",
+t.nomeTransportadora_cliente AS "Empresa",
 s.tipoSensor AS "Sensor",
 c.embalagem AS "Tipo de Embalagem",
 c.fabricante AS "Fabricante"
 	FROM veiculo AS v
 		JOIN funcionario AS f ON v.fkVeiculoFuncionario = f.idFuncionario
-		JOIN transportadora_cliente AS t ON v.fkEmpresaTransportadora = t.idEmpresa
+		JOIN transportadora_cliente AS t ON v.fkEmpresaTransportadora = t.idTransportadora_cliente
 		JOIN sensor AS s ON v.idVeiculo = s.fkVeiculoSensor
 		JOIN carga AS c ON v.fkCargaVeiculo = c.idCarga;
         
@@ -220,10 +222,10 @@ c.dtRetirada AS "Data de Retirada",
 c.dtEntrega AS "Data de Entrega",
 c.fabricante AS "Fabricante",
 v.placaVeiculo AS "Veículo Responsável",
-t.nomeEmpresa AS "Empresa Responsável"
+t.nomeTransportadora_cliente AS "Empresa Responsável"
 	FROM carga AS c
 		JOIN veiculo AS v ON v.fkCargaVeiculo = c.idCarga
-		JOIN transportadora_cliente AS t ON v.fkEmpresaTransportadora = t.idEmpresa;
+		JOIN transportadora_cliente AS t ON v.fkEmpresaTransportadora = t.idTransportadora_cliente;
         
 -- DADOS DOS SENSORES
 SELECT  ds.idDados AS "ID do Alerta",
@@ -247,7 +249,7 @@ f.emailFucionarioPessoal AS "Email do Representante"
 SELECT  l.idLogin AS "ID Login",
 l.emailLogin AS "Email de Acesso",
 f.nomeFuncionario AS "Nome do Funcionário",
-t.nomeEmpresa AS "Empresa"
+t.nomeTransportadora_cliente AS "Empresa"
 	FROM login AS l
 		JOIN funcionario AS f ON l.fkFuncionario = f.idFuncionario
-		JOIN transportadora_cliente AS t ON f.fkTransportadora = t.idEmpresa;
+		JOIN transportadora_cliente AS t ON f.fkTransportadora = t.idTransportadora_cliente;
