@@ -39,6 +39,7 @@
                 </select>
             </div>
             <div id="div_multas">
+                <input type="hidden" id="imput_multasAnuais" value="0">
             </div>
             <div class="botao_parametros">
                 <div class="botao_apagar">
@@ -113,7 +114,6 @@
         // qtdVeiculos: é quantidade de veiculos que ele tem em sua frota
         var qtdVeiculos = Number(imput_qtdVeiculos.value)
 
-        // multasAnuis: é o valor total das multas que ele recebe durante o ano
         var multasAnuais = Number(imput_multasAnuais.value)
 
         // Cálculos
@@ -156,15 +156,17 @@
         div_investimentoSafe.innerHTML = `R$ ${custoSistema.toFixed(2)}`;
         div_roi.innerHTML = `${roi} ${meses}`;
         div_projecao_aparecer.innerHTML = `
-        <h3>Projeção de 5 Anos:</h3> 
-        <div id="div_projecao" class="tabela"></div>`
+         
+        <div id="div_projecao" class="tabela">
+            </div>`
 
         // Projeção de 5 anos
         var investimentoRestante = custoSistema;
         var saldoAcumulado = 0;
         var projecao = ``;
 
-        projecao = `
+        projecao += `
+        <div class="titulo_projeçãoh3"><h1>Projeção de 5 Anos:</h1></div>
             <table border="1">
         <tr>
             <td>Ano</td>
@@ -204,18 +206,18 @@
         }
         projecao += `</table>`
         div_projecao.innerHTML = projecao
-    
+
     }
 
     function apagar() {
 
-// Limpando os campos de input
-imput_valorTotal.value = "";
-imput_qtdVeiculos.value = "";
-imput_percentual_perdasAtual.value = "";
-imput_multasAnuais.value = "";
+        // Limpando os campos de input
+        imput_valorTotal.value = "";
+        imput_qtdVeiculos.value = "";
+        imput_percentual_perdasAtual.value = "";
+        imput_multasAnuais.value = "";
 
-}
+    }
 
 
 </script>
