@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
     <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
     <title>Safe Therm</title>
 </head>
+
 <body>
     <header>
         <div class="box-nav-logo">
             <a href="">
-                <h1>Safe <span>Therm</span></h1>
+                <h1><img src="assets/img/logo.png">Safe <span>Therm</span></h1>
             </a>
         </div>
 
@@ -19,15 +21,15 @@
             <div class="menu-primario">
                 <ul>
                     <li><a href="#home" class="effectHover">home</a></li>
-                    <li><a href="#sect" class="effectHover">projeto</a></li>
+                    <li><a href="#sect" class="effectHover" id="btn_projeto">projeto</a></li>
                 </ul>
             </div>
 
 
             <div class="menu-secundario">
                 <ul>
-                    <li><a href="#sobre" class="effectHover">sobre</a></li>
-                    <li><a href="#contato" class="effectHover">contato</a></li>
+                    <li><a href="#sobre" class="effectHover" id="btn_sobre">sobre</a></li>
+                    <li><a href="#contato" class="effectHover" id="btn_contato">contato</a></li>
                 </ul>
             </div>
 
@@ -38,7 +40,7 @@
     </header>
     <section class="home" id="home">
         <img src="assets/img/triangulo cinza escuro.png" alt="" class="trianguloEscuro">
-        <img src="assets/img/homeIMG person.png" class="img_personagem">
+        <img src="assets/img/homeIMG person.svg" class="img_personagem">
         <div class="container">
             <div class="box_left">
                 <div class="conteudo">
@@ -54,7 +56,9 @@
             </div>
             <div class="box_right">
                 <div class="conteudo">
-
+                    <div class="acess_calculadora">
+                        <a href="" id="Link_calculadora"></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,7 +88,7 @@
                                 <span>segurança</span> e o impacto positivo na <span>saúde</span> pública.
                             </p>
                         </div>
-                        <button class="botao_prox" onclick="proxProjeto()">></button>
+                        <button class="botao_prox" onclick="proxProjeto()"> </button>
                     </div>
                     <div class="rolamento">
                         <div class="prox_card" id="rolamentoCard"></div>
@@ -102,10 +106,7 @@
                             <div id="circle3" class="circle"></div>
                             <div id="circle4" class="circle"></div>
                         </div>
-                        <div id="div_imgCarrossel">
-                            <img src="assets/img/caminhão para carrosel.png">
-                        </div>
-
+                        <div id="div_imgCarrossel"></div>
                     </div>
                 </div>
                 <img src="assets/img/triangulo cinza escuro.png" id="triangulos_projetos">
@@ -114,20 +115,57 @@
     </section>
     <section class="sobre" id="sobre">
         <div class="container">
-            <p>Sobre Seu codigo aqui</p>
+            <div class="box_left">
+                <h1 id="titulo_sobre">Sobre <span><img src="assets/img/Truck.png" alt=""></span></h1>
+                <p id="text">A <span style="color: #ff7f00;">Safe Therm</span> é uma empresa especializada no
+                    monitoramento de temperatura
+                    e umidade no transporte de medicamentos termolábeis. Com
+                    tecnologia de ponta e compromisso com a qualidade, garantimos
+                    a integridade dos produtos ao longo de toda a cadeia logística,
+                    assegurando a eficácia e a segurança dos medicamentos. Nossa missão
+                    é oferecer soluções inovadoras que protejam a saúde e
+                    proporcionem tranquilidade para nossos clientes.</p>
+                <a href="#sect" id="btn_ver_projeto">ver projeto</a>
+            </div>
+            <div class="box_right">
+                <div class="box_sobre_carrossel">
+                    <div id="text_equipe">
+                        <h3>Equipe</h3>
+                    </div>
+                    <div class="conteudo_carrossel">
+                        <div id="carrossel_equipe"></div>
+                        <h1 id="nome_membro_equipe">Matheus</h1>
+                        <button id="btn_anterior" onclick="anteriorSobre()"></button>
+                                <button id="btn_prox" onclick="proxSobre()"></button>
+                                <div class="rolamento">
+                                    <div class="prox_card" id="rolamentoCarrossel"></div>
+                                </div>
+                                <div class="resdes">
+                                    <div class="social" id="github"></div>
+                                    <div class="social" id="email"></div>
+                                    <div class="social" id="whatsapp"></div>
+                                </div>
 
+                    </div>
+                </div>
+                <div class="nav_btn_redes">
+                    <a href="#" class="btn_redes_safeTherm"></a>
+                    <a href="#" class="btn_redes_safeTherm" id="instagram"></a>    
+                </div>
+            </div>
+            <img src="assets/img/triangulo para cima.png" id="triangulo_pcima">
         </div>
     </section>
     <div class="mensagem_contato">
-
+        <h1 id="titulo_mensagem">ENTRAR EM CONTATO <span><img src="assets/img/Email.png" alt=""></span></h1>
     </div>
     <section class="contato" id="contato">
         <div class="container">
-            <p>Contato Seu codigo aqui</p>
 
         </div>
     </section>
 </body>
+
 </html>
 <script>
 
@@ -143,7 +181,8 @@
     var contador = 0;
     function atualizarImagem() {
         const imagemAtual = imagens[contador];
-        div_imgCarrossel.innerHTML = `<img src="${imagemAtual}">`;
+        div_imgCarrossel.style.backgroundImage = `url("${imagemAtual}")`;
+        div_imgCarrossel.style.transition = "transition: all .6s";
     }
 
     function atualizarIndicadores() {
@@ -153,24 +192,42 @@
             circle3.style.backgroundColor = "transparent";
             circle4.style.backgroundColor = "transparent";
             circle1.style.transition = "all 1s";
+            circle1.style.transform = "scale(1.2)";
+            circle3.style.transform = "scale(1)";
+            circle2.style.transform = "scale(1)";
+            circle4.style.transform = "scale(1)";
         } else if (contador === 1) {
             circle1.style.backgroundColor = "transparent";
             circle2.style.backgroundColor = "#0051ff62";
             circle3.style.backgroundColor = "transparent";
             circle4.style.backgroundColor = "transparent";
             circle2.style.transition = "all 1s";
+            circle2.style.transform = "scale(1.2)";
+            circle3.style.transform = "scale(1)";
+            circle4.style.transform = "scale(1)";
+            circle1.style.transform = "scale(1)";
         } else if (contador === 2) {
             circle1.style.backgroundColor = "transparent";
             circle2.style.backgroundColor = "transparent";
             circle3.style.backgroundColor = "#0051ff62";
             circle4.style.backgroundColor = "transparent";
             circle3.style.transition = "all 1s";
+            circle3.style.transform = "scale(1.2)";
+            circle4.style.transform = "scale(1)";
+            circle2.style.transform = "scale(1)";
+            circle1.style.transform = "scale(1)";
+
         } else if (contador === 3) {
             circle1.style.backgroundColor = "transparent";
             circle2.style.backgroundColor = "transparent";
             circle3.style.backgroundColor = "transparent";
             circle4.style.backgroundColor = "#0051ff62";
             circle4.style.transition = "all 1s";
+            circle4.style.transform = "scale(1.2)";
+            circle3.style.transform = "scale(1)";
+            circle2.style.transform = "scale(1)";
+            circle1.style.transform = "scale(1)";
+
         }
     }
     function prox() {
@@ -183,21 +240,14 @@
         contador = (contador + 1) % imagens.length;
         atualizarImagem();
         atualizarIndicadores();
-    }, 3000);
+    }, 5000);
 
     function anterior() {
         contador = (contador - 1 + imagens.length) % imagens.length;
         atualizarIndicadores()
         atualizarImagem();
     }
-
-
-
-
-
-
     //cards projeto carrossel
-
     const cardsProjeto = [
         `<div class="card card_1">
                             <h1 class="titulo-card">Parceria</h1>
@@ -210,7 +260,7 @@
                                 <span>segurança</span> e o impacto positivo na <span>saúde</span> pública.
                             </p>
                         </div>
-                        <button class="botao_prox" onclick="proxProjeto()">></button>`,
+                        <button class="botao_prox" onclick="proxProjeto()"></button>`,
         `<div class="card card_1">
                             <h1 class="titulo-card">Teste1</h1>
                             <p>Valorizamos <span>relações</span> de <span>longo prazo</span> com nossos clientes e
@@ -222,7 +272,7 @@
                                 <span>segurança</span> e o impacto positivo na <span>saúde</span> pública.
                             </p>
                         </div>
-                        <button class="botao_prox" onclick="proxProjeto()">></button>`,
+                        <button class="botao_prox" onclick="proxProjeto()"></button>`,
         `<div class="card card_1">
                             <h1 class="titulo-card">Teste3</h1>
                             <p>Valorizamos <span>relações</span> de <span>longo prazo</span> com nossos clientes e
@@ -234,7 +284,7 @@
                                 <span>segurança</span> e o impacto positivo na <span>saúde</span> pública.
                             </p>
                         </div>
-                        <button class="botao_prox" onclick="proxProjeto()">></button>`,
+                        <button class="botao_prox" onclick="proxProjeto()"></button>`,
         `<div class="card card_1">
                             <h1 class="titulo-card">Teste5</h1>
                             <p>Valorizamos <span>relações</span> de <span>longo prazo</span> com nossos clientes e
@@ -246,7 +296,7 @@
                                 <span>segurança</span> e o impacto positivo na <span>saúde</span> pública.
                             </p>
                         </div>
-                        <button class="botao_prox" onclick="proxProjeto()">></button>`
+                        <button class="botao_prox" onclick="proxProjeto()"></button>`
     ];
 
     var contadorProjeto = 0;
@@ -278,17 +328,80 @@
             rolamentoCard.style.transition = "all 1s";
         }
     }
+
+    setInterval(function () {
+        contadorProjeto = (contadorProjeto + 1) % cardsProjeto.length;
+        atualizarProjeto();
+        atualizarIndicadoresProjeto();
+    }, 7000);
+
     function proxProjeto() {
         contadorProjeto = (contadorProjeto + 1) % cardsProjeto.length;
         atualizarProjeto();
         atualizarIndicadoresProjeto();
-        console.log(contadorProjeto)
     }
 
 
 
 
 
+
+    //carrossel sessão Sobre, funcional 
+    //jeito mais facil de fazer um carrossel para o squad S2 :)
+    const imagensSobre = [
+        "assets/img/caminhão para carrosel.png",
+        "mario2.avif",
+        "mario3.jpg",
+        "assets/img/caminhão para carrosel.png"
+    ];
+
+    var contadorSobre = 0;
+    function atualizarImagemSobre() {
+        const imagemAtualSobre = imagensSobre[contadorSobre];
+        carrossel_equipe.style.backgroundImage = `url("${imagemAtualSobre}")`;
+        carrossel_equipe.style.transition = "transition: all .6s";
+    }
+
+    function atualizarIndicadoresSobre() {
+        if (contadorSobre === 0) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "48px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "Matheus Gomes";
+        } else if (contadorSobre === 1) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "96px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "Felipe Ventura";
+        } else if (contadorSobre === 2) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "144px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "Emilie";
+        } else if (contadorSobre === 3) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "240px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "Emilly";
+        }
+    }
+    function proxSobre() {
+        contadorSobre = (contadorSobre + 1) % imagensSobre.length;
+        atualizarImagemSobre();
+        atualizarIndicadoresSobre();
+    }
+
+    setInterval(function () {
+        contadorSobre = (contadorSobre + 1) % imagensSobre.length;
+        atualizarImagemSobre();
+        atualizarIndicadoresSobre();
+    }, 3000);
+
+    function anteriorSobre() {
+        contadorSobre = (contadorSobre - 1 + imagensSobre.length) % imagensSobre.length;
+        atualizarIndicadoresSobre()
+        atualizarImagemSobre();
+    }
 
 
 

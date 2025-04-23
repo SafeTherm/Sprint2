@@ -46,7 +46,15 @@
  }
  header a h1{
      color: #000000;
+     position: relative;
+     
  }
+ header a h1 img{
+    position: absolute;
+    left: -7px;
+    top: 5px;
+    z-index: -1;
+}
  header nav{
      display: flex;
      flex-direction: row;
@@ -135,6 +143,7 @@ header nav ul li:hover{
     background-color: #fff;
     color: #ff7f00;
     box-shadow: 2px 2px 50px 0px #ffffff4f;
+    border: 1px solid #232323;
 }
 
 
@@ -171,20 +180,20 @@ header nav ul li:hover{
      background-color: #232323;
  }
  .sobre{
+     position: relative;
      width: 100%;
      height: 100vh;
      background-color: #fff;
-     border: 1px solid rgb(0, 0, 0);
  }
  .mensagem_contato{
      width: 100%;
      height: 25vh;
-     border: 1px solid rgb(191, 255, 0);
  }
  .contato{
      width: 100%;
      height: 100vh;
-     border: 1px solid rgb(8, 0, 255);
+     background-color: #fff;
+
  }
  
  .container{
@@ -203,7 +212,7 @@ header nav ul li:hover{
     position: absolute;
     width: 40%;
     bottom: 10px;
-    z-index: 1;
+    z-index: 11;
 
 }
 .home .trianguloEscuro{
@@ -232,7 +241,7 @@ header nav ul li:hover{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-left: 10%;
+    margin-left: 2%;
     width: 75%;
     height: 100%;
     gap: 30px;
@@ -240,10 +249,9 @@ header nav ul li:hover{
 }
 
 .home .container .box_left .conteudo .titulo_home{
-    margin-top: 13%;
     text-align: center;
-    font-size: 3rem;
-    width: 65%;
+    font-size: 2.8rem;
+    width: 80%;
     font-family:'Post No Bills Jaffna Bold';
     font-weight:bold;
 }
@@ -261,8 +269,9 @@ header nav ul li:hover{
 }
 
 .home .container .box_left .conteudo .botoes{
-    width: 50%;
+    width: 55%;
     height: 50px;
+    gap: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -270,23 +279,32 @@ header nav ul li:hover{
 
 #saiba_mais{
     display: block;
-    text-align: center;
+    text-align: left;
     line-height: 50px;
-    width: 47%;
+    width: 55%;
     height: 100%;
+    padding-left: 15px;
     border-radius: 10px 0px 10px 0px;
     background-color: #0051FF;
     color: #fff;
     font-weight: 600;
     font-size: larger;
     font-family: "Sofia Sans", sans-serif;
+    background-image: url("../assets/icon/People.svg");
+    background-repeat: no-repeat;
+    background-position: center right 10px;
+    transition: .6s;
+}
+#saiba_mais:hover{
+    background-color: #000;
 }
 #cadastrar{
     display: block;
-    text-align: center;
+    text-align: left;
     line-height: 50px;
-    width: 47%;
+    width: 57%;
     height: 100%;
+    padding-left: 17px;
     border: 1px solid #ff7f00;
     border-radius: 10px 0px 10px 0px;
     color: #ff7f00;
@@ -294,8 +312,37 @@ header nav ul li:hover{
     font-size: 1.2em;
     background-color: #fff;
     font-family: "Sofia Sans", sans-serif;
+    background-image: url("../assets/icon/Back\ Arrow.svg");
+    background-position: center right 10px;
+    background-repeat: no-repeat;
 }
 
+.home .container .box_right .conteudo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+.home .container .box_right .conteudo .acess_calculadora{
+    position: relative;
+    margin-top: 8%;
+    width: 60%;
+    height: 60%;
+    background-image: url("../assets/img/img\ calculadora.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+#Link_calculadora{
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: transparent;
+    bottom: 25px;
+    border-radius: 10px;
+    right: 52px;
+}
 
 .projeto .container{
     display: flex;
@@ -303,7 +350,7 @@ header nav ul li:hover{
 .projeto .container .box_left{
     width: 50%;
     height: 100%;
-    padding: 5% 0 0 5%;
+    padding: 5% 0 0 8%;
     position: relative;
 }
 .projeto .container .box_right{
@@ -319,22 +366,22 @@ header nav ul li:hover{
     color: #fff;
     font-family:'Post No Bills Jaffna Bold';
     font-weight:bold;
-    font-size: 3rem;
+    font-size: 3.2rem;
 }
 .projeto .container .box_left #text{
-    width: 58%;
+    width: 75%;
     color: #fff;
     font-family:'Sofia Sans';
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 200;
     margin-top: 4%;
 }
 .projeto .container .box_left #text-info{
-    width: 58%;
+    width: 75%;
     margin-top: 2%;
     color: #fff;
     font-family:'Sofia Sans';
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     letter-spacing: 2.5px;
     font-weight: 600;
 }
@@ -417,11 +464,11 @@ header nav ul li:hover{
     color: #0051FF;
 }
 .projeto .container .box_left .box_cards .card_1{
-    margin-top: 45px;
+    margin-top: 15px;
 }
 
 .projeto .container .box_left .box_cards .card_2{
-    margin-top: 5px;
+    margin-top: -15px;
 }
 
 
@@ -431,15 +478,18 @@ header nav ul li:hover{
     height: 45px;
     border-radius: 50px;
     border: 1px solid #fff;
-    color: #fff;
     font-size: 1.2rem;
     background: transparent;
     transition: .5s;
     cursor: pointer;
+    background-image: url("../assets/icon/Right.svg");
+    background-position: center;
+    background-size: 20px;
+    background-repeat: no-repeat;
 }
 
 .projeto .container .box_left .box_cards .cards .botao_prox:hover{
-    background: #000000;
+    background-color: #000000;
     border: 1px solid #000;
     transform: scale(1.1);
 }
@@ -457,8 +507,8 @@ header nav ul li:hover{
     flex-direction: row;
     width: 200px;
     height: 5px;
-    bottom: 5%;
-    left: 34%;
+    bottom: 3%;
+    left: 38%;
     border-radius: 10px;
     background: #fff;
     overflow: hidden;
@@ -479,6 +529,12 @@ header nav ul li:hover{
     height: 60%;
     border-radius: 10px;
     overflow: hidden;
+}
+#div_imgCarrossel{
+    background-image: url("../assets/img/caminhão\ para\ carrosel.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: all 1s;
 }
 
 
@@ -523,10 +579,6 @@ header nav ul li:hover{
     height: 100%;
 }
 
-#div_imgCarrossel img{
-    width: 100%;
-    height: 100%;
-}
 
 
 .projeto .box_right .box_carrossel #circles{
@@ -565,5 +617,281 @@ header nav ul li:hover{
 
 
 
+.sobre #triangulo_pcima{
+    position: absolute;
+    height: 50%;
+    left: 0;
+    bottom: 0;
+}
 
+.sobre {
+    background-image: url("../assets/img/detalhes_sessão_sobre.png");
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat; 
+}
+.sobre .container{
+    display: flex;
+}
+.sobre .container .box_left,
+.sobre .container .box_right{
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+.sobre .container .box_left{
+    padding: 5% 0 0 8%;
+}
+.sobre .container .box_left #titulo_sobre{
+    color: #000000;
+    font-family:'Post No Bills Jaffna Bold';
+    font-weight:bold;
+    font-size: 3.2rem;
+    position: relative;
+    width: 165px;
+}
+.sobre .container .box_left #titulo_sobre::after{
+    content: '';
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    left: 0;
+    bottom: 18px;
+    background-color: #ff7f00;
+    position: absolute;
+}
+.sobre .container .box_left #text{
+    margin-top: 6px;
+    font-size: 1.1rem;
+    width: 74%;
+    margin-bottom: 28px;
+}
+.sobre .container .box_left #titulo_sobre span img{
+    width: 40px;
+}
+
+.sobre .container .box_left #btn_ver_projeto{
+    display: flex;
+    align-items: center;
+    border: 1px solid #ff7f00;
+    text-align: center;
+    border-radius: 10px 0px 10px 0px;
+    width: 140px;
+    padding: 0px 0px 0px 15px;
+    color: #ff7f00;
+    background-color: #fff;
+    box-shadow: -4px 4px 0px 1px #00000041;
+    height: 40px;
+}
+
+.sobre .container .box_left #btn_ver_projeto{
+    background-image: url("../assets/img/seta\ direita.png");
+    background-repeat: no-repeat;
+    background-position: right;
+
+}
+
+.sobre .container .box_right{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.sobre .container .box_right .box_sobre_carrossel{
+    background-color: #E0E0E0;
+    right: -90px;
+    width: 70%;
+    height: 50%;
+    border-radius: 0px 15px 15px 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sobre .container .box_right .box_sobre_carrossel #text_equipe{
+    width: 140px;
+    height: 50px;
+    background-color: #E0E0E0;
+    position: absolute;
+    top: -48px;
+    left: 0;
+    border-radius: 15px 15px 0px 0px;
+    text-align: center;
+    line-height: 50px;
+    border: 1px ;
+}
+
+#text_equipe h3{
+    font-weight: 500;
+}
+
+
+.sobre .container .box_right .box_sobre_carrossel .conteudo_carrossel{
+    overflow: hidden;
+    width: 93%;
+    height: 90%;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteudo_carrossel #btn_prox,
+.conteudo_carrossel #btn_anterior{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    background-color: #232323;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: .6s;
+
+}
+.conteudo_carrossel #btn_prox:hover,
+.conteudo_carrossel #btn_anterior:hover{
+    transform: scale(1.1);
+}
+.conteudo_carrossel #btn_prox{
+    background-image: url("../assets/img/setaCarrossel.svg");
+    background-position: center;
+    background-size: 40px;
+    position: absolute;
+    right: 4%;
+}
+.conteudo_carrossel #btn_anterior{
+    background-image: url("../assets/img/setaCarrosselEsquerda.svg");
+    background-position: center;
+    background-size: 40px;
+    position: absolute;
+    left: 4%;
+}
+
+.conteudo_carrossel .rolamento{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    width: 240px;
+    height: 7px;
+    border-radius: 5px;
+    background-color: #fff;
+    bottom: 15px;
+}
+
+.conteudo_carrossel .rolamento .prox_card{
+    background-color: #ff7f00;
+    height: 5px;
+    width: 48px;
+    border-radius: 3px;
+}
+.conteudo_carrossel .resdes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 240px;
+    height: 50px;
+    bottom: 30px;
+    gap: 10px;
+}
+
+.conteudo_carrossel .resdes .social{
+    width:45px;
+    height: 45px;
+    background-color: #fff;
+    border-radius: 45px;
+}
+
+
+.conteudo_carrossel #carrossel_equipe{
+    background-image: url("../assets/img/xaropinha.png");
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   width: 100%;
+   height: 100%;
+   transition: all .6s
+}
+
+.conteudo_carrossel #nome_membro_equipe{
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    font-size: .8rem;
+    text-transform: uppercase; background-color: #ffffff83;
+    padding: 1px 6px;
+    border-radius: 5px;
+}
+
+
+.resdes .social{
+    background-size: 33px 33px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.resdes #github{
+    background-image: url("../assets/icon/GitHub.svg");
+}
+.resdes #email{
+    background-size: 35px 28px;
+    background-image: url("../assets/icon/Email.svg");
+}
+.resdes #whatsapp{
+    background-image: url("../assets/icon/WhatsApp.svg");
+}
+
+
+
+
+
+
+.mensagem_contato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mensagem_contato #titulo_mensagem{
+    color: #fff;
+    font-family:'Post No Bills Jaffna Bold';
+    font-weight:bold;
+    font-size: 3.2rem;
+    position: relative;
+}
+.mensagem_contato #titulo_mensagem img{
+    position: absolute;
+    width: 60px;
+    right: -80px;
+    top: 8px;
+}
+
+
+.sobre .container .box_right .nav_btn_redes{
+    display: flex;
+    position: absolute;
+    bottom: 30px;
+    right: 70px;
+    gap: 3px;
+}
+.sobre .container .box_right .btn_redes_safeTherm{
+    width: 70px;
+    height: 70px;
+}
+
+.btn_redes_safeTherm{
+    background-image: url("../assets/img/btnWhatsapp.svg");
+    background-position: center;
+    background-size: 80px;
+    background-repeat: no-repeat;
+}
+.btn_redes_safeTherm #instagram{
+    background-image: url("../assets/img/btnInstagram.svg");
+    background-position: center;
+    background-size: 80px;
+    background-repeat: no-repeat;
+}
 
