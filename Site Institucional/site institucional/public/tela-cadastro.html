@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/styles-lc.css">
+    <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
 </head>
 
 <body>
     <div class="navbar">
-        <img src="" alt="">
-        Voltar
+        <img src="assets/img/voltar.svg" alt="">
+        <button class="botao_voltar" onclick="voltar()">Voltar
+    </div>
     </div>
     <div class="container">
+        <div class="card"></div>
         <div class="titulo">
             CADASTRO
         </div>
@@ -54,15 +58,16 @@
         <div id="div_condicao_cadastrar"></div>
         <div class="botoes">
             <button class="botao_apagar" onclick="apagar()">
-                <img src="" alt="">
+                <img src="assets/img/lixeira.svg" alt="">
             </button>
             <button class="botao_entrar" onclick="cadastrar()">
                 cadastrar
             </button>
         </div>
-        <div class="possui_conta">
+        <div class="possui_conta11">
             <div>Já possui uma conta?</div> <a href="">click aqui</a>
         </div>
+    </div>
     </div>
 </body>
 
@@ -96,7 +101,7 @@
         // Validação email
         var email_validacao = email.endsWith(".com")
         var email_validacao_a = email.indexOf("@")
-        
+
         if (email != email_validacao || (email_validacao_a == '-1')) {
             erro_email.innerHTML = `Email não é válido`
         }
@@ -109,23 +114,23 @@
         var senha_validacao_e = senha.indexOf("%")
         var senha_validacao_f = senha.indexOf("&")
         var senha_validacao_g = senha.indexOf("*")
-        if (senha_qtd_letras < 8 || 
-        (senha_validacao_a == -1 ||
-        senha_validacao_b == -1 ||
-        senha_validacao_c == -1 ||
-        senha_validacao_d == -1 ||
-        senha_validacao_e == -1 ||
-        senha_validacao_f == -1 ||
-        senha_validacao_g == -1) ) {
+        if (senha_qtd_letras < 8 ||
+            (senha_validacao_a == -1 ||
+                senha_validacao_b == -1 ||
+                senha_validacao_c == -1 ||
+                senha_validacao_d == -1 ||
+                senha_validacao_e == -1 ||
+                senha_validacao_f == -1 ||
+                senha_validacao_g == -1)) {
             erro_senha.innerHTML = `Senha fraca`
         }
 
         if (cnpj == `` || telefone == `` || email == `` || senha == ``) {
-            div_condicao_cadastrar.innerHTML = `Preencha todos os campos para efetivar o cadastro`
+            div_condicao_cadastrar.innerHTML = `<div class="errado">Preencha todos os campos para efetivar o cadastro</div>`
         }
 
         else {
-            div_condicao_cadastrar.innerHTML = `Usuário cadastrado`
+            div_condicao_cadastrar.innerHTML = `<div class="certo">Usuário cadastrado</div>`
             erro_email.innerHTML = ``
             erro_senha.innerHTML = ``
             erro_telefone.innerHTML = ``
