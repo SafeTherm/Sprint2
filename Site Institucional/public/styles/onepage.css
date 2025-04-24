@@ -334,6 +334,14 @@ header nav ul li:hover{
     background-size: 100% 100%;
     z-index: 10;
 }
+.home .container .box_right .conteudo .acess_calculadora h1{
+    position: absolute;
+    top: -30px;
+    left: 28px;
+    color: #fff;
+    letter-spacing: 2px;
+    font-family: "Sofia Sans", sans-serif;
+}
 #Link_calculadora{
     position: absolute;
     width: 140px;
@@ -858,17 +866,24 @@ header nav ul li:hover{
     height: 70px;
 }
 
-.btn_redes_safeTherm{
+.nav_btn_redes #whatsapp{
     background-image: url("../assets/img/btnWhatsapp.svg");
     background-position: center;
     background-size: 80px;
     background-repeat: no-repeat;
+    transition: .6s;
 }
-.btn_redes_safeTherm #instagram{
+.nav_btn_redes #instagram{
     background-image: url("../assets/img/btnInstagram.svg");
     background-position: center;
     background-size: 80px;
     background-repeat: no-repeat;
+    transition: .6s;
+}
+
+.nav_btn_redes #whatsapp:hover,
+.nav_btn_redes #instagram:hover{
+    transform: scale(1.1);
 }
 
 
@@ -912,11 +927,16 @@ header nav ul li:hover{
 
 .contato .container .formulario{
     display: flex;
-    width: 80%;
+    background-image: url("../assets/img/celularSafeTherm.svg");
+    background-repeat: no-repeat;
+    background-size: 40% 95%;
+    background-position: bottom left -20px;
+    width: 75%;
     height: 60%;
     border-radius: 15px 0px 15px 15px;
     position: relative;
     background-color: #EEEEEE;
+    position: relative;
 
 }
 .contato .container .formulario #text_form{
@@ -965,13 +985,19 @@ header nav ul li:hover{
     background-color: #D9D9D9;
     padding: 0px 10px 0px 20px;
 }
-.contato .container .formulario .box .inputs input:focus{
+.contato .container .formulario .box .inputs input:focus,
+.contato .container .formulario .box .inputs #mensagem:focus{
     border: 2px solid #ff7f00;
+    outline: none;
 }
 .contato .container .formulario .box .inputs #mensagem{
-    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
     height: 100px;
+    max-height: 100px;
+    min-height: 100px;
     border-radius: 10px;
+    padding: 10px 20px 0px 20px;
     border: none;
     background-color: #D9D9D9;
 }
@@ -995,8 +1021,21 @@ header nav ul li:hover{
     border: none;
     background-color: #ff7f00;
     color: #fff;
+    font-size: medium;
+    text-align: left;
+    padding-left: 30px;
+    font-weight: 600;
     cursor: pointer;
+    background-image: url("../assets/icon/Send.svg");
+    background-repeat: no-repeat;
+    background-position: center right 10px;
+    transition: .6s;
 }   
+
+.contato .container .formulario .box .btn_contato #enviar:hover{
+    transform: scale(1.1);
+}
+
 
 .contato .container .formulario .box .btn_contato #lixeira{
     width: 40px;
@@ -1004,6 +1043,89 @@ header nav ul li:hover{
     border-radius: 10px;
     border: none;
     background-color: #232323;
-    color: #fff;
     cursor: pointer;
-}   
+    background-image: url("../assets/icon/Delete.svg");
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: .6s;
+}  
+.contato .container .formulario .box .btn_contato #lixeira:hover{
+    transform: scale(1.1);
+} 
+
+.contato .container .formulario .detalhe_contato{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    background-color: #ff7f00;
+    height: 76%;
+    width: 5px;
+    left: -15px;
+    top: 45px;
+}
+.contato .container .formulario .detalhe_contato .circle{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    top: -25px;
+    border: 2px solid #ff7f00;
+}
+.contato .container .formulario .detalhe_contato p{
+    position: absolute;
+    text-align: right;
+    top: 10px;
+    left: -280px;
+    width: 265px;
+    font-size: 1rem;
+}
+.contato .container .formulario .detalhe_contato p span{
+    color: #ff7f00;
+}
+
+.contato .container .formulario .botoes_redes {
+    position: absolute;
+    bottom: 3%;
+    left: 10%;
+    display: flex;
+    gap: 10px;
+}
+.contato .container .formulario .botoes_redes .contato_tel,
+.contato .container .formulario .botoes_redes .contato_email{
+    overflow: hidden;
+    background-color: #ff7f00;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    transition: .6s;
+}
+
+.contato .container .formulario .botoes_redes .contato_tel:hover,
+.contato .container .formulario .botoes_redes .contato_email:hover{
+    transform: scale(1.1);
+    background-color: #232323;
+}
+
+.contato .container .formulario .botoes_redes .contato_tel a,
+.contato .container .formulario .botoes_redes .contato_email a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+}
+.contato .container .formulario .botoes_redes .contato_tel{
+    background-image: 
+    url("../assets/icon/tel.svg");
+    background-repeat: no-repeat;                    
+    background-size: 25px;
+    background-position: center center;
+}
+.contato .container .formulario .botoes_redes .contato_email{
+    background-image: url("../assets/icon/emailContato.svg");
+    background-repeat: no-repeat;                    
+    background-size: 20px;
+    background-position: center center;
+}
