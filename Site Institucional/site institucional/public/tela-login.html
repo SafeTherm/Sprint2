@@ -29,7 +29,7 @@
                 <div class="txt_campo">
                     senha
                 </div>
-                <input type="text" id="input_senha">
+                <input type="password" id="input_senha">
             </div>
             <div id="div_condicao_cadastrar"></div>
             <div class="possui_conta">
@@ -62,7 +62,7 @@
         if (email == `` || senha == ``) {
              div_condicao_cadastrar.innerHTML = `<div class="errado">Preencha todos os campos para efetivar o login</div>`
         }
-        else if (email == `claudiof@gmail.com` && senha == `novoclienteSafe#`) {
+        else if (email == `claudiof@gmail.com` && senha == `#frizzavaicomprarprojeto`) {
             div_condicao_cadastrar.innerHTML = `<div class="certo">Login Autenticado</div>`
         }
         else {
