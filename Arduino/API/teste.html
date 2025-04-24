@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .transicao_in {
+            height: 0;
+            background-color: red; 
+            animation: transitar_in 0.5s ease-in-out;
+        }
+        
+        .transicao_out {
+            height: 0;
+            background-color: red; 
+            animation: transitar_out 0.5s ease-in-out;
+        }
+
+        @keyframes transitar_in {
+            0% {
+                height: 0;
+            }
+            100% {
+                height: 500px;
+            }
+        }
+        
+        @keyframes transitar_out {
+            0% {
+                height: 500px;
+            }
+            100% {
+                height: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="transitar()">Transitar</button>
+
+    <div id="div_transition"></div>
+    
+</body>
+</html>
+
+<script>
+    function transitar() {
+        if (div_transition.style.height == '500px') {
+            div_transition.style.height = "0px";
+            div_transition.classList.remove('transicao_in');
+            div_transition.classList.add('transicao_out');
+            
+        } else {
+            div_transition.classList.add('transicao_in');
+            div_transition.classList.remove('transicao_out');
+            div_transition.style.height = "500px";
+        }
+    }
+</script>
