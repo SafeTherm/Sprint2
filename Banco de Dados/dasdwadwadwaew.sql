@@ -1,5 +1,5 @@
-CREATE DATABASE transporte_de_medicamentos_termolabeis;
-USE transporte_de_medicamentos_termolabeis;
+CREATE DATABASE safe;
+USE safe;
 
 
 CREATE TABLE transportadora_cliente (
@@ -90,7 +90,7 @@ idDados INT primary key auto_increment,
 fkSensor INT,
 temperatura DECIMAL(5,2),
 umidade DECIMAL(5,2),
-dtAlerta DATE,
+dtAlerta datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT fkSensorDados
 	FOREIGN KEY (fkSensor)
 		REFERENCES sensor(idSensor)
