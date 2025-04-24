@@ -82,6 +82,13 @@
 </script>
 <script>
     function cadastrar() {
+        // Limpar divs
+        erro_email.innerHTML = ``
+        erro_senha.innerHTML = ``
+        erro_telefone.innerHTML = ``
+        erro_cnpj.innerHTML = ``
+
+        // Receber valores das inputs
         var cnpj = input_cnpj.value
         var telefone = input_telefone.value
         var email = input_email.value
@@ -91,21 +98,7 @@
         var cnpj_qtd_letras = cnpj.length
         var telefone_qtd_letras = telefone.length
 
-        if (cnpj_qtd_letras > 14 || cnpj_qtd_letras < 11) {
-            erro_cnpj.innerHTML = `CNPJ não é válido`
-        }
-        if (telefone_qtd_letras < 10 || telefone_qtd_letras > 11) {
-            erro_telefone.innerHTML = `Telefone não é válido`
-        }
-
-        // Validação email
-        var email_validacao = email.endsWith(".com")
-        var email_validacao_a = email.indexOf("@")
-
-        if (email != email_validacao || (email_validacao_a == '-1')) {
-            erro_email.innerHTML = `Email não é válido`
-        }
-
+        // Validações Senha
         var senha_qtd_letras = senha.length
         var senha_validacao_a = senha.indexOf("@")
         var senha_validacao_b = senha.indexOf("#")
@@ -114,27 +107,40 @@
         var senha_validacao_e = senha.indexOf("%")
         var senha_validacao_f = senha.indexOf("&")
         var senha_validacao_g = senha.indexOf("*")
-        if (senha_qtd_letras < 8 ||
-            (senha_validacao_a == -1 ||
-                senha_validacao_b == -1 ||
-                senha_validacao_c == -1 ||
-                senha_validacao_d == -1 ||
-                senha_validacao_e == -1 ||
-                senha_validacao_f == -1 ||
-                senha_validacao_g == -1)) {
-            erro_senha.innerHTML = `Senha fraca`
-        }
+
+        // Validação email
+        var email_validacao = email.endsWith(".com")
+        var email_validacao_a = email.indexOf("@")
 
         if (cnpj == `` || telefone == `` || email == `` || senha == ``) {
             div_condicao_cadastrar.innerHTML = `<div class="errado">Preencha todos os campos para efetivar o cadastro</div>`
-        }
-
-        else {
-            div_condicao_cadastrar.innerHTML = `<div class="certo">Usuário cadastrado</div>`
-            erro_email.innerHTML = ``
-            erro_senha.innerHTML = ``
-            erro_telefone.innerHTML = ``
-            erro_cnpj.innerHTML = ``
+        } else {
+            if (cnpj_qtd_letras > 14 || cnpj_qtd_letras < 11) {
+                erro_cnpj.innerHTML = `CNPJ não é válido`
+                div_condicao_cadastrar.innerHTML = ``
+            } else if (telefone_qtd_letras < 10 || telefone_qtd_letras > 11) {
+                erro_telefone.innerHTML = `Telefone não é válido`
+                div_condicao_cadastrar.innerHTML = ``
+            } else if (!email.endsWith(".com") || email.indexOf("@") === -1) {
+                erro_email.innerHTML = `Email não é válido`
+                div_condicao_cadastrar.innerHTML = ``
+            } else if (senha_qtd_letras < 8 ||
+                (senha_validacao_a == -1 &&
+                    senha_validacao_b == -1 &&
+                    senha_validacao_c == -1 &&
+                    senha_validacao_d == -1 &&
+                    senha_validacao_e == -1 &&
+                    senha_validacao_f == -1 &&
+                    senha_validacao_g == -1)) {
+                erro_senha.innerHTML = `Senha fraca`
+                div_condicao_cadastrar.innerHTML = ``
+            } else {
+                div_condicao_cadastrar.innerHTML = `<div class="certo">Usuário cadastrado</div>`
+                erro_email.innerHTML = ``
+                erro_senha.innerHTML = ``
+                erro_telefone.innerHTML = ``
+                erro_cnpj.innerHTML = ``
+            }
         }
     }
 </script>

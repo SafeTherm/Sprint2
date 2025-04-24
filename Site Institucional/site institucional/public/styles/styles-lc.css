@@ -133,6 +133,7 @@ input {
     width: 25%;
     gap: 1%;
     margin-bottom: 3%;
+    margin-top: 1%;
 }
 
 #erro_senha, #erro_email, #erro_telefone, #erro_cnpj, #erro_empresa {
