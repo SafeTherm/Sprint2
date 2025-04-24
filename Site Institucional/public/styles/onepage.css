@@ -846,30 +846,6 @@ header nav ul li:hover{
 
 
 
-
-
-
-.mensagem_contato{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.mensagem_contato #titulo_mensagem{
-    color: #fff;
-    font-family:'Post No Bills Jaffna Bold';
-    font-weight:bold;
-    font-size: 3.2rem;
-    position: relative;
-}
-.mensagem_contato #titulo_mensagem img{
-    position: absolute;
-    width: 60px;
-    right: -80px;
-    top: 8px;
-}
-
-
 .sobre .container .box_right .nav_btn_redes{
     display: flex;
     position: absolute;
@@ -895,3 +871,139 @@ header nav ul li:hover{
     background-repeat: no-repeat;
 }
 
+
+
+.mensagem_contato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mensagem_contato #titulo_mensagem{
+    color: #fff;
+    font-family:'Post No Bills Jaffna Bold';
+    font-weight:bold;
+    font-size: 3.2rem;
+    position: relative;
+}
+.mensagem_contato #titulo_mensagem img{
+    position: absolute;
+    width: 60px;
+    right: -80px;
+    top: 8px;
+}
+
+.contato .container {
+    background-image: 
+        url("../assets/img/triangulo para baixo.png"),
+        url("../assets/img/triangulo para cima.png"),
+        url("../assets/img/fundo_contato.svg");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 8% 50%, 8% 50%, cover;
+    background-position: top right, bottom left, center center;
+}
+
+
+.contato .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contato .container .formulario{
+    display: flex;
+    width: 80%;
+    height: 60%;
+    border-radius: 15px 0px 15px 15px;
+    position: relative;
+    background-color: #EEEEEE;
+
+}
+.contato .container .formulario #text_form{
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    right: 0;
+    top: -38px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: #EEEEEE;
+    
+}
+.contato .container .formulario #text_form h3{
+    text-align: center;
+    line-height: 50px;
+    font-weight: 400;
+    font-size: medium;
+}
+.contato .container .formulario .box{
+    position: absolute;
+    right: 0;
+    top: 3%;
+    width: 40%;
+}
+.contato .container .formulario .box .inputs{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin-left: 10%;
+}
+
+.contato .container .formulario .box .inputs label{
+    margin-top: 15px;
+    color: #8E8E8E;
+    font-family: "Poppins", sans-serif;
+    font-size: small;
+    font-weight: 600;
+}
+
+
+.contato .container .formulario .box .inputs input{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #D9D9D9;
+    padding: 0px 10px 0px 20px;
+}
+.contato .container .formulario .box .inputs input:focus{
+    border: 2px solid #ff7f00;
+}
+.contato .container .formulario .box .inputs #mensagem{
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    border: none;
+    background-color: #D9D9D9;
+}
+
+
+
+.contato .container .formulario .box .btn_contato{
+    display: flex;
+    justify-content: end;
+    width: 75%;
+    gap: 10px;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
+
+.contato .container .formulario .box .btn_contato #enviar{
+    width: 140px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ff7f00;
+    color: #fff;
+    cursor: pointer;
+}   
+
+.contato .container .formulario .box .btn_contato #lixeira{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #232323;
+    color: #fff;
+    cursor: pointer;
+}   
