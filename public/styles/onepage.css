@@ -1,0 +1,1075 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Sofia Sans", sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 100%;
+    background: #fff;
+}
+
+header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    top: 20px;
+    width: 100%;
+    align-items: center;
+    z-index: 9999;
+}
+
+header a h1 span {
+    color: #ff7f00;
+}
+
+header a h1 {
+    color: #000000;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    gap: 60px;
+}
+
+header nav .menu-primario {
+    display: block;
+    flex-direction: row;
+    width: 50%;
+}
+
+header nav .menu-primario ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+    align-items: center;
+    background: #232323;
+    color: #fff;
+}
+
+header nav .menu-secundario {
+    display: block;
+    flex-direction: row;
+    width: 50%;
+}
+
+header nav .menu-secundario ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+    align-items: center;
+    background: #ececec;
+    color: #232323;
+
+}
+
+header nav .menu-secundario ul,
+header nav .menu-primario ul {
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.home {
+    width: 100%;
+    height: 900px;
+    border: 1px solid green;
+}
+
+.projeto {
+    width: 100%;
+    height: 900px;
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.sobre {
+    width: 100%;
+    height: 900px;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.mensagem_contato {
+    width: 100%;
+    height: 225px;
+    border: 1px solid rgb(191, 255, 0);
+}
+
+
+
+/* CSS da página de contato*/
+
+.contato {
+    height: 900px;
+    border: 1px solid rgb(8, 0, 255);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.contato .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.poligono1 {
+    display: flex;
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: flex-end;
+}
+
+.poligono2 {
+    display: flex;
+    width: auto;
+    height: 100%;
+    flex-direction: column-reverse;
+    align-self: flex-end;
+    rotate: 180deg;
+}
+
+.poligono img {
+    width: 100px;
+    height: 340px;
+}
+
+.card {
+    display: flex;
+    position: relative;
+    background-color: #EEEEEE;
+    width: 100%;
+    height: 391px;
+    border-radius: 15px 0px 15px 15px
+}
+
+.formulario {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: -35px;
+    background-color: #EEEEEE;
+    border-radius: 15px 15px 0px 0px;
+    width: 122px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Lado direito da Página */
+.direito {
+    width: 30%;
+    height: 100%;
+    position: relative;
+}
+
+.botao {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.botao .botao-whatzapp {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #ff7f00;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao .botao-whatzapp img {
+    width: 25px;
+    height: 25px;
+    display: flex;
+}
+
+.botao .botao-email {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #ff7f00;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao .botao-email img {
+    width: 25px;
+    height: 25px;
+    display: flex;
+}
+
+.celular {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    padding-left: 5%;
+}
+
+.celular img {
+    width: 340px;
+    height: 380px;
+}
+
+.botao {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    top: 330px;
+    right: -40px;
+    gap: 10px;
+}
+
+.botao button {
+    background: none;
+    border: none;
+}
+
+.botao .botao-whatzapp {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #ff7f00;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao .botao-whatzapp img {
+    width: 25px;
+    height: 25px;
+    display: flex;
+}
+
+.botao .botao-email {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 100%;
+    background-color: #ff7f00;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao .botao-email img {
+    width: 25px;
+    height: 25px;
+    display: flex;
+}
+
+/* Lado esquerdo da Página */
+.card .esquerda {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.esquerda .Na-safeTherme- {
+    width: 30%;
+    height: auto;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    align-self: center;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.esquerda .Na-safeTherme- span {
+    color: #ff7f00;
+}
+
+.esquerda .cadastro {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 60px;
+}
+
+.esquerda .cadastro .campo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.esquerda .cadastro .campo span {
+    font-family: "Poppins";
+    font-size: 10px;
+}
+
+.esquerda .cadastro .campo input {
+    display: flex;
+    padding-left: 15px;
+    font-family: "Poppins";
+    font-size: 10px;
+    height: 30px;
+    width: 100%;
+    border: none;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+.esquerda .cadastro .campo-mensagem span {
+    font-family: "Poppins";
+    font-size: 10px;
+}
+
+.esquerda .cadastro .campo-mensagem input {
+    display: flex;
+    padding-left: 15px;
+    font-family: "Poppins";
+    font-size: 10px;
+    height: 110px;
+    width: 100%;
+    border: none;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    padding-bottom: 60px;
+}
+
+.cadastro .botao-aoao {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-top: 10px;
+    gap: 10px;
+}
+
+.cadastro .botao-aoao button {
+    background: none;
+    border: none;
+}
+
+.cadastro .botao-enviar {
+    width: 100px;
+    height: 35px;
+    display: flex;
+    background-color: #ff7f00;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+    font-size: 15px;
+}
+
+.cadastro .botao-enviar span {
+    color: #fff;
+    display: flex;
+}
+
+.cadastro .botao-enviar img {
+    width: 35px;
+    height: 17.5px;
+    display: flex;
+}
+
+.cadastro .botao-lixeira {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    border-radius: 6px;
+    background-color: #000000;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro .botao-lixeira img {
+    width: 20px;
+    height: 35px;
+    display: flex;
+}
+
+.esquerdo .botao-button {
+    flex-direction: row;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.separador {
+    flex-direction: row;
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
+    width: 5px;
+    height: 67%;
+    background-color: #ff7f00;
+    position: relative;
+    border-radius: 5px;
+}
+
+.separador::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ececec;
+    border: 2px solid #ff7f00;
+}
+
+.projeto,
+.projeto * {
+    box-sizing: border-box;
+}
+
+.projeto {
+    background: #232323;
+    height: 720px;
+    position: relative;
+}
+
+.titulo {
+    color: #ffffff;
+    text-align: left;
+    font-family: "PostNoBillsJaffna-Bold", sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    position: absolute;
+    left: 90px;
+    top: 51px;
+    width: 176px;
+    height: 83px;
+}
+
+
+
+.texto1 {
+    color: #ffffff;
+    text-align: left;
+    font-family: "PostNoBillsJaffna-Bold", sans-serif;
+    font-size: 20px;
+    font-weight: 300px;
+    position: absolute;
+    left: 90px;
+    top: 150px;
+    width: 450px;
+    height: 200px;
+}
+
+.texto2 {
+    text-align: left;
+    font-family: "PostNoBillsJaffna-Bold", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    position: absolute;
+    left: 86px;
+    top: 248px;
+    width: 430px;
+    height: 86px;
+}
+
+.texto2 .span_voce_pode {
+    color: #ffffff;
+    font-family: "PostNoBillsJaffna-Bold", sans-serif;
+    font-size: 20px;
+    line-height: 119.93%;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+}
+
+.span_formulario {
+    color: #0051ff;
+    font-family: "SofiaSans-Bold", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.final-formulario {
+    color: #ffffff;
+    font-family: "SofiaSans-Bold", sans-serif;
+    font-size: 20px;
+}
+
+
+.rectangle-17 {
+    background: #0051ff;
+    border-radius: 10px 0px 10px 0px;
+    width: 180px;
+    height: 50px;
+    position: absolute;
+    left: 87px;
+    top: 330px;
+}
+
+.contato {
+    color: #ffffff;
+    text-align: left;
+    font-family: "SofiaSans-Bold", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    position: absolute;
+    left: 140px;
+    top: 342px;
+    width: 96px;
+    height: 27px;
+}
+
+.rectangle-18 {
+    background: #272727;
+    border-radius: 10px;
+    width: 200px;
+    height: 170px;
+    position: absolute;
+    left: 86px;
+    top: 463px;
+    box-shadow: -6px 8px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.rectangle-19 {
+    background: #272727;
+    border-radius: 10px;
+    width: 200px;
+    height: 170px;
+    position: absolute;
+    left: 333px;
+    top: 421px;
+    box-shadow: -6px 8px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.parceria {
+    color: #ffffff;
+    text-align: left;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    position: absolute;
+    left: 87px;
+    top: 439px;
+    width: 84px;
+    height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Caixa de texto 1 Parceria */
+
+.Estrutura-Parceria {
+    justify-content: flex-start;
+    display: flex;
+    text-align: left;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    position: absolute;
+    align-items: center;
+    left: 104px;
+    top: 490px;
+    width: 159px;
+    height: 115px;
+}
+
+/* textos do box1 */
+
+.valorizamos {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.relaçoes-span1 {
+    color: #0051ff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.de {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.longoPrazo-span2 {
+    color: #0051ff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.comNossosClientes {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.confiança-span3 {
+    color: #0051ff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.e-1 {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.colaboraçao-span4 {
+    color: #0051ff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.final-box1 {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+
+/* Caixa de texto 2 Responsabilidade: */
+
+.estrutura_responsabilidade {
+    justify-content: flex-start;
+    display: flex;
+    position: absolute;
+    text-align: left;
+    left: 355px;
+    top: 438px;
+    width: 160px;
+    height: 138px;
+    align-items: center;
+}
+
+.atuamos {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.etica-span {
+    color: #0051ff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.e {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.responsabilidade-span2 {
+    color: #0051ff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.priorizando {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.segurança-span3 {
+    color: #0051ff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.impacto {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.saude-span4 {
+    color: #0051ff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.publica {
+    color: #ffffff;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+
+
+.responsabilidade {
+    color: #ffffff;
+    text-align: left;
+    font-family: "SofiaSans-Light", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    position: absolute;
+    left: 339px;
+    top: 389px;
+    width: 124px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* seta do carrosel */
+
+.ellipse-11 {
+    background: rgba(217, 217, 217, 0);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 575px;
+    top: 491px;
+}
+
+.right {
+    width: 19px;
+    height: 20px;
+    position: absolute;
+    left: 585px;
+    top: 501px;
+    object-fit: cover;
+}
+
+.rectangle-20 {
+    background: #d9d9d9;
+    border-radius: 5px;
+    width: 185px;
+    height: 5px;
+    position: absolute;
+    left: 221px;
+    top: 661px;
+}
+
+.rectangle-21 {
+    background: #0051ff;
+    border-radius: 5px;
+    width: 58px;
+    height: 5px;
+    position: absolute;
+    left: 221px;
+    top: 661px;
+}
+
+/* Formatação imagem-caminhão */
+.imagem-caminhao {
+    height: auto;
+    width: 550px;
+    position: absolute;
+    left: 885px;
+    top: 99px;
+}
+
+.polygon-6 {
+    border-radius: 0px;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    left: 1355px;
+    top: 325px;
+    overflow: visible;
+}
+
+.polygon-7 {
+    border-radius: 0px;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    left: 912px;
+    top: 325px;
+    overflow: visible;
+}
+
+.ellipse-7 {
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    left: 1205px;
+    top: 520px;
+}
+
+.ellipse-8 {
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    left: 1165px;
+    top: 520px;
+}
+
+.ellipse-9 {
+    background: rgba(0, 81, 255, 0.38);
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    left: 1082px;
+    top: 520px;
+}
+
+.ellipse-10 {
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    left: 1124px;
+    top: 520px;
+}
+
+/* Login */
+
+.login {
+    justify-content: center; 
+    display: flex;
+    align-items: center; 
+    min-height: 100vh; 
+    background-color: #f0f0f0; 
+  }
+  
+   
+  .login .card-login {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 50%;
+    }
+  
+  .login .formulario {
+    width: 100%;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login .campo:nth-child(1) { 
+    margin-top: 40px;
+}
+  .login .campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1px; 
+    
+  }
+  
+  .login .campo span {
+    opacity: 0.7;
+    font-weight: bold;
+    margin-bottom: 5px; 
+    
+  }
+  
+  .login input {
+    border-radius: 8px;
+    padding: 10px; 
+    border: 1px solid #333; 
+    background-color: #222;
+    color: #fff; 
+  }
+  
+  .login .campo input::placeholder {
+    color: #ccc;
+    text-align: left; 
+    
+  }
+  
+  .login .botao {
+    background: #ff7f00;
+    color: white;
+    border-radius: 15px;
+    padding: 15% 28%; 
+    cursor: pointer; 
+    border: none; 
+    font-weight: bold;
+    margin-top: -330px;
+    position: relative;
+    left: 0px;
+    
+    }
+  
+  .login .botao:hover {
+    background: #e67300;
+    margin-left: 10px;
+  }
+  
+  .login .container h2 {
+    color: #fff; 
+    opacity: 0.8;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #mensagem {
+    color: #f44336;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .sobre {
+    background-color: #000;
+    color: #fff;
+    padding: 60px 0;  /* Reduzi de 80px para 60px */
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sobre .texto-sobre {
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;  /* Aumentei de 1.2rem para 1.4rem */
+    font-weight: 300;
+    line-height: 1.8;
+    text-align: justify;
+    width: 100%;  /* Adicionei para garantir largura total */
+    max-width: 800px;  /* Isso evita que o texto fique muito largo */
+    margin: 0 auto;    /* Centraliza o bloco de texto */
+}
+
+.sobre .texto-sobre p {
+    margin-bottom: 30px;  /* Aumentei de 20px para 30px */
+}
+
+.sobre .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.sobre .texto1 {
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.sobre .texto1 p {
+    margin-bottom: 20px;
+}
+
+/* Efeitos de hover para melhor interatividade */
+.sobre .texto1 p:hover {
+    color: #ff7f00;
+    transition: color 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sobre {
+        padding: 40px 0;
+        min-height: auto;
+    }
+    
+    .sobre .texto1 {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+}
+
+/* Container do título */
+.titulo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+
+.titulo-sobre1, .titulo-sobre2 {
+    font-family: "Sofia Sans", sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 0; 
+}
+
+
+.titulo-sobre1 {
+    color: #fff;
+}
+
+.titulo-sobre2 {
+    color: #ff7f00;
+}
+
+
+.titulo-container::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #ff7f00;
+    margin-top: 15px;
+}
