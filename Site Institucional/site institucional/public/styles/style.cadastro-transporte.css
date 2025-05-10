@@ -1,0 +1,81 @@
+
+body {
+    background-image: url(../assets/img/caminhãoCadastro.svg);
+    background-repeat: no-repeat;
+    background-position: center 10%;
+    background-color: white;
+    display: flex;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 110vh;
+}
+
+
+
+.triangulosEscuros {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    min-height: 110vh; /* Altura apenas deste container */
+    width: 90vw;
+   
+    
+}
+
+.triangulosEscuros .trianguloInferior {
+    position: absolute;
+    align-self: flex-end;
+    margin-left: 0;
+    width: 8%;
+    height: auto;  
+    border: solid 2px red
+}
+
+.triangulosEscuros .trianguloSuperior {
+    position: absolute;
+    top: 0 ;
+    left: 102%;
+    width: auto;
+    width: 8%;
+    border: solid 2px blue;
+}
+
+
+.triangulosEscuros .trianguloClaro {
+    width: 30px;
+    height: auto;
+    align-self: self-end;
+    margin-top: 30px;
+    right: 10px;
+    border: solid 2px black;
+}
+
+
+.container .titulos{
+    font-family: 'Post No Bills Jaffna Light Regular';
+    padding: 40px;
+    margin-left: 10%;
+    z-index: 2 /*garante q os titulos fiquem a cima*/
+}
+
+.container .titulos h1 {
+    font-size: 3.5rem;
+    padding: 5px;
+    margin-top: 10px;
+    margin: 0;
+    margin-bottom: 0px;
+    
+    
+}
+
+.container .titulos h2{
+    font-size: 2.5rem;
+    padding: 5px;
+    margin-top: 0;
+    margin: 0;
+    
+}
