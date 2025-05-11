@@ -2,10 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=}, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Transportadora</title>
+    <link rel="stylesheet" href="styles/style.cadastro-transporte.css">
+    <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
 </head>
 <body>
+    
+
+    <div class="container">
+        <div class="titulos">
+            <h1>Transportadora <img src="assets/img/imgTraçoTitulo.svg" alt=""></h1>
+            <h2>Cadastro</h2>
+        </div>
+
+        <div class="formulario">
+            <label>Nome da Transportadora:</label>
+            <div class="icon-input">
+            <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+            <img class="icon" src="assets/icon/iconNomeInput.svg" alt="">
+            <input type="text" id="input_nomeTransportadora" placeholder=" nome da transportadora">
+            </div>
+
+            <label>Cnpj Da Transportadora</label>
+            <div class="icon-input">
+            <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+            <img class="icon" src="assets/icon/iconCnpjInput.svg" alt="">
+            <input type="text" id="input_cnpjTransportadora" placeholder=" 00.000.000/0000-00">
+            </div>
+
+            
+            <label>Telefone Da Transportadora</label>
+            <div class="icon-input">
+            <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+            <img class="icon" src="assets/icon/iconTelInput.svg" alt="">
+            <input type="text" id="input_telTransportadora" placeholder=" +55 (11) 90000-0000">
+            </div>
+
+            <label>Email Da Transportadora</label>
+            <div class="icon-input">
+            <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+            <img class="icon" src="assets/icon/iconEmailinput.svg" alt="">
+            <input type="text" id="input_emailTransportadora" placeholder=" e-mail@gmail.com">
+            </div>
+
+            <div id="botao_prox">
+                <button id="bt_proximo" onclick="proximo()">Próximo
+                    <img id="prox" src="assets/img/circuloBotão.svg" alt=""> 
+                    <img id="seta" src="assets/img/seta.svg" alt="">
+                </button>
+                
+            </div>
+
+        </div>
+        </div>
+
+    <div class="triangulosEscuros">
+        <img src="assets/img/poligono parte inferior.svg" alt="" class="trianguloInferior">
+        <img src="assets/img/poligono parte superior.svg" alt="" class="trianguloSuperior">
+        <img src="assets/img/trianguloClaro.svg" alt="" class="trianguloClaro">
+    </div>
+        
     
 </body>
 </html>

@@ -9,6 +9,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 110vh;
+    
 }
 
 
@@ -20,8 +21,9 @@ body {
     position: absolute;
     margin: 0;
     padding: 0;
-    min-height: 110vh; /* Altura apenas deste container */
+    min-height: 110vh; 
     width: 90vw;
+    z-index: 0;
    
     
 }
@@ -32,7 +34,6 @@ body {
     margin-left: 0;
     width: 8%;
     height: auto;  
-    border: solid 2px red
 }
 
 .triangulosEscuros .trianguloSuperior {
@@ -41,19 +42,19 @@ body {
     left: 102%;
     width: auto;
     width: 8%;
-    border: solid 2px blue;
 }
 
 
 .triangulosEscuros .trianguloClaro {
-    width: 30px;
+    position: relative;
     height: auto;
     align-self: self-end;
-    margin-top: 30px;
-    right: 10px;
-    border: solid 2px black;
+    margin-left: 190px;
 }
 
+.container {
+    position: relative;
+}
 
 .container .titulos{
     font-family: 'Post No Bills Jaffna Light Regular';
@@ -65,11 +66,14 @@ body {
 .container .titulos h1 {
     font-size: 3.5rem;
     padding: 5px;
-    margin-top: 10px;
     margin: 0;
-    margin-bottom: 0px;
-    
-    
+    margin-bottom: 0px; 
+}
+
+.container .titulos h1 img {
+    position: absolute;
+    height: 10px;
+    width: 221px;
 }
 
 .container .titulos h2{
@@ -79,3 +83,65 @@ body {
     margin: 0;
     
 }
+
+
+.formulario {
+    font-size: 17px;
+    position: absolute;
+    top: 25%;
+    left: 120%;
+}
+
+
+.container .formulario input {
+    position: relative;
+    border-radius: 0px 12px 12px 0px;
+    margin: 4%;
+    left: 15%;
+    height: 35px;
+    width: 250px;
+    top: -9px;
+    border: none;
+    z-index: 2 /*garante que os inputs fica a cima das imagens para n atrapalhar inserção de dados*/ 
+
+}
+
+.formulario img {
+    position: absolute;
+    z-index: 1;
+}
+
+.icon-input .icon {
+    position: absolute;
+    left: 5%;
+    transform: translateY(40%); /* desloca  40% da sua altura para baixo */
+}
+
+
+#bt_proximo {
+    position: absolute;
+    background-color: transparent;
+    color: black;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    left: 150%;
+    top:345px;
+    z-index: 10;
+}
+
+
+#prox, #seta{
+    padding: 5px;
+    margin-top: -15px;
+    margin-left: 4%;
+    width: 50%;
+}
+
+#bt_proximo:hover {
+    color: #ff7f00;              
+    transform: scale(1.05);   /* aumenta levemente o botão */
+}
+
+
