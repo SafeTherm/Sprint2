@@ -30,39 +30,10 @@ body {
 
 .triangulosEscuros .trianguloInferior {
     position: absolute;
-    margin-left: 0;
-    width: 8%;
-    height: auto;  
-}
-
-.triangulosEscuros .trianguloSuperior {
-    position: absolute;
-    top: 0 ;
-    left: 102%;
-    width: auto;
-    width: 8%;
-}
-
-
-
-.triangulosEscuros {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    min-height: 110vh; 
-    width: 90vw;
-    z-index: 0;   
-}
-
-.triangulosEscuros .trianguloInferior {
-    position: absolute;
     align-self: flex-end;
     margin-left: 0;
     width: 8%;
-    height: auto;  
+    height: auto;   
 }
 
 .triangulosEscuros .trianguloSuperior {
@@ -71,18 +42,12 @@ body {
     left: 102%;
     width: auto;
     width: 8%;
-}
-
-
-.triangulosEscuros .trianguloClaro {
-    position: relative;
-    height: auto;
-    align-self: self-end;
-    margin-left: 190px;
 }
 
 .container {
     position: relative;
+    margin-bottom: 200px
+    
 }
 
 .container .titulos{
@@ -117,8 +82,8 @@ body {
 .formulario {
     font-size: 17px;
     position: absolute;
-    top: 25%;
-    left: 120%;
+    top: 30%;
+    left: 180%;
 }
 
 
@@ -147,30 +112,42 @@ body {
 }
 
 
-#bt_proximo {
-    position: absolute;
-    background-color: transparent;
-    color: black;
-    border: none;
-    font-size: 20px;
+.senha{
+    background-color: #232323;
+    font-family: "Sofia Sans", sans-serif;
+    color: white;
     font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
     cursor: pointer;
-    left: 150%;
-    top:345px;
     z-index: 10;
+    position: relative;
 }
 
+button:hover{
+    transform: scale(1.05);
 
-#prox, #seta{
-    padding: 5px;
-    margin-top: -15px;
-    margin-left: 4%;
-    width: 50%;
 }
 
-#bt_proximo:hover {
-    color: #ff7f00;              
-    transform: scale(1.05);   /* aumenta levemente o botão */
+.botao_whats {
+    margin-top: 60px;
 }
 
+#icon-whats{
+    margin-left: 20px;
+    margin-top: 5px;
+}
 
+button.wpp {
+    outline: none;
+    border: none;
+}
+
+.icon-cpf, .icon-email {
+    margin-top: 10px;
+    margin-left: 15px;
+}
