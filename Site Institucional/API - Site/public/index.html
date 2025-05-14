@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/onepage.css">
+    <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
+    <title>Safe Therm</title>
+</head>
+
+<body>
+    <header>
+        <div class="box-nav-logo">
+            <a href="">
+                <h1><img src="assets/img/logo.png">Safe <span>Therm</span></h1>
+            </a>
+        </div>
+
+        <nav>
+            <div class="menu-primario">
+                <ul>
+                    <li><a href="#home" class="effectHover">home</a></li>
+                    <li><a href="#sect" class="effectHover" id="btn_projeto">projeto</a></li>
+                </ul>
+            </div>
+
+
+            <div class="menu-secundario">
+                <ul>
+                    <li><a href="#sobre" class="effectHover" id="btn_sobre">sobre</a></li>
+                    <li><a href="#contato" class="effectHover" id="btn_contato">contato</a></li>
+                </ul>
+            </div>
+
+        </nav>
+        <div class="box-nav-btn">
+            <a href="tela-login.html" class="botao-login">entrar</a>
+        </div>
+    </header>
+    <section class="home" id="home">
+        <img src="assets/img/triangulo cinza escuro.png" alt="" class="trianguloEscuro">
+        <img src="assets/img/homeIMG person.svg" class="img_personagem">
+        <div class="container">
+            <div class="box_left">
+                <div class="conteudo">
+                    <h1 class="titulo_home">A inovação que <span>preserva</span> a saúde.</h1>
+                    <p class="text">Transportando <span>confiança</span> e colhendo resultados que transformam a
+                        <span>saúde.</span>
+                    </p>
+                    <div class="botoes">
+                        <a href="#sect" id="saiba_mais">saiba mais</a>
+                        <a href="" id="cadastrar">cadastrar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="box_right">
+                <div class="conteudo">
+                    <div class="acess_calculadora">
+                        <h1>simulador financeiro</h1>
+                        <a href="" id="Link_calculadora"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="assets/img/triangulos cinza claro.png" alt="" class="trianguloClaro">
+    </section>
+    <section class="projeto" id="sect">
+        <div class="container">
+
+            <div class="box_left">
+                <h1 id="titulo_projeto">Projeto</h1>
+                <p id="text">Estamos prontos para responder às suas dúvidas, fornecer mais informações sobre nossos
+                    serviços ou auxiliar com qualquer questão que você tenha.</p>
+                <p id="text-info">Você pode clicar no botão abaixo para utilizar o <span
+                        id="text-info">formulário</span>.</p>
+                <a href="#contato" class="botao_contato">contato</a>
+
+                <div class="box_cards">
+                    <div class="cards" id="cards_div">
+                        <div class="card card_1">
+                            <h1 class="titulo-card">Parceria</h1>
+                            <p>Valorizamos <span>relações</span> de <span>longo prazo</span> com nossos clientes e
+                                parceiros, baseadas em <span>confiança</span> e <span>colaboração</span>.</p>
+                        </div>
+                        <div class="card card_2">
+                            <h1 class="titulo-card">Responsabilidade</h1>
+                            <p>Atuamos com <span>ética</span> e <span>responsabilidade</span>, priorizando a
+                                <span>segurança</span> e o impacto positivo na <span>saúde</span> pública.
+                            </p>
+                        </div>
+                        <button class="botao_prox" onclick="proxProjeto()"> </button>
+                    </div>
+                    <div class="rolamento">
+                        <div class="prox_card" id="rolamentoCard"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="box_right">
+                <div class="box_carrossel">
+                    <div class="box">
+                        <button onclick="anterior()" id="btn_anterior"></button>
+                        <button onclick="prox()" id="btn_prox"></button>
+                        <div id="circles">
+                            <div id="circle1" class="circle"></div>
+                            <div id="circle2" class="circle"></div>
+                            <div id="circle3" class="circle"></div>
+                            <div id="circle4" class="circle"></div>
+                        </div>
+                        <div id="div_imgCarrossel"></div>
+                    </div>
+                </div>
+                <img src="assets/img/triangulo cinza escuro.png" id="triangulos_projetos">
+
+            </div>
+    </section>
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <div class="box_left">
+                <h1 id="titulo_sobre">Sobre <span><img src="assets/img/Truck.png" alt=""></span></h1>
+                <p id="text">A <span style="color: #ff7f00;">Safe Therm</span> é uma empresa especializada no
+                    monitoramento de temperatura
+                    e umidade no transporte de medicamentos termolábeis. Com
+                    tecnologia de ponta e compromisso com a qualidade, garantimos
+                    a integridade dos produtos ao longo de toda a cadeia logística,
+                    assegurando a eficácia e a segurança dos medicamentos. Nossa missão
+                    é oferecer soluções inovadoras que protejam a saúde e
+                    proporcionem tranquilidade para nossos clientes.</p>
+                <a href="#sect" id="btn_ver_projeto">ver projeto</a>
+            </div>
+            <div class="box_right">
+                <div class="box_sobre_carrossel">
+                    <div id="text_equipe">
+                        <h3>Equipe</h3>
+                    </div>
+                    <div class="conteudo_carrossel">
+                        <div id="carrossel_equipe"></div>
+                        <h1 id="nome_membro_equipe">MATHEUS GOMES DE OLIVEIRA   </h1>
+                        <button id="btn_anterior" onclick="anteriorSobre()"></button>
+                                <button id="btn_prox" onclick="proxSobre()"></button>
+                                <div class="rolamento">
+                                    <div class="prox_card" id="rolamentoCarrossel"></div>
+                                </div>
+                                <div class="resdes">
+                                    <div class="social" id="github"></div>
+                                    <div class="social" id="email"></div>
+                                    <div class="social" id="whatsapp"></div>
+                                </div>
+                    </div>
+                </div>
+                <div class="nav_btn_redes">
+                    <a href="#" class="btn_redes_safeTherm" id="whatsapp"></a>
+                    <a href="#" class="btn_redes_safeTherm" id="instagram"></a>    
+                </div>
+            </div>
+            <img src="assets/img/triangulo para cima.png" id="triangulo_pcima">
+        </div>
+
+     
+
+    </section>
+    <div class="mensagem_contato">
+        <h1 id="titulo_mensagem">ENTRAR EM CONTATO <span><img src="assets/img/Email.png" alt=""></span></h1>
+    </div>
+
+    <section class="contato" id="contato">
+        <div class="container">
+            <div class="formulario">
+                <div id="text_form">
+                    <h3>formulário</h3>
+                </div>
+                <div class="box">
+                    <div class="inputs">
+                        <label for="">nome</label>
+                        <input type="text" placeholder="seu nome completo...">
+                    </div>
+                    <div class="inputs">
+                        <label for="">email</label>
+                        <input type="text" placeholder="seu email de contato...">
+                    </div>
+                    <div class="inputs">
+                        <label for="">telefone</label>
+                        <input type="text" placeholder="(11) 00000-0000">
+                    </div>
+                    <div class="inputs">
+                        <label for="">mensagem</label>
+                        <textarea name="" id="mensagem">Mensagem...</textarea>
+                    </div>
+                    <div class="btn_contato">
+                        <button id="lixeira"></button>
+                        <button id="enviar">enviar</button>
+                    </div>
+                    <div class="detalhe_contato">
+                        <div class="circle"></div>
+                        <p>Na <span>Safe Therm</span>, estamos à disposição para responder a
+                             toda as suas dúvidas e oferecer <span>soluções</span> seguras 
+                             e <span>rápidas</span>. Preencha o formulário ao lado ou entre 
+                             em contato pelo nosso telefone ou e-mail. Nossa 
+                             equipe está pronta para atendê-lo com o máximo 
+                             de <span>eficiência</span> e <span>segurança.</span></p>
+                    </div>
+                </div>
+                <div class="botoes_redes">
+                    <button class="contato_tel"><a href=""></a></button>
+                    <button class="contato_email"><a href=""></a></button>
+                </div>
+            </div>
+        </div>   
+</body>
+
+</html>
+<script>
+
+    //carrossel projeto
+    //jeito mais facil de fazer um carrossel para o squad S2 :)
+    const imagens = [
+        "assets/img/caminhão para carrosel.png",
+        "assets/img/caminhao2.jpeg",
+        "assets/img/caminhao3.jpeg",
+        "assets/img/caminhao4.jpeg"
+    ];
+
+    var contador = 0;
+    function atualizarImagem() {
+        const imagemAtual = imagens[contador];
+        div_imgCarrossel.style.backgroundImage = `url("${imagemAtual}")`;
+        div_imgCarrossel.style.transition = "transition: all .6s";
+    }
+
+    function atualizarIndicadores() {
+        if (contador === 0) {
+            circle1.style.backgroundColor = "#0051ff62";
+            circle2.style.backgroundColor = "transparent";
+            circle3.style.backgroundColor = "transparent";
+            circle4.style.backgroundColor = "transparent";
+            circle1.style.transition = "all 1s";
+            circle1.style.transform = "scale(1.2)";
+            circle3.style.transform = "scale(1)";
+            circle2.style.transform = "scale(1)";
+            circle4.style.transform = "scale(1)";
+        } else if (contador === 1) {
+            circle1.style.backgroundColor = "transparent";
+            circle2.style.backgroundColor = "#0051ff62";
+            circle3.style.backgroundColor = "transparent";
+            circle4.style.backgroundColor = "transparent";
+            circle2.style.transition = "all 1s";
+            circle2.style.transform = "scale(1.2)";
+            circle3.style.transform = "scale(1)";
+            circle4.style.transform = "scale(1)";
+            circle1.style.transform = "scale(1)";
+        } else if (contador === 2) {
+            circle1.style.backgroundColor = "transparent";
+            circle2.style.backgroundColor = "transparent";
+            circle3.style.backgroundColor = "#0051ff62";
+            circle4.style.backgroundColor = "transparent";
+            circle3.style.transition = "all 1s";
+            circle3.style.transform = "scale(1.2)";
+            circle4.style.transform = "scale(1)";
+            circle2.style.transform = "scale(1)";
+            circle1.style.transform = "scale(1)";
+
+        } else if (contador === 3) {
+            circle1.style.backgroundColor = "transparent";
+            circle2.style.backgroundColor = "transparent";
+            circle3.style.backgroundColor = "transparent";
+            circle4.style.backgroundColor = "#0051ff62";
+            circle4.style.transition = "all 1s";
+            circle4.style.transform = "scale(1.2)";
+            circle3.style.transform = "scale(1)";
+            circle2.style.transform = "scale(1)";
+            circle1.style.transform = "scale(1)";
+
+        }
+    }
+    function prox() {
+        contador = (contador + 1) % imagens.length;
+        atualizarImagem();
+        atualizarIndicadores();
+    }
+
+    setInterval(function () {
+        contador = (contador + 1) % imagens.length;
+        atualizarImagem();
+        atualizarIndicadores();
+    }, 5000);
+
+    function anterior() {
+        contador = (contador - 1 + imagens.length) % imagens.length;
+        atualizarIndicadores()
+        atualizarImagem();
+    }
+    //cards projeto carrossel
+    const cardsProjeto = [
+        `<div class="card card_1">
+                            <h1 class="titulo-card">Parceria</h1>
+                            <p>Valorizamos <span>relações</span> de <span>longo prazo</span> com nossos clientes e
+                                parceiros, baseadas em <span>confiança</span> e <span>colaboração</span>.</p>
+                        </div>
+                        <div class="card card_2">
+                            <h1 class="titulo-card">Responsabilidade</h1>
+                            <p>Atuamos com <span>ética</span> e <span>responsabilidade</span>, priorizando a
+                                <span>segurança</span> e o impacto positivo na <span>saúde</span> pública.
+                            </p>
+                        </div>
+                        <button class="botao_prox" onclick="proxProjeto()"></button>`,
+        `<div class="card card_1">
+                            <h1 class="titulo-card">Transparência</h1>
+                            <p>Oferecemos dados precisos em tempo real contribuindo para tomada de decisão assertiva</p>
+                        </div>
+                        <div class="card card_2">
+                            <h1 class="titulo-card">Compromisso</h1>
+                            <p>Trabalhamos de forma <span>eficiente</span> visando garantir a <span>integridade</span> dos
+                                 medicamentos termolábeis e a <span>proteção</span> da <span>saúde</span>.
+                            </p>
+                        </div>
+                        <button class="botao_prox" onclick="proxProjeto()"></button>`,
+        `<div class="card card_1">
+                            <h1 class="titulo-card">Sustentabilidade</h1>
+                            <p>Contribuímos para o <span>meio ambiente</span> ao reduzir o desperdício de medicamentos 
+                                termolábeis.</p>
+                        </div>
+                        <div class="card card_2">
+                            <h1 class="titulo-card">Inovação</h1>
+                            <p>Criamos <span>soluções</span> inteligentes que resolvem problemas reais na logística de medicamentos
+                            </p>
+                        </div>
+                        <button class="botao_prox" onclick="proxProjeto()"></button>`,
+        `<div class="card card_1">
+                            <h1 class="titulo-card">Qualidade</h1>
+                            <p>Visamos a <span>qualidade</span> como prioridade, cada detalhe é pensado para <span>garantir</span>
+                                 o alto padrão na <span>conservação dos medicamentos</span></p>
+                        </div>
+                        <div class="card card_2">
+                            <h1 class="titulo-card">Confiabilidade</h1>
+                            <p>Entregamos <span>soluções</span> práticas e seguranças.
+                            </p>
+                        </div>
+                        <button class="botao_prox" onclick="proxProjeto()"></button>`
+    ];
+
+    var contadorProjeto = 0;
+
+    function atualizarProjeto() {
+        const cardsProjetoAtual = cardsProjeto[contadorProjeto];
+        cards_div.innerHTML = `${cardsProjetoAtual}`;
+    }
+
+
+    function atualizarIndicadoresProjeto() {
+        if (contadorProjeto === 0) {
+            rolamentoCard.style.backgroundColor = "#0051FF";
+            rolamentoCard.style.width = "25%";
+            rolamentoCard.style.transition = "all 1s";
+        } else if (contadorProjeto === 1) {
+            rolamentoCard.style.backgroundColor = "#0051FF";
+            rolamentoCard.style.width = "50%";
+            rolamentoCard.style.transition = "all 1s";
+        }
+        if (contadorProjeto === 2) {
+            rolamentoCard.style.backgroundColor = "#0051FF";
+            rolamentoCard.style.width = "75%";
+            rolamentoCard.style.transition = "all 1s";
+
+        } else if (contadorProjeto === 3) {
+            rolamentoCard.style.backgroundColor = "#0051FF";
+            rolamentoCard.style.width = "100%";
+            rolamentoCard.style.transition = "all 1s";
+        }
+    }
+
+    setInterval(function () {
+        contadorProjeto = (contadorProjeto + 1) % cardsProjeto.length;
+        atualizarProjeto();
+        atualizarIndicadoresProjeto();
+    }, 7000);
+
+    function proxProjeto() {
+        contadorProjeto = (contadorProjeto + 1) % cardsProjeto.length;
+        atualizarProjeto();
+        atualizarIndicadoresProjeto();
+    }
+
+
+
+
+
+
+    //carrossel sessão Sobre, funcional 
+    //jeito mais facil de fazer um carrossel para o squad S2 :)
+    const imagensSobre = [
+        "assets/img/eme.jpeg",
+        "assets/img/emy.jpeg",
+        "assets/img/felipe.jpeg",
+        "assets/img/leandro.jpeg",
+        "assets/img/matheus.jpeg"
+
+    ];
+
+    var contadorSobre = 0;
+    function atualizarImagemSobre() {
+        const imagemAtualSobre = imagensSobre[contadorSobre];
+        carrossel_equipe.style.backgroundImage = `url("${imagemAtualSobre}")`;
+        carrossel_equipe.style.transition = "transition: all .6s";
+    }
+
+    function atualizarIndicadoresSobre() {
+        if (contadorSobre === 0) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "48px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "EMILIE BARBARA HUANCA GUTIERREZ";
+        } else if (contadorSobre === 1) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "96px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "EMILLY DOS REIS SILVA ";
+        } else if (contadorSobre === 2) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "144px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "FELIPE VENTURA CAVALCANTE";
+        } else if (contadorSobre === 3) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "192px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "LEANDRO APOLINÁRIO LEITE";
+        }
+        else if (contadorSobre === 4) {
+            rolamentoCarrossel.style.backgroundColor = "#ff7f00";
+            rolamentoCarrossel.style.width = "240px";
+            rolamentoCarrossel.style.transition = "all 1s";
+            nome_membro_equipe.innerHTML = "MATHEUS GOMES DE OLIVEIRA";
+        }
+    }
+    function proxSobre() {
+        contadorSobre = (contadorSobre + 1) % imagensSobre.length;
+        atualizarImagemSobre();
+        atualizarIndicadoresSobre();
+    }
+
+    setInterval(function () {
+        contadorSobre = (contadorSobre + 1) % imagensSobre.length;
+        atualizarImagemSobre();
+        atualizarIndicadoresSobre();
+    }, 3000);
+
+    function anteriorSobre() {
+        contadorSobre = (contadorSobre - 1 + imagensSobre.length) % imagensSobre.length;
+        atualizarIndicadoresSobre()
+        atualizarImagemSobre();
+    }
+
+
+
+
+
+
+
+
+</script>

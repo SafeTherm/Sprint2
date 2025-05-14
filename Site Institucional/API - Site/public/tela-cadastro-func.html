@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.cadastro-funcionario.css">
+    <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
+    <title>Cadastro Funcionario/Caminhao</title>
+</head>
+<body>
+    <div class="container"> 
+            <div class="titulos">
+                <h1>Funcionário/Veículo<img src="assets/img/imgTraçoTitulo.svg" alt=""></h1>
+                <h2>Cadastro</h2>
+            </div>
+
+            <div class="formulario">
+                <label>Nome do(a) funcionário(a):</label>
+                <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+                <img class="icon" src="assets/icon/iconNomeInput.svg" alt="">
+                <input type="text" id="input_funcionario" placeholder=" nome do funcionario(a)">
+                </div>
+
+                <label>Cargo do funcionário(a)</label>
+                <label for="telFunc" style="margin-left: 15px;">Telefone: <img class="circulo_peq" src="assets/img/circuloEscuroFunc.svg" alt=""><img class="icon-pequeno1" src="assets/img/telefoneFunc.svg" alt=""></label>
+                <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+                <img class="icon" src="assets/icon/cargo.svg" alt="">
+                <select name="" id="select_funcionario" onchange="cadastrarVeiculo()">
+                    <option value="#">Selecione cargo</option>
+                    <option value="motorista">Motorista</option>
+                    <option value="representante">Representante</option>
+                </select>
+                <input type="text" id="telFunc" placeholder=" +55 (11) 90000-0000" >
+                </div>
+
+                <label>Cpf funcionário(a):</label>
+                <label for="cepFunc" style="margin-left: 50px;">Cep: <img class="circulo_peq" src="assets/img/circuloEscuroFunc.svg" alt=""> <img class="icon-pequeno2" src="assets/img/localizacaoFunc.svg" alt=""></label>
+                <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+                <img  class="icon-1" src="assets/icon/cpf.svg" alt="">
+                <input type="text" id="input_cpfFunc" placeholder=" 000.000.000-00" >
+                <input type="text" id="input_cepFunc" placeholder=" 00000/000" >
+                </div>
+
+                <label>Email funcionário(a):</label>
+                <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+                <img class="icon" src="assets/img/Email.svg"  alt="">
+                <input type="text" id="input_email" placeholder=" e-mail@gmail.com">
+                </div>
+
+                <label>Email profissional funcionário(a):</label>
+                <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+                <img class="icon" src="assets/img/Email.svg" alt="">
+                <input type="text" id="input_mailProf" placeholder="e-mail@gmail.com">
+                </div>
+
+                <label>Senha funcionário(a):</label>
+                <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+                <img class="icon" src="assets/icon/senha.svg" alt="">
+                <input type="password" id="input_senha" placeholder="informe no mínimo 8 dígitos ..."> 
+                </div>
+                
+                <button onclick="cadastrarFuncionario()">Cadastrar</button>
+                </div>
+
+                <div  id="div_cadastroVeiculo" class="cadastro_veiculo">
+                    <h2>Veículo <img src="assets/img/Rectangle 281.svg" alt=""></h2>
+                    <label>Informe o veículo utilizado pelo motorista</label><br><br>
+                    <label>Placa do veículo</label><br>
+                    <input type="text" id="input_placa"><br>
+                    <label>Modelo do veículo</label><br>
+                    <input type="text" id="input_modelo">
+                    <div class="botaoVeiculo">
+                    <button onclick="cadastrarVeiculo()">Cadastrar</button>
+                    </div>
+                </div>
+       
+
+        </div>
+           <div class="triangulosEscuros">
+            <img src="assets/img/poligono parte superior.svg" alt="" class="trianguloSuperior">
+            <img src="assets/img/poligono parte inferior.svg" alt="" class="trianguloInferior">
+            <img src="assets/img/trianguloClaro.svg" alt="" class="trianguloClaro">
+           </div>
+
+           
+   <div id="div_mensagem"></div> 
+
+    
+</body>
+</html>
+<script>
+    function cadastrarVeiculo(){
+        var cargo = select_funcionario.value;
+        var mensagemVeiculo = document.getElementById("div_cadastroVeiculo");
+
+        if (cargo == "motorista"){
+            mensagemVeiculo.style.display = 'block';
+        } else {
+            mensagemVeiculo.style.display = 'none';
+        }
+
+        
+    }
+</script>
