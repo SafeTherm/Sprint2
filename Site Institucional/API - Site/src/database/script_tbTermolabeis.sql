@@ -81,3 +81,4 @@ CREATE TABLE unidade (
     CONSTRAINT chkEmail3 CHECK (emailUnidade LIKE '%@%.com')
 );
 
+

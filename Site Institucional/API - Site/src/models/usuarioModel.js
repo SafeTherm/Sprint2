@@ -12,6 +12,21 @@ function logar(email, senha) {
     return database.executar(instrucaoSql)
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = {
     logar
 }
+
