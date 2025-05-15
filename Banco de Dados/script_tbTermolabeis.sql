@@ -7,6 +7,7 @@ CREATE TABLE transportadora_cliente (
     cnpjTransportadora_cliente CHAR(14),
     telefoneTransportadora_cliente CHAR(13),
     emailTransportadora_cliente VARCHAR(60),
+    codigoAtivacao char(10),
     CONSTRAINT chkTel CHECK (telefoneTransportadora_cliente LIKE '__-____-____'),
     CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.com')
 );
