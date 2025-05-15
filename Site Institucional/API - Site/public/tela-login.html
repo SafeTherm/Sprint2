@@ -62,7 +62,7 @@
         if (emailVar == `` || senhaVar == ``) {
             div_condicao_cadastrar.innerHTML = `<div class="errado">Preencha todos os campos para efetivar o login</div>`
         } else {
-            fetch("/login/logar", {
+            fetch("/usuarios/logar", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

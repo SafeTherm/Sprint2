@@ -9,4 +9,8 @@ router.post("/logar", function (req, res) {
     usuarioController.logar(req, res)
 })
 
+router.post("/cadastrar_transportadora", function (req, res) {
+    usuarioController.cadastrar(req, res)
+});
+
 module.exports = router;
