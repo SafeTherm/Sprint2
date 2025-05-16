@@ -13,20 +13,21 @@ function logar(email, senha) {
 }
 
 
-
-
-
-
-
-
-
-
-
+function cadastrar_transportadora(nome, email, senha, cnpj, telefone) {
+  var instrucaoSql = `
+    INSERT INTO transportadora_cliente (nomeTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente)
+    VALUES 
+    ('${nome}', '${email}', '${senha}', '${cnpj}', '${telefone}');
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
 
 
 
 
 module.exports = {
-    logar
+    logar,
+    cadastrar_transportadora
 }
 
