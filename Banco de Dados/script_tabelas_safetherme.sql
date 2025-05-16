@@ -1,5 +1,5 @@
-CREATE DATABASE safe;
-USE safe;
+CREATE DATABASE transporte_de_medicamentos_termolabeis;
+USE transporte_de_medicamentos_termolabeis;
 
 CREATE TABLE transportadora_cliente (
     idTransportadora_cliente INT PRIMARY KEY AUTO_INCREMENT,
@@ -7,7 +7,8 @@ CREATE TABLE transportadora_cliente (
     cnpjTransportadora_cliente CHAR(14),
     telefoneTransportadora_cliente CHAR(13),
     emailTransportadora_cliente VARCHAR(60),
-    CONSTRAINT chkTel CHECK (telefoneTransportadora_cliente LIKE '__-____-____'),
+    senhaTransportadora_cliente VARCHAR(20),
+    codigoAtivacao char(10),
     CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.com')
 );
 
@@ -25,7 +26,6 @@ CREATE TABLE funcionario (
     CONSTRAINT pkCoposta PRIMARY KEY (idFuncionario, fkTransportadora),
     CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(idTransportadora_cliente),
     CONSTRAINT chkCargo CHECK (cargoFuncionario IN ('Representante', 'Motorista')),
-    CONSTRAINT chkTel1 CHECK (telefoneFuncionario LIKE '__-_____-____'),
     CONSTRAINT chkEmail1 CHECK (emailFucionarioPessoal LIKE '%@%.com'),
     CONSTRAINT chkEmail10 CHECK (emailFucionarioProfissional LIKE '%@%.com')
 );
@@ -65,16 +65,4 @@ CREATE TABLE alerta (
     PRIMARY KEY (fkSensor, fkDados),
     CONSTRAINT fkSensorAlerta FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
     CONSTRAINT fkDadosAlerta FOREIGN KEY (fkDados) REFERENCES dadosSensor(idDados)
-);
-
-CREATE TABLE unidade (
-    idUnidade INT,
-    fkRepresentante INT,
-    nomeUnidade VARCHAR(60),
-    cepUnidade CHAR(8),
-    estado CHAR(5),
-    telefoneUnidade VARCHAR(13),
-    emailUnidade VARCHAR(60),
-    CONSTRAINT chkTel2 CHECK (telefoneUnidade LIKE '__-____-____'),
-    CONSTRAINT chkEmail3 CHECK (emailUnidade LIKE '%@%.com')
 );

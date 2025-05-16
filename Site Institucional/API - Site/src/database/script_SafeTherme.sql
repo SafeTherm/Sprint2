@@ -7,6 +7,7 @@ CREATE TABLE transportadora_cliente (
     cnpjTransportadora_cliente CHAR(14),
     telefoneTransportadora_cliente CHAR(13),
     emailTransportadora_cliente VARCHAR(60),
+    senhaTransportadora_cliente VARCHAR(20),
     codigoAtivacao char(10),
     CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.com')
 );
@@ -65,4 +66,3 @@ CREATE TABLE alerta (
     CONSTRAINT fkSensorAlerta FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
     CONSTRAINT fkDadosAlerta FOREIGN KEY (fkDados) REFERENCES dadosSensor(idDados)
 );
-
