@@ -68,19 +68,14 @@ function cadastrar_funcionario(req, res) {
    var fkTransportadora = req.session.idTransportadora;
 
     var nome = req.body.nomeServer;
-    var cargo = req.body.cargoServer;
-    var telefone = req.body.telServer;
     var cpf = req.body.cpfServer;
-    var cep = req.body.cepServer;
-    var email = req.body.emailServer;
-    var emailProfissional = req.body.emailProfServer;
     var senha = req.body.senhaServer;
 
-    if (!nome || !cargo || !telefone || !cpf || !cep || !email || !emailProfissional || !senha || !fkTransportadora) {
+    if (!nome || !cpf || !senha || !fkTransportadora) {
         return res.status(400).send("Preencha todos os campos!");
     }
 
-    usuarioModel.cadastrar_funcionario(fkTransportadora, nome, cargo, cpf, email, emailProfissional, telefone, cep, senha)
+    usuarioModel.cadastrar_funcionario(fkTransportadora, nome, cpf, senha)
         .then(resultado => {
             res.json(resultado);
         })

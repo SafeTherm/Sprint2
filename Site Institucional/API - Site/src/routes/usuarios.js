@@ -1,3 +1,6 @@
+const express = require('express');
+const router = express.Router();
+
 var usuarioController = require("../controllers/usuarioController");
 
 // Rota para Logar
