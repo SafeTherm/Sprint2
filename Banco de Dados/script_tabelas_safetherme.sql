@@ -16,17 +16,9 @@ CREATE TABLE funcionario (
     idFuncionario INT AUTO_INCREMENT PRIMARY KEY,
     fkTransportadora INT,
     nomeFuncionario VARCHAR(60),
-    cargoFuncionario CHAR(18),
     cpfFuncionario CHAR(11) UNIQUE,
-    emailFucionarioPessoal VARCHAR(60),
-    emailFucionarioProfissional VARCHAR(60),
-    telefoneFuncionario VARCHAR(14),
-    cep CHAR(8),
     senhaAcesso VARCHAR(20),
-    CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(idTransportadora_cliente),
-    CONSTRAINT chkCargo CHECK (cargoFuncionario IN ('Representante', 'Motorista')),
-    CONSTRAINT chkEmail1 CHECK (emailFucionarioPessoal LIKE '%@%.com'),
-    CONSTRAINT chkEmail10 CHECK (emailFucionarioProfissional LIKE '%@%.com')
+    CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(idTransportadora_cliente)
 );
 
 CREATE TABLE veiculo (
