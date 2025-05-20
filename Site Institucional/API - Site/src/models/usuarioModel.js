@@ -25,7 +25,7 @@ function cadastrar_transportadora(nome, email, senha, cnpj, telefone) {
 
 function cadastrar_funcionario(nome, cpf, senha) {
   var instrucaoSql = `
-    INSERT INTO transportadora_cliente (nomeTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente)
+    INSERT INTO funcionario (fkTransportadora, nomeFuncionario, cpfFuncionario, senhaAcesso)
     VALUES 
     ('${nome}', '${cpf}', '${senha}');
   `;

@@ -15,6 +15,7 @@ CREATE TABLE transportadora_cliente (
 CREATE TABLE funcionario (
     idFuncionario INT AUTO_INCREMENT PRIMARY KEY,
     fkTransportadora INT,
+    emailFucionarioProfissional VARCHAR(100),
     nomeFuncionario VARCHAR(60),
     cpfFuncionario CHAR(11) UNIQUE,
     senhaAcesso VARCHAR(20),
@@ -57,3 +58,15 @@ CREATE TABLE alerta (
     CONSTRAINT fkSensorAlerta FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
     CONSTRAINT fkDadosAlerta FOREIGN KEY (fkDados) REFERENCES dadosSensor(idDados)
 );
+
+INSERT INTO transportadora_cliente (nomeTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente, codigoAtivacao)
+VALUES 
+('TransMed Express', '12345678000123', '11987654321', 'contato@transmed.com', 'senha123', 'ABC123'),
+('Safe Pharma Logistics', '98765432000198', '11912345678', 'info@safepharma.com', 'segura123', 'XYZ987');
+
+INSERT INTO funcionario (fkTransportadora, emailFucionarioProfissional, nomeFuncionario, cpfFuncionario, senhaAcesso)
+VALUES
+(1, 'carlos.silva@transmed.com', 'Carlos Silva', '12345678901', 'acessoCarlos'),
+(2, 'ana.oliveira@safepharma.com', 'Ana Oliveira', '98765432109', 'acessoAna');
+
+select * from funcionario;
