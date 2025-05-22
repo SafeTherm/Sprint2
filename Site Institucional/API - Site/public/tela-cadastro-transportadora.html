@@ -82,9 +82,10 @@
 </html>
 <script>
 
+  var codigoValidacao = Math.floor(Math.random())
+  var resultado = codigoValidacao * 100
 
   function proximo() {
-   
     var nomeVar = input_nomeTransportadora.value;
     var cnpjVar = input_cnpjTransportadora.value;
     var telVar = input_telTransportadora.value;
@@ -151,6 +152,8 @@
         telServer: telVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
+        resultadoServer: resultado
+       
        
       }),
     })

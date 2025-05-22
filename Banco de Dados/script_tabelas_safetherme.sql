@@ -13,16 +13,25 @@ CREATE TABLE transportadora_cliente (
 );
 
 CREATE TABLE funcionario (
-    idFuncionario INT AUTO_INCREMENT PRIMARY KEY,
+    idFuncionario INT,
     fkTransportadora INT,
     nomeFuncionario VARCHAR(60),
-    cpfFuncionario CHAR(11) UNIQUE,
+    cargoFuncionario CHAR(18),
+    cpfFuncionario CHAR(11),
+    emailFucionarioPessoal VARCHAR(60),
+    emailFucionarioProfissional VARCHAR(60),
+    telefoneFuncionario VARCHAR(14),
+    cep CHAR(8),
     senhaAcesso VARCHAR(20),
-    CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(idTransportadora_cliente)
+    CONSTRAINT pkCoposta PRIMARY KEY (idFuncionario, fkTransportadora),
+    CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(idTransportadora_cliente),
+    CONSTRAINT chkCargo CHECK (cargoFuncionario IN ('Representante', 'Motorista')),
+    CONSTRAINT chkEmail1 CHECK (emailFucionarioPessoal LIKE '%@%.com'),
+    CONSTRAINT chkEmail10 CHECK (emailFucionarioProfissional LIKE '%@%.com')
 );
 
 CREATE TABLE veiculo (
-    idVeiculo INT AUTO_INCREMENT PRIMARY KEY,
+    idVeiculo INT PRIMARY KEY,
     fkEmpresaTransportadora INT,
     fkVeiculoFuncionario INT,
     placaVeiculo CHAR(10),
@@ -57,3 +66,5 @@ CREATE TABLE alerta (
     CONSTRAINT fkSensorAlerta FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
     CONSTRAINT fkDadosAlerta FOREIGN KEY (fkDados) REFERENCES dadosSensor(idDados)
 );
+
+
