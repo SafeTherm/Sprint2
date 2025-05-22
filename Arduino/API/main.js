@@ -17,10 +17,10 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '127.0.0.1',
+            host: '10.18.32.143',
             user: 'aluno',
-            password: 'Sptech#',
-            database: 'safe',
+            password: 'Sptech#2024',
+            database: 'transporte_de_medicamentos_termolabeis',
             port: 3307
         }
     ).promise();
@@ -61,22 +61,22 @@ const serial = async (
         if (HABILITAR_OPERACAO_INSERIR) {
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(   
-               ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (?, ?, ?)',
+               ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (1, ?, ?)',
                 [1, sensorTemperatura, sensorUmidade]
 
             );
             await poolBancoDados.execute(   
-                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (?, ?, ?)',
+                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (2, ?, ?)',
                  [2, sensorTemperatura, sensorUmidade]
  
              );
              await poolBancoDados.execute(   
-                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (?, ?, ?)',
+                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (3, ?, ?)',
                  [3, sensorTemperatura, sensorUmidade]
  
              );
              await poolBancoDados.execute(   
-                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (?, ?, ?)',
+                ' INSERT INTO  dadosSensor (fkSensor,temperatura,umidade) VALUES (4, ?, ?)',
                  [4, sensorTemperatura, sensorUmidade]
  
              );
