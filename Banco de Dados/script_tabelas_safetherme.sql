@@ -15,6 +15,7 @@ CREATE TABLE transportadora_cliente (
 CREATE TABLE funcionario (
     idFuncionario INT,
     fkTransportadora INT,
+    emailFucionarioProfissional VARCHAR(100),
     nomeFuncionario VARCHAR(60),
     cargoFuncionario CHAR(18),
     cpfFuncionario CHAR(11),
@@ -52,9 +53,13 @@ CREATE TABLE sensor (
 );
 
 CREATE TABLE dadosSensor (
-    idDados INT PRIMARY KEY AUTO_INCREMENT,
+	fkSensor INT,
+    idDados INT AUTO_INCREMENT,
     temperatura DECIMAL(5,2),
-    umidade DECIMAL(5,2)
+    umidade DECIMAL(5,2),
+    PRIMARY KEY (idDados),
+    FOREIGN KEY (fkSensor)
+		references sensor(idSensor)
 );
 
 CREATE TABLE alerta (
@@ -67,4 +72,35 @@ CREATE TABLE alerta (
     CONSTRAINT fkDadosAlerta FOREIGN KEY (fkDados) REFERENCES dadosSensor(idDados)
 );
 
+<<<<<<< HEAD
 
+=======
+-- Inserindo dados na tabela transportadora_cliente
+INSERT INTO transportadora_cliente (nomeTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente, codigoAtivacao)
+VALUES 
+('Transportadora Alpha', '12345678000199', '11987654321', 'contato@alpha.com', 'senha123', 'ATV123456'),
+('Transportadora Beta', '98765432000155', '21912345678', 'contato@beta.com', 'senha456', 'ATV987654');
+
+-- Inserindo dados na tabela funcionario
+INSERT INTO funcionario (fkTransportadora, emailFucionarioProfissional, nomeFuncionario, cpfFuncionario, senhaAcesso)
+VALUES 
+(1, 'joao@alpha.com', 'João Silva', '12345678901', 'func123'),
+(2, 'maria@beta.com', 'Maria Oliveira', '98765432100', 'func456');
+
+-- Inserindo dados na tabela veiculo
+INSERT INTO veiculo (fkEmpresaTransportadora, fkVeiculoFuncionario, placaVeiculo, modelo)
+VALUES 
+(1, 1, 'ABC1D23', 'Caminhão Refrigerado'),
+(2, 2, 'XYZ9K87', 'Van Termolábil');
+
+-- Inserindo dados na tabela sensor
+INSERT INTO sensor (tipoSensor, statusSensor, dtInstalacaoSensor, fkVeiculoSensor)
+VALUES 
+('DHT11', 'ATIVO', '2025-05-20', 1),
+('LM35', 'INATIVO', '2025-04-15', 2),
+('DHT11', 'ATIVO', '2025-05-20', 1),
+('LM35', 'INATIVO', '2025-04-15', 2);
+select * from funcionario;
+
+select * from sensor;
+>>>>>>> 1b548c3a5a768cfad4612663dffb71af79127dc6
