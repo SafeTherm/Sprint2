@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeTherme - Monitoramento</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h3>SafeTherme</h3>
+  </div>
+
+  <div class="main">
+    <header>
+      <div class="filters">
+        <input type="text" placeholder="Digite para buscar...">
+        <select><option>Todos os veículos</option></select>
+        <select><option>Todos os motoristas</option></select>
+        <select><option>Todos os status</option></select>
+      </div>
+      <div class="user">
+        <span class="notification-bell">🔔</span>
+        <div class="user-info">
+          <strong>Remédios Transportadora</strong>
+          <img src="https://via.placeholder.com/40" alt="Avatar" class="avatar">
+        </div>
+      </div>
+    </header>
+
+    <section class="vehicle-info">
+      <p><strong>Caminhão:</strong>Nome</p>
+      <p><strong>Placa:</strong>Placa</p>
+       </section>
+
+    <section class="status-boxes">
+      <div class="box">Teto superior</div>
+      <div class="box">Unidade superior</div>
+      <div class="box">Teto inferior</div>
+      <div class="box">Unidade inferior</div>
+    </section>
+
+    <section class="alerts">
+      <div class="temperature">
+        <h3>Temperatura</h3>
+        <p>Média: 7.0°C</p>
+        <p>Mínima: 4.3°C</p>
+        <p>Máxima: 10.2°C</p>
+        <span class="alert">Fora dos limites</span>
+      </div>
+      <div class="humidity">
+        <h3>Umidade</h3>
+        <p>Média: 57%</p>
+        <p>Mínima: 19%</p>
+        <p>Máxima: 95%</p>
+        <span class="alert">Fora dos limites</span>
+      </div>
+    </section>
+
+    <section class="info-panels">
+      <div class="route-status">
+        <h4>Status da Rota</h4>
+        <p>Meta: 2000</p>
+        <p>Atual: 1460</p>
+        <p>Alarme: <span class="warning">Z4</span></p>
+        <p class="alert-warning">Atenção necessária</p>
+      </div>
+      <div class="sensors">
+        <h4>Sensores</h4>
+        <p>Teto: <span class="ok">ATIVO</span></p>
+        <p>Unidade: <span class="ok">ATIVO</span></p>
+        <p>Temperatura: <span class="alert">Em avaliação</span></p>
+      </div>
+      <div class="notifications">
+        <h4>Notificações Recentes</h4>
+        <ul>
+          <li class="success">Novo sensor instalado</li>
+          <li class="danger">Alerta de temperatura</li>
+          <li class="info">Veículo saiu da rota</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="table-section">
+      <h3>Registros Recentes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Data/hora</th>
+            <th>Temperatura</th>
+            <th>Umidade</th>
+            <th>Veículo</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>04/05/2021</td><td>7.2°C</td><td>42%</td><td>ABC1234</td><td class="ok">✔</td></tr>
+          <tr><td>04/05/2021</td><td>8.1°C</td><td>50%</td><td>ABC1234</td><td class="ok">✔</td></tr>
+          <tr><td>04/05/2021</td><td>10.5°C</td><td>95%</td><td>ABC1234</td><td class="alert">⚠</td></tr>
+          <!-- ... -->
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
