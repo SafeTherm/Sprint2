@@ -36,6 +36,14 @@
                 <img class="icon" src="assets/icon/senha.svg" alt="">
                 <input type="password" id="input_senha" placeholder="informe no mínimo 8 dígitos ..."> 
                 </div>
+
+                 <label>Código de Ativação:</label>
+                <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+                <img class="icon" src="" alt="">
+                <input type="text" id="input_fkTransportadora" placeholder="informe seu código de ativação ..."> 
+                </div>
+                
                 
                 <button onclick="cadastrarFuncionario()">Cadastrar</button>
                 </div>
@@ -67,19 +75,14 @@
 </body>
 </html>
 <script>
-
+  
+    var fkTransportadora = idTransportadora
     
     function cadastrarVeiculo(){
         var cargo = select_funcionario.value;
         var mensagemVeiculo = document.getElementById("div_cadastroVeiculo");
 
-        if (cargo == "motorista"){
-            mensagemVeiculo.style.display = 'block';
-        } else {
-            mensagemVeiculo.style.display = 'none';
-        }
-
-
+       
         fetch("/usuarios/cadastrar_funcionario", {
       method: "POST",
       headers: {
@@ -88,9 +91,9 @@
       body: JSON.stringify({
         nomeServer: nomeVar,
         cpfServer: cpfVar,
-        fk: telVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
+        fkTransportadoraServer: fkTransportadora
        
       }),
     })
