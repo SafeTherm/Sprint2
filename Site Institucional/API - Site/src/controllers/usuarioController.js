@@ -32,6 +32,36 @@ function logar(req, res) {
     }
 }
 
+function logar_transportadora(req, res) {
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    if (email == undefined) {
+        res.status(400).send("Seu email está indefinido");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está indefinda");
+    } else {
+        usuarioModel.logar_transportadora(email, senha)
+            .then((resultado) => {
+                if (resultado.length > 0) {
+                    res.json({
+                        idTransportadora: resultado[0].idTransportadora_cliente,
+                        nomeTransportadora: resultado[0].nomeTransportadora_cliente,
+                        emailTransportadora: resultado[0].emailTransportadora_cliente,
+                        codigoAtivacao: resultado[0].codigoAtivacao,
+                    });
+                } else {
+                    res.status(403).send("Email e/ou senhas inválidos");
+                }
+            })
+            .catch(erro => {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 function cadastrar_transportadora(req, res) {
     var nome = req.body.nomeServer;
     var cnpj = req.body.cnpjServer;
@@ -90,6 +120,7 @@ function cadastrar_funcionario(req, res) {
 
 module.exports = {
     logar,
+    logar_transportadora,
     cadastrar_transportadora,
     cadastrar_funcionario
 };

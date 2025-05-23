@@ -1,6 +1,7 @@
 CREATE DATABASE transporte_de_medicamentos_termolabeis;
 USE transporte_de_medicamentos_termolabeis;
 
+-- Tabela transportadora_cliente
 CREATE TABLE transportadora_cliente (
     idTransportadora_cliente INT PRIMARY KEY AUTO_INCREMENT,
     nomeTransportadora_cliente VARCHAR(60),
@@ -8,28 +9,30 @@ CREATE TABLE transportadora_cliente (
     telefoneTransportadora_cliente CHAR(13),
     emailTransportadora_cliente VARCHAR(60),
     senhaTransportadora_cliente VARCHAR(20),
-    codigoAtivacao char(10),
+    codigoAtivacao VARCHAR(10) UNIQUE,  -- <- ESSA LINHA É ESSENCIAL
     CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.com')
 );
 
+-- Tabela funcionario
 CREATE TABLE funcionario (
-    idFuncionario INT,
-    fkTransportadora INT,
+    idFuncionario INT auto_increment,
+    fkTransportadora VARCHAR(10),
+    emailFucionarioProfissional VARCHAR(100),
     nomeFuncionario VARCHAR(60),
     cargoFuncionario CHAR(18),
     cpfFuncionario CHAR(11),
     emailFucionarioPessoal VARCHAR(60),
-    emailFucionarioProfissional VARCHAR(60),
     telefoneFuncionario VARCHAR(14),
     cep CHAR(8),
     senhaAcesso VARCHAR(20),
-    CONSTRAINT pkCoposta PRIMARY KEY (idFuncionario, fkTransportadora),
-    CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(idTransportadora_cliente),
+    CONSTRAINT pkComposta PRIMARY KEY (idFuncionario, fkTransportadora),
+    CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(codigoAtivacao),
     CONSTRAINT chkCargo CHECK (cargoFuncionario IN ('Representante', 'Motorista')),
     CONSTRAINT chkEmail1 CHECK (emailFucionarioPessoal LIKE '%@%.com'),
-    CONSTRAINT chkEmail10 CHECK (emailFucionarioProfissional LIKE '%@%.com')
+    CONSTRAINT chkEmail2 CHECK (emailFucionarioProfissional LIKE '%@%.com')
 );
 
+select * from transportadora_cliente;
 CREATE TABLE veiculo (
     idVeiculo INT PRIMARY KEY,
     fkEmpresaTransportadora INT,
@@ -52,9 +55,13 @@ CREATE TABLE sensor (
 );
 
 CREATE TABLE dadosSensor (
-    idDados INT PRIMARY KEY AUTO_INCREMENT,
+	fkSensor INT,
+    idDados INT AUTO_INCREMENT,
     temperatura DECIMAL(5,2),
-    umidade DECIMAL(5,2)
+    umidade DECIMAL(5,2),
+    PRIMARY KEY (idDados),
+    FOREIGN KEY (fkSensor)
+		references sensor(idSensor)
 );
 
 CREATE TABLE alerta (
@@ -66,3 +73,32 @@ CREATE TABLE alerta (
     CONSTRAINT fkSensorAlerta FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
     CONSTRAINT fkDadosAlerta FOREIGN KEY (fkDados) REFERENCES dadosSensor(idDados)
 );
+
+-- Inserindo dados na tabela transportadora_cliente
+INSERT INTO transportadora_cliente (nomeTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente, codigoAtivacao)
+VALUES 
+('Transportadora Alpha', '12345678000199', '11987654321', 'contato@alpha.com', 'senha123', 'ATV123456'),
+('Transportadora Beta', '98765432000155', '21912345678', 'contato@beta.com', 'senha456', 'ATV987654');
+
+-- Inserindo dados na tabela funcionario
+INSERT INTO funcionario (fkTransportadora, emailFucionarioProfissional, nomeFuncionario, cpfFuncionario, senhaAcesso)
+VALUES 
+('ATV123456', 'joao@alpha.com', 'João Silva', '12345678901', 'func123'),
+('ATV123456', 'maria@beta.com', 'Maria Oliveira', '98765432100', 'func456');
+
+-- Inserindo dados na tabela veiculo
+INSERT INTO veiculo (fkEmpresaTransportadora, fkVeiculoFuncionario, placaVeiculo, modelo)
+VALUES 
+(1, 1, 'ABC1D23', 'Caminhão Refrigerado'),
+(2, 2, 'XYZ9K87', 'Van Termolábil');
+
+-- Inserindo dados na tabela sensor
+INSERT INTO sensor (tipoSensor, statusSensor, dtInstalacaoSensor, fkVeiculoSensor)
+VALUES 
+('DHT11', 'ATIVO', '2025-05-20', 1),
+('LM35', 'INATIVO', '2025-04-15', 2),
+('DHT11', 'ATIVO', '2025-05-20', 1),
+('LM35', 'INATIVO', '2025-04-15', 2);
+select * from funcionario;
+
+select * from sensor;

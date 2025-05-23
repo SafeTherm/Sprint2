@@ -8,6 +8,10 @@ router.post("/logar", function (req, res) {
     usuarioController.logar(req, res);
 });
 
+router.post("/logar_transportadora", function (req, res) {
+    usuarioController.logar_transportadora(req, res);
+});
+
 // Rota para cadastrar Transportadora
 router.post("/cadastrar_transportadora", function (req, res) {
     usuarioController.cadastrar_transportadora(req, res);
