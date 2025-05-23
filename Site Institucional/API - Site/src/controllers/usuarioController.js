@@ -38,6 +38,7 @@ function cadastrar_transportadora(req, res) {
     var telefone = req.body.telServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var codigo = req.body.resultadoServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -49,8 +50,10 @@ function cadastrar_transportadora(req, res) {
         res.status(400).send("Seu cnpj está undefined!");
     } else if (telefone == undefined){
         res.status(400).send("Seu telefone está undefined!");
-    } else {
-        usuarioModel.cadastrar_transportadora(nome, email, senha, cnpj, telefone)
+    } else if (codigo == undefined){
+        res.status(400).send("Seu codigo está undefined!");
+    }else {
+        usuarioModel.cadastrar_transportadora(nome, email, senha, cnpj, telefone, codigo)
             .then(resultado => {
                 res.json(resultado);
             })

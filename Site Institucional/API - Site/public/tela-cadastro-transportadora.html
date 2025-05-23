@@ -57,7 +57,7 @@
       </div>
 
       <div id="botao_prox">
-        <button id="bt_proximo" onclick="proximo()">Próximo
+        <button id="bt_proximo" onclick="gerar_codigo()">Próximo
           <img id="prox" src="assets/img/circuloBotão.svg" alt="">
           <img id="seta" src="assets/img/seta.svg" alt="">
         </button>
@@ -85,38 +85,44 @@
 </html>
 <script>
 
+  
+  
+  function gerar_codigo() {
+    console.log('teste 2');
 
-  // var resultado = codigoValidacao * 100
-  // var codigoValidacao = 0
+    var codigoValidacao = Math.random()
+    var resultado = Math.floor(codigoValidacao * 100)
 
-  // function gerar_codigo() {
-  //   codigoValidacao = Math.floor(Math.random())
-  // }
+      fetch("/empresa/codigo"), {
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json",
+        },body: JSON.stringify({
+          codigoValidacaoServer: resultado
+        }),
+   
+      }
+        .then(res => res.json())
+        .then(todos_codigo => {
+   
+          for (var i = 0; i < todos_codigo.length; i++) {
+            if (todos_codigo[i] == resultado) {
+              gerar_codigo()
+            } else {
+              console.log(`Código válido`)
+              sessionStorage.CODIGO = resultado;
+              proximo()
 
-  // fetch("/empresa/codigo"), {
-  //   method: "GET",
-  //   headers:{
-  //     "Content-Type": "application/json",
-  //   },body: JSON.stringify({
-  //     codigoValidacaoServer: codigoValidacao
-  //   }),
-
-  // }
-  //   .then(res => res.json())
-  //   .then(todos_codigo => {
-
-  //     for (var i = 0; i < todos_codigo.length; i++) {
-  //       if (todos_codigo[i] == codigoValidacao) {
-  //         gerar_codigo()
-  //       } else {
-  //         console.log(`Código válido`)
-  //       }
-  //     }
-  //   })
+            }
+          }
+        })
+   }
 
 
 
   function proximo() {
+
+    var codigo_validacao = sessionStorage.CODIGO;
     var nomeVar = input_nomeTransportadora.value;
     var cnpjVar = input_cnpjTransportadora.value;
     var telVar = input_telTransportadora.value;
@@ -183,7 +189,7 @@
         telServer: telVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        resultadoServer: resultado
+        resultadoServer: codigo_validacao
 
 
       }),

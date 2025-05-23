@@ -13,11 +13,11 @@ function logar(email, senha) {
 }
 
 
-function cadastrar_transportadora(nome, email, senha, cnpj, telefone) {
+function cadastrar_transportadora(nome, email, senha, cnpj, telefone, codigo) {
   var instrucaoSql = `
-    INSERT INTO transportadora_cliente (nomeTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente)
+    INSERT INTO transportadora_cliente (nomeTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente, codigoAtivacao)
     VALUES 
-    ('${nome}', '${email}', '${senha}', '${cnpj}', '${telefone}');
+    ('${nome}', '${email}', '${senha}', '${cnpj}', '${telefone}', '${codigo}');
   `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql)
   return database.executar(instrucaoSql);
