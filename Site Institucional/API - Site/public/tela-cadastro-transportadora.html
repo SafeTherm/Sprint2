@@ -93,18 +93,9 @@
     var codigoValidacao = Math.random()
     var resultado = Math.floor(codigoValidacao * 100)
 
-      fetch("/empresa/codigo"), {
-        method: "GET",
-        headers:{
-          "Content-Type": "application/json",
-        },body: JSON.stringify({
-          codigoValidacaoServer: resultado
-        }),
-   
-      }
-        .then(res => res.json())
+    
+      fetch("/usuarios/codigo").then(res => res.json())
         .then(todos_codigo => {
-   
           for (var i = 0; i < todos_codigo.length; i++) {
             if (todos_codigo[i] == resultado) {
               gerar_codigo()
@@ -112,7 +103,6 @@
               console.log(`Código válido`)
               sessionStorage.CODIGO = resultado;
               proximo()
-
             }
           }
         })
@@ -215,7 +205,6 @@
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-
       });
 
     return false;

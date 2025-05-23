@@ -22,4 +22,9 @@ router.post("/cadastrar_funcionario", function (req, res) {
     usuarioController.cadastrar_funcionario(req, res);
 });
 
+// Rota para puxar codigos
+router.get("/codigo", function (req, res) {
+    usuarioController.codigo(req, res);
+});
+
 module.exports = router;

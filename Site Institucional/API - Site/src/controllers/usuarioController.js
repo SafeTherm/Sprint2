@@ -118,9 +118,28 @@ function cadastrar_funcionario(req, res) {
         });
 }
 
+
+function codigo(req, res){
+
+    usuarioModel.codigo()
+    .then(function (resultado) {
+        console.log(resultado)
+        if (resultado) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar codigos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     logar,
     logar_transportadora,
     cadastrar_transportadora,
-    cadastrar_funcionario
+    cadastrar_funcionario,
+    codigo
 };
