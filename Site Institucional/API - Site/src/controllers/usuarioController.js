@@ -96,50 +96,50 @@ function cadastrar_transportadora(req, res) {
 }
 
 function cadastrar_funcionario(req, res) {
-    // *** AQUI PRECISAMOS OBTER O ID DA TRANSPORTADORA (fkTransportadora) ***
-    // *** Isso depende de como sua aplicação gerencia a sessão/autenticação ***
-   var fkTransportadora = req.session.idTransportadora;
-
+    // Coleta o nome do funcionário do corpo da requisição
     var nome = req.body.nomeServer;
+    // Coleta o CPF do funcionário do corpo da requisição
     var cpf = req.body.cpfServer;
+    // Coleta a senha do funcionário do corpo da requisição
     var senha = req.body.senhaServer;
+    // Coleta o código de ativação do corpo da requisição
+    var codigoAtivacao = req.body.codigoAtivacaoServer;
 
-    if (!nome || !cpf || !senha || !fkTransportadora) {
-        return res.status(400).send("Preencha todos os campos!");
+    // Valida se todos os campos necessários foram recebidos
+    if (!nome || !cpf || !senha || !codigoAtivacao) {
+        // Retorna um status 400 (Bad Request) com uma mensagem de erro
+        return res.status(400).json({ message: "Preencha todos os campos!" });
     }
 
-    usuarioModel.cadastrar_funcionario(fkTransportadora, nome, cpf, senha)
-        .then(resultado => {
-            res.json(resultado);
+    // Chama o model para obter o ID da transportadora com base no código de ativação
+    usuarioModel.obterIdTransportadoraPorCodigo(codigoAtivacao)
+        .then(transportadoraResultado => {
+            // Verifica se uma transportadora foi encontrada para o código de ativação
+            if (transportadoraResultado.length > 0) {
+                // Extrai o ID da transportadora do resultado da busca
+                const fkTransportadora = transportadoraResultado[0].idTransportadora_cliente;
+
+                // Chama o model para cadastrar o funcionário com o ID da transportadora, nome, CPF e senha
+                usuarioModel.cadastrar_funcionario(fkTransportadora, nome, cpf, senha)
+                    .then(resultado => {
+                        // Retorna o resultado do cadastro do funcionário em JSON
+                        res.json(resultado);
+                    })
+                    .catch(erro => {
+                        // Loga o erro no console do servidor
+                        console.error("Erro ao cadastrar funcionário:", erro);
+                        // Retorna um status 500 (Internal Server Error) com uma mensagem de erro
+                        res.status(500).json({ message: "Erro ao cadastrar funcionário.", error: erro.sqlMessage || erro });
+                    });
+            } else {
+                // Retorna um status 404 (Not Found) se o código de ativação for inválido
+                res.status(404).json({ message: "Código de ativação inválido ou não encontrado." });
+            }
         })
         .catch(erro => {
-            console.error("Erro ao cadastrar funcionário:", erro);
-            res.status(500).json(erro.sqlMessage);
+            // Loga o erro no console do servidor se houver problema na busca da transportadora
+            console.error("Erro ao buscar transportadora pelo código de ativação:", erro);
+            // Retorna um status 500 (Internal Server Error) com uma mensagem de erro
+            res.status(500).json({ message: "Erro ao verificar código de ativação.", error: erro.sqlMessage || erro });
         });
 }
-
-
-function codigo(req, res){
-
-    usuarioModel.codigo()
-    .then(function (resultado) {
-        console.log(resultado)
-        if (resultado) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar codigos: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-module.exports = {
-    logar,
-    logar_transportadora,
-    cadastrar_transportadora,
-    cadastrar_funcionario,
-    codigo
-};

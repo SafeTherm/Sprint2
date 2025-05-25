@@ -68,3 +68,42 @@ module.exports = {
   codigo
 }
 
+// Adicione esta nova função em usuarioModel.js
+function obterIdTransportadoraPorCodigo(codigo) {
+    // Loga que a função foi acessada e o código que está sendo verificado
+    console.log("ACESSEI O USUARIO MODEL > obterIdTransportadoraPorCodigo \n\t\t >> Verificando o código de ativação: ", codigo);
+
+    // Constrói a instrução SQL para selecionar o ID da transportadora pelo código de ativação
+    var instrucaoSql = `
+        SELECT idTransportadora_cliente FROM transportadora_cliente WHERE codigoAtivacao = '${codigo}';
+    `;
+
+    // Loga a instrução SQL que será executada
+    console.log("Executando a instrução SQL para obter ID da transportadora: \n" + instrucaoSql);
+    // Executa a instrução SQL no banco de dados
+    return database.executar(instrucaoSql);
+}
+
+// Substitua a função cadastrar_funcionario existente por esta
+function cadastrar_funcionario(fkTransportadora, nome, cpf, senha) {
+    // Constrói a instrução SQL para inserir um novo funcionário
+    var instrucaoSql = `
+        INSERT INTO funcionario (fkTransportadora, nomeFuncionario, cpfFuncionario, senhaAcesso)
+        VALUES 
+        (${fkTransportadora}, '${nome}', '${cpf}', '${senha}');
+    `;
+    // Loga a instrução SQL que será executada
+    console.log("Executando a instrução SQL de cadastro de funcionário: \n" + instrucaoSql);
+    // Executa a instrução SQL no banco de dados
+    return database.executar(instrucaoSql);
+}
+
+// Atualize o module.exports para incluir a nova função
+module.exports = {
+    logar,
+    logar_transportadora,
+    cadastrar_transportadora,
+    cadastrar_funcionario,
+    codigo,
+    obterIdTransportadoraPorCodigo // Adicione esta linha
+};

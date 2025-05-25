@@ -75,59 +75,102 @@
 </body>
 </html>
 <script>
-  
-    var fkTransportadora = idTransportadora
-    
-    function cadastrarVeiculo(){
-        var cargo = select_funcionario.value;
-        var mensagemVeiculo = document.getElementById("div_cadastroVeiculo");
+    // Função acionada ao clicar no botão "Cadastrar" do funcionário
+    function cadastrarFuncionario() {
+        // Coleta o valor do input de nome do funcionário
+        var nomeVar = input_funcionario.value;
+        // Coleta o valor do input de CPF do funcionário
+        var cpfVar = input_cpfFunc.value;
+        // Coleta o valor do input de senha do funcionário
+        var senhaVar = input_senha.value;
+        // Coleta o valor do input de código de ativação
+        var codigoAtivacaoVar = input_fkTransportadora.value;
 
-       
-        fetch("/usuarios/cadastrar_funcionario", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nomeServer: nomeVar,
-        cpfServer: cpfVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        fkTransportadoraServer: fkTransportadora
-       
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-      
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+        // Verifica se os campos obrigatórios estão preenchidos
+        if (nomeVar == "" || cpfVar == "" || senhaVar == "" || codigoAtivacaoVar == "") {
+            // Exibe mensagem de erro se algum campo estiver vazio
+            div_mensagem.innerHTML = "Preencha todos os campos para cadastrar o funcionário!";
+            div_mensagem.style.color = "red";
+            return false;
         }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-  
-      });
 
-    return false;
-  }
+        // Realiza uma requisição POST para a rota de cadastro de funcionário
+        fetch("/usuarios/cadastrar_funcionario", {
+            method: "POST", // Define o método da requisição como POST
+            headers: {
+                "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+            },
+            body: JSON.stringify({ // Converte os dados para JSON e os envia no corpo da requisição
+                nomeServer: nomeVar,
+                cpfServer: cpfVar,
+                senhaServer: senhaVar,
+                codigoAtivacaoServer: codigoAtivacaoVar
+            }),
+        })
+            .then(function (resposta) {
+                // Exibe a resposta da requisição no console
+                console.log("resposta: ", resposta);
 
-  
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
-        
-   
+                // Verifica se a resposta da requisição foi bem-sucedida (status 2xx)
+                if (resposta.ok) {
+                    // Exibe mensagem de sucesso
+                    div_mensagem.innerHTML = "Cadastro de funcionário realizado com sucesso! Agora cadastre o veículo.";
+                    div_mensagem.style.color = "green";
+                    // Limpa os inputs do formulário de funcionário
+                    input_funcionario.value = "";
+                    input_cpfFunc.value = "";
+                    input_senha.value = "";
+                    input_fkTransportadora.value = "";
+
+                    // Torna visível a seção de cadastro de veículo
+                    div_cadastroVeiculo.style.display = "block";
+
+                } else {
+                    // Trata erros da requisição, tentando extrair a mensagem de erro do JSON
+                    resposta.json().then(json => {
+                        div_mensagem.innerHTML = `Erro ao cadastrar funcionário: ${json.message || resposta.statusText}`;
+                        div_mensagem.style.color = "red";
+                    }).catch(() => {
+                        // Exibe mensagem de erro genérica se não conseguir extrair do JSON
+                        div_mensagem.innerHTML = "Houve um erro ao tentar realizar o cadastro do funcionário!";
+                        div_mensagem.style.color = "red";
+                    });
+                }
+            })
+            .catch(function (erro) {
+                // Captura e exibe erros de rede ou outros erros na requisição
+                console.log(`#ERRO: ${erro}`);
+                div_mensagem.innerHTML = "Erro de conexão ao tentar cadastrar funcionário.";
+                div_mensagem.style.color = "red";
+            });
+
+        // Impede o recarregamento da página (comportamento padrão do formulário)
+        return false;
+    }
+
+    // Função acionada ao clicar no botão "Cadastrar" do veículo
+    function cadastrarVeiculo() {
+        // Coleta o valor do input de placa do veículo
+        var placaVar = input_placa.value;
+        // Coleta o valor do input de modelo do veículo
+        var modeloVar = input_modelo.value;
+
+        // Verifica se os campos obrigatórios do veículo estão preenchidos
+        if (placaVar == "" || modeloVar == "") {
+            // Exibe mensagem de erro se algum campo estiver vazio
+            div_mensagem.innerHTML = "Preencha todos os campos para cadastrar o veículo!";
+            div_mensagem.style.color = "red";
+            return false;
+        }
+
+        // Exibe mensagem de sucesso para o cadastro do veículo
+        div_mensagem.innerHTML = "Cadastro de veículo realizado com sucesso!";
+        div_mensagem.style.color = "green";
+        // Limpa os inputs do formulário de veículo
+        input_placa.value = "";
+        input_modelo.value = "";
+
+        // Impede o recarregamento da página (comportamento padrão do formulário)
+        return false;
+    }
 </script>
