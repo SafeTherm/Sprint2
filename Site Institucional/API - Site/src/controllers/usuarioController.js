@@ -32,6 +32,8 @@ function logar(req, res) {
     }
 }
 
+
+
 function logar_transportadora(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -95,6 +97,21 @@ function cadastrar_transportadora(req, res) {
     }
 }
 
+function codigo(req, res) {
+    usuarioModel.codigo()
+        .then(resultado => {
+            if (resultado.length > 0) {
+                res.json(resultado);
+            } else {
+                res.status(404).send("Nenhum código encontrado.");
+            }
+        })
+        .catch(erro => {
+            console.log("Erro ao buscar códigos: ", erro);
+            res.status(500).json(erro.sqlMessage || erro);
+        });
+}
+
 function cadastrar_funcionario(req, res) {
     // Coleta o nome do funcionário do corpo da requisição
     var nome = req.body.nomeServer;
@@ -111,6 +128,7 @@ function cadastrar_funcionario(req, res) {
         return res.status(400).json({ message: "Preencha todos os campos!" });
     }
 
+    
     // Chama o model para obter o ID da transportadora com base no código de ativação
     usuarioModel.obterIdTransportadoraPorCodigo(codigoAtivacao)
         .then(transportadoraResultado => {
@@ -143,3 +161,13 @@ function cadastrar_funcionario(req, res) {
             res.status(500).json({ message: "Erro ao verificar código de ativação.", error: erro.sqlMessage || erro });
         });
 }
+
+
+
+module.exports = {
+    logar,
+    logar_transportadora,
+    cadastrar_transportadora,
+    cadastrar_funcionario,
+    codigo 
+};

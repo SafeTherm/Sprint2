@@ -59,15 +59,6 @@ function cadastrar_funcionario(nome, cpf, senha) {
   return database.executar(instrucaoSql);
 }
 
-
-module.exports = {
-  logar,
-  logar_transportadora,
-  cadastrar_transportadora,
-  cadastrar_funcionario,
-  codigo
-}
-
 // Adicione esta nova função em usuarioModel.js
 function obterIdTransportadoraPorCodigo(codigo) {
     // Loga que a função foi acessada e o código que está sendo verificado
