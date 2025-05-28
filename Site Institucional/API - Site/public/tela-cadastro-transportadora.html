@@ -88,21 +88,25 @@
   
   
   function gerar_codigo() {
-    console.log('teste 2');
-
     var codigoValidacao = Math.random()
-    var resultado = Math.floor(codigoValidacao * 100)
-
+    var resultado = Math.floor(codigoValidacao * 1000000)
+    var listaCodigos = [];
     
-      fetch("/usuarios/codigo").then(res => res.json())
+      fetch("/usuarios/codigo")
+      .then(res => res.json())
         .then(todos_codigo => {
-          for (var i = 0; i < todos_codigo.length; i++) {
-            if (todos_codigo[i] == resultado) {
-              gerar_codigo()
+          listaCodigos = todos_codigo;
+          for (var i = 0; i < listaCodigos.length; i++) {
+            if (listaCodigos[i] == resultado) {
+              resultado = Math.floor(codigoValidacao * 1000000);
             } else {
               console.log(`Código válido`)
-              sessionStorage.CODIGO = resultado;
+              sessionStorage.CODIGO = "ATV" + resultado;
+              console.log("Codigo valido: " + sessionStorage.CODIGO);
               proximo()
+              break;
+              
+
             }
           }
         })
@@ -196,8 +200,6 @@
           setTimeout(() => {
             window.location = "tela-login_empresa.html";
           }, "2000");
-
-          limparFormulario();
 
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
