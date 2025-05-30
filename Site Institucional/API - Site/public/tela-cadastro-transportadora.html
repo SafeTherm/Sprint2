@@ -10,109 +10,99 @@
 </head>
 
 <body>
-
-
+  <div class="navbar">
+    <button class="botao_voltar" onclick="voltar()">
+      <img src="assets/img/voltar.svg" alt="">
+      Voltar
+    </button>
+  </div>
   <div class="container">
-    <div class="titulos">
-      <h1>Transportadora <img src="assets/img/imgTraçoTitulo.svg" alt=""></h1>
-      <h2>Cadastro</h2>
+    <div class="titulo">
+      CADASTRO
+    </div>
+    <div class="campos">
+      <div class="txt_campo">
+        Nome da Transportadora
+      </div>
+      <input type="text" id="input_nomeTransportadora">
     </div>
 
-    <div class="formulario">
-
-      <label>Nome da Transportadora:</label>
-      <div class="icon-input">
-        <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
-        <img class="icon" src="assets/icon/iconNomeInput.svg" alt="">
-        <input type="text" id="input_nomeTransportadora" placeholder=" nome da transportadora">
+    <div class="campos">
+      <div class="txt_campo">
+        Email
       </div>
+      <input type="text" id="input_emailTransportadora">
+    </div>
 
-      <label>Cnpj Da Transportadora</label>
-      <div class="icon-input">
-        <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
-        <img class="icon" src="assets/icon/iconCnpjInput.svg" alt="">
-        <input type="text" id="input_cnpjTransportadora" placeholder=" 00.000.000/0000-00">
+    <div class="campos">
+      <div class="txt_campo">
+        Telefone
       </div>
+      <input type="text" id="input_telTransportadora">
+    </div>
 
-
-      <label>Telefone Da Transportadora</label>
-      <div class="icon-input">
-        <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
-        <img class="icon" src="assets/icon/iconTelInput.svg" alt="">
-        <input type="text" id="input_telTransportadora" placeholder=" +55 (11) 90000-0000">
+    <div class="campos">
+      <div class="txt_campo">
+        CNPJ
       </div>
+      <input type="text" id="input_cnpjTransportadora">
+    </div>
 
-      <label>Email Da Transportadora</label>
-      <div class="icon-input">
-        <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
-        <img class="icon" src="assets/icon/iconEmailinput.svg" alt="">
-        <input type="text" id="input_emailTransportadora" placeholder=" e-mail@gmail.com">
+    <div class="campos">
+      <div class="txt_campo">
+        Senha
       </div>
+      <input type="text" id="input_senhaTransportadora">
+    </div>
 
-      <label>Senha</label>
-      <div class="icon-input">
-        <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
-        <img class="icon" src="assets/icon/senha.svg" alt="">
-        <input type="text" id="input_senhaTransportadora" placeholder="  *****">
-      </div>
-
-      <div id="botao_prox">
-        <button id="bt_proximo" onclick="gerar_codigo()">Próximo
-          <img id="prox" src="assets/img/circuloBotão.svg" alt="">
-          <img id="seta" src="assets/img/seta.svg" alt="">
-        </button>
-
-      </div>
-
+    <div id="div_condicao_cadastrar"></div>
+    <div class="possui_conta">
+      <div>Esqueceu a senha?</div> <a href="">click aqui</a>
+    </div>
+    <div class="botoes">
+      <button class="botao_apagar" onclick="apagar()">
+        <img src="assets/img/lixeira.svg" alt="">
+      </button>
+      <button class="botao_entrar" onclick="gerar_codigo()">
+        entrar
+      </button>
     </div>
   </div>
-
-  <div class="triangulosEscuros">
-    <img src="assets/img/poligono parte inferior.svg" alt="" class="trianguloInferior">
-    <img src="assets/img/poligono parte superior.svg" alt="" class="trianguloSuperior">
-    <img src="assets/img/trianguloClaro.svg" alt="" class="trianguloClaro">
-  </div>
-
-
-  <div class="alerta_erro">
-    <div class="card_erro" id="cardErro">
-      <span id="mensagem_erro"></span>
-    </div>
-  </div>
-
 </body>
 
 </html>
 <script>
 
-  
-  
+  function apagar() {
+    input_nomeTransportadora.value = ""
+    input_emailTransportadora.value = ""
+    input_telTransportadora.value = ""
+    input_cnpjTransportadora.value = ""
+    input_senhaTransportadora.value = ""
+  }
+
   function gerar_codigo() {
     var codigoValidacao = Math.random()
     var resultado = Math.floor(codigoValidacao * 1000000)
     var listaCodigos = [];
-    
-      fetch("/usuarios/codigo")
+
+    fetch("/usuarios/codigo")
       .then(res => res.json())
-        .then(todos_codigo => {
-          listaCodigos = todos_codigo;
-          for (var i = 0; i < listaCodigos.length; i++) {
-            if (listaCodigos[i] == resultado) {
-              resultado = Math.floor(codigoValidacao * 1000000);
-            } else {
-              console.log(`Código válido`)
-              sessionStorage.CODIGO = "ATV" + resultado;
-              console.log("Codigo valido: " + sessionStorage.CODIGO);
-              proximo()
-              break;
-              
-
-            }
+      .then(todos_codigo => {
+        listaCodigos = todos_codigo;
+        for (var i = 0; i < listaCodigos.length; i++) {
+          if (listaCodigos[i] == resultado) {
+            resultado = Math.floor(codigoValidacao * 1000000);
+          } else {
+            console.log(`Código válido`)
+            sessionStorage.CODIGO = "ATV" + resultado;
+            console.log("Codigo valido: " + sessionStorage.CODIGO);
+            proximo()
+            break;
           }
-        })
-   }
-
-
+        }
+      })
+  }
 
   function proximo() {
 
@@ -131,45 +121,29 @@
       emailVar == "" ||
       senhaVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Preencha todos os campos para efetivar o login";
-
+      div_condicao_cadastrar.innerHTML = `<div class="errado">Preencha todos os campos para efetivar o login</div>`;
 
       return false;
     } else if (nomeVar.length < 1) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Informe um nome válido";
-
+      div_condicao_cadastrar.innerHTML = `<div class="errado">Informe um nome válido</div>`;
 
       return false;
     } else if (cnpjVar.length < 14 || cnpjVar.length > 14) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Número de caracteres para cnpj inválido (deve possuir 14 dígitos)";
-
+      div_condicao_cadastrar.innerHTML = `<div class="errado">Número de caracteres para cnpj inválido (deve possuir 14 dígitos)</div>`;
 
       return false;
     } else if (senhaVar.length < 6) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "A senha deve conter ao menos 6 caracteres";
+      div_condicao_cadastrar.innerHTML = `<div class="errado">A senha deve conter ao menos 6 caracteres</div>`;
+
 
 
       return false;
     } else if (!emailVar.includes("@")) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Informe um e-mail válido (deve possuir @ em seu endereço)";
+      div_condicao_cadastrar.innerHTML = `<div class="errado">Informe um e-mail válido (deve possuir @ em seu endereço)</div>`;
+      ;
 
 
       return false;
-    }
-
-
-    else {
-      setInterval(sumirMensagem, 5000);
     }
 
     fetch("/usuarios/cadastrar_transportadora", {
@@ -185,17 +159,14 @@
         senhaServer: senhaVar,
         resultadoServer: codigo_validacao
 
-
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          div_condicao_cadastrar.innerHTML = `<div class="certo">Cadastro realizado com sucesso! Redirecionando para tela de Login...</div>`;
 
           setTimeout(() => {
             window.location = "tela-login_empresa.html";
@@ -210,11 +181,6 @@
       });
 
     return false;
-  }
-
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
   }
 
 </script>

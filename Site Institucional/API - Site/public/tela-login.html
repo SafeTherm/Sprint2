@@ -11,38 +11,38 @@
 
 <body>
     <div class="navbar">
-        <img src="assets/img/voltar.svg" alt="">
-        <button class="botao_voltar" onclick="voltar()">Voltar
+        <button class="botao_voltar" onclick="voltar()">
+            <img src="assets/img/voltar.svg" alt="">
+            Voltar
+        </button>
     </div>
     <div class="container">
-        <div class="container">
-            <div class="titulo">
-                LOGIN
+        <div class="titulo">
+            LOGIN
+        </div>
+        <div class="campos">
+            <div class="txt_campo">
+                email
             </div>
-            <div class="campos">
-                <div class="txt_campo">
-                    email
-                </div>
-                <input type="text" id="input_email">
+            <input type="text" id="input_email">
+        </div>
+        <div class="campos">
+            <div class="txt_campo">
+                senha
             </div>
-            <div class="campos">
-                <div class="txt_campo">
-                    senha
-                </div>
-                <input type="password" id="input_senha">
-            </div>
-            <div id="div_condicao_cadastrar"></div>
-            <div class="possui_conta">
-                <div>Esqueceu a senha?</div> <a href="">click aqui</a>
-            </div>
-            <div class="botoes">
-                <button class="botao_apagar" onclick="apagar()">
-                    <img src="assets/img/lixeira.svg" alt="">
-                </button>
-                <button class="botao_entrar" onclick="entrar()">
-                    entrar
-                </button>
-            </div>
+            <input type="password" id="input_senha">
+        </div>
+        <div id="div_condicao_cadastrar"></div>
+        <div class="possui_conta">
+            <div>Esqueceu a senha?</div> <a href="">click aqui</a>
+        </div>
+        <div class="botoes">
+            <button class="botao_apagar" onclick="apagar()">
+                <img src="assets/img/lixeira.svg" alt="">
+            </button>
+            <button class="botao_entrar" onclick="entrar()">
+                entrar
+            </button>
         </div>
     </div>
 </body>
@@ -84,7 +84,12 @@
                         sessionStorage.NOME_USUARIO = json.nome
                         sessionStorage.EMAIL_USUARIO = json.emailServer
 
-                        console.log("window.location = site/explorer.html")
+
+                        div_condicao_cadastrar.innerHTML = `<div class="certo">Login realizado com sucesso!</div>`
+
+                        setTimeout(() => {
+                            // window.location = "dashboard.html"
+                        }, 1000)
                     })
                 } else {
                     throw new Error("Erro ao achar funcionário, tentando achar empresa...");
@@ -109,15 +114,20 @@
                             resposta.json().then(json => {
                                 console.log(json)
                                 console.log(JSON.stringify(json))
-                                sessionStorage.ID_USUARIO = json.idUsuario
-                                sessionStorage.NOME_USUARIO = json.nome
-                                sessionStorage.EMAIL_USUARIO = json.emailServer
+                                sessionStorage.ID_USUARIO = json.idTransportadora
+                                sessionStorage.NOME_USUARIO = json.nomeTransportadora
+                                sessionStorage.EMAIL_USUARIO = json.emailTransportadora
+                                sessionStorage.CODIGO = json.codigoAtivacao
 
-                                console.log("window.location = site/explorer.html")
+                                div_condicao_cadastrar.innerHTML = `<div class="certo">Login realizado com sucesso!</div>`
+
+                                setTimeout(() => {
+                                    // window.location = "dashboard.html"
+                                }, 1000)
                             })
                         } else {
 
-                            div_condicao_cadastrar.innerHTML = `Email/senha estão incorretos`
+                            div_condicao_cadastrar.innerHTML = `<div class="errado">Email/senha estão incorretos</div>`
                             console.log("Houve um problema ao tentar realizar o login!")
 
                             resposta.text().then(texto => {
@@ -132,5 +142,9 @@
                     return false
                 })
         }
+    }
+
+    function voltar() {
+        window.location = "index.html"
     }
 </script>

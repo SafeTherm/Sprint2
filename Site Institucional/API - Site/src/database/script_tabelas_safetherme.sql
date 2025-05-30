@@ -17,22 +17,18 @@ CREATE TABLE transportadora_cliente (
 CREATE TABLE funcionario (
     idFuncionario INT auto_increment,
     fkTransportadora VARCHAR(10),
-    emailFucionarioProfissional VARCHAR(100),
+    emailFuncionario VARCHAR(100) UNIQUE,
     nomeFuncionario VARCHAR(60),
-    cargoFuncionario CHAR(18),
-    cpfFuncionario CHAR(11),
-    emailFucionarioPessoal VARCHAR(60),
+    cpfFuncionario 	VARCHAR(20),
     telefoneFuncionario VARCHAR(14),
-    cep CHAR(8),
     senhaAcesso VARCHAR(20),
+	imagemPerfil_funcionario TEXT,
     CONSTRAINT pkComposta PRIMARY KEY (idFuncionario, fkTransportadora),
     CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(codigoAtivacao),
-    CONSTRAINT chkCargo CHECK (cargoFuncionario IN ('Representante', 'Motorista')),
-    CONSTRAINT chkEmail1 CHECK (emailFucionarioPessoal LIKE '%@%.com'),
-    CONSTRAINT chkEmail2 CHECK (emailFucionarioProfissional LIKE '%@%.com')
+    CONSTRAINT chkEmail2 CHECK (emailFuncionario LIKE '%@%.com')
 );
 
-select * from transportadora_cliente;
+
 CREATE TABLE veiculo (
     idVeiculo INT PRIMARY KEY,
     fkEmpresaTransportadora INT,
@@ -69,6 +65,7 @@ CREATE TABLE alerta (
     fkDados INT,
     dataAlerta DATETIME,
     statusAlerta VARCHAR(45),
+    CONSTRAINT chkAlerta CHECK (statusAlerta in ("Ok", "Atenção", "Crítico")),
     PRIMARY KEY (fkSensor, fkDados),
     CONSTRAINT fkSensorAlerta FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
     CONSTRAINT fkDadosAlerta FOREIGN KEY (fkDados) REFERENCES dadosSensor(idDados)
@@ -81,24 +78,11 @@ VALUES
 ('Transportadora Beta', '98765432000155', '21912345678', 'contato@beta.com', 'senha456', 'ATV987654');
 
 -- Inserindo dados na tabela funcionario
-INSERT INTO funcionario (fkTransportadora, emailFucionarioProfissional, nomeFuncionario, cpfFuncionario, senhaAcesso)
+INSERT INTO funcionario (fkTransportadora, emailFuncionario, nomeFuncionario, cpfFuncionario, senhaAcesso)
 VALUES 
 ('ATV123456', 'joao@alpha.com', 'João Silva', '12345678901', 'func123'),
 ('ATV123456', 'maria@beta.com', 'Maria Oliveira', '98765432100', 'func456');
 
--- Inserindo dados na tabela veiculo
-INSERT INTO veiculo (fkEmpresaTransportadora, fkVeiculoFuncionario, placaVeiculo, modelo)
-VALUES 
-(1, 1, 'ABC1D23', 'Caminhão Refrigerado'),
-(2, 2, 'XYZ9K87', 'Van Termolábil');
-
--- Inserindo dados na tabela sensor
-INSERT INTO sensor (tipoSensor, statusSensor, dtInstalacaoSensor, fkVeiculoSensor)
-VALUES 
-('DHT11', 'ATIVO', '2025-05-20', 1),
-('LM35', 'INATIVO', '2025-04-15', 2),
-('DHT11', 'ATIVO', '2025-05-20', 1),
-('LM35', 'INATIVO', '2025-04-15', 2);
 select * from funcionario;
-
+select * from transportadora_cliente;
 select * from sensor;

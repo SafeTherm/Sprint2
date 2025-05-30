@@ -78,13 +78,13 @@ function cadastrar_transportadora(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (cnpj == undefined ){
+    } else if (cnpj == undefined) {
         res.status(400).send("Seu cnpj está undefined!");
-    } else if (telefone == undefined){
+    } else if (telefone == undefined) {
         res.status(400).send("Seu telefone está undefined!");
-    } else if (codigo == undefined){
+    } else if (codigo == undefined) {
         res.status(400).send("Seu codigo está undefined!");
-    }else {
+    } else {
         usuarioModel.cadastrar_transportadora(nome, email, senha, cnpj, telefone, codigo)
             .then(resultado => {
                 res.json(resultado);
@@ -113,13 +113,12 @@ function codigo(req, res) {
 }
 
 function cadastrar_funcionario(req, res) {
-    // Coleta o nome do funcionário do corpo da requisição
+
     var nome = req.body.nomeServer;
-    // Coleta o CPF do funcionário do corpo da requisição
+    var email = req.body.emailServer;
+    var tel = req.body.telServer;
     var cpf = req.body.cpfServer;
-    // Coleta a senha do funcionário do corpo da requisição
     var senha = req.body.senhaServer;
-    // Coleta o código de ativação do corpo da requisição
     var codigoAtivacao = req.body.codigoAtivacaoServer;
 
     // Valida se todos os campos necessários foram recebidos
@@ -128,37 +127,16 @@ function cadastrar_funcionario(req, res) {
         return res.status(400).json({ message: "Preencha todos os campos!" });
     }
 
-    
-    // Chama o model para obter o ID da transportadora com base no código de ativação
-    usuarioModel.obterIdTransportadoraPorCodigo(codigoAtivacao)
-        .then(transportadoraResultado => {
-            // Verifica se uma transportadora foi encontrada para o código de ativação
-            if (transportadoraResultado.length > 0) {
-                // Extrai o ID da transportadora do resultado da busca
-                const fkTransportadora = transportadoraResultado[0].idTransportadora_cliente;
-
-                // Chama o model para cadastrar o funcionário com o ID da transportadora, nome, CPF e senha
-                usuarioModel.cadastrar_funcionario(fkTransportadora, nome, cpf, senha)
-                    .then(resultado => {
-                        // Retorna o resultado do cadastro do funcionário em JSON
-                        res.json(resultado);
-                    })
-                    .catch(erro => {
-                        // Loga o erro no console do servidor
-                        console.error("Erro ao cadastrar funcionário:", erro);
-                        // Retorna um status 500 (Internal Server Error) com uma mensagem de erro
-                        res.status(500).json({ message: "Erro ao cadastrar funcionário.", error: erro.sqlMessage || erro });
-                    });
-            } else {
-                // Retorna um status 404 (Not Found) se o código de ativação for inválido
-                res.status(404).json({ message: "Código de ativação inválido ou não encontrado." });
-            }
+    usuarioModel.cadastrar_funcionario(codigoAtivacao, email, nome, cpf, tel, senha)
+        .then(resultado => {
+            // Retorna o resultado do cadastro do funcionário em JSON
+            res.json(resultado);
         })
         .catch(erro => {
-            // Loga o erro no console do servidor se houver problema na busca da transportadora
-            console.error("Erro ao buscar transportadora pelo código de ativação:", erro);
+            // Loga o erro no console do servidor
+            console.error("Erro ao cadastrar funcionário:", erro);
             // Retorna um status 500 (Internal Server Error) com uma mensagem de erro
-            res.status(500).json({ message: "Erro ao verificar código de ativação.", error: erro.sqlMessage || erro });
+            res.status(500).json({ message: "Erro ao cadastrar funcionário.", error: erro.sqlMessage || erro });
         });
 }
 
@@ -169,5 +147,5 @@ module.exports = {
     logar_transportadora,
     cadastrar_transportadora,
     cadastrar_funcionario,
-    codigo 
+    codigo
 };

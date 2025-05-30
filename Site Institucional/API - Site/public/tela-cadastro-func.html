@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,170 +8,115 @@
     <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
     <title>Cadastro Funcionario/Caminhao</title>
 </head>
-<body>
-    <div class="container"> 
-            <div class="titulos">
-                <h1>Funcionário/Veículo<img src="assets/img/imgTraçoTitulo.svg" alt=""></h1>
-                <h2>Cadastro</h2>
-            </div>
 
-            <div class="formulario">
-                <label>Nome do(a) funcionário(a):</label>
-                <div class="icon-input">
+<body>
+    <div class="container">
+        <div class="titulos">
+            <h1>Funcionário<img src="assets/img/imgTraçoTitulo.svg" alt=""></h1>
+            <h2>Cadastro</h2>
+        </div>
+
+        <div class="formulario">
+            <label>Nome do(a) funcionário(a):</label>
+            <div class="icon-input">
                 <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
                 <img class="icon" src="assets/icon/iconNomeInput.svg" alt="">
-                <input type="text" id="input_funcionario" placeholder=" nome do funcionario(a)">
-                </div>
+                <input type="text" id="input_nomefuncionario" placeholder=" nome do funcionario(a)">
+            </div>
 
-                <label>Cpf funcionário(a):</label>
-                <div class="icon-input">
+            <label>Email do(a) funcionário(a):</label>
+            <div class="icon-input">
                 <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
-            
-                <input type="text" id="input_cpfFunc" placeholder=" 000.000.000-00" >
-                
-                </div>
+                <img class="icon" src="assets/icon/iconNomeInput.svg" alt="">
+                <input type="text" id="input_emailfuncionario" placeholder="email@...com">
+            </div>
 
-                <label>Senha funcionário(a):</label>
-                <div class="icon-input">
+            <label>Telefone do(a) funcionário(a):</label>
+            <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+                <img class="icon" src="assets/icon/iconNomeInput.svg" alt="">
+                <input type="text" id="input_telfuncionario" placeholder="11951742393">
+            </div>
+
+            <label>Cpf funcionário(a):</label>
+            <div class="icon-input">
+                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
+
+                <input type="text" id="input_cpfFunc" placeholder=" 000.000.000-00">
+
+            </div>
+
+            <label>Senha funcionário(a):</label>
+            <div class="icon-input">
                 <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
                 <img class="icon" src="assets/icon/senha.svg" alt="">
-                <input type="password" id="input_senha" placeholder="informe no mínimo 8 dígitos ..."> 
-                </div>
+                <input type="password" id="input_senha" placeholder="informe no mínimo 8 dígitos ...">
+            </div>
 
-                 <label>Código de Ativação:</label>
-                <div class="icon-input">
-                <img class="fundo" src="assets/img/poligonoInput.svg" alt="">
-                <img class="icon" src="" alt="">
-                <input type="text" id="input_fkTransportadora" placeholder="informe seu código de ativação ..."> 
-                </div>
-                
-                
-                <button onclick="cadastrarFuncionario()">Cadastrar</button>
-                </div>
-
-                <div  id="div_cadastroVeiculo" class="cadastro_veiculo">
-                    <h2>Veículo <img src="assets/img/Rectangle 281.svg" alt=""></h2>
-                    <label>Informe o veículo utilizado pelo motorista</label><br><br>
-                    <label>Placa do veículo</label><br>
-                    <input type="text" id="input_placa"><br>
-                    <label>Modelo do veículo</label><br>
-                    <input type="text" id="input_modelo">
-                    <div class="botaoVeiculo">
-                    <button onclick="cadastrarVeiculo()">Cadastrar</button>
-                    </div>
-                </div>
-       
-
+            <button onclick="cadastrarFuncionario()">Cadastrar</button>
         </div>
-           <div class="triangulosEscuros">
-            <img src="assets/img/poligono parte superior.svg" alt="" class="trianguloSuperior">
-            <img src="assets/img/poligono parte inferior.svg" alt="" class="trianguloInferior">
-            <img src="assets/img/trianguloClaro.svg" alt="" class="trianguloClaro">
-           </div>
 
-           
-   <div id="div_mensagem"></div> 
+        <div id="div_cadastroVeiculo" class="cadastro_veiculo">
+            <h2>Veículo <img src="assets/img/Rectangle 281.svg" alt=""></h2>
+            <label>Informe o veículo utilizado pelo motorista</label><br><br>
+            <label>Placa do veículo</label><br>
+            <input type="text" id="input_placa"><br>
+            <label>Modelo do veículo</label><br>
+            <input type="text" id="input_modelo">
+            <div class="botaoVeiculo">
+                <button onclick="cadastrarVeiculo()">Cadastrar</button>
+            </div>
+        </div>
 
-    
+
+    </div>
+    <div class="triangulosEscuros">
+        <img src="assets/img/poligono parte superior.svg" alt="" class="trianguloSuperior">
+        <img src="assets/img/poligono parte inferior.svg" alt="" class="trianguloInferior">
+        <img src="assets/img/trianguloClaro.svg" alt="" class="trianguloClaro">
+    </div>
+
+
+    <div id="div_mensagem"></div>
+
+
 </body>
+
 </html>
 <script>
-    // Função acionada ao clicar no botão "Cadastrar" do funcionário
+
+    const fkTransportadora = "ATV123456"
+
     function cadastrarFuncionario() {
-        // Coleta o valor do input de nome do funcionário
-        var nomeVar = input_funcionario.value;
-        // Coleta o valor do input de CPF do funcionário
+
+        var nomeVar = input_nomefuncionario.value
+        var emailVar = input_emailfuncionario.value
+        var telVar = input_telfuncionario.value
         var cpfVar = input_cpfFunc.value;
-        // Coleta o valor do input de senha do funcionário
         var senhaVar = input_senha.value;
-        // Coleta o valor do input de código de ativação
-        var codigoAtivacaoVar = input_fkTransportadora.value;
+        var codigoAtivacaoVar = fkTransportadora;
 
-        // Verifica se os campos obrigatórios estão preenchidos
-        if (nomeVar == "" || cpfVar == "" || senhaVar == "" || codigoAtivacaoVar == "") {
-            // Exibe mensagem de erro se algum campo estiver vazio
-            div_mensagem.innerHTML = "Preencha todos os campos para cadastrar o funcionário!";
-            div_mensagem.style.color = "red";
-            return false;
-        }
-
-        // Realiza uma requisição POST para a rota de cadastro de funcionário
         fetch("/usuarios/cadastrar_funcionario", {
-            method: "POST", // Define o método da requisição como POST
+            method: "POST",
             headers: {
-                "Content-Type": "application/json", // Define o tipo de conteúdo como JSON
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ // Converte os dados para JSON e os envia no corpo da requisição
+            body: JSON.stringify({
                 nomeServer: nomeVar,
+                emailServer: emailVar,
+                telServer: telVar,
                 cpfServer: cpfVar,
                 senhaServer: senhaVar,
                 codigoAtivacaoServer: codigoAtivacaoVar
-            }),
-        })
-            .then(function (resposta) {
-                // Exibe a resposta da requisição no console
-                console.log("resposta: ", resposta);
-
-                // Verifica se a resposta da requisição foi bem-sucedida (status 2xx)
-                if (resposta.ok) {
-                    // Exibe mensagem de sucesso
-                    div_mensagem.innerHTML = "Cadastro de funcionário realizado com sucesso! Agora cadastre o veículo.";
-                    div_mensagem.style.color = "green";
-                    // Limpa os inputs do formulário de funcionário
-                    input_funcionario.value = "";
-                    input_cpfFunc.value = "";
-                    input_senha.value = "";
-                    input_fkTransportadora.value = "";
-
-                    // Torna visível a seção de cadastro de veículo
-                    div_cadastroVeiculo.style.display = "block";
-
-                } else {
-                    // Trata erros da requisição, tentando extrair a mensagem de erro do JSON
-                    resposta.json().then(json => {
-                        div_mensagem.innerHTML = `Erro ao cadastrar funcionário: ${json.message || resposta.statusText}`;
-                        div_mensagem.style.color = "red";
-                    }).catch(() => {
-                        // Exibe mensagem de erro genérica se não conseguir extrair do JSON
-                        div_mensagem.innerHTML = "Houve um erro ao tentar realizar o cadastro do funcionário!";
-                        div_mensagem.style.color = "red";
-                    });
+            }).then(res => {
+                if (!res.ok) {
+                    throw new Error("Erro ao cadastrar");
                 }
+                window.location = "tela-login.html";
+            }).catch(err => {
+                console.error("Erro no cadastro:", err);
+                div_erro.innerHTML = `Email já está em uso`;
             })
-            .catch(function (erro) {
-                // Captura e exibe erros de rede ou outros erros na requisição
-                console.log(`#ERRO: ${erro}`);
-                div_mensagem.innerHTML = "Erro de conexão ao tentar cadastrar funcionário.";
-                div_mensagem.style.color = "red";
-            });
-
-        // Impede o recarregamento da página (comportamento padrão do formulário)
-        return false;
-    }
-
-    // Função acionada ao clicar no botão "Cadastrar" do veículo
-    function cadastrarVeiculo() {
-        // Coleta o valor do input de placa do veículo
-        var placaVar = input_placa.value;
-        // Coleta o valor do input de modelo do veículo
-        var modeloVar = input_modelo.value;
-
-        // Verifica se os campos obrigatórios do veículo estão preenchidos
-        if (placaVar == "" || modeloVar == "") {
-            // Exibe mensagem de erro se algum campo estiver vazio
-            div_mensagem.innerHTML = "Preencha todos os campos para cadastrar o veículo!";
-            div_mensagem.style.color = "red";
-            return false;
-        }
-
-        // Exibe mensagem de sucesso para o cadastro do veículo
-        div_mensagem.innerHTML = "Cadastro de veículo realizado com sucesso!";
-        div_mensagem.style.color = "green";
-        // Limpa os inputs do formulário de veículo
-        input_placa.value = "";
-        input_modelo.value = "";
-
-        // Impede o recarregamento da página (comportamento padrão do formulário)
-        return false;
+        })
     }
 </script>
