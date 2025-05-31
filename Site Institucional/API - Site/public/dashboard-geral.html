@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/dashboards-geral.css">
+    <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
+</head>
+
+<body>
+    <div class="menu">
+        <div class="logo">
+            <img src="" alt="">
+        </div>
+    </div>
+
+
+    <section class="conteudo">
+        <header>
+            <div class="box-nav-logo">
+                <a href="">
+                    <h1><img src="assets/img/logo.png">Safe <span>Therm</span></h1>
+                </a>
+            </div>
+            <div class="pesquisar-placa">
+                <input type="text" id="input_placa" placeholder="pesquisar placa...">
+                <button onclick="pesquisar()">
+                    <img src="assets/img/lupa.svg" alt="">
+                </button>
+
+
+                <!-- essa div é display none, com o oninput ela aparece -->
+                <div class="resultado_pesquisa" style="display: none;">
+
+
+                    <!-- div com += -->
+                    <div class="info_funcionarios">
+                        <img src="" alt="">
+                        <div class="informacoes_func">
+                            <div class="nome">
+                                nome do funcionario
+                            </div>
+                            <div class="info_veiculo">
+                                <div class="placa">
+                                    veículo: CXPT-2EW3
+                                </div>
+                                <div class="tipo_veiculo">
+                                    caminhão: Fiat Ducato
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- div com += -->
+                    <div class="info_funcionarios">
+                        <img src="" alt="">
+                        <div class="informacoes_func">
+                            <div class="nome">
+                                nome do funcionario
+                            </div>
+                            <div class="info_veiculo">
+                                <div class="placa">
+                                    veículo: CXPT-2EW3
+                                </div>
+                                <div class="tipo_veiculo">
+                                    caminhão: Fiat Ducato
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="sino">
+                <button onclick="notificacao()">
+                    <img src="assets/img/sino de notificação.svg" alt="">
+                </button>
+            </div>
+            <div class="user_perfil">
+                <div id="infos-user">
+                    <h3>Roberta Silva</h3>
+                    <h4>roberta@therm.com</h4>
+                </div>
+                <img src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+                    alt="">
+            </div>
+        </header>
+
+        <div class="cards">
+
+            <div class="card-notificacao">
+                <div class="titulo">
+                    Notificações recentes
+                </div>
+                <div class="alerta_exibir">
+                    <div class="notificacao-alerta">
+                        <div class="alerta_img">
+                            <img src="assets/img/alerta_vermelho.svg" alt="">
+                        </div>
+                        <div class="alerta_info">
+                            <div class="status_alerta">
+                                Temperatura fora dos limites
+                            </div>
+                            <div class="alerta_veiculo">
+                                Placa veículo: ABC1D23
+                            </div>
+                            <div class="alerta_data">
+                                08/05/2025, 22:11
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="card-notificacao">
+                <div class="titulo">
+                    Falhas nos sensores
+                </div>
+                <div class="alerta_exibirSensor">
+
+
+                    <div class="notificacao-alertaSensor">
+                        <div class="statusSensor">
+                            <div class="bolinha_status"></div>
+                            <div class="status">
+                                ATIVO
+                            </div>
+                        </div>
+
+                        <div class="infoSensor1">
+                            <div class="sensor_imgFunc">
+                                <img src="" alt="">
+                            </div>
+                            <div class="subInfoSensor">
+                                <div class="sensorNomeFunc">
+                                    nome do funcionario
+                                </div>
+                                <div class="sensorVeiculo">
+                                    veículo: CXPT-2EW3
+                                </div>
+                                <div class="sensorVeiculoTipo">
+                                    caminhão: Fiat Ducato
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="infoSensor2">
+
+                            <div class="sensorStatus">
+                                STATUS: Exige manutenção
+                            </div>
+                            <div class="infoSensor3">
+                                <div class="subInfoSensor1">
+                                    <div>
+                                        Umidade superior
+                                    </div>
+                                    <div>
+                                        Umidade inferior
+                                    </div>
+                                    <div>
+                                        Temperatura superior
+                                    </div>
+                                    <div>
+                                        Temperatura inferior
+                                    </div>
+                                </div>
+
+                                <div class="botaoChamado">
+                                    <button onclick="chamado()">
+                                        chamado
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="card-notificacaoFrota">
+                <div class="titulo_frota">
+                    Status da frota
+                    <div class="frotaImg">
+                        <img src="assets/img/frotaIcon.svg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="frota_exibir">
+
+                    <div>
+                        Total: 30
+                    </div>
+                    <div>
+                        Em rota: 10
+                    </div>
+                    <div>
+                        Alertas: 0
+                    </div>
+                </div>
+
+                <div class="frotaStatus">
+                    Atenção necessária
+                    <img src="assets/img/alerta_amarelo.svg" alt="">
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="veiculosEmpresa">
+            <div class="tituloVeiculoEmpresa">
+                VEÍCULOS DA EMPRESA
+            </div>
+            <div class="exibirCards">
+
+                <div class="cardVeiculos">
+                        <div class="front">
+                            <div class="statusVeiculo">
+                                <div class="bolinha_status"></div>
+                                <div class="status">
+                                    ATIVO
+                                </div>
+                            </div>
+
+                            <div class="infoVeiculo1">
+                                <div class="Veiculo_imgFunc">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="subInfoVeiculo">
+                                    <div class="VeiculoNomeFunc">
+                                        nome do funcionario
+                                    </div>
+                                    <div class="Veiculo">
+                                        veículo: CXPT-2EW3
+                                    </div>
+                                    <div class="VeiculoTipo">
+                                        caminhão: Fiat Ducato
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="infoVeiculo2">
+                                <div>
+                                    media temperatura:
+                                </div>
+                                <div>
+                                    media umidade:
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="back">
+                            <div class="statusVeiculo">
+                                <div class="bolinha_status"></div>
+                                <div class="status">
+                                    ATIVO
+                                </div>
+                            </div>
+
+                            <div class="infoVeiculo1">
+                                <div class="Veiculo_imgFunc">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="subInfoVeiculo">
+                                    <div class="VeiculoNomeFunc">
+                                        nome do funcionario
+                                    </div>
+                                    <div class="Veiculo">
+                                        veículo: CXPT-2EW3
+                                    </div>
+                                    <div class="VeiculoTipo">
+                                        caminhão: Fiat Ducato
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="infoVeiculo2">
+                                <div class="botao_acessar">
+                                    <button onclick="acessar()">
+                                        acessar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+
+</body>
+
+</html>

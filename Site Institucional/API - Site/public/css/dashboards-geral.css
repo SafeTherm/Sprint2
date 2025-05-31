@@ -1,0 +1,552 @@
+/* Importando fonte para ser usada no site */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bayon&family=Fredoka:wght@300..700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Keania+One&family=Lalezar&family=League+Gothic&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+:root {
+  --cinza: #dcdcdc;
+  --branco: #fff;
+  --laranja: #ff7f00;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1900px;
+  font-family: "Sofia sans";
+}
+
+.menu {
+  width: 200px;
+  height: 100%;
+  background-color: var(--cinza);
+}
+
+.conteudo {
+  width: 100%;
+  height: auto;
+  border: 1px solid red;
+}
+
+header {
+  position: fixed;
+  height: 50px;
+  width: 99.9%;
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+header .box-nav-logo {
+  display: flex;
+  justify-content: flex-start;
+  width: 30%;
+  align-items: center;
+  margin-left: 40px;
+  font-size: 1.35rem;
+  font-weight: 500;
+  font-family: "Poppins";
+  position: absolute;
+  left: 0px;
+}
+
+header a h1 span {
+  color: #ff7f00;
+  font-weight: 700;
+}
+
+header a {
+  border: none;
+  text-decoration: none;
+}
+
+header a h1 {
+  color: #000000;
+  position: relative;
+  font-weight: bolder;
+}
+
+header a h1 img {
+  position: absolute;
+  left: -7px;
+  top: 5px;
+  z-index: -1;
+}
+
+.pesquisar-placa {
+  background-color: #F8F8F8;
+  width: 35%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  position: relative;
+}
+
+.pesquisar-placa input {
+  background: none;
+  border: none;
+  width: 100%;
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  font-size: 1.3rem;
+}
+
+.pesquisar-placa img {
+  background-color: #838383;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.pesquisar-placa button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+
+
+.sino button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sino {
+  margin-left: 10%;
+}
+
+
+.resultado_pesquisa {
+  position: absolute;
+  z-index: 999;
+  top: 70px;
+  width: 100%;
+  background-color: #F9F9F9;
+  padding: 20px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info_funcionarios {
+  display: flex;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: #D9D9D9 solid 2px;
+}
+
+.informacoes_func {
+  display: flex;
+  flex-direction: column;
+}
+
+.info_funcionarios img {
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.informacoes_func .nome {
+  font-size: 1rem;
+  color: #000000;
+}
+
+.info_veiculo {
+  font-size: 0.7rem;
+  color: #A0A0A0;
+}
+
+
+
+.user_perfil {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 40px;
+  flex-direction: row;
+}
+
+.user_perfil #infos-user h3 {
+  color: #232323;
+  font-size: large;
+  text-align: right;
+}
+
+.user_perfil #infos-user h4 {
+  color: #949494;
+  font-size: medium;
+  text-align: right;
+  font-weight: 400;
+}
+
+
+.user_perfil img {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+.cards {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-family: "Inter";
+}
+
+.card-notificacao {
+  width: 350px;
+  background-color: #F8F8F8;
+  border-radius: 15px;
+  padding: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.card-notificacao .titulo {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.alerta_exibir {
+  width: 100%;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.notificacao-alerta {
+  display: flex;
+  margin-top: 10px;
+  background-color: #FFFFFF;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.alerta_img {
+  width: 60px;
+  height: 50px;
+  background-color: #F0C2C2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.notificacao-alerta img {
+  width: 35px;
+  height: 35px;
+}
+
+.alerta_info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.status_alerta {
+  font-weight: 600;
+}
+
+.alerta_veiculo {
+  font-size: 0.9rem;
+  color: #9E9E9E;
+  font-weight: 400;
+}
+
+.alerta_data {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.9rem;
+  color: #9E9E9E;
+  font-weight: 400;
+}
+
+.notificacao-alertaSensor {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: #FFFFFF;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.bolinha_status {
+  padding: 3px;
+  background-color: green;
+  border-radius: 50%;
+  width: 1px;
+  height: 1px;
+}
+
+.statusSensor {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoSensor1 {
+  display: flex;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.sensor_imgFunc img {
+  background-color: #E7E7E7;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.sensor_imgFunc {
+  margin-right: 20px;
+}
+
+.sensorVeiculo,
+.sensorVeiculoTipo {
+  color: #7D7D7D;
+  font-size: 0.8rem;
+}
+
+.infoSensor2 {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.infoSensor3 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.subInfoSensor1 {
+  width: 100%;
+  background-color: #F6F6F6;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  gap: 3px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.botaoChamado {
+  display: flex;
+  align-items: flex-end;
+}
+
+.botaoChamado button {
+  background-color: #797979;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.alerta_exibirSensor {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.titulo_frota {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.frota_exibir {
+  margin-top: 20px;
+  height: 100px;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.frotaStatus {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.card-notificacaoFrota {
+  width: 350px;
+  height: 100%;
+  background-color: #F8F8F8;
+  border-radius: 15px;
+  padding: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.frotaImg {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #D7EEFF;
+  border-radius: 50%;
+}
+
+.veiculosEmpresa {
+  padding: 50px;
+}
+
+.tituloVeiculoEmpresa {
+  width: 100%;
+  font-size: 1.9rem;
+}
+
+.exibirCards {
+  padding: 30px;
+}
+
+
+
+
+/*  */
+
+.bolinha_status {
+  padding: 3px;
+  background-color: green;
+  border-radius: 50%;
+  width: 1px;
+  height: 1px;
+}
+
+.statusVeiculo {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoVeiculo1 {
+  display: flex;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.Veiculo_imgFunc img {
+  background-color: #E7E7E7;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.Veiculo_imgFunc {
+  margin-right: 20px;
+}
+
+.Veiculo,
+.VeiculoTipo {
+  color: #7D7D7D;
+  font-size: 0.8rem;
+}
+
+.infoVeiculo2 {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  gap: 10px;
+}
+
+.botao_acessar {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao_acessar button {
+  background-color: #797979;
+  border: none;
+  color: #fff;
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+/*  */
+
+.cardVeiculos {
+  background-color: #F8F8F8;
+  width: 350px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardVeiculos .front,
+.cardVeiculos .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.cardVeiculos .front {
+  background-color: #f8f8f8;
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+}
+
+.cardVeiculos .back {
+  background-color: #f8f8f8;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cardVeiculos:hover .front {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cardVeiculos:hover .back {
+  opacity: 1;
+  visibility: visible;
+  z-index: 3;
+}
