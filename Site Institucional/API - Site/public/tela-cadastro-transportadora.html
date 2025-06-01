@@ -63,8 +63,8 @@
       <button class="botao_apagar" onclick="apagar()">
         <img src="assets/img/lixeira.svg" alt="">
       </button>
-      <button class="botao_entrar" onclick="gerar_codigo()">
-        entrar
+      <button class="botao_entrar" onclick="cadastrar()">
+        cadastrar
       </button>
     </div>
   </div>
@@ -81,32 +81,8 @@
     input_senhaTransportadora.value = ""
   }
 
-  function gerar_codigo() {
-    var codigoValidacao = Math.random()
-    var resultado = Math.floor(codigoValidacao * 1000000)
-    var listaCodigos = [];
+  function cadastrar() {
 
-    fetch("/usuarios/codigo")
-      .then(res => res.json())
-      .then(todos_codigo => {
-        listaCodigos = todos_codigo;
-        for (var i = 0; i < listaCodigos.length; i++) {
-          if (listaCodigos[i] == resultado) {
-            resultado = Math.floor(codigoValidacao * 1000000);
-          } else {
-            console.log(`Código válido`)
-            sessionStorage.CODIGO = "ATV" + resultado;
-            console.log("Codigo valido: " + sessionStorage.CODIGO);
-            proximo()
-            break;
-          }
-        }
-      })
-  }
-
-  function proximo() {
-
-    var codigo_validacao = sessionStorage.CODIGO;
     var nomeVar = input_nomeTransportadora.value;
     var cnpjVar = input_cnpjTransportadora.value;
     var telVar = input_telTransportadora.value;
@@ -135,13 +111,9 @@
     } else if (senhaVar.length < 6) {
       div_condicao_cadastrar.innerHTML = `<div class="errado">A senha deve conter ao menos 6 caracteres</div>`;
 
-
-
       return false;
     } else if (!emailVar.includes("@")) {
       div_condicao_cadastrar.innerHTML = `<div class="errado">Informe um e-mail válido (deve possuir @ em seu endereço)</div>`;
-      ;
-
 
       return false;
     }
@@ -156,9 +128,7 @@
         cnpjServer: cnpjVar,
         telServer: telVar,
         emailServer: emailVar,
-        senhaServer: senhaVar,
-        resultadoServer: codigo_validacao
-
+        senhaServer: senhaVar
       }),
     })
       .then(function (resposta) {

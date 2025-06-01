@@ -49,8 +49,7 @@ function logar_transportadora(req, res) {
                     res.json({
                         idTransportadora: resultado[0].idTransportadora_cliente,
                         nomeTransportadora: resultado[0].nomeTransportadora_cliente,
-                        emailTransportadora: resultado[0].emailTransportadora_cliente,
-                        codigoAtivacao: resultado[0].codigoAtivacao,
+                        emailTransportadora: resultado[0].emailTransportadora_cliente
                     });
                 } else {
                     res.status(403).send("Email e/ou senhas inválidos");
@@ -70,7 +69,6 @@ function cadastrar_transportadora(req, res) {
     var telefone = req.body.telServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var codigo = req.body.resultadoServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -82,10 +80,8 @@ function cadastrar_transportadora(req, res) {
         res.status(400).send("Seu cnpj está undefined!");
     } else if (telefone == undefined) {
         res.status(400).send("Seu telefone está undefined!");
-    } else if (codigo == undefined) {
-        res.status(400).send("Seu codigo está undefined!");
     } else {
-        usuarioModel.cadastrar_transportadora(nome, email, senha, cnpj, telefone, codigo)
+        usuarioModel.cadastrar_transportadora(nome, email, senha, cnpj, telefone)
             .then(resultado => {
                 res.json(resultado);
             })
@@ -97,21 +93,6 @@ function cadastrar_transportadora(req, res) {
     }
 }
 
-function codigo(req, res) {
-    usuarioModel.codigo()
-        .then(resultado => {
-            if (resultado.length > 0) {
-                res.json(resultado);
-            } else {
-                res.status(404).send("Nenhum código encontrado.");
-            }
-        })
-        .catch(erro => {
-            console.log("Erro ao buscar códigos: ", erro);
-            res.status(500).json(erro.sqlMessage || erro);
-        });
-}
-
 function cadastrar_funcionario(req, res) {
 
     var nome = req.body.nomeServer;
@@ -119,15 +100,15 @@ function cadastrar_funcionario(req, res) {
     var tel = req.body.telServer;
     var cpf = req.body.cpfServer;
     var senha = req.body.senhaServer;
-    var codigoAtivacao = req.body.codigoAtivacaoServer;
+    var fkTransportadora_cliente = req.body.fkTransportadoraServer;
 
     // Valida se todos os campos necessários foram recebidos
-    if (!nome || !cpf || !senha || !codigoAtivacao) {
+    if (!nome || !cpf || !senha || !fkTransportadora_cliente) {
         // Retorna um status 400 (Bad Request) com uma mensagem de erro
         return res.status(400).json({ message: "Preencha todos os campos!" });
     }
 
-    usuarioModel.cadastrar_funcionario(codigoAtivacao, email, nome, cpf, tel, senha)
+    usuarioModel.cadastrar_funcionario(fkTransportadora_cliente, email, nome, cpf, tel, senha)
         .then(resultado => {
             // Retorna o resultado do cadastro do funcionário em JSON
             res.json(resultado);
@@ -146,6 +127,5 @@ module.exports = {
     logar,
     logar_transportadora,
     cadastrar_transportadora,
-    cadastrar_funcionario,
-    codigo
+    cadastrar_funcionario
 };

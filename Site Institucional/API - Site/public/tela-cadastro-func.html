@@ -85,7 +85,7 @@
 </html>
 <script>
 
-    const fkTransportadora = "ATV123456"
+    const fkTransportadora = 3
 
     function cadastrarFuncionario() {
 
@@ -94,7 +94,7 @@
         var telVar = input_telfuncionario.value
         var cpfVar = input_cpfFunc.value;
         var senhaVar = input_senha.value;
-        var codigoAtivacaoVar = fkTransportadora;
+        var fkTransportadora_clienteVar = fkTransportadora;
 
         fetch("/usuarios/cadastrar_funcionario", {
             method: "POST",
@@ -107,7 +107,7 @@
                 telServer: telVar,
                 cpfServer: cpfVar,
                 senhaServer: senhaVar,
-                codigoAtivacaoServer: codigoAtivacaoVar
+                fkTransportadoraServer: fkTransportadora_clienteVar
             })
         })
             .then(res => {

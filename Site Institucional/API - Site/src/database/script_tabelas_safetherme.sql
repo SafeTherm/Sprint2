@@ -9,7 +9,6 @@ CREATE TABLE transportadora_cliente (
     telefoneTransportadora_cliente VARCHAR(15) NOT NULL,
     emailTransportadora_cliente VARCHAR(60) NOT NULL UNIQUE,
     senhaTransportadora_cliente VARCHAR(255) NOT NULL,
-    codigoAtivacao VARCHAR(10) UNIQUE,
     dataCriacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.%')
 );
@@ -17,7 +16,7 @@ CREATE TABLE transportadora_cliente (
 -- Tabela funcionario
 CREATE TABLE funcionario (
     idFuncionario INT AUTO_INCREMENT PRIMARY KEY,
-    fkTransportadora_cliente VARCHAR(10) NOT NULL,
+    fkTransportadora_cliente INT NOT NULL,
     emailFuncionario VARCHAR(100) NOT NULL UNIQUE,
     nomeFuncionario VARCHAR(60) NOT NULL,
     cpfFuncionario VARCHAR(14) NOT NULL UNIQUE,  -- Formato: 000.000.000-00
@@ -25,20 +24,22 @@ CREATE TABLE funcionario (
     senhaAcesso VARCHAR(255) NOT NULL,
     imagemPerfil_funcionario TEXT,
     dataContratacao DATE,
-    statusFuncionario ENUM('ATIVO', 'INATIVO', 'FERIAS') DEFAULT 'ATIVO',
     CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora_cliente) 
-        REFERENCES transportadora_cliente(codigoAtivacao)
+        REFERENCES transportadora_cliente(idTransportadora_cliente)
 );
 
 -- Tabela veiculo
 CREATE TABLE veiculo (
     idVeiculo INT PRIMARY KEY AUTO_INCREMENT,
     fkTransportadora_cliente INT NOT NULL,
+    fkFuncionario INT,
     placaVeiculo VARCHAR(10) NOT NULL UNIQUE,  -- Ex: ABC1D23
     modelo VARCHAR(25) NOT NULL,
     capacidade DECIMAL(10,2) COMMENT 'Capacidade em kg',
     anoFabricacao YEAR,
     statusVeiculo ENUM('OPERANTE', 'MANUTENCAO', 'DESATIVADO') DEFAULT 'OPERANTE',
+    CONSTRAINT dkVeiculoFuncionario FOREIGN KEY (fkFuncionario)
+		REFERENCES funcionario(idFuncionario),
     CONSTRAINT fkVeiculoTransportadora FOREIGN KEY (fkTransportadora_cliente) 
         REFERENCES transportadora_cliente(idTransportadora_cliente)
 );
