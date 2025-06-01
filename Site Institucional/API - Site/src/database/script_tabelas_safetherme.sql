@@ -1,74 +1,81 @@
-CREATE DATABASE transporte_de_medicamentos_termolabeis;
+CREATE DATABASE IF NOT EXISTS transporte_de_medicamentos_termolabeis;
 USE transporte_de_medicamentos_termolabeis;
 
 -- Tabela transportadora_cliente
 CREATE TABLE transportadora_cliente (
     idTransportadora_cliente INT PRIMARY KEY AUTO_INCREMENT,
-    nomeTransportadora_cliente VARCHAR(60),
-    cnpjTransportadora_cliente CHAR(14),
-    telefoneTransportadora_cliente CHAR(13),
-    emailTransportadora_cliente VARCHAR(60),
-    senhaTransportadora_cliente VARCHAR(20),
-    codigoAtivacao VARCHAR(10) UNIQUE,  -- <- ESSA LINHA É ESSENCIAL
-    CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.com')
+    nomeTransportadora_cliente VARCHAR(60) NOT NULL,
+    cnpjTransportadora_cliente CHAR(14) NOT NULL UNIQUE,
+    telefoneTransportadora_cliente VARCHAR(15) NOT NULL,
+    emailTransportadora_cliente VARCHAR(60) NOT NULL UNIQUE,
+    senhaTransportadora_cliente VARCHAR(255) NOT NULL,
+    codigoAtivacao VARCHAR(10) UNIQUE,
+    dataCriacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.%')
 );
 
 -- Tabela funcionario
 CREATE TABLE funcionario (
-    idFuncionario INT auto_increment,
-    fkTransportadora VARCHAR(10),
-    emailFuncionario VARCHAR(100) UNIQUE,
-    nomeFuncionario VARCHAR(60),
-    cpfFuncionario 	VARCHAR(20),
-    telefoneFuncionario VARCHAR(14),
-    senhaAcesso VARCHAR(20),
-	imagemPerfil_funcionario TEXT,
-    CONSTRAINT pkComposta PRIMARY KEY (idFuncionario, fkTransportadora),
-    CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora) REFERENCES transportadora_cliente(codigoAtivacao),
-    CONSTRAINT chkEmail2 CHECK (emailFuncionario LIKE '%@%.com')
+    idFuncionario INT AUTO_INCREMENT PRIMARY KEY,
+    fkTransportadora_cliente VARCHAR(10) NOT NULL,
+    emailFuncionario VARCHAR(100) NOT NULL UNIQUE,
+    nomeFuncionario VARCHAR(60) NOT NULL,
+    cpfFuncionario VARCHAR(14) NOT NULL UNIQUE,  -- Formato: 000.000.000-00
+    telefoneFuncionario VARCHAR(15) NOT NULL,
+    senhaAcesso VARCHAR(255) NOT NULL,
+    imagemPerfil_funcionario TEXT,
+    dataContratacao DATE,
+    statusFuncionario ENUM('ATIVO', 'INATIVO', 'FERIAS') DEFAULT 'ATIVO',
+    CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora_cliente) 
+        REFERENCES transportadora_cliente(codigoAtivacao)
 );
 
-
+-- Tabela veiculo
 CREATE TABLE veiculo (
-    idVeiculo INT PRIMARY KEY,
-    fkEmpresaTransportadora INT,
-    fkVeiculoFuncionario INT,
-    placaVeiculo CHAR(10),
-    modelo VARCHAR(25),
-    CONSTRAINT fkVeiculoEmpresa FOREIGN KEY (fkEmpresaTransportadora) REFERENCES transportadora_cliente(idTransportadora_cliente),
-    CONSTRAINT fkVeiculoFuncionario FOREIGN KEY (fkVeiculoFuncionario) REFERENCES funcionario(idFuncionario)
+    idVeiculo INT PRIMARY KEY AUTO_INCREMENT,
+    fkTransportadora_cliente INT NOT NULL,
+    placaVeiculo VARCHAR(10) NOT NULL UNIQUE,  -- Ex: ABC1D23
+    modelo VARCHAR(25) NOT NULL,
+    capacidade DECIMAL(10,2) COMMENT 'Capacidade em kg',
+    anoFabricacao YEAR,
+    statusVeiculo ENUM('OPERANTE', 'MANUTENCAO', 'DESATIVADO') DEFAULT 'OPERANTE',
+    CONSTRAINT fkVeiculoTransportadora FOREIGN KEY (fkTransportadora_cliente) 
+        REFERENCES transportadora_cliente(idTransportadora_cliente)
 );
 
+-- Tabela sensor
 CREATE TABLE sensor (
     idSensor INT PRIMARY KEY AUTO_INCREMENT,
-    tipoSensor CHAR(12),
-    statusSensor CHAR(10),
-    dtInstalacaoSensor DATE,
-    fkVeiculoSensor INT,
-    CONSTRAINT chkTipoSensor CHECK (tipoSensor IN ('DHT11', 'LM35')),
-    CONSTRAINT chkStatus CHECK (statusSensor IN ('ATIVO', 'INATIVO')),
-    CONSTRAINT chkVeiculoSensor FOREIGN KEY (fkVeiculoSensor) REFERENCES veiculo(idVeiculo)
+    fkVeiculo INT NOT NULL,
+    tipoSensor ENUM('DHT11', 'LM35') NOT NULL,
+    funcaoSensor ENUM('TEMPERATURA', 'UMIDADE') NOT NULL,
+    localizacao VARCHAR(50) NOT NULL COMMENT 'Posição no veículo',
+    statusSensor ENUM('ATIVO', 'INATIVO', 'MANUTENCAO') DEFAULT 'ATIVO',
+    dtInstalacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_sensor_veiculo FOREIGN KEY (fkVeiculo) 
+        REFERENCES veiculo(idVeiculo)
 );
 
-CREATE TABLE dadosSensor (
-	fkSensor INT,
-    idDados INT AUTO_INCREMENT,
-    temperatura DECIMAL(5,2),
-    umidade DECIMAL(5,2),
-    PRIMARY KEY (idDados),
-    FOREIGN KEY (fkSensor)
-		references sensor(idSensor)
+-- Tabela leitura_sensor
+CREATE TABLE leitura_sensor (
+    idLeitura INT AUTO_INCREMENT PRIMARY KEY,
+    fkSensor INT NOT NULL,
+    valor DECIMAL(5,2) NOT NULL,
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_leitura_sensor FOREIGN KEY (fkSensor) 
+        REFERENCES sensor(idSensor)
 );
 
+-- Tabela alerta
 CREATE TABLE alerta (
-    fkSensor INT,
-    fkDados INT,
-    dataAlerta DATETIME,
-    statusAlerta VARCHAR(45),
-    CONSTRAINT chkAlerta CHECK (statusAlerta in ("Ok", "Atenção", "Crítico")),
-    PRIMARY KEY (fkSensor, fkDados),
-    CONSTRAINT fkSensorAlerta FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor),
-    CONSTRAINT fkDadosAlerta FOREIGN KEY (fkDados) REFERENCES dadosSensor(idDados)
+    idAlerta INT AUTO_INCREMENT PRIMARY KEY,
+    fkLeitura INT NOT NULL,
+    tipoAlerta ENUM('TEMPERATURA_ALTA', 'TEMPERATURA_BAIXA', 'UMIDADE_ALTA', 'UMIDADE_BAIXA') NOT NULL,
+    descricao VARCHAR(255),
+    dataAlerta DATETIME DEFAULT CURRENT_TIMESTAMP,
+    statusAlerta ENUM('PENDENTE', 'RESOLVIDO') DEFAULT 'PENDENTE',
+    CONSTRAINT fk_alerta_leitura FOREIGN KEY (fkLeitura) 
+        REFERENCES leitura_sensor(idLeitura)
 );
 
 -- Inserindo dados na tabela transportadora_cliente
@@ -78,10 +85,10 @@ VALUES
 ('Transportadora Beta', '98765432000155', '21912345678', 'contato@beta.com', 'senha456', 'ATV987654');
 
 -- Inserindo dados na tabela funcionario
-INSERT INTO funcionario (fkTransportadora, emailFuncionario, nomeFuncionario, cpfFuncionario, senhaAcesso)
+INSERT INTO funcionario (fkTransportadora_cliente, emailFuncionario, nomeFuncionario, cpfFuncionario, telefoneFuncionario, senhaAcesso)
 VALUES 
-('ATV123456', 'joao@alpha.com', 'João Silva', '12345678901', 'func123'),
-('ATV123456', 'maria@beta.com', 'Maria Oliveira', '98765432100', 'func456');
+('ATV123456', 'joao@alpha.com', 'João Silva', '12345678901', '11951742393', 'func123'),
+('ATV123456', 'maria@beta.com', 'Maria Oliveira', '98765432100', '11951742333', 'func456');
 
 select * from funcionario;
 select * from transportadora_cliente;
