@@ -20,38 +20,19 @@
     <section class="conteudo">
         <header>
             <div class="box-nav-logo">
-                <a href="">
+                <a href="index.html">
                     <h1><img src="assets/img/logo.png">Safe <span>Therm</span></h1>
                 </a>
             </div>
             <div class="pesquisar-placa">
-                <input type="text" id="input_placa" placeholder="pesquisar placa...">
-                <button onclick="pesquisar()">
+                <input type="text" id="input_placa" placeholder="pesquisar placa..." oninput="pesquisaFunc()">
+                <div>
                     <img src="assets/img/lupa.svg" alt="">
-                </button>
+                </div>
 
 
                 <!-- essa div é display none, com o oninput ela aparece -->
-                <div class="resultado_pesquisa" style="display: none;">
-
-
-                    <!-- div com += -->
-                    <div class="info_funcionarios">
-                        <img src="" alt="">
-                        <div class="informacoes_func">
-                            <div class="nome">
-                                nome do funcionario
-                            </div>
-                            <div class="info_veiculo">
-                                <div class="placa">
-                                    veículo: CXPT-2EW3
-                                </div>
-                                <div class="tipo_veiculo">
-                                    caminhão: Fiat Ducato
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="resultado_pesquisa" style="display: none;" id="div_resultado_pesquisa">
 
 
                     <!-- div com += -->
@@ -74,18 +55,12 @@
 
                 </div>
             </div>
-            <div class="sino">
-                <button onclick="notificacao()">
-                    <img src="assets/img/sino de notificação.svg" alt="">
-                </button>
-            </div>
-            <div class="user_perfil">
+            <div class="user_perfil" id="div_userPerfil">
                 <div id="infos-user">
                     <h3>Roberta Silva</h3>
                     <h4>roberta@therm.com</h4>
                 </div>
-                <img src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
-                    alt="">
+                <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
             </div>
         </header>
 
@@ -193,7 +168,7 @@
 
                 </div>
 
-                <div class="frota_exibir">
+                <div class="frota_exibir" id="div_cardFrota">
 
                     <div>
                         Total: 30
@@ -309,22 +284,81 @@
 
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
     </section>
-
-
 </body>
 
 </html>
+
+<script>
+    var idUsuario = sessionStorage.ID_USUARIO
+    var nomeUsuario = sessionStorage.NOME_USUARIO
+    var emailUsuario = sessionStorage.EMAIL_USUARIO
+    var fotoPerfil = sessionStorage.FOTO_PERFIL
+
+    window.onload = function () {
+
+        console.log(nomeUsuario)
+        div_userPerfil.innerHTML = `
+            <div id="infos-user">
+                <h3>${nomeUsuario}</h3>
+                <h4>${emailUsuario}</h4>
+            </div>
+            <img src="assets/imagens de perfil/${fotoPerfil}" alt="">`
+
+
+        listarFrota()
+    }
+
+    function listarFrota() {
+        fetch(`dashboard/listarFrota/${idUsuario}`)
+            .then(res => res.json())
+            .then(qtdVeiculos => {
+                console.log(qtdVeiculos[0])
+                var qtd = qtdVeiculos[0].qtdVeiculo
+
+                div_cardFrota.innerHTML = `
+                <div>
+                    Total: ${qtd}
+                </div>`
+
+                fetch(`dashboard/listarVeiculosEmRota/${idUsuario}`)
+                    .then(res => res.json())
+                    .then(qtdVeiculosRota => {
+
+                        var veiculosEmRota = qtdVeiculosRota[0].veiculosEmRota
+
+                        console.log(veiculosEmRota)
+
+                        div_cardFrota.innerHTML += `
+                    <div>
+                        Em rota: ${veiculosEmRota}
+                    </div>`
+                    })
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    function pesquisaFunc() {
+
+        fetch(`dashboard/barraPesquisa/${idUsuario}`)
+            .then(res => res.json())
+            .then(dados_pesquisa => {
+                console.log(dados_pesquisa)
+            })
+    }
+
+
+
+
+</script>

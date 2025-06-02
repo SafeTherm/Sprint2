@@ -9,6 +9,7 @@ CREATE TABLE transportadora_cliente (
     telefoneTransportadora_cliente VARCHAR(15) NOT NULL,
     emailTransportadora_cliente VARCHAR(60) NOT NULL UNIQUE,
     senhaTransportadora_cliente VARCHAR(255) NOT NULL,
+    logo TEXT
     dataCriacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.%')
 );
@@ -80,16 +81,16 @@ CREATE TABLE alerta (
 );
 
 -- Inserindo dados na tabela transportadora_cliente
-INSERT INTO transportadora_cliente (nomeTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente, codigoAtivacao)
+INSERT INTO transportadora_cliente (nomeTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente)
 VALUES 
-('Transportadora Alpha', '12345678000199', '11987654321', 'contato@alpha.com', 'senha123', 'ATV123456'),
-('Transportadora Beta', '98765432000155', '21912345678', 'contato@beta.com', 'senha456', 'ATV987654');
+('Transportadora Alpha', '12345678000199', '11987654321', 'contato@alpha.com', 'senha123'),
+('Transportadora Beta', '98765432000155', '21912345678', 'contato@beta.com', 'senha456');
 
 -- Inserindo dados na tabela funcionario
 INSERT INTO funcionario (fkTransportadora_cliente, emailFuncionario, nomeFuncionario, cpfFuncionario, telefoneFuncionario, senhaAcesso)
 VALUES 
-('ATV123456', 'joao@alpha.com', 'João Silva', '12345678901', '11951742393', 'func123'),
-('ATV123456', 'maria@beta.com', 'Maria Oliveira', '98765432100', '11951742333', 'func456');
+(1, 'joao@alpha.com', 'João Silva', '12345678901', '11951742393', 'func123'),
+(1, 'maria@beta.com', 'Maria Oliveira', '98765432100', '11951742333', 'func456');
 
 select * from funcionario;
 select * from transportadora_cliente;

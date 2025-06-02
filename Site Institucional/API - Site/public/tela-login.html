@@ -78,17 +78,18 @@
                     console.log(resposta);
 
                     resposta.json().then(json => {
-                        console.log(json)
+                        console.log(json[0])
                         console.log(JSON.stringify(json))
                         sessionStorage.ID_USUARIO = json.idUsuario
                         sessionStorage.NOME_USUARIO = json.nome
-                        sessionStorage.EMAIL_USUARIO = json.emailServer
+                        sessionStorage.EMAIL_USUARIO = json.email
+                        sessionStorage.FOTO_PERFIL = json.imagemPerfil_funcionario
 
 
                         div_condicao_cadastrar.innerHTML = `<div class="certo">Login realizado com sucesso!</div>`
 
                         setTimeout(() => {
-                            // window.location = "dashboard.html"
+                            window.location = "dashboard-geral.html"
                         }, 1000)
                     })
                 } else {
@@ -117,12 +118,14 @@
                                 sessionStorage.ID_USUARIO = json.idTransportadora
                                 sessionStorage.NOME_USUARIO = json.nomeTransportadora
                                 sessionStorage.EMAIL_USUARIO = json.emailTransportadora
-                                sessionStorage.CODIGO = json.codigoAtivacao
+                                sessionStorage.FOTO_PERFIL = json.logo
+
+                                console.log(json.idTransportadora, json.nomeTransportadora, json.emailTransportadora, json.logo)
 
                                 div_condicao_cadastrar.innerHTML = `<div class="certo">Login realizado com sucesso!</div>`
 
                                 setTimeout(() => {
-                                    // window.location = "dashboard.html"
+                                    window.location = "dashboard-geral.html"
                                 }, 1000)
                             })
                         } else {

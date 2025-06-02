@@ -49,7 +49,8 @@ function logar_transportadora(req, res) {
                     res.json({
                         idTransportadora: resultado[0].idTransportadora_cliente,
                         nomeTransportadora: resultado[0].nomeTransportadora_cliente,
-                        emailTransportadora: resultado[0].emailTransportadora_cliente
+                        emailTransportadora: resultado[0].emailTransportadora_cliente,
+                        logo: resultado[0].logo
                     });
                 } else {
                     res.status(403).send("Email e/ou senhas inválidos");
@@ -81,7 +82,7 @@ function cadastrar_transportadora(req, res) {
     } else if (telefone == undefined) {
         res.status(400).send("Seu telefone está undefined!");
     } else {
-        usuarioModel.cadastrar_transportadora(nome, email, senha, cnpj, telefone)
+        usuarioModel.cadastrar_transportadora(nome, cnpj, telefone, email, senha)
             .then(resultado => {
                 res.json(resultado);
             })
