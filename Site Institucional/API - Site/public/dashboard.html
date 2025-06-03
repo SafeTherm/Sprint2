@@ -21,14 +21,23 @@
         <header>
             <nav>
                 <input type="text" placeholder="pesquisar veiculo...">
-                <select name="sel" id="" >
-                    <option value="">selecionar</option>
-                </select>
-                <select name="sel" id="" >
-                    <option value="">selecionar</option>
-                </select>
+                <div class="boxSelects">
+                    <select name="sel" id="" >
+                        <option value="">selecionar</option>
+                    </select>
+                    <select name="sel" id="" >
+                        <option value="">selecionar</option>
+                    </select>
+                </div>
             </nav>
             <div class="user_perfil">
+                <button class="selectUser" onclick="abrirLogout()" id="btnLogout"></button>
+                <div id="divLogout">
+                    <a href="">INFO1</a>
+                    <a href="">INFO2</a>
+                    <a href="">INFO3</a>
+                    <button onclick="">SAIR</button>
+                </div>
                 <div id="infos-user">
                     <h3>Roberta Silva</h3>
                     <h4>roberta@therm.com</h4>
@@ -43,3 +52,19 @@
 </body>
 
 </html>
+<script>
+
+    function abrirLogout() {
+        btnLogout.classList.toggle("effeitoLogout");
+
+        if(btnLogout.classList.contains("effeitoLogout")){
+            divLogout.style.display = "flex"
+            divLogout.classList.add("animacaoUser")
+        }else{
+            divLogout.classList.remove("animacaoUser")
+            divLogout.style.display = "none"
+        }
+    }
+
+
+</script>
