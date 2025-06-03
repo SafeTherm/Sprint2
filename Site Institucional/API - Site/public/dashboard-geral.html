@@ -25,7 +25,8 @@
                 </a>
             </div>
             <div class="pesquisar-placa">
-                <input type="text" id="input_placa" placeholder="pesquisar placa..." oninput="pesquisaFunc()">
+                <input type="text" id="input_placa" placeholder="pesquisar funcionario/placa..."
+                    oninput="pesquisaFunc()">
                 <div>
                     <img src="assets/img/lupa.svg" alt="">
                 </div>
@@ -54,7 +55,9 @@
                     </div>
 
                 </div>
+
             </div>
+
             <div class="user_perfil" id="div_userPerfil">
                 <div id="infos-user">
                     <h3>Roberta Silva</h3>
@@ -96,7 +99,7 @@
                 <div class="titulo">
                     Falhas nos sensores
                 </div>
-                <div class="alerta_exibirSensor">
+                <div class="alerta_exibirSensor" id="div_alerta_exibirSensor">
 
 
                     <div class="notificacao-alertaSensor">
@@ -157,6 +160,30 @@
 
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             <div class="card-notificacaoFrota">
@@ -284,6 +311,7 @@
 
                 </div>
             </div>
+        </div>
     </section>
 </body>
 
@@ -307,6 +335,7 @@
 
 
         listarFrota()
+        alertaSensor()
     }
 
     function listarFrota() {
@@ -350,15 +379,146 @@
     }
 
     function pesquisaFunc() {
+        var conteudo_pesquisa = input_placa.value
 
-        fetch(`dashboard/barraPesquisa/${idUsuario}`)
-            .then(res => res.json())
-            .then(dados_pesquisa => {
-                console.log(dados_pesquisa)
-            })
+        if (conteudo_pesquisa === "") {
+            div_resultado_pesquisa.style.display = "none"
+        } else {
+            div_resultado_pesquisa.style.display = "flex"
+
+            fetch(`dashboard/barraPesquisa/${idUsuario}/${conteudo_pesquisa}`)
+                .then(res => res.json())
+                .then(dados_pesquisa => {
+
+                    div_resultado_pesquisa.innerHTML = ""
+
+                    for (let i = 0; i < dados_pesquisa.length; i++) {
+                        let dados = dados_pesquisa[i]
+
+                        var imagemFunc = dados.imagemPerfil_funcionario
+                        var idFuncionario = dados.idFuncionario
+                        var nomeFuncionario = dados.nomeFuncionario
+                        var idVeiculo = dados.idVeiculo
+                        var placaVeiculo = dados.placaVeiculo
+                        var modeloVeiculo = dados.modelo
+
+                        div_resultado_pesquisa.innerHTML += `
+                        <div class="info_funcionarios">
+                        <img src="assets/imagens de perfil/${imagemFunc}" alt="">
+                        <div class="informacoes_func">
+                            <div class="nome">
+                                ${nomeFuncionario}
+                            </div>
+                                <div class="info_veiculo">
+                                    <div class="placa">
+                                        veículo: ${placaVeiculo}
+                                    </div>
+                                    <div class="tipo_veiculo">
+                                        caminhão: ${modeloVeiculo}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                    }
+                })
+
+        }
     }
 
+    function alertaSensor() {
 
+        fetch(`/dashboard/alertaSensor/veiculosRota/${idUsuario}`)
+            .then(res => res.json())
+            .then(qtdVeiculosRota => {
+                if (qtdVeiculosRota.length > 0) {
+
+                    for (let i = 0; i < qtdVeiculosRota.length; i++) {
+                        var idVeiculo = qtdVeiculosRota[i].idVeiculo
+
+                        fetch(`/dashboard/alertaSensor/infoMotorista/${idVeiculo}`)
+                            .then(res => res.json())
+                            .then(infoMotorista => {
+                                console.log(infoMotorista)
+
+                                var imagemPerfil_funcionario = infoMotorista[i].imagemPerfil_funcionario
+                                var nomeFuncionario = infoMotorista[i].nomeFuncionario
+                                var placaVeiculo = infoMotorista[i].placaVeiculo
+                                var modelo = infoMotorista[i].modelo
+
+                                div_alerta_exibirSensor.innerHTML += `
+                                    <div class="notificacao-alertaSensor" id="alertaSensor_${idVeiculo}">
+                                    <div class="statusSensor">
+                                        <div class="bolinha_status"></div>
+                                        <div class="status">
+                                            ATIVO
+                                        </div>
+                                    </div>
+
+                                    <div class="infoSensor1">
+                                        <div class="sensor_imgFunc">
+                                            <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                                        </div>
+                                        <div class="subInfoSensor">
+                                            <div class="sensorNomeFunc">
+                                                ${nomeFuncionario}
+                                            </div>
+                                            <div class="sensorVeiculo">
+                                                veículo: ${placaVeiculo}
+                                            </div>
+                                            <div class="sensorVeiculoTipo">
+                                                caminhão: ${modelo}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>`
+
+                                fetch(`/dashboard/alertaSensor/defeitoSensor/${idVeiculo}`)
+                                    .then(res => res.json())
+                                    .then(statusSensor => {
+                                        console.log(statusSensor)
+
+                                        var div = document.getElementById(`alertaSensor_${idVeiculo}`)
+                                        var mensagem = `
+                                            <div class="infoSensor2" id="infoSensor2_${idVeiculo}">
+                                            <div class="sensorStatus">
+                                                STATUS: Exige manutenção
+                                            </div>
+                                            <div class="infoSensor3">
+                                                <div class="subInfoSensor1">`;
+
+                                        for (let i = 0; i < statusSensor.length; i++) {
+                                            var status = statusSensor[i].statusSensor;
+                                            var localizacao = statusSensor[i].localizacao;
+
+                                            if (status == "COM DEFEITO") {
+                                                mensagem += `
+                                                <div style="color: red;">
+                                                    ${localizacao}: DEFEITO
+                                                </div>`;
+                                            } else {
+                                                mensagem += `
+                                                <div style="color: green;">
+                                                    ${localizacao}: OK
+                                                </div>`;
+                                            }
+                                        }
+
+                                        mensagem += `
+                                            </div>
+                                                    <div class="botaoChamado">
+                                                        <button onclick="chamado()">chamado</button>
+                                                    </div>
+                                                </div>
+                                            </div>`;
+
+                                        div.innerHTML += mensagem;
+                                    });
+                            })
+
+                    }
+                }
+            })
+    }
 
 
 </script>

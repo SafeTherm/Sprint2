@@ -1,39 +1,42 @@
-#include "DHT.h" //  chamar biblioteca 
+#include "DHT.h"
 
+#define TIPO_SENSOR DHT11
 
-#define TIPO_SENSOR DHT11 // definir o sensor DHT11
-const int PINO_SENSOR_DHT11 = A1; // armazena dados de saída da porta analogica 
-const int PINO_SENSOR_TEMPERATURA = A0; // armazena dados de saída da porta analogica
-float temperaturaCelsius; // variável para armazenar a temperatura lida
+const int PINO_DHT_REAL = A1;
+const int PINO_LM35_REAL = A0;
 
-DHT sensorDHT(PINO_SENSOR_DHT11, TIPO_SENSOR);
-void setup(){
-// configura taxa de transferência em bauds
-Serial.begin(9600); //bits por segundo de transferência 
-sensorDHT.begin();
+DHT sensorDHT(PINO_DHT_REAL, TIPO_SENSOR);
+
+float temperaturaLMReal = 0;
+
+// Simulados
+float temperaturaDHTSimulada = 23.5;  // temp inferior
+float umidadeSimulada = 60.0;         // umid inferior
+
+void setup() {
+  Serial.begin(9600);
+  sensorDHT.begin();
 }
 
-// Função que será executada de forma continua
-void loop() { 
-float umidade = sensorDHT.readHumidity(); // leitura da umidade
-float temperatura = sensorDHT.readTemperature(); // leitura da temperatura
-int tempmax = 28; // valores simulado
-int tempmin = 22;
-int umimax = 80;
-int umimin = 50;
-int valorLeitura = analogRead(PINO_SENSOR_TEMPERATURA); // precisão do A/D ->
-temperaturaCelsius = (valorLeitura * 5.0 / 1023.0) / 0.01; // 5 se refere aos volts ; 1023 a unidade ; 0.01 mV 
+void loop() {
+  float umidadeReal = sensorDHT.readHumidity();
+  float temperaturaDHTReal = sensorDHT.readTemperature();
 
-if (isnan(temperatura) || isnan(umidade)) { // condição para iniciar leitura dos dados
-  Serial.println("Erro ao ler os dados do sensor");
-}else {
- // inicia a impressão dos dados 
-Serial.print(umidade); // referente ao nome da label no gráfico
+  int leituraLM = analogRead(PINO_LM35_REAL);
+  temperaturaLMReal = (leituraLM * 5.0 / 1023.0) / 0.01;
 
-Serial.print(";"); // espaçamento entre os dados
-Serial.println(temperatura);
+  if (isnan(umidadeReal) || isnan(temperaturaDHTReal)) {
+    Serial.println("Erro ao ler os dados dos sensores");
+  } else {
+    // tempSup;umidSup;tempInf;umidInf
+    Serial.print(temperaturaDHTReal);
+    Serial.print(";");
+    Serial.print(umidadeReal);
+    Serial.print(";");
+    Serial.print(temperaturaDHTSimulada);
+    Serial.print(";");
+    Serial.println(umidadeSimulada);
+  }
 
-
-}
-delay(2000); // tempo para executar leitura novamente
+  delay(2000);
 }
