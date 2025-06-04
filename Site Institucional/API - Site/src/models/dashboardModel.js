@@ -58,11 +58,12 @@ function defeitoSensor(idVeiculo) {
               tipoSensor,
               funcaoSensor,
               localizacao,
+              statusSensor,
               MAX(l.dataHora) AS ultimaLeitura,
               CASE 
                   WHEN MAX(l.dataHora) IS NULL OR MAX(l.dataHora) < NOW() - INTERVAL 5 MINUTE 
                       THEN 'COM DEFEITO'
-                  ELSE 'ATIVO' END AS statusSensor FROM sensor 
+                  ELSE 'ATIVO' END AS statusSensorCase FROM sensor 
           	LEFT JOIN leitura_sensor l ON l.fkSensor = idSensor
           	WHERE fkVeiculo = ${idVeiculo}
           	GROUP BY idSensor;`;
@@ -73,12 +74,58 @@ function defeitoSensor(idVeiculo) {
 
 function infoMotorista(idVeiculo) {
   var instrucaoSql = `
-    SELECT f.nomeFuncionario, 
+    SELECT f.idFuncionario,
+      f.nomeFuncionario, 
       f.imagemPerfil_funcionario,
-       v.placaVeiculo,
-       v.modelo FROM funcionario as f JOIN veiculo as v 
+      v.placaVeiculo,
+      v.modelo FROM funcionario as f JOIN veiculo as v 
        ON v.fkFuncionario = f.idFuncionario
      WHERE v.idVeiculo = ${idVeiculo};`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+function alterarStatusDefeito(idSensor) {
+  var instrucaoSql = `
+    UPDATE sensor SET statusSensor = 'MANUTENCAO' WHERE idSensor = ${idSensor};`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
+
+function listarVeiculos(idTransportadora) {
+  var instrucaoSql = `
+    SELECT f.nomeFuncionario, f.imagemPerfil_funcionario, v.idVeiculo, v.placaVeiculo, v.modelo
+	  FROM funcionario AS f 
+    JOIN veiculo AS v ON v.fkFuncionario = f.idFuncionario 
+    WHERE f.fkTransportadora_cliente = ${idTransportadora};`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+function listarSensoresDefeito(idVeiculo) {
+  var instrucaoSql = `
+    SELECT * FROM sensor WHERE fkVeiculo = ${idVeiculo}`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+function media_veiculos(idVeiculo) {
+  var instrucaoSql = `
+    SELECT 
+      v.idVeiculo,
+      v.placaVeiculo,
+      DATE(ls.dataHora) AS data_leitura,
+      AVG(CASE WHEN s.funcaoSensor = 'TEMPERATURA' THEN ls.valor END) AS media_temperatura,
+      AVG(CASE WHEN s.funcaoSensor = 'UMIDADE' THEN ls.valor END) AS media_umidade
+        FROM veiculo v
+        JOIN sensor s ON v.idVeiculo = s.fkVeiculo
+        JOIN leitura_sensor ls ON s.idSensor = ls.fkSensor
+        WHERE v.idVeiculo = ${idVeiculo}
+      GROUP BY v.idVeiculo, v.placaVeiculo, DATE(ls.dataHora);`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql)
   return database.executar(instrucaoSql)
@@ -91,5 +138,9 @@ module.exports = {
   barraPesquisa,
   alertaSensorVrota,
   defeitoSensor,
-  infoMotorista
+  infoMotorista,
+  alterarStatusDefeito,
+  listarVeiculos,
+  listarSensoresDefeito,
+  media_veiculos
 };

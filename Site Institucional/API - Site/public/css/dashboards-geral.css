@@ -295,6 +295,14 @@ header a h1 img {
   height: 1px;
 }
 
+.bolinha_status_defeito {
+  padding: 3px;
+  background-color: red;
+  border-radius: 50%;
+  width: 1px;
+  height: 1px;
+}
+
 .statusSensor {
   width: 100%;
   display: flex;
@@ -427,12 +435,10 @@ header a h1 img {
 
 .exibirCards {
   padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-
-
-
-
-/*  */
 
 .bolinha_status {
   padding: 3px;

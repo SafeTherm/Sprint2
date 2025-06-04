@@ -29,6 +29,7 @@ CREATE TABLE funcionario (
         REFERENCES transportadora_cliente(idTransportadora_cliente)
 );
 
+
 -- Tabela veiculo
 CREATE TABLE veiculo (
     idVeiculo INT PRIMARY KEY AUTO_INCREMENT,
@@ -41,7 +42,8 @@ CREATE TABLE veiculo (
     CONSTRAINT fkVeiculoTransportadora FOREIGN KEY (fkTransportadora_cliente) 
         REFERENCES transportadora_cliente(idTransportadora_cliente)
 );
-
+SELECT f.nomeFuncionario, f.imagemPerfil_funcionario, v.idVeiculo, v.placaVeiculo, v.modelo
+	FROM funcionario AS f JOIN veiculo AS v ON v.fkFuncionario = f.idFuncionario WHERE f.fkTransportadora_cliente = 1;
 -- Tabela sensor
 CREATE TABLE sensor (
     idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -49,7 +51,7 @@ CREATE TABLE sensor (
     tipoSensor ENUM('DHT11', 'LM35') NOT NULL,
     funcaoSensor ENUM('TEMPERATURA', 'UMIDADE') NOT NULL,
     localizacao VARCHAR(50) NOT NULL COMMENT 'Posição no veículo',
-    statusSensor ENUM('ATIVO', 'INATIVO', 'MANUTENCAO') DEFAULT 'ATIVO',
+    statusSensor ENUM('ATIVO', 'MANUTENCAO') DEFAULT 'ATIVO',
     dtInstalacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_sensor_veiculo FOREIGN KEY (fkVeiculo) 
         REFERENCES veiculo(idVeiculo)
@@ -72,7 +74,6 @@ CREATE TABLE alerta (
     tipoAlerta ENUM('TEMPERATURA_ALTA', 'TEMPERATURA_BAIXA', 'UMIDADE_ALTA', 'UMIDADE_BAIXA') NOT NULL,
     descricao VARCHAR(255),
     dataAlerta DATETIME DEFAULT CURRENT_TIMESTAMP,
-    statusAlerta ENUM('PENDENTE', 'RESOLVIDO') DEFAULT 'PENDENTE',
     CONSTRAINT fk_alerta_leitura FOREIGN KEY (fkLeitura) 
         REFERENCES leitura_sensor(idLeitura)
 );
@@ -133,12 +134,12 @@ VALUES
 -- Inserindo leituras para sensores dos veículos em uso (sensores de ids 1–2, 3–4, 7–8, 9–10, 13–14)
 -- Sensor 1 e 2 (Veículo 1)
 INSERT INTO leitura_sensor (fkSensor, valor, dataHora) VALUES
-(1, 6.5, NOW() - INTERVAL 1 MINUTE),
+(1, 6.5, NOW() - INTERVAL 1 MINUTE),	
 (2, 75.0, NOW() - INTERVAL 1 MINUTE);
 -- Sensor 3 e 4 (Veículo 1)
 INSERT INTO leitura_sensor (fkSensor, valor, dataHora) VALUES
-(3, 7.1, NOW() - INTERVAL 20 MINUTE),
-(4, 80.2, NOW() - INTERVAL 20 MINUTE);
+(5, 7.1, NOW() - INTERVAL 1 MINUTE),
+(6, 80.2, NOW() - INTERVAL 1 MINUTE);
     
 select * from funcionario;
 select * from transportadora_cliente;
@@ -146,3 +147,16 @@ select * from sensor;
 select * from veiculo;
 select * from leitura_sensor order by dataHora desc;
 
+
+SELECT 
+    v.idVeiculo,
+    v.placaVeiculo,
+    DATE_FORMAT(ls.dataHora, '%Y-%m-%d') AS data_leitura,
+    AVG(CASE WHEN s.funcaoSensor = 'TEMPERATURA' THEN ls.valor END) AS media_temperatura,
+    AVG(CASE WHEN s.funcaoSensor = 'UMIDADE' THEN ls.valor END) AS media_umidade
+FROM veiculo v
+JOIN sensor s ON v.idVeiculo = s.fkVeiculo
+JOIN leitura_sensor ls ON s.idSensor = ls.fkSensor
+WHERE v.idVeiculo = 1
+  AND DATE(ls.dataHora) = CURDATE()
+GROUP BY v.idVeiculo, v.placaVeiculo, DATE(ls.dataHora);

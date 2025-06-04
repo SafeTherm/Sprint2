@@ -152,6 +152,95 @@ function infoMotorista(req, res) {
     }
 }
 
+function alterarStatusDefeito(req, res) {
+    var idSensor = req.body.idSensorServer;
+
+    if (idSensor === undefined) {
+        res.status(400).send("Seu idSensor está undefined!");
+    } else {
+        dashboardModel.alterarStatusDefeito(idSensor)
+            .then(resultado => {
+                res.json(resultado);
+            })
+            .catch(erro => {
+                console.log(erro);
+                console.log("\nHouve um erro ao altera o status do sensor! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
+function listarVeiculos(req, res) {
+    var idTransportadora = req.params.id
+
+    if (idTransportadora == undefined) {
+        res.status(400).sendo("Seu idFUncionario está indefinido")
+    } else {
+        dashboardModel.listarVeiculos(idTransportadora)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a lista de informação dos motoristas! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+}
+
+function listarSensoresDefeito(req, res) {
+    var idVeiculo = req.params.id
+
+    if (idVeiculo == undefined) {
+        res.status(400).sendo("Seu idFUncionario está indefinido")
+    } else {
+        dashboardModel.listarSensoresDefeito(idVeiculo)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a lista de informação dos motoristas! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+}
+
+function media_veiculos(req, res) {
+    var idVeiculo = req.params.id
+
+    if (idVeiculo == undefined) {
+        res.status(400).sendo("Seu idVeiculo está indefinido")
+    } else {
+        dashboardModel.media_veiculos(idVeiculo)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a busca pela media de temperatura e umidade! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+}
 
 module.exports = {
     listarFrota,
@@ -159,5 +248,9 @@ module.exports = {
     barraPesquisa,
     alertaSensorVrota,
     defeitoSensor,
-    infoMotorista
+    infoMotorista,
+    alterarStatusDefeito,
+    listarVeiculos,
+    listarSensoresDefeito,
+    media_veiculos
 }

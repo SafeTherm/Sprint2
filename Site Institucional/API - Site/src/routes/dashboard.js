@@ -20,12 +20,28 @@ router.get("/alertaSensor/veiculosRota/:id", function (req, res) {
     dashboardController.alertaSensorVrota(req, res);
 });
 
-router.get("/alertaSensor/defeitoSensor/:id", function (req, res) {
+router.get("/alertaSensor/defeitoSensorRota/:id", function (req, res) {
     dashboardController.defeitoSensor(req, res);
 });
 
 router.get("/alertaSensor/infoMotorista/:id", function (req, res) {
     dashboardController.infoMotorista(req, res);
+});
+
+router.post("/alertaSensor/statusSensor/defeito", function (req, res) {
+    dashboardController.alterarStatusDefeito(req, res);
+});
+
+router.get("/alertaSensor/listarVeiculos/:id", function (req, res) {
+    dashboardController.listarVeiculos(req, res);
+});
+
+router.get("/alertaSensor/listarSensoresDefeito/:id", function (req, res) {
+    dashboardController.listarSensoresDefeito(req, res);
+});
+
+router.get("/veiculos/media/:id", function (req, res) {
+    dashboardController.media_veiculos(req, res);
 });
 
 module.exports = router;
