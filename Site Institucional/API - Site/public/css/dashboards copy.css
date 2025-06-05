@@ -76,6 +76,21 @@ nav input{
 }
 
 
+nav .boxSelects{
+  display: flex;
+  justify-content: space-around;
+  height: 25px;
+  margin-top: 10px;
+  width: 250px;
+}
+
+nav .boxSelects select{
+  width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 
 
 
@@ -251,36 +266,6 @@ nav input{
 
 
 
-.conteudoGrafico{
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
-  gap: 1rem;
-  height: auto;
-  width: 100%;
-}
-
-.cardsEsquerda{
-  height: auto;
-  padding-top: 100px;
-  margin-left: 20px;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.cardsEsquerda #dezTemperaturaE,
-.cardsEsquerda #cincoTemperaturaE,
-.cardsEsquerda #realTemperaturaE{
-  margin-top: 110px;
-}
-
-
-.cardsDireita{
-  height: auto;
-  padding-top: 100px;
-  margin-right: 20px;
-}
-
 
 
 
@@ -292,33 +277,15 @@ nav input{
   gap: 2.5rem;
   width: 100%;
   max-height: 570px;
+  padding: 2%;
   padding-top: 80px;
   position: relative;
 }
 
-.boxSelects{
-  height: 40px;
-  position: absolute;
-  top: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  gap: 1.5rem;
-}
 .selecaoSensores{
-  height: 40px;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  padding: 0px 30px 0px 10px;
-  appearance: none;
-  background-image: url("../assets/icon/select.svg");
-  background-position: center right 10px;
-  background-repeat: no-repeat;
-  background-size: 20px;
-}
-.selecaoMedia{
-  width: 200px;
+  position: absolute;
+  right: 15.7%;
+  top: 20px;
   height: 40px;
   border-radius: 5px;
   outline: none;
@@ -331,12 +298,10 @@ nav input{
   background-size: 20px;
 }
 
-
-
 .graficosGerados .graficArea .graficos{
   display: flex;
   align-items: center;
-  width:42%;
+  width:30%;
   height: 200px;
   background-color: #949494;
   border-radius: 15px;
@@ -366,11 +331,27 @@ display: none;
   position: relative;
 }
 
+.selecaoMedia{
+  position: absolute;
+  top: 15px;
+  margin-right: -6%;
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  padding: 0px 20px 0px 10px;
+  appearance: none;
+  background-image: url("../assets/icon/select.svg");
+  background-position: center right 10px;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
 
 
 
 .card{
-  width: 220px;
+  width: 250px;
   background-color: #fff;
   height: 180px;  
   border-radius: 10px;
@@ -379,15 +360,10 @@ display: none;
 }
 
 
- #cincoUmidade,
- #cincoTemperatura,
- #dezUmidade,
- #realUmidade,
- #dezTemperatura,
- #realTemperatura,
- #dezTemperaturaE,
-  #cincoTemperaturaE,
-  #realTemperaturaE{
+.cardsSensores #cincoUmidade,
+.cardsSensores #cincoTemperatura,
+.cardsSensores #dezUmidade,
+.cardsSensores #dezTemperatura{
   display: none;
 }
 

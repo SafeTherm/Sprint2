@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/dashboards.css" />
+    <link
+      rel="stylesheet"
+      href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css"
+    />
+  </head>
+
+  <body>
+    <div class="menu">
+      <div class="logo">
+        <img src="" alt="" />
+      </div>
+    </div>
+
+    <section class="conteudo">
+      <header>
+        <nav>
+          <input type="text" placeholder="pesquisar placa do veiculo..." />
+          <div class="boxSelects"></div>
+        </nav>
+        <div class="user_perfil">
+          <button
+            class="selectUser"
+            onclick="abrirLogout()"
+            id="btnLogout"
+          ></button>
+          <div id="divLogout">
+            <a href="">INFO1</a>
+            <a href="">INFO2</a>
+            <a href="">INFO3</a>
+            <button onclick="">SAIR</button>
+          </div>
+          <div id="infos-user">
+            <h3>Roberta Silva</h3>
+            <h4>roberta@therm.com</h4>
+          </div>
+          <img
+            src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+            alt=""
+          />
+        </div>
+      </header>
+
+      <div class="graficosGerados">
+        <div class="infosMotorista">
+          <img
+            src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+            alt=""
+          />
+          <div class="motoristaInfo">
+            <h1>MOTORISTA: <span>Fabiano Gomes dos Santos Oliveira</span></h1>
+            <h1>TELEFONE: <span>(11) 00000-0000</span></h1>
+            <h1>EMAIL: <span>fabiano.gomes@safetherm.com.br</span></h1>
+          </div>
+          <div class="caminhao">
+            <h1>VEICULO</h1>
+            <h1>MODELO: <span>Fiat Ducato</span></h1>
+            <h1>PLACA: <span>ABC1D23</span></h1>
+          </div>
+        </div>
+        <div class="graficArea">
+          <select
+            name="sel"
+            id="gaficosSelect"
+            onclick="selecionarGrafico()"
+            class="selecaoSensores"
+          >
+            <option value="Sup">Todos os Sensores Superiores</option>
+            <option value="Umi">Apenas sensores de Umidade</option>
+            <option value="Inf">Todos os Sensores Inferiores</option>
+            <option value="Temp">Apenas sensores de Temperatura</option>
+            <option value="Todos">Todos os Sensores</option>
+          </select>
+          <div class="graficos" id="umidadeSuperior">sup Umidade</div>
+          <div class="graficos" id="umidadeInferior">inf Umidade</div>
+          <div class="graficos" id="temperaturaSuperior">sup Temperatura</div>
+          <div class="graficos" id="temperaturaInferior">inf Temperatura</div>
+        </div>
+        <div class="cardsSensores">
+          <select
+            name="sel"
+            id="selecaoMedia"
+            class="selecaoMedia"
+            onclick="selectDaMedia()"
+          >
+            <option value="real">Dados em tempo real</option>
+            <option value="cincoMin">Dados nos ultímos 5min</option>
+            <option value="dezMin">Dados nos ultímos 10min</option>
+          </select>
+          <div class="card" id="realTemperatura">
+            <div class="circleAtivo"></div>
+          </div>
+          <div class="card" id="realUmidade">
+            <div class="circleAtivo"></div>
+          </div>
+          <div class="card" id="cincoTemperatura">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="cincoUmidade">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="dezTemperatura">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="dezUmidade">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="SensoresAtivos"></div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+<script>
+  function abrirLogout() {
+    btnLogout.classList.toggle("effeitoLogout");
+
+    if (btnLogout.classList.contains("effeitoLogout")) {
+      divLogout.style.display = "flex";
+      divLogout.classList.add("animacaoUser");
+    } else {
+      divLogout.classList.remove("animacaoUser");
+      divLogout.style.display = "none";
+    }
+  }
+
+  function selecionarGrafico() {
+    let graficoSelecionado = gaficosSelect.value;
+
+    if (graficoSelecionado == "Sup") {
+      umidadeSuperior.style.display = "flex";
+      temperaturaSuperior.style.display = "flex";
+      umidadeInferior.style.display = "none";
+      temperaturaInferior.style.display = "none";
+    } else if (graficoSelecionado == "Inf") {
+      umidadeInferior.style.display = "flex";
+      temperaturaInferior.style.display = "flex";
+      umidadeSuperior.style.display = "none";
+      temperaturaSuperior.style.display = "none";
+    } else if (graficoSelecionado == "Umi") {
+      umidadeInferior.style.display = "flex";
+      temperaturaInferior.style.display = "none";
+      umidadeSuperior.style.display = "flex";
+      temperaturaSuperior.style.display = "none";
+    } else if (graficoSelecionado == "Temp") {
+      umidadeInferior.style.display = "none";
+      temperaturaInferior.style.display = "flex";
+      umidadeSuperior.style.display = "none";
+      temperaturaSuperior.style.display = "flex";
+    } else if (graficoSelecionado == "Todos") {
+      umidadeInferior.style.display = "flex";
+      temperaturaInferior.style.display = "flex";
+      umidadeSuperior.style.display = "flex";
+      temperaturaSuperior.style.display = "flex";
+    }
+  }
+
+  function selectDaMedia() {
+    let mediaSelecionada = selecaoMedia.value;
+
+    if (mediaSelecionada == "cincoMin") {
+      cincoUmidade.style.display = "flex";
+      cincoTemperatura.style.display = "flex";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+    } else if (mediaSelecionada == "dezMin") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "flex";
+      dezUmidade.style.display = "flex";
+    } else if (mediaSelecionada == "real") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "flex";
+      realUmidade.style.display = "flex";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+    }
+  }
+</script>

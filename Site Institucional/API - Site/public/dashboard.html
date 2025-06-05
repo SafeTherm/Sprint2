@@ -1,86 +1,356 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/dashboards.css">
-    <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
-</head>
+    <link rel="stylesheet" href="css/dashboards.css" />
+    <link
+      rel="stylesheet"
+      href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="menu">
-        <div class="logo">
-            <img src="" alt="">
-        </div>
+      <div class="logo">
+        <img src="" alt="" />
+      </div>
     </div>
 
-    
     <section class="conteudo">
-        <header>
-            <nav>
-                <input type="text" placeholder="pesquisar placa do veiculo...">
-                <div class="boxSelects">
-                    <select name="sel" id="" >
-                        <option value="">selecionar</option>
-                    </select>
-                    <select name="sel" id="" >
-                        <option value="">selecionar</option>
-                    </select>
-                </div>
-            </nav>
-            <div class="user_perfil">
-                <button class="selectUser" onclick="abrirLogout()" id="btnLogout"></button>
-                <div id="divLogout">
-                    <a href="">INFO1</a>
-                    <a href="">INFO2</a>
-                    <a href="">INFO3</a>
-                    <button onclick="">SAIR</button>
-                </div>
-                <div id="infos-user">
-                    <h3>Roberta Silva</h3>
-                    <h4>roberta@therm.com</h4>
-                </div>
-                <img src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png" alt="">
-            </div>
-
-        </header>
-
-        <div class="graficosGerados">
-            <div class="infosMotorista">
-                <img src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png" alt="">
-                <div class="motoristaInfo">
-                    <h1>MOTORISTA: <span>Fabiano Gomes dos Santos Oliveira</span></h1>
-                    <h1>TELEFONE: <span>(11) 00000-0000</span></h1>
-                    <h1>EMAIL: <span>fabiano.gomes@safetherm.com.br</span></h1>
-                </div>
-                <div class="caminhao">
-                    <h1>VEICULO</h1>
-                    <h1>MODELO: <span>Fiat Ducato</span></h1>
-                    <h1>PLACA: <span>ABC1D23</span></h1>
-                </div>
-            </div>
+      <header>
+        <nav>
+          <input type="text" placeholder="pesquisar placa do veiculo..." />
+        </nav>
+        <div class="user_perfil">
+          <button
+            class="selectUser"
+            onclick="abrirLogout()"
+            id="btnLogout"
+          ></button>
+          <div id="divLogout">
+            <a href="">INFO1</a>
+            <a href="">INFO2</a>
+            <a href="">INFO3</a>
+            <button onclick="">SAIR</button>
+          </div>
+          <div id="infos-user">
+            <h3>Roberta Silva</h3>
+            <h4>roberta@therm.com</h4>
+          </div>
+          <img
+            src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+            alt=""
+          />
         </div>
+      </header>
+
+      <div class="graficosGerados">
+        <div class="infosMotorista">
+          <img
+            src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+            alt=""
+          />
+          <div class="motoristaInfo">
+            <h1>MOTORISTA: <span>Fabiano Gomes dos Santos Oliveira</span></h1>
+            <h1>TELEFONE: <span>(11) 00000-0000</span></h1>
+            <h1>EMAIL: <span>fabiano.gomes@safetherm.com.br</span></h1>
+          </div>
+          <div class="caminhao">
+            <h1>VEICULO</h1>
+            <h1>MODELO: <span>Fiat Ducato</span></h1>
+            <h1>PLACA: <span>ABC1D23</span></h1>
+          </div>
+        </div>
+        <div class="conteudoGrafico">
+          <div class="cardsEsquerda">
+            <div class="card" id="realUmidade">
+              <div class="circleAtivo"></div>
+            </div>
+            <div class="card" id="cincoUmidade">
+              <div class="circleDesativo"></div>
+            </div>
+            <div class="card" id="dezUmidade">
+              <div class="circleDesativo"></div>
+            </div>
+
+            <!-- definição para cards de temperatura inferiores na Esquerda -->
+            <div class="card" id="realTemperaturaE">
+              <div class="circleAtivo"></div>
+            </div>
+            <div class="card" id="cincoTemperaturaE">
+              <div class="circleDesativo"></div>
+            </div>
+            <div class="card" id="dezTemperaturaE">
+              <div class="circleDesativo"></div>
+            </div>
+          </div>
+          <div class="graficArea">
+            <div class="boxSelects">
+              <select
+                name="sel"
+                id="selecaoMedia"
+                class="selecaoMedia"
+                onchange="selectDaMedia()"
+              >
+                <option>Qual tempo deseja?</option>
+                <option value="real">Dados em tempo real</option>
+                <option value="cincoMin">Dados nos ultímos 5min</option>
+                <option value="dezMin">Dados nos ultímos 10min</option>
+              </select>
+              <select
+                name="sel"
+                id="gaficosSelect"
+                onchange="selecionarGrafico()"
+                class="selecaoSensores"
+              >
+                <option>Quais gráficos deseja?</option>
+                <option value="Sup">Todos os Sensores Superiores</option>
+                <option value="Umi">Apenas sensores de Umidade</option>
+                <option value="Inf">Todos os Sensores Inferiores</option>
+                <option value="Temp">Apenas sensores de Temperatura</option>
+                <option value="Todos">Todos os Sensores</option>
+              </select>
+            </div>
+
+            <div class="graficos" id="umidadeSuperior">sup Umidade</div>
+            <div class="graficos" id="umidadeInferior">inf Umidade</div>
+            <div class="graficos" id="temperaturaSuperior">sup Temperatura</div>
+            <div class="graficos" id="temperaturaInferior">inf Temperatura</div>
+          </div>
+
+          <div class="cardsDireita">
+            <div class="card" id="realTemperatura">
+              <div class="circleAtivo"></div>
+            </div>
+            <div class="card" id="cincoTemperatura">
+              <div class="circleDesativo"></div>
+            </div>
+            <div class="card" id="dezTemperatura">
+              <div class="circleDesativo"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
-
-</body>
-
+  </body>
 </html>
 <script>
+  function abrirLogout() {
+    btnLogout.classList.toggle("effeitoLogout");
 
-    function abrirLogout() {
-        btnLogout.classList.toggle("effeitoLogout");
-
-        if(btnLogout.classList.contains("effeitoLogout")){
-            divLogout.style.display = "flex"
-            divLogout.classList.add("animacaoUser")
-        }else{
-            divLogout.classList.remove("animacaoUser")
-            divLogout.style.display = "none"
-        }
+    if (btnLogout.classList.contains("effeitoLogout")) {
+      divLogout.style.display = "flex";
+      divLogout.classList.add("animacaoUser");
+    } else {
+      divLogout.classList.remove("animacaoUser");
+      divLogout.style.display = "none";
     }
+  }
 
+  var selecaoGrafico = "";
 
+  function selecionarGrafico() {
+    let graficoSelecionado = gaficosSelect.value;
+
+    selecaoGrafico = graficoSelecionado;
+    console.log(selecaoGrafico);
+
+    console.log("acesso graficos");
+    if (graficoSelecionado == "Sup") {
+      umidadeSuperior.style.display = "flex";
+      temperaturaSuperior.style.display = "flex";
+      umidadeInferior.style.display = "none";
+      temperaturaInferior.style.display = "none";
+    } else if (graficoSelecionado == "Inf") {
+      umidadeInferior.style.display = "flex";
+      temperaturaInferior.style.display = "flex";
+      umidadeSuperior.style.display = "none";
+      temperaturaSuperior.style.display = "none";
+    } else if (graficoSelecionado == "Umi") {
+      umidadeInferior.style.display = "flex";
+      temperaturaInferior.style.display = "none";
+      umidadeSuperior.style.display = "flex";
+      temperaturaSuperior.style.display = "none";
+    } else if (graficoSelecionado == "Temp") {
+      umidadeInferior.style.display = "none";
+      temperaturaInferior.style.display = "flex";
+      umidadeSuperior.style.display = "none";
+      temperaturaSuperior.style.display = "flex";
+    } else if (graficoSelecionado == "Todos") {
+      umidadeInferior.style.display = "flex";
+      temperaturaInferior.style.display = "flex";
+      umidadeSuperior.style.display = "flex";
+      temperaturaSuperior.style.display = "flex";
+    }
+    selectDaMedia(selecaoGrafico);
+  }
+
+  function selectDaMedia(grafico) {
+    let mediaSelecionada = selecaoMedia.value;
+    var graficoSelect = selecaoGrafico;
+    console.log("acesso cards" + graficoSelect);
+    if (mediaSelecionada == "cincoMin" && graficoSelect == "Sup") {
+      cincoUmidade.style.display = "flex";
+      cincoTemperatura.style.display = "flex";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "dezMin" && graficoSelect == "Sup") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "flex";
+      dezUmidade.style.display = "flex";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "real" && graficoSelect == "Sup") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "flex";
+      realUmidade.style.display = "flex";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "cincoMin" && graficoSelect == "Inf") {
+      cincoUmidade.style.display = "flex";
+      cincoTemperatura.style.display = "flex";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "dezMin" && graficoSelect == "Inf") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "flex";
+      dezUmidade.style.display = "flex";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "real" && graficoSelect == "Inf") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "flex";
+      realUmidade.style.display = "flex";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "cincoMin" && graficoSelect == "Umi") {
+      cincoUmidade.style.display = "flex";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "dezMin" && graficoSelect == "Umi") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "flex";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "real" && graficoSelect == "Umi") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "flex";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "cincoMin" && graficoSelect == "Temp") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "flex";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "dezMin" && graficoSelect == "Temp") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "flex";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "real" && graficoSelect == "Temp") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "flex";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "cincoMin" && graficoSelect == "Todos") {
+      cincoUmidade.style.display = "flex";
+      cincoTemperatura.style.display = "none";
+      cincoTemperaturaE.style.display = "flex";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "dezMin" && graficoSelect == "Todos") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezTemperaturaE.style.display = "flex";
+      dezUmidade.style.display = "flex";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+    } else if (mediaSelecionada == "real" && graficoSelect == "Todos") {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realTemperaturaE.style.display = "flex";
+      realUmidade.style.display = "flex";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    } else {
+      cincoUmidade.style.display = "none";
+      cincoTemperatura.style.display = "none";
+      realTemperatura.style.display = "none";
+      realUmidade.style.display = "none";
+      dezTemperatura.style.display = "none";
+      dezUmidade.style.display = "none";
+      realTemperaturaE.style.display = "none";
+      cincoTemperaturaE.style.display = "none";
+      dezTemperaturaE.style.display = "none";
+    }
+  }
 </script>
