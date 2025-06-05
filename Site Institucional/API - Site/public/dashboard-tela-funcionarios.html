@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/dashboards-tela-funcionario.css">
+    <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
+</head>
+
+<body>
+    <div class="menu">
+        <div class="box-nav-logo">
+            <a href="index.html">
+                <h1><img src="assets/img/logo.png">Safe <span>Therm</span></h1>
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="">
+                <img src="assets/img/icon_listaFunc.svg" alt="">
+                FUNCIONÁRIOS
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="">
+                <img src="assets/img/icon_veiculo.svg" alt="">
+                VEÍCULOS
+            </a>
+        </div>
+        <div class="icon_barra_sair">
+            <button onclick="sair()">
+                <img src="assets/img/icon_sair.svg" alt="">
+                SAIR
+            </button>
+        </div>
+    </div>
+
+
+    <section class="conteudo">
+        <header>
+
+            <div class="pesquisar-placa">
+                <input type="text" id="input_placa" placeholder="pesquisar funcionario..." oninput="pesquisaFunc()">
+                <div>
+                    <img src="assets/img/lupa.svg" alt="">
+                </div>
+
+
+                <!-- essa div é display none, com o oninput ela aparece -->
+                <div class="resultado_pesquisa" style="display: none;" id="div_resultado_pesquisa">
+
+
+                    <!-- div com += -->
+                    <div class="info_funcionarios">
+                        <img src="" alt="">
+                        <div class="informacoes_func">
+                            <div class="nome">
+                                nome do funcionario
+                            </div>
+                            <div class="info_veiculo">
+                                <div class="placa">
+                                    veículo: CXPT-2EW3
+                                </div>
+                                <div class="tipo_veiculo">
+                                    caminhão: Fiat Ducato
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="user_perfil" id="div_userPerfil">
+                <div id="infos-user">
+                    <h3>Roberta Silva</h3>
+                    <h4>roberta@therm.com</h4>
+                </div>
+                <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
+            </div>
+        </header>
+        <div class="tituloVeiculoEmpresa">
+            Lista de funcionários
+        </div>
+        <div class="cards">
+
+            <div class="subTitulos">
+                <div class="imagemPerfilFunc"></div>
+                <div class="card_subTitulo_sub">
+                    Nome
+                </div>
+                <div class="card_subTitulo_sub">
+                    Email
+                </div>
+                <div class="card_subTitulo_sub">
+                    Telefone
+                </div>
+                <div class="card_subTitulo_excluir_sub">
+                    <div class="imagem_excluir">
+                        Excluir
+                    </div>
+                </div>
+            </div>
+
+            <div class="exbir_funcionario">
+                <div class="infoFuncionarios">
+                    <div class="imagemPerfilFunc">
+                        <img src="" alt="">
+                    </div>
+                    <div class="card_subTitulo">
+                        Nome
+                    </div>
+                    <div class="card_subTitulo">
+                        Email
+                    </div>
+                    <div class="card_subTitulo">
+                        Telefone
+                    </div>
+                    <div class="card_subTitulo_excluir">
+                        <button onclick="excluir_funcionario()">
+                            <img src="assets/img/lixeira_preta.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="adicionar_funcionario">
+            <button onclick="adicionarFuncionario()">
+                <img src="assets/img/adicionar_funcionário.svg" alt="">
+            </button>
+        </div>
+
+        <div class="excluir" style="display: none;" id="addFuncionario">
+            <div class="tituloExcluir">
+                ADICIONAR FUNCIONÁRIO
+            </div>
+            <div class="subTitulo_cardAdd">
+                CAMPOS PARA CADASTRO:
+            </div>
+            <div class="campos_cadastro">
+                <div class="campo_imagem">
+                    <div>
+                        Foto do funcionário
+                        <label for="input_fotoFuncionario">
+                            <input type="file" id="input_fotoFuncionario">
+                            <span>Selecionar Arquivo</span>
+                        </label>
+                    </div>
+                    <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
+                </div>
+                <div class="campo">
+                    email
+                    <input type="text" id="input_emailFuncionario">
+                </div>
+                <div class="campo">
+                    nome
+                    <input type="text" id="input_nomeFuncionario">
+                </div>
+                <div class="campo">
+                    cpf
+                    <input type="text" id="input_cpfFuncionario">
+                </div>
+                <div class="campo">
+                    telefone
+                    <input type="text" id="input_telefoneFuncionario">
+                </div>
+                <button onclick="cadastrar()">
+                    CADASTRAR
+                </button>
+            </div>
+        </div>
+
+
+
+
+        <div class="excluir" style="display: none;">
+            <div class="tituloExcluir">
+                EXCLUIR FUNCIONÁRIO
+            </div>
+            <div class="pergunta_excluir" style="color: red; font-weight: bolder;">
+                TEM CERTEZA QUE QUER EXCLUIR ESSE
+                <div>FUNCIONÁRIO?</div>
+                <div class="botao_condicao_excluir">
+                    <button onclick="excluir_funcionario_verdade()">
+                        SIM
+                    </button>
+                    <button onclick="excluir_funcionario_falso()" id="botao_nao_excluir">
+                        NÃO
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+</body>
+
+</html>
+
+<script>
+    var idUsuario = sessionStorage.ID_USUARIO
+    var nomeUsuario = sessionStorage.NOME_USUARIO
+    var emailUsuario = sessionStorage.EMAIL_USUARIO
+    var fotoPerfil = sessionStorage.FOTO_PERFIL
+
+    window.onload = function () {
+
+        console.log(nomeUsuario)
+        div_userPerfil.innerHTML = `
+            <div id="infos-user">
+                <h3>${nomeUsuario}</h3>
+                <h4>${emailUsuario}</h4>
+            </div>
+            <img src="assets/imagens de perfil/${fotoPerfil}" alt="">`
+
+
+        listarFrota()
+        alertaSensor()
+        veiculosEmpresa()
+    }
+
+    function pesquisaFunc() {
+        var conteudo_pesquisa = input_placa.value
+
+        if (conteudo_pesquisa === "") {
+            div_resultado_pesquisa.style.display = "none"
+        } else {
+            div_resultado_pesquisa.style.display = "flex"
+
+            fetch(`dashboard/barraPesquisa/${idUsuario}/${conteudo_pesquisa}`)
+                .then(res => res.json())
+                .then(dados_pesquisa => {
+
+                    div_resultado_pesquisa.innerHTML = ""
+
+                    for (let i = 0; i < dados_pesquisa.length; i++) {
+                        let dados = dados_pesquisa[i]
+
+                        var imagemFunc = dados.imagemPerfil_funcionario
+                        var idFuncionario = dados.idFuncionario
+                        var nomeFuncionario = dados.nomeFuncionario
+                        var idVeiculo = dados.idVeiculo
+                        var placaVeiculo = dados.placaVeiculo
+                        var modeloVeiculo = dados.modelo
+
+                        div_resultado_pesquisa.innerHTML += `
+                        <div class="info_funcionarios">
+                        <img src="assets/imagens de perfil/${imagemFunc}" alt="">
+                        <div class="informacoes_func">
+                            <div class="nome">
+                                ${nomeFuncionario}
+                            </div>
+                                <div class="info_veiculo">
+                                    <div class="placa">
+                                        veículo: ${placaVeiculo}
+                                    </div>
+                                    <div class="tipo_veiculo">
+                                        caminhão: ${modeloVeiculo}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                    }
+                })
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

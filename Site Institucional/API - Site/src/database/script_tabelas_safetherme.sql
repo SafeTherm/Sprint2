@@ -22,7 +22,6 @@ CREATE TABLE funcionario (
     nomeFuncionario VARCHAR(60) NOT NULL,
     cpfFuncionario VARCHAR(14) NOT NULL UNIQUE,  -- Formato: 000.000.000-00
     telefoneFuncionario VARCHAR(15) NOT NULL,
-    senhaAcesso VARCHAR(255) NOT NULL,
     imagemPerfil_funcionario TEXT,
     dataContratacao DATE,
     CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkTransportadora_cliente) 
@@ -37,7 +36,7 @@ CREATE TABLE veiculo (
     fkFuncionario INT NOT NULL,
     placaVeiculo VARCHAR(10) NOT NULL UNIQUE,  -- Ex: ABC1D23
     modelo VARCHAR(25) NOT NULL,
-    PRIMARY KEY (idVeiculo, fkTransportadora_cliente, fkFuncionário),
+    PRIMARY KEY (idVeiculo, fkTransportadora_cliente, fkFuncionario),
     CONSTRAINT dkVeiculoFuncionario FOREIGN KEY (fkFuncionario)
 		REFERENCES funcionario(idFuncionario),
     CONSTRAINT fkVeiculoTransportadora FOREIGN KEY (fkTransportadora_cliente) 
@@ -84,15 +83,15 @@ INSERT INTO transportadora_cliente (nomeTransportadora_cliente, cnpjTransportado
 VALUES 
 ('Transportadora Alpha', '12345678000199', '11987654321', 'contato@alpha.com', 'senha123');
 -- Inserindo dados na tabela funcionario
-INSERT INTO funcionario (fkTransportadora_cliente, emailFuncionario, nomeFuncionario, cpfFuncionario, telefoneFuncionario, senhaAcesso)
+INSERT INTO funcionario (fkTransportadora_cliente, emailFuncionario, nomeFuncionario, cpfFuncionario, telefoneFuncionario)
 VALUES 
-(1, 'joao@alpha.com', 'João Silva', '12345678901', '11951742393', 'func123'),
-(1, 'maria@beta.com', 'Maria Oliveira', '98765432100', '11951742333', 'func456');
+(1, 'joao@alpha.com', 'João Silva', '12345678901', '11951742393'),
+(1, 'maria@beta.com', 'Maria Oliveira', '98765432100', '11951742333');
 
-INSERT INTO funcionario (fkTransportadora_cliente, emailFuncionario, nomeFuncionario, cpfFuncionario, telefoneFuncionario, senhaAcesso)
+INSERT INTO funcionario (fkTransportadora_cliente, emailFuncionario, nomeFuncionario, cpfFuncionario, telefoneFuncionario)
 VALUES 
-(2, 'judas@alpha.com', 'Judas Silva', '12345778901', '11957742393', 'func123'),
-(2, 'marialeite@beta.com', 'Maria Leite Oliveira', '98765332100', '11951442333', 'func456');
+(2, 'judas@alpha.com', 'Judas Silva', '12345778901', '11957742393'),
+(2, 'marialeite@beta.com', 'Maria Leite Oliveira', '98765332100', '11951442333');
 
 -- Veículos da transportadora 1
 INSERT INTO veiculo (fkTransportadora_cliente, fkFuncionario, placaVeiculo, modelo)
