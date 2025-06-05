@@ -11,19 +11,35 @@
 
 <body>
     <div class="menu">
-        <div class="logo">
-            <img src="" alt="">
+        <div class="box-nav-logo">
+            <a href="index.html">
+                <h1><img src="assets/img/logo.png">Safe <span>Therm</span></h1>
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="">
+                <img src="assets/img/icon_listaFunc.svg" alt="">
+                FUNCIONÁRIOS
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="">
+                <img src="assets/img/icon_veiculo.svg" alt="">
+                VEÍCULOS
+            </a>
+        </div>
+        <div class="icon_barra_sair">
+            <button onclick="sair()">
+                <img src="assets/img/icon_sair.svg" alt="">
+                SAIR
+            </button>
         </div>
     </div>
 
 
     <section class="conteudo">
         <header>
-            <div class="box-nav-logo">
-                <a href="index.html">
-                    <h1><img src="assets/img/logo.png">Safe <span>Therm</span></h1>
-                </a>
-            </div>
+
             <div class="pesquisar-placa">
                 <input type="text" id="input_placa" placeholder="pesquisar funcionario/placa..."
                     oninput="pesquisaFunc()">
@@ -309,8 +325,8 @@
             <img src="assets/imagens de perfil/${fotoPerfil}" alt="">`
 
 
-        // listarFrota()
-        // alertaSensor()
+        listarFrota()
+        alertaSensor()
         veiculosEmpresa()
     }
 

@@ -28,13 +28,17 @@ body {
 .menu {
   width: 200px;
   height: 100%;
-  background-color: var(--cinza);
+  background-color: #000;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .conteudo {
   width: 100%;
   height: auto;
-  border: 1px solid red;
+  margin-left: 200px;
 }
 
 header {
@@ -49,40 +53,77 @@ header {
   margin-bottom: 40px;
 }
 
-header .box-nav-logo {
+.icon_barra {
+  display: flex;
+  padding-left: 10px;
+}
+
+.icon_barra a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-family: "Inter";
+  gap: 10px;
+  font-weight: 700;
+}
+
+.icon_barra_sair {
+  display: flex;
+  padding-left: 10px;
+  position: absolute;
+  left: -4px;
+  top: 90%;
+}
+
+.icon_barra_sair button {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-family: "Inter";
+  gap: 10px;
+  font-weight: 700;
+  background: none;
+  border: none;
+}
+
+.box-nav-logo {
   display: flex;
   justify-content: flex-start;
   width: 30%;
   align-items: center;
   margin-left: 40px;
-  font-size: 1.35rem;
+  font-size: 0.9rem;
   font-weight: 500;
   font-family: "Poppins";
   position: absolute;
-  left: 0px;
+  left: -25px;
+  top: 20px;
 }
 
-header a h1 span {
+a h1 span {
   color: #ff7f00;
   font-weight: 700;
 }
 
-header a {
+a {
   border: none;
   text-decoration: none;
+  display: flex;
 }
 
-header a h1 {
+a h1 {
   color: #000000;
   position: relative;
   font-weight: bolder;
+  display: flex;
 }
 
-header a h1 img {
+a h1 img {
   position: absolute;
-  left: -7px;
+  left: -5px;
   top: 5px;
   z-index: -1;
+  width: 180px;
 }
 
 .pesquisar-placa {
