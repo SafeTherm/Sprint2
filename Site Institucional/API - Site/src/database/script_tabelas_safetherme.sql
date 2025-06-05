@@ -32,11 +32,12 @@ CREATE TABLE funcionario (
 
 -- Tabela veiculo
 CREATE TABLE veiculo (
-    idVeiculo INT PRIMARY KEY AUTO_INCREMENT,
+    idVeiculo INT  AUTO_INCREMENT,
     fkTransportadora_cliente INT NOT NULL,
     fkFuncionario INT NOT NULL,
     placaVeiculo VARCHAR(10) NOT NULL UNIQUE,  -- Ex: ABC1D23
     modelo VARCHAR(25) NOT NULL,
+    PRIMARY KEY (idVeiculo, fkTransportadora_cliente, fkFuncionário),
     CONSTRAINT dkVeiculoFuncionario FOREIGN KEY (fkFuncionario)
 		REFERENCES funcionario(idFuncionario),
     CONSTRAINT fkVeiculoTransportadora FOREIGN KEY (fkTransportadora_cliente) 
@@ -146,17 +147,3 @@ select * from transportadora_cliente;
 select * from sensor;
 select * from veiculo;
 select * from leitura_sensor order by dataHora desc;
-
-
-SELECT 
-    v.idVeiculo,
-    v.placaVeiculo,
-    DATE_FORMAT(ls.dataHora, '%Y-%m-%d') AS data_leitura,
-    AVG(CASE WHEN s.funcaoSensor = 'TEMPERATURA' THEN ls.valor END) AS media_temperatura,
-    AVG(CASE WHEN s.funcaoSensor = 'UMIDADE' THEN ls.valor END) AS media_umidade
-FROM veiculo v
-JOIN sensor s ON v.idVeiculo = s.fkVeiculo
-JOIN leitura_sensor ls ON s.idSensor = ls.fkSensor
-WHERE v.idVeiculo = 1
-  AND DATE(ls.dataHora) = CURDATE()
-GROUP BY v.idVeiculo, v.placaVeiculo, DATE(ls.dataHora);
