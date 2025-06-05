@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/dashboards.css" />
     <link
       rel="stylesheet"
@@ -22,6 +23,7 @@
       <header>
         <nav>
           <input type="text" placeholder="pesquisar placa do veiculo..." />
+          <button onclick=""></button>
         </nav>
         <div class="user_perfil">
           <button
@@ -114,10 +116,32 @@
               </select>
             </div>
 
-            <div class="graficos" id="umidadeSuperior">sup Umidade</div>
-            <div class="graficos" id="umidadeInferior">inf Umidade</div>
-            <div class="graficos" id="temperaturaSuperior">sup Temperatura</div>
-            <div class="graficos" id="temperaturaInferior">inf Temperatura</div>
+            <div class="graficos" id="umidadeSuperior">
+              <h3 class="statusCard">
+                Umidade superior <span id="statusUmiSup">(Ativo)</span>
+              </h3>
+              <canvas id="myUmidadeSup" class="graficoEstilo"></canvas>
+            </div>
+            <div class="graficos" id="umidadeInferior">
+              <h3 class="statusCard">
+                Umidade inferior <span id="statusUmiInf">(Ativo)</span>
+              </h3>
+              <canvas id="myUmidadeInf" class="graficoEstilo"></canvas>
+            </div>
+            <div class="graficos" id="temperaturaSuperior">
+              <h3 class="statusCard">
+                Temperatura superior <span id="statusTempSup">(Ativo)</span>
+              </h3>
+              <canvas id="myTemperaturaSup" class="graficoEstilo"></canvas>
+            </div>
+            <div class="graficos" id="temperaturaInferior">
+              <h3 class="statusCard">
+                Temperatura inferior
+                <span id="statusTempInf">(Manutenção necessária)</span>
+              </h3>
+              <canvas id="myTemperaturaInf" class="graficoEstilo"></canvas>
+
+            </div>
           </div>
 
           <div class="cardsDireita">
@@ -353,4 +377,117 @@
       dezTemperaturaE.style.display = "none";
     }
   }
+
+  const umidadeSup = document.getElementById("myUmidadeSup");
+
+  new Chart(umidadeSup, {
+    type: "line",
+    data: {
+      labels: [202401, 202402, 202403, 202404, 202405, 202406],
+      datasets: [
+        {
+          label: "Umidade - Superior",
+          data: [23, 24, 12, 10, 9, 15],
+          backgroundColor: "#00bfff",
+          borderRadius: 8,
+          borderSkipped: false,
+          hoverBackgroundColor: "#333",
+          hoverBorderColor: "#333",
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  const umidadeInf = document.getElementById("myUmidadeInf");
+
+  new Chart(umidadeInf, {
+    type: "line",
+    data: {
+      labels: [202401, 202402, 202403, 202404, 202405, 202406],
+      datasets: [
+        {
+          label: "Umidade - Inferior",
+          data: [23, 24, 12, 10, 9, 15],
+          backgroundColor: "#00bfff",
+          borderRadius: 8,
+          borderSkipped: false,
+          hoverBackgroundColor: "#333",
+          hoverBorderColor: "#333",
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  const temperaturaSup = document.getElementById("myTemperaturaSup");
+
+  new Chart(temperaturaSup, {
+    type: "line",
+    data: {
+      labels: [202401, 202402, 202403, 202404, 202405, 202406],
+      datasets: [
+        {
+          label: "temperaturaSup - Superior",
+          data: [23, 24, 12, 10, 9, 15],
+          backgroundColor: "#FF7F00",
+          borderRadius: 8,
+          borderSkipped: false,
+          hoverBackgroundColor: "#333",
+          hoverBorderColor: "#333",
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+
+  const temperaturaInf = document.getElementById("myTemperaturaInf");
+
+  new Chart(temperaturaInf, {
+    type: "line",
+    data: {
+      labels: [202401, 202402, 202403, 202404, 202405, 202406],
+      datasets: [
+        {
+          label: "temperaturaSup - Inferior",
+          data: [23, 24, 12, 10, 9, 15],
+          backgroundColor: "#FF7F00",
+          borderRadius: 8,
+          borderSkipped: false,
+          hoverBackgroundColor: "#333",
+          hoverBorderColor: "#333",
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 </script>
