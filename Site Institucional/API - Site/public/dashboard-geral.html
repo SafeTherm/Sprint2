@@ -903,12 +903,9 @@
 
 
 
-
-
-
-
-
     function acessar(idFuncionario) {
         console.log(`Função acessar: ${idFuncionario}`)
+        sessionStorage.ID_SELECAO_FUNCIONARIO = idFuncionario;
+        window.location = "dashboard.html";
     }
 </script>

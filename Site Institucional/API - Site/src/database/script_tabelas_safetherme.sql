@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS transporte_de_medicamentos_termolabeis;
 USE transporte_de_medicamentos_termolabeis;
 
+
 -- Tabela transportadora_cliente
 CREATE TABLE transportadora_cliente (
     idTransportadora_cliente INT PRIMARY KEY AUTO_INCREMENT,

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>SafeTherm - Dashboard especifica</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/dashboards.css" />
     <link
@@ -13,11 +13,8 @@
   </head>
 
   <body>
-    <div class="menu">
-      <div class="logo">
-        <img src="" alt="" />
-      </div>
-    </div>
+    <!-- Fazer menu após concluir o backend -->
+    <div class="menu"></div>
 
     <section class="conteudo">
       <header>
@@ -32,9 +29,8 @@
             id="btnLogout"
           ></button>
           <div id="divLogout">
-            <a href="">INFO1</a>
-            <a href="">INFO2</a>
-            <a href="">INFO3</a>
+            <a href="">Funcionários</a>
+            <a href="">Veículos</a>
             <button onclick="">SAIR</button>
           </div>
           <div id="infos-user">
@@ -140,7 +136,6 @@
                 <span id="statusTempInf">(Ativo)</span>
               </h3>
               <canvas id="myTemperaturaInf" class="graficoEstilo"></canvas>
-
             </div>
           </div>
 
@@ -153,6 +148,85 @@
             </div>
             <div class="card" id="dezTemperatura">
               <div class="circleDesativo"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="conteudoHistorico">
+        <button onclick="abrirHitorico()" id="btnHistorico">
+          abrir historico
+        </button>
+        <div class="boxHistorico" id="historicoSensor">
+          <div class="topoTitulos">
+            <h1>Data/hora</h1>
+            <h1>Temperatura</h1>
+            <h1>Umidade</h1>
+            <h1>Veículo</h1>
+            <h1>Status</h1>
+          </div>
+          <div class="scroll">
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>Alerta</h3>
+            </div>
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>Alerta</h3>
+            </div>
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>Alerta</h3>
+            </div>
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>Alerta</h3>
+            </div>
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>Alerta</h3>
+            </div>
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>Alerta</h3>
+            </div>
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>Alerta</h3>
+            </div>
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>fim</h3>
+            </div>
+            <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>fim</h3>
             </div>
           </div>
         </div>
@@ -378,6 +452,12 @@
     }
   }
 
+  function abrirHitorico() {
+    const clicado = document.getElementById("historicoSensor");
+    clicado.classList.toggle("adicionar");
+  }
+
+  // Grafico para serem estilizados.
   const umidadeSup = document.getElementById("myUmidadeSup");
 
   new Chart(umidadeSup, {
@@ -461,7 +541,6 @@
       },
     },
   });
-
 
   const temperaturaInf = document.getElementById("myTemperaturaInf");
 
