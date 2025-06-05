@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS transporte_de_medicamentos_termolabeis;
 USE transporte_de_medicamentos_termolabeis;
 
+
 -- Tabela transportadora_cliente
 CREATE TABLE transportadora_cliente (
     idTransportadora_cliente INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,7 +38,7 @@ CREATE TABLE veiculo (
     fkFuncionario INT NOT NULL,
     placaVeiculo VARCHAR(10) NOT NULL UNIQUE,  -- Ex: ABC1D23
     modelo VARCHAR(25) NOT NULL,
-    PRIMARY KEY (idVeiculo, fkTransportadora_cliente, fkFuncionário),
+    PRIMARY KEY (idVeiculo, fkTransportadora_cliente, fkFuncionario),
     CONSTRAINT dkVeiculoFuncionario FOREIGN KEY (fkFuncionario)
 		REFERENCES funcionario(idFuncionario),
     CONSTRAINT fkVeiculoTransportadora FOREIGN KEY (fkTransportadora_cliente) 
