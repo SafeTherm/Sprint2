@@ -392,11 +392,9 @@ nav input{
 
 .statusCard #statusTempSup,
 .statusCard #statusUmiSup,
-.statusCard #statusUmiInf{
-  color:#067500;
-}
+.statusCard #statusUmiInf,
 .statusCard #statusTempInf{
-  color:red;
+  color:#067500;
 }
 
 
