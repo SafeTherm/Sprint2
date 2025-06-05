@@ -157,6 +157,29 @@
           </div>
         </div>
       </div>
+
+
+      <div class="conteudoHistorico">
+        <button onclick="abrirHitorico()" id="btnHistorico">abrir historico</button>
+        <div class="boxHistorico" id="historicoSensor">
+          <div class="topoTitulos">
+              <h1>Data/hora</h1>
+              <h1>Temperatura</h1>
+              <h1>Umidade</h1>
+              <h1>Veículo</h1>
+              <h1>Status</h1>
+          </div>
+          <div class="listarDados">
+              <h3>08/05/2025, 22:31</h3>
+              <h3>5.6ºC</h3>
+              <h3>50%</h3>
+              <h3>ABC1D23</h3>
+              <h3>Alerta</h3>
+          </div>
+        </div>
+
+      </div>
+
     </section>
   </body>
 </html>
@@ -377,6 +400,16 @@
       dezTemperaturaE.style.display = "none";
     }
   }
+
+
+
+
+
+  function abrirHitorico(){
+   const clicado = document.getElementById("historicoSensor");
+    clicado.classList.toggle("adicionar");
+}
+
 
   const umidadeSup = document.getElementById("myUmidadeSup");
 
