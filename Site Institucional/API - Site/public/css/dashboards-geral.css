@@ -590,3 +590,14 @@ a h1 img {
   visibility: visible;
   z-index: 3;
 }
+
+.nenhumSensorComDefeito {
+  width: 94%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #797979;
+  color: white;
+}

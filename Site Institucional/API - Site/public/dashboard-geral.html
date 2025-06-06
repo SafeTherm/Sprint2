@@ -1,106 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/dashboards-geral.css" />
-    <link
-      rel="stylesheet"
-      href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css"
-    />
-  </head>
 
-  <body>
-    <div class="menu">
-      <div class="box-nav-logo">
-        <a href="index.html">
-          <h1><img src="assets/img/logo.png" />Safe <span>Therm</span></h1>
-        </a>
-      </div>
-      <div class="icon_barra">
-        <a href="dashboard-tela-funcionarios.html">
-          <img src="assets/img/icon_listaFunc.svg" alt="" />
-          FUNCIONÁRIOS
-        </a>
-      </div>
-      <div class="icon_barra">
-        <a href="">
-          <img src="assets/img/icon_veiculo.svg" alt="" />
-          VEÍCULOS
-        </a>
-      </div>
-      <div class="icon_barra_sair">
-        <button onclick="sair()">
-          <img src="assets/img/icon_sair.svg" alt="" />
-          SAIR
-        </button>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="css/dashboards-geral.css" />
+  <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css" />
+</head>
+
+<body>
+  <div class="menu">
+    <div class="box-nav-logo">
+      <a href="index.html">
+        <h1><img src="assets/img/logo.png" />Safe <span>Therm</span></h1>
+      </a>
     </div>
+    <div class="icon_barra">
+      <a href="dashboard-tela-funcionarios.html">
+        <img src="assets/img/icon_listaFunc.svg" alt="" />
+        FUNCIONÁRIOS
+      </a>
+    </div>
+    <div class="icon_barra">
+      <a href="">
+        <img src="assets/img/icon_veiculo.svg" alt="" />
+        VEÍCULOS
+      </a>
+    </div>
+    <div class="icon_barra_sair">
+      <button onclick="sair()">
+        <img src="assets/img/icon_sair.svg" alt="" />
+        SAIR
+      </button>
+    </div>
+  </div>
 
-    <section class="conteudo">
-      <header>
-        <div class="pesquisar-placa">
-          <input
-            type="text"
-            id="input_placa"
-            placeholder="pesquisar funcionario/placa..."
-            oninput="pesquisaFunc()"
-          />
-          <div>
-            <img src="assets/img/lupa.svg" alt="" />
-          </div>
+  <section class="conteudo">
+    <header>
+      <div class="pesquisar-placa">
+        <input type="text" id="input_placa" placeholder="pesquisar funcionario/placa..." oninput="pesquisaFunc()" />
+        <div>
+          <img src="assets/img/lupa.svg" alt="" />
+        </div>
 
-          <!-- essa div é display none, com o oninput ela aparece -->
-          <div
-            class="resultado_pesquisa"
-            style="display: none"
-            id="div_resultado_pesquisa"
-          >
-            <!-- div com += -->
-            <div class="info_funcionarios">
-              <img src="" alt="" />
-              <div class="informacoes_func">
-                <div class="nome">nome do funcionario</div>
-                <div class="info_veiculo">
-                  <div class="placa">veículo: CXPT-2EW3</div>
-                  <div class="tipo_veiculo">caminhão: Fiat Ducato</div>
-                </div>
+        <!-- essa div é display none, com o oninput ela aparece -->
+        <div class="resultado_pesquisa" style="display: none" id="div_resultado_pesquisa">
+          <!-- div com += -->
+          <div class="info_funcionarios">
+            <img src="" alt="" />
+            <div class="informacoes_func">
+              <div class="nome">nome do funcionario</div>
+              <div class="info_veiculo">
+                <div class="placa">veículo: CXPT-2EW3</div>
+                <div class="tipo_veiculo">caminhão: Fiat Ducato</div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="user_perfil" id="div_userPerfil">
-          <div id="infos-user">
-            <h3>Roberta Silva</h3>
-            <h4>roberta@therm.com</h4>
-          </div>
-          <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="" />
+      <div class="user_perfil" id="div_userPerfil">
+        <div id="infos-user">
+          <h3>Roberta Silva</h3>
+          <h4>roberta@therm.com</h4>
         </div>
-      </header>
+        <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="" />
+      </div>
+    </header>
 
-      <div class="cards">
-        <div class="card-notificacao">
-          <div class="titulo">Notificações recentes</div>
-          <div class="alerta_exibir">
-            <div class="notificacao-alerta">
-              <div class="alerta_img">
-                <img src="assets/img/alerta_vermelho.svg" alt="" />
-              </div>
-              <div class="alerta_info">
-                <div class="status_alerta">Temperatura fora dos limites</div>
-                <div class="alerta_veiculo">Placa veículo: ABC1D23</div>
-                <div class="alerta_data">08/05/2025, 22:11</div>
-              </div>
+    <div class="cards">
+      <div class="card-notificacao">
+        <div class="titulo">Notificações recentes</div>
+        <div class="alerta_exibir">
+          <div class="notificacao-alerta">
+            <div class="alerta_img">
+              <img src="assets/img/alerta_vermelho.svg" alt="" />
+            </div>
+            <div class="alerta_info">
+              <div class="status_alerta">Temperatura fora dos limites</div>
+              <div class="alerta_veiculo">Placa veículo: ABC1D23</div>
+              <div class="alerta_data">08/05/2025, 22:11</div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="card-notificacao">
-          <div class="titulo">Falhas nos sensores</div>
-          <div class="alerta_exibirSensor" id="div_alerta_exibirSensor">
-            <!-- <div class="notificacao-alertaSensor">
+      <div class="card-notificacao">
+        <div class="titulo">Falhas nos sensores</div>
+        <div class="alerta_exibirSensor" id="div_alerta_exibirSensor">
+          <!-- <div class="notificacao-alertaSensor">
                         <div class="statusSensor">
                             <div class="bolinha_status"></div>
                             <div class="status">
@@ -154,32 +143,32 @@
                             </div>
                         </div>
                     </div> -->
-          </div>
-        </div>
-
-        <div class="card-notificacaoFrota">
-          <div class="titulo_frota">
-            Status da frota
-            <div class="frotaImg">
-              <img src="assets/img/frotaIcon.svg" alt="" />
-            </div>
-          </div>
-
-          <div class="frota_exibir" id="div_cardFrota">
-            <div>Alertas: 0</div>
-          </div>
-
-          <div class="frotaStatus">
-            Atenção necessária
-            <img src="assets/img/alerta_amarelo.svg" alt="" />
-          </div>
         </div>
       </div>
 
-      <div class="veiculosEmpresa">
-        <div class="tituloVeiculoEmpresa">VEÍCULOS DA EMPRESA</div>
-        <div class="exibirCards" id="div_exibirCards_veiculos">
-          <!-- <div class="cardVeiculos">
+      <div class="card-notificacaoFrota">
+        <div class="titulo_frota">
+          Status da frota
+          <div class="frotaImg">
+            <img src="assets/img/frotaIcon.svg" alt="" />
+          </div>
+        </div>
+
+        <div class="frota_exibir" id="div_cardFrota">
+          <div>Alertas: 0</div>
+        </div>
+
+        <div class="frotaStatus">
+          Atenção necessária
+          <img src="assets/img/alerta_amarelo.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="veiculosEmpresa">
+      <div class="tituloVeiculoEmpresa">VEÍCULOS DA EMPRESA</div>
+      <div class="exibirCards" id="div_exibirCards_veiculos">
+        <!-- <div class="cardVeiculos">
                     <div class="front">
                         <div class="statusVeiculo">
                             <div class="bolinha_status"></div>
@@ -250,10 +239,11 @@
 
                     </div>
                 </div> -->
-        </div>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+</body>
+
 </html>
 
 <script>
@@ -265,11 +255,11 @@
   window.onload = function () {
     console.log(nomeUsuario);
     div_userPerfil.innerHTML = `
-            <div id="infos-user">
-                <h3>${nomeUsuario}</h3>
-                <h4>${emailUsuario}</h4>
-            </div>
-            <img src="assets/imagens de perfil/${fotoPerfil}" alt="">`;
+      <div id="infos-user">
+          <h3>${nomeUsuario}</h3>
+          <h4>${emailUsuario}</h4>
+      </div>
+      <img src="assets/imagens de perfil/${fotoPerfil}" alt="">`;
 
     listarFrota();
     alertaSensor();
@@ -284,9 +274,9 @@
         var qtd = qtdVeiculos[0].qtdVeiculo;
 
         div_cardFrota.innerHTML = `
-                <div>
-                    Total: ${qtd}
-                </div>`;
+          <div>
+              Total: ${qtd}
+          </div>`;
 
         fetch(`dashboard/listarVeiculosEmRota/${idUsuario}`)
           .then((res) => res.json())
@@ -296,9 +286,9 @@
             console.log(veiculosEmRota);
 
             div_cardFrota.innerHTML += `
-                    <div>
-                        Veículos com sensores ativados: ${veiculosEmRota}
-                    </div>`;
+              <div>
+                  Veículos com sensores ativados: ${veiculosEmRota}
+              </div>`;
           });
       });
   }
@@ -327,22 +317,22 @@
             var modeloVeiculo = dados.modelo;
 
             div_resultado_pesquisa.innerHTML += `
-                        <div class="info_funcionarios">
-                        <img src="assets/imagens de perfil/${imagemFunc}" alt="">
-                        <div class="informacoes_func">
-                            <div class="nome">
-                                ${nomeFuncionario}
-                            </div>
-                                <div class="info_veiculo">
-                                    <div class="placa">
-                                        veículo: ${placaVeiculo}
-                                    </div>
-                                    <div class="tipo_veiculo">
-                                        caminhão: ${modeloVeiculo}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
+              <div class="info_funcionarios">
+              <img src="assets/imagens de perfil/${imagemFunc}" alt="">
+              <div class="informacoes_func">
+                  <div class="nome">
+                      ${nomeFuncionario}
+                  </div>
+                      <div class="info_veiculo">
+                          <div class="placa">
+                              veículo: ${placaVeiculo}
+                          </div>
+                          <div class="tipo_veiculo">
+                              caminhão: ${modeloVeiculo}
+                          </div>
+                      </div>
+                  </div>
+              </div>`;
           }
         });
     }
@@ -363,7 +353,7 @@
             fetch(`/dashboard/alertaSensor/defeitoSensorRota/${idVeiculo}`)
               .then((res) => res.json())
               .then((sensoresRotaDefeito) => {
-                console.log(sensoresRotaDefeito);
+                console.log(`esse são sensores com defeito: ${sensoresRotaDefeito}`);
 
                 for (let j = 0; j < sensoresRotaDefeito.length; j++) {
                   let statusCase = sensoresRotaDefeito[j].statusSensorCase;
@@ -382,30 +372,30 @@
                           let mensagem_status_sensor = ``;
 
                           mensagem += `
-                                                <div class="notificacao-alertaSensor">
-                                                    <div class="statusSensor">
-                                                        <div class="bolinha_status"></div>
-                                                        <div class="status">
-                                                            SENSOR ATIVADO
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="infoSensor1">
-                                                        <div class="sensor_imgFunc">
-                                                            <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
-                                                        </div>
-                                                        <div class="subInfoSensor">
-                                                            <div class="sensorNomeFunc">
-                                                                ${nomeFuncionario}
-                                                            </div>
-                                                            <div class="sensorVeiculo">
-                                                                veículo: ${placaVeiculo}
-                                                            </div>
-                                                            <div class="sensorVeiculoTipo">
-                                                                caminhão: ${modelo}
-                                                            </div>
-                                                        </div>
-                                                    </div>`;
+                            <div class="notificacao-alertaSensor">
+                                <div class="statusSensor">
+                                    <div class="bolinha_status"></div>
+                                    <div class="status">
+                                        SENSOR ATIVADO
+                                    </div>
+                                </div>
+                            
+                                <div class="infoSensor1">
+                                    <div class="sensor_imgFunc">
+                                        <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                                    </div>
+                                    <div class="subInfoSensor">
+                                        <div class="sensorNomeFunc">
+                                            ${nomeFuncionario}
+                                        </div>
+                                        <div class="sensorVeiculo">
+                                            veículo: ${placaVeiculo}
+                                        </div>
+                                        <div class="sensorVeiculoTipo">
+                                            caminhão: ${modelo}
+                                        </div>
+                                    </div>
+                                </div>`;
 
                           for (let k = 0; k < sensoresRotaDefeito.length; k++) {
                             let localizacao =
@@ -417,9 +407,9 @@
 
                             if (statusCaseSub === "COM DEFEITO") {
                               mensagem_status_sensor += `
-                                                        <div style="color: red;">
-                                                            ${localizacao}: ${status}
-                                                        </div>`;
+                                <div style="color: red;">
+                                    ${localizacao}: ${status}
+                                </div>`;
 
                               fetch(
                                 `/dashboard/alertaSensor/statusSensor/defeito`,
@@ -448,36 +438,36 @@
                                 });
                             } else if (status === "ATIVO") {
                               mensagem_status_sensor += `
-                                                        <div style="color: green;">
-                                                            ${localizacao}: ${status}
-                                                        </div>`;
+                                <div style="color: green;">
+                                    ${localizacao}: ${status}
+                                </div>`;
                             } else {
                               mensagem_status_sensor += `
-                                                        <div style="color: rgb(245, 197, 51);">
-                                                            ${localizacao}: ${status}
-                                                        </div>`;
+                                <div style="color: rgb(245, 197, 51);">
+                                    ${localizacao}: ${status}
+                                </div>`;
                             }
                           }
 
                           div_alerta_exibirSensor.innerHTML += `
-                                                ${mensagem}
-                                                    <div class="infoSensor2">
-                                                        <div class="sensorStatus">
-                                                            STATUS: Exige manutenção
-                                                        </div>
-                                                        <div class="infoSensor3">
-                                                            <div class="subInfoSensor1">
-                                                                ${mensagem_status_sensor}
-                                                            </div>
-                                                        
-                                                            <div class="botaoChamado">
-                                                                <button onclick="chamado()">
-                                                                    chamado
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>`;
+                            ${mensagem}
+                                <div class="infoSensor2">
+                                    <div class="sensorStatus">
+                                        STATUS: Exige manutenção
+                                    </div>
+                                    <div class="infoSensor3">
+                                        <div class="subInfoSensor1">
+                                            ${mensagem_status_sensor}
+                                        </div>
+                                    
+                                        <div class="botaoChamado">
+                                            <button onclick="chamado()">
+                                                chamado
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
                         }
                       });
 
@@ -502,6 +492,8 @@
             fetch(`/dashboard/alertaSensor/listarSensoresDefeito/${veiculo}`)
               .then((res) => res.json())
               .then((sensorListaVeiculos) => {
+
+                console.log(`Esse é sensores com defeito: ${sensorListaVeiculos}`)
                 for (let j = 0; j < sensorListaVeiculos.length; j++) {
                   let statusDoSensor = sensorListaVeiculos[j].statusSensor;
 
@@ -511,38 +503,37 @@
                       .then((dadosFunc) => {
                         if (dadosFunc.length > 0) {
                           let nomeFuncionario = dadosFunc[0].nomeFuncionario;
-                          let imagemPerfil_funcionario =
-                            dadosFunc[0].imagemPerfil_funcionario;
+                          let imagemPerfil_funcionario = dadosFunc[0].imagemPerfil_funcionario;
                           let placaVeiculo = dadosFunc[0].placaVeiculo;
                           let modelo = dadosFunc[0].modelo;
                           let mensagem = ``;
                           let mensagem_status_sensor = ``;
 
                           mensagem += `
-                                                <div class="notificacao-alertaSensor">
-                                                    <div class="statusSensor">
-                                                        <div class="bolinha_status_defeito"></div>
-                                                        <div class="status">
-                                                            SENSOR DESATIVADO
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="infoSensor1">
-                                                        <div class="sensor_imgFunc">
-                                                            <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
-                                                        </div>
-                                                        <div class="subInfoSensor">
-                                                            <div class="sensorNomeFunc">
-                                                                ${nomeFuncionario}
-                                                            </div>
-                                                            <div class="sensorVeiculo">
-                                                                veículo: ${placaVeiculo}
-                                                            </div>
-                                                            <div class="sensorVeiculoTipo">
-                                                                caminhão: ${modelo}
-                                                            </div>
-                                                        </div>
-                                                    </div>`;
+                            <div class="notificacao-alertaSensor">
+                                <div class="statusSensor">
+                                    <div class="bolinha_status_defeito"></div>
+                                    <div class="status">
+                                        SENSOR DESATIVADO
+                                    </div>
+                                </div>
+                            
+                                <div class="infoSensor1">
+                                    <div class="sensor_imgFunc">
+                                        <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                                    </div>
+                                    <div class="subInfoSensor">
+                                        <div class="sensorNomeFunc">
+                                            ${nomeFuncionario}
+                                        </div>
+                                        <div class="sensorVeiculo">
+                                            veículo: ${placaVeiculo}
+                                        </div>
+                                        <div class="sensorVeiculoTipo">
+                                            caminhão: ${modelo}
+                                        </div>
+                                    </div>
+                                </div>`;
 
                           for (let k = 0; k < sensorListaVeiculos.length; k++) {
                             let localizacao =
@@ -551,40 +542,45 @@
 
                             if (status === "MANUTENCAO") {
                               mensagem_status_sensor += `
-                                                        <div style="color: red;">
-                                                            ${localizacao}: ${status}
-                                                        </div>`;
+                                <div style="color: red;">
+                                    ${localizacao}: ${status}
+                                </div>`;
                             } else {
                               mensagem_status_sensor += `
-                                                        <div style="color: green;">
-                                                            ${localizacao}: ${status}
-                                                        </div>`;
+                                <div style="color: green;">
+                                    ${localizacao}: ${status}
+                                </div>`;
                             }
                           }
 
                           div_alerta_exibirSensor.innerHTML += `
-                                                ${mensagem}
-                                                    <div class="infoSensor2">
-                                                        <div class="sensorStatus">
-                                                            STATUS: Exige manutenção
-                                                        </div>
-                                                        <div class="infoSensor3">
-                                                            <div class="subInfoSensor1">
-                                                                ${mensagem_status_sensor}
-                                                            </div>
-                                                        
-                                                            <div class="botaoChamado">
-                                                                <button onclick="chamado()">
-                                                                    chamado
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>`;
+                            ${mensagem}
+                                <div class="infoSensor2">
+                                    <div class="sensorStatus">
+                                        STATUS: Exige manutenção
+                                    </div>
+                                    <div class="infoSensor3">
+                                        <div class="subInfoSensor1">
+                                            ${mensagem_status_sensor}
+                                        </div>
+                                    
+                                        <div class="botaoChamado">
+                                            <button onclick="chamado()">
+                                                chamado
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
                         }
                       });
 
-                    break;
+                    break;                                           
+                  } else {
+                    div_alerta_exibirSensor.innerHTML = `
+                      <div class="nenhumSensorComDefeito">
+                        Nenhum sensor com defeito 
+                      </div>`
                   }
                 }
               });
@@ -620,36 +616,37 @@
                   let idFuncionario = dadosFunc[0].idFuncionario;
 
                   mensagem += `
-                                        <div class="cardVeiculos">
-                                            <div class="front">
-                                                <div class="statusVeiculo">
-                                                    <div class="bolinha_status"></div>
-                                                    <div class="status">
-                                                        ATIVO
-                                                    </div>
-                                                </div>
-                                            
-                                                <div class="infoVeiculo1">
-                                                    <div class="Veiculo_imgFunc">
-                                                        <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
-                                                    </div>
-                                                    <div class="subInfoVeiculo">
-                                                        <div class="VeiculoNomeFunc">
-                                                            ${nomeFuncionario}
-                                                        </div>
-                                                        <div class="Veiculo">
-                                                            veículo: ${placaVeiculo}
-                                                        </div>
-                                                        <div class="VeiculoTipo">
-                                                            caminhão: ${modelo}
-                                                        </div>
-                                                    </div>
-                                                </div>`;
+                    <div class="cardVeiculos">
+                        <div class="front">
+                            <div class="statusVeiculo">
+                                <div class="bolinha_status"></div>
+                                <div class="status">
+                                    ATIVO
+                                </div>
+                            </div>
+                        
+                            <div class="infoVeiculo1">
+                                <div class="Veiculo_imgFunc">
+                                    <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                                </div>
+                                <div class="subInfoVeiculo">
+                                    <div class="VeiculoNomeFunc">
+                                        ${nomeFuncionario}
+                                    </div>
+                                    <div class="Veiculo">
+                                        veículo: ${placaVeiculo}
+                                    </div>
+                                    <div class="VeiculoTipo">
+                                        caminhão: ${modelo}
+                                    </div>
+                                </div>
+                            </div>`;
 
                   fetch(`/dashboard/veiculos/media/${idVeiculo}`)
                     .then((res) => res.json())
                     .then((media_veiculos) => {
                       console.log(media_veiculos);
+
                       let idVeiculo = media_veiculos[0].idVeiculo;
 
                       let media_temperatura = Number(
@@ -666,54 +663,54 @@
                       });
 
                       mensagem += `                                            
-                                                        <div class="infoVeiculo2">
-                                                            <div class="cardVeiculo_titulo">
-                                                                DATA: ${data}    
-                                                            </div>
-                                                            <div>
-                                                                media temperatura: ${media_temperatura}
-                                                            </div>
-                                                            <div>
-                                                                media umidade: ${media_umidade}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="back">
-                                                        <div class="statusVeiculo">
-                                                            <div class="bolinha_status"></div>
-                                                            <div class="status">
-                                                                SENSOR ATIVO
-                                                            </div>
-                                                        </div>
-                                                    
-                                                        <div class="infoVeiculo1">
-                                                            <div class="Veiculo_imgFunc">
-                                                                <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
-                                                            </div>
-                                                            <div class="subInfoVeiculo">
-                                                                <div class="VeiculoNomeFunc">
-                                                                    ${nomeFuncionario}
-                                                                </div>
-                                                                <div class="Veiculo">
-                                                                    veículo: ${placaVeiculo}
-                                                                </div>
-                                                                <div class="VeiculoTipo">
-                                                                    caminhão: ${modelo}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    
-                                                        <div class="infoVeiculo2">
-                                                            <div class="botao_acessar">
-                                                                <button onclick="acessar(${idFuncionario}, ${idVeiculo})">
-                                                                    acessar
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    
-                                                    </div>
-                                                </div>`;
+                                <div class="infoVeiculo2">
+                                    <div class="cardVeiculo_titulo">
+                                        DATA: ${data}    
+                                    </div>
+                                    <div>
+                                        media temperatura: ${media_temperatura}
+                                    </div>
+                                    <div>
+                                        media umidade: ${media_umidade}
+                                    </div>
+                                </div>
+                            </div>
+                         
+                            <div class="back">
+                                <div class="statusVeiculo">
+                                    <div class="bolinha_status"></div>
+                                    <div class="status">
+                                        SENSOR ATIVO
+                                    </div>
+                                </div>
+                            
+                                <div class="infoVeiculo1">
+                                    <div class="Veiculo_imgFunc">
+                                        <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                                    </div>
+                                    <div class="subInfoVeiculo">
+                                        <div class="VeiculoNomeFunc">
+                                            ${nomeFuncionario}
+                                        </div>
+                                        <div class="Veiculo">
+                                            veículo: ${placaVeiculo}
+                                        </div>
+                                        <div class="VeiculoTipo">
+                                            caminhão: ${modelo}
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="infoVeiculo2">
+                                    <div class="botao_acessar">
+                                        <button onclick="acessar(${idFuncionario}, ${idVeiculo})">
+                                            acessar
+                                        </button>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>`;
 
                       div_exibirCards_veiculos.innerHTML += mensagem;
                     });
@@ -739,108 +736,158 @@
                 var mensagem = "";
                 if (dadosFunc.length > 0) {
                   let nomeFuncionario = dadosFunc[0].nomeFuncionario;
-                  let imagemPerfil_funcionario =
-                    dadosFunc[0].imagemPerfil_funcionario;
+                  let imagemPerfil_funcionario = dadosFunc[0].imagemPerfil_funcionario;
                   let placaVeiculo = dadosFunc[0].placaVeiculo;
                   let modelo = dadosFunc[0].modelo;
                   let idFuncionario = dadosFunc[0].idFuncionario;
 
                   mensagem += `
-                                        <div class="cardVeiculos">
-                                            <div class="front">
-                                                <div class="statusVeiculo">
-                                                    <div class="bolinha_status_defeito"></div>
-                                                    <div class="status">
-                                                        SENSOR DESATIVADO   
-                                                    </div>
-                                                </div>
-                                            
-                                                <div class="infoVeiculo1">
-                                                    <div class="Veiculo_imgFunc">
-                                                        <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
-                                                    </div>
-                                                    <div class="subInfoVeiculo">
-                                                        <div class="VeiculoNomeFunc">
-                                                            ${nomeFuncionario}
-                                                        </div>
-                                                        <div class="Veiculo">
-                                                            veículo: ${placaVeiculo}
-                                                        </div>
-                                                        <div class="VeiculoTipo">
-                                                            caminhão: ${modelo}
-                                                        </div>
-                                                    </div>
-                                                </div>`;
+                    <div class="cardVeiculos">
+                        <div class="front">
+                            <div class="statusVeiculo">
+                                <div class="bolinha_status_defeito"></div>
+                                <div class="status">
+                                    SENSOR DESATIVADO   
+                                </div>
+                            </div>
+                        
+                            <div class="infoVeiculo1">
+                                <div class="Veiculo_imgFunc">
+                                    <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                                </div>
+                                <div class="subInfoVeiculo">
+                                    <div class="VeiculoNomeFunc">
+                                        ${nomeFuncionario}
+                                    </div>
+                                    <div class="Veiculo">
+                                        veículo: ${placaVeiculo}
+                                    </div>
+                                    <div class="VeiculoTipo">
+                                        caminhão: ${modelo}
+                                    </div>
+                                </div>
+                            </div>`;
 
                   fetch(`/dashboard/veiculos/media/${veiculo}`)
                     .then((res) => res.json())
                     .then((media_veiculos) => {
-                      console.log(media_veiculos);
-                      let idVeiculo = media_veiculos[0].idVeiculo;
-                      let media_temperatura = Number(
-                        media_veiculos[0].media_temperatura
-                      ).toFixed(2);
-                      let media_umidade = Number(
-                        media_veiculos[0].media_umidade
-                      ).toFixed(2);
-                      let dataOriginal = new Date(
-                        media_veiculos[0].data_leitura
-                      );
-                      let data = dataOriginal.toLocaleDateString("pt-BR", {
-                        timeZone: "America/Sao_Paulo",
-                      });
+                      console.log("esssa é media veiculos" + media_veiculos);
 
-                      mensagem += `                                            
-                                                        <div class="infoVeiculo2">
-                                                            <div class="cardVeiculo_titulo">
-                                                                DATA: ${data}    
-                                                            </div>
-                                                            <div>
-                                                                media temperatura: ${media_temperatura}
-                                                            </div>
-                                                            <div>
-                                                                media umidade: ${media_umidade}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="back">
-                                                        <div class="statusVeiculo">
-                                                            <div class="bolinha_status_defeito"></div>
-                                                            <div class="status">
-                                                                SENSOR DESATIVADO
-                                                            </div>
-                                                        </div>
-                                                    
-                                                        <div class="infoVeiculo1">
-                                                            <div class="Veiculo_imgFunc">
-                                                                <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
-                                                            </div>
-                                                            <div class="subInfoVeiculo">
-                                                                <div class="VeiculoNomeFunc">
-                                                                    ${nomeFuncionario}
-                                                                </div>
-                                                                <div class="Veiculo">
-                                                                    veículo: ${placaVeiculo}
-                                                                </div>
-                                                                <div class="VeiculoTipo">
-                                                                    caminhão: ${modelo}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    
-                                                        <div class="infoVeiculo2">
-                                                            <div class="botao_acessar">
-                                                                <button onclick="acessar(${idFuncionario}, ${idVeiculo})">
-                                                                    acessar
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    
-                                                    </div>
-                                                </div>`;
+                      if (media_veiculos > 0) {
 
-                      div_exibirCards_veiculos.innerHTML += mensagem;
+                        let idVeiculo = media_veiculos[0].idVeiculo;
+                        let media_temperatura = Number(media_veiculos[0].media_temperatura).toFixed(2);
+                        let media_umidade = Number(media_veiculos[0].media_umidade).toFixed(2);
+                        let dataOriginal = new Date(media_veiculos[0].data_leitura);
+                        let data = dataOriginal.toLocaleDateString("pt-BR", {
+                          timeZone: "America/Sao_Paulo",
+                        });
+
+                        mensagem += `                                            
+                                <div class="infoVeiculo2">
+                                    <div class="cardVeiculo_titulo">
+                                        DATA: ${data}    
+                                    </div>
+                                    <div>
+                                        media temperatura: ${media_temperatura}
+                                    </div>
+                                    <div>
+                                        media umidade: ${media_umidade}
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="back">
+                                <div class="statusVeiculo">
+                                    <div class="bolinha_status_defeito"></div>
+                                    <div class="status">
+                                        SENSOR DESATIVADO
+                                    </div>
+                                </div>
+                            
+                                <div class="infoVeiculo1">
+                                    <div class="Veiculo_imgFunc">
+                                        <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                                    </div>
+                                    <div class="subInfoVeiculo">
+                                        <div class="VeiculoNomeFunc">
+                                            ${nomeFuncionario}
+                                        </div>
+                                        <div class="Veiculo">
+                                            veículo: ${placaVeiculo}
+                                        </div>
+                                        <div class="VeiculoTipo">
+                                            caminhão: ${modelo}
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="infoVeiculo2">
+                                    <div class="botao_acessar">
+                                        <button onclick="acessar(${idFuncionario}, ${idVeiculo})">
+                                            acessar
+                                        </button>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>`;
+
+                        div_exibirCards_veiculos.innerHTML += mensagem;
+                      } else {
+                        mensagem += `                                            
+                                <div class="infoVeiculo2">
+                                    <div class="cardVeiculo_titulo">
+                                        DATA:    
+                                    </div>
+                                    <div>
+                                        media temperatura:
+                                    </div>
+                                    <div>
+                                        media umidade:
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="back">
+                                <div class="statusVeiculo">
+                                    <div class="bolinha_status_defeito"></div>
+                                    <div class="status">
+                                        SENSOR DESATIVADO
+                                    </div>
+                                </div>
+                            
+                                <div class="infoVeiculo1">
+                                    <div class="Veiculo_imgFunc">
+                                        <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                                    </div>
+                                    <div class="subInfoVeiculo">
+                                        <div class="VeiculoNomeFunc">
+                                            ${nomeFuncionario}
+                                        </div>
+                                        <div class="Veiculo">
+                                            veículo: ${placaVeiculo}
+                                        </div>
+                                        <div class="VeiculoTipo">
+                                            caminhão: ${modelo}
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="infoVeiculo2">
+                                    <div class="botao_acessar">
+                                        <button onclick="acessar(${idFuncionario}, ${veiculo})">
+                                            acessar
+                                        </button>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>`;
+
+                        div_exibirCards_veiculos.innerHTML += mensagem;
+                      }
+
                     });
                 }
               });
@@ -850,12 +897,12 @@
   }
 
   function acessar(idFuncionario, idVeiculo) {
-    if (!idFuncionario || !idVeiculo){
-        console.log("Erro ao acessor funcionario em especifico")
-    }else{
-        sessionStorage.ID_SELECAO_FUNCIONARIO = idFuncionario;
-        sessionStorage.ID_SELECAO_VEICULO = idVeiculo;
-        window.location = "dashboard.html";
+    if (!idFuncionario || !idVeiculo) {
+      console.log("Erro ao acessor funcionario em especifico")
+    } else {
+      sessionStorage.ID_SELECAO_FUNCIONARIO = idFuncionario;
+      sessionStorage.ID_SELECAO_VEICULO = idVeiculo;
+      window.location = "dashboard.html";
     }
   }
 </script>
