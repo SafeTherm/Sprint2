@@ -22,7 +22,7 @@
           <input type="text" placeholder="pesquisar placa do veiculo..." />
           <button onclick=""></button>
         </nav>
-        <div class="user_perfil">
+        <div class="user_perfil" id="user_perfil">
           <button
             class="selectUser"
             onclick="abrirLogout()"
@@ -33,7 +33,7 @@
             <a href="">Veículos</a>
             <button onclick="">SAIR</button>
           </div>
-          <div id="infos-user">
+          <div id="infos_user">
             <h3>Roberta Silva</h3>
             <h4>roberta@therm.com</h4>
           </div>
@@ -45,7 +45,7 @@
       </header>
 
       <div class="graficosGerados">
-        <div class="infosMotorista">
+        <div class="infosMotorista" id="infosMotorista">
           <img
             src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
             alt=""
@@ -235,6 +235,69 @@
   </body>
 </html>
 <script>
+  var idUsuario = sessionStorage.ID_SELECAO_FUNCIONARIO;
+  var nomeUsuario = sessionStorage.NOME_USUARIO;
+  var emailUsuario = sessionStorage.EMAIL_USUARIO;
+  var fotoPerfil = sessionStorage.FOTO_PERFIL;
+
+  // formatando usuario logado | usuario em sessão
+
+  window.onload = function () {
+    user_perfil.innerHTML = `
+      <button
+            class="selectUser"
+            onclick="abrirLogout()"
+            id="btnLogout"
+          ></button>
+          <div id="divLogout">
+            <a href="">Funcionários</a>
+            <a href="">Veículos</a>
+            <button onclick="">SAIR</button>
+          </div>
+          <div id="infos_user">
+            <h3>${nomeUsuario}</h3>
+            <h4>${emailUsuario}</h4>
+          </div>
+          <img
+            src="${fotoPerfil}"
+            alt=""
+          />
+    `;
+
+    informacoesUser()
+  };
+
+  function informacoesUser() {
+    fetch(`/dashboardUser/infosUser/${idUsuario}`)
+      .then((res) => res.json())
+      .then((funcionario) => {
+        const funcionarioSelect = funcionario[0];
+
+        const nome = funcionarioSelect.nomeFuncionario;
+        const email = funcionarioSelect.emailFuncionario;
+        const tel = funcionarioSelect.telefoneFuncionario;
+        const placa = funcionarioSelect.placaVeiculo;
+        const modelo = funcionarioSelect.modelo;
+
+        infosMotorista.innerHTML = `
+           <img
+              src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+              alt=""
+            />
+            <div class="motoristaInfo">
+              <h1>MOTORISTA: <span>${nome}</span></h1>
+              <h1>TELEFONE: <span>${tel}</span></h1>
+              <h1>EMAIL: <span>${email}</span></h1>
+            </div>
+            <div class="caminhao">
+              <h1>VEICULO</h1>
+              <h1>MODELO: <span>${modelo}</span></h1>
+              <h1>PLACA: <span>${placa}</span></h1>
+            </div>
+          `;
+      });
+  }
+
   function abrirLogout() {
     btnLogout.classList.toggle("effeitoLogout");
 

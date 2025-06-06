@@ -178,13 +178,13 @@ nav input{
 }
 
 
-.user_perfil #infos-user h3 {
+.user_perfil #infos_user h3 {
   color: #232323;
   font-size: large;
   text-align: right;
 }
 
-.user_perfil #infos-user h4 {
+.user_perfil #infos_user h4 {
   color: #949494;
   font-size: medium;
   text-align: right;
