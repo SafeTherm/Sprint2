@@ -84,7 +84,7 @@
         <div class="tituloVeiculoEmpresa">
             Lista de funcionários
         </div>
-        <div class="cards">
+        <div class="cards" id="div_cards">
 
             <div class="subTitulos">
                 <div class="imagemPerfilFunc"></div>
@@ -104,8 +104,8 @@
                 </div>
             </div>
 
-            <div class="exbir_funcionario">
-                <div class="infoFuncionarios">
+            <div class="exbir_funcionario" id="div_exibirFuncionarios">
+                <!-- <div class="infoFuncionarios">
                     <div class="imagemPerfilFunc">
                         <img src="" alt="">
                     </div>
@@ -123,7 +123,8 @@
                             <img src="assets/img/lixeira_preta.svg" alt="">
                         </button>
                     </div>
-                </div>
+                </div> -->
+
             </div>
 
         </div>
@@ -177,13 +178,14 @@
 
 
 
-        <div class="excluir" style="display: none;">
+        <div class="excluir" style="display: none;" id="div_excluirFuncionario">
             <div class="tituloExcluir">
                 EXCLUIR FUNCIONÁRIO
             </div>
             <div class="pergunta_excluir" style="color: red; font-weight: bolder;">
                 TEM CERTEZA QUE QUER EXCLUIR ESSE
                 <div>FUNCIONÁRIO?</div>
+                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR O VEÍCLO TAMBÉM)?</div>
                 <div class="botao_condicao_excluir">
                     <button onclick="excluir_funcionario_verdade()">
                         SIM
@@ -192,10 +194,9 @@
                         NÃO
                     </button>
                 </div>
+                <div id="div_tudoCerto"></div>
             </div>
         </div>
-
-
 
     </section>
 </body>
@@ -218,87 +219,233 @@
             </div>
             <img src="assets/imagens de perfil/${fotoPerfil}" alt="">`
 
-
-        listarFrota()
-        alertaSensor()
-        veiculosEmpresa()
+        listarFuncionarios()
     }
 
     function pesquisaFunc() {
         var conteudo_pesquisa = input_placa.value
 
         if (conteudo_pesquisa === "") {
-            div_resultado_pesquisa.style.display = "none"
+            listarFuncionarios()
         } else {
-            div_resultado_pesquisa.style.display = "flex"
+            div_exibirFuncionarios.innerHTML = ""
 
-            fetch(`dashboard/barraPesquisa/${idUsuario}/${conteudo_pesquisa}`)
+            fetch(`/dashboard_funcionario/listarFuncionarios/barraPesquisa/${idUsuario}/${conteudo_pesquisa}`)
                 .then(res => res.json())
-                .then(dados_pesquisa => {
+                .then(listaDeFuncionarios_pesquisa => {
 
-                    div_resultado_pesquisa.innerHTML = ""
+                    for (let i = 0; i < listaDeFuncionarios_pesquisa.length; i++) {
 
-                    for (let i = 0; i < dados_pesquisa.length; i++) {
-                        let dados = dados_pesquisa[i]
+                        let emailFuncionario = listaDeFuncionarios_pesquisa[i].emailFuncionario
+                        let nomeFuncionario = listaDeFuncionarios_pesquisa[i].nomeFuncionario
+                        let telefoneFuncionario = listaDeFuncionarios_pesquisa[i].telefoneFuncionario
+                        let imagemPerfil_funcionario = listaDeFuncionarios_pesquisa[i].imagemPerfil_funcionario
+                        let idFuncionario = listaDeFuncionarios_pesquisa[i].idFuncionario
 
-                        var imagemFunc = dados.imagemPerfil_funcionario
-                        var idFuncionario = dados.idFuncionario
-                        var nomeFuncionario = dados.nomeFuncionario
-                        var idVeiculo = dados.idVeiculo
-                        var placaVeiculo = dados.placaVeiculo
-                        var modeloVeiculo = dados.modelo
-
-                        div_resultado_pesquisa.innerHTML += `
-                        <div class="info_funcionarios">
-                        <img src="assets/imagens de perfil/${imagemFunc}" alt="">
-                        <div class="informacoes_func">
-                            <div class="nome">
+                        div_exibirFuncionarios.innerHTML += `
+                        <div class="infoFuncionarios">
+                            <div class="imagemPerfilFunc">
+                                <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                            </div>
+                            <div class="card_subTitulo">
                                 ${nomeFuncionario}
                             </div>
-                                <div class="info_veiculo">
-                                    <div class="placa">
-                                        veículo: ${placaVeiculo}
-                                    </div>
-                                    <div class="tipo_veiculo">
-                                        caminhão: ${modeloVeiculo}
-                                    </div>
-                                </div>
+                            <div class="card_subTitulo">
+                                ${emailFuncionario}
+                            </div>
+                            <div class="card_subTitulo">
+                                ${telefoneFuncionario}
+                            </div>
+                            <div class="card_subTitulo_excluir">
+                                <button onclick="excluir_funcionario(${idFuncionario})">
+                                    <img src="assets/img/lixeira_preta.svg" alt="">
+                                </button>
                             </div>
                         </div>`
                     }
                 })
-
         }
     }
 
 
+    function listarFuncionarios() {
+
+        div_exibirFuncionarios.innerHTML = ""
+
+        fetch(`/dashboard_funcionario/listarFuncionarios/${idUsuario}`)
+            .then(res => res.json())
+            .then(listaDeFuncionarios => {
+                console.log(listaDeFuncionarios)
+
+                if (listaDeFuncionarios.length > 0) {
+
+                    for (let i = 0; i < listaDeFuncionarios.length; i++) {
+
+                        let emailFuncionario = listaDeFuncionarios[i].emailFuncionario
+                        let nomeFuncionario = listaDeFuncionarios[i].nomeFuncionario
+                        let telefoneFuncionario = listaDeFuncionarios[i].telefoneFuncionario
+                        let imagemPerfil_funcionario = listaDeFuncionarios[i].imagemPerfil_funcionario
+                        let idFuncionario = listaDeFuncionarios[i].idFuncionario
+
+                        div_exibirFuncionarios.innerHTML += `
+                        <div class="infoFuncionarios">
+                            <div class="imagemPerfilFunc">
+                                <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+                            </div>
+                            <div class="card_subTitulo">
+                                ${nomeFuncionario}
+                            </div>
+                            <div class="card_subTitulo">
+                                ${emailFuncionario}
+                            </div>
+                            <div class="card_subTitulo">
+                                ${telefoneFuncionario}
+                            </div>
+                            <div class="card_subTitulo_excluir">
+                                <button onclick="excluir_funcionario(${idFuncionario})">
+                                    <img src="assets/img/lixeira_preta.svg" alt="">
+                                </button>
+                            </div>
+                        </div>`
+                    }
+                } else {
+                    div_cards.innerHTML = `
+                    <div class="nenhumFuncionario">
+                        <div class="nenhum_funcionario">
+                            NENHUM FUNCIONÁRIO CADASTRADO
+                        </div>
+                    </div>`
+                }
+            })
+    }
 
 
 
+    var funcionarioParaExcluir = null
+    var contador_excluir = 0
+    function excluir_funcionario(idFuncionario) {
+        if (contador_excluir == 0) {
+            funcionarioParaExcluir = idFuncionario
+            div_excluirFuncionario.style.display = "flex"
+            contador_excluir++
+        } else {
+            div_excluirFuncionario.style.display = "none"
+            contador_excluir--
+        }
+    }
 
 
+    function excluir_funcionario_verdade() {
+
+        console.log(funcionarioParaExcluir)
+
+        fetch(`/dashboard_funcionario/listarVeiculoFuncionario/${funcionarioParaExcluir}`)
+            .then(res => res.json())
+            .then(veiculosFuncionario => {
+                console.log(veiculosFuncionario)
+
+                if (veiculosFuncionario.length > 0) {
+                    for (let i = 0; i < veiculosFuncionario.length; i++) {
+                        let idVeiculo = veiculosFuncionario[i].idVeiculo
+
+                        fetch(`/dashboard_funcionario/excluirSensor`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                idFuncionarioServer: idVeiculo
+                            }),
+                        })
+                            .then(function (resposta) {
+                                console.log("resposta: ", resposta);
+
+                                if (resposta.ok) {
+
+                                    console.log(`Sensor Exluido com sucesso`)
+                                    excluirVeiculo(idVeiculo)
+
+                                } else {
+                                    throw "Houve um erro ao tentar excluir um sensor!";
+                                }
+                            })
+                            .catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+                            });
+                    }
+                } else {
+                    excluir_funcionarioDo_banco()
+                }
+
+            })
+    }
+
+    function excluirVeiculo(idVeiculo) {
+
+        fetch(`/dashboard_funcionario/excluirVeiculo`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idVeiculoServer: idVeiculo
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    console.log(`Veículo Exluido com sucesso`)
+                    excluir_funcionarioDo_banco()
+
+                } else {
+                    throw "Houve um erro ao tentar excluir um veiculo!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
 
 
+    function excluir_funcionarioDo_banco() {
 
+        fetch(`/dashboard_funcionario/excluirFuncionario`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idFuncionarioServer: funcionarioParaExcluir
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
+                if (resposta.ok) {
 
+                    div_tudoCerto.innerHTML = `
+                <div style="color: green; font-size: 0.8rem;">Funcionário excluido com sucesso</div>`;
 
+                    setTimeout(() => {
+                        div_tudoCerto.innerHTML = ""
+                        excluir_funcionario()
+                        listarFuncionarios()
+                    }, "2000");
 
+                } else {
+                    throw "Houve um erro ao tentar excluir um funcionário!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function excluir_funcionario_falso() {
+        excluir_funcionario()
+    }
 
 
 

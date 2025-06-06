@@ -9,7 +9,7 @@ CREATE TABLE transportadora_cliente (
     cnpjTransportadora_cliente CHAR(14) NOT NULL UNIQUE,
     telefoneTransportadora_cliente VARCHAR(15) NOT NULL,
     emailTransportadora_cliente VARCHAR(60) NOT NULL UNIQUE,
-    senhaTransportadora_cliente VARCHAR(255) NOT NULL,
+    senhaTransportadora_cliente VARCHAR(100),
     logo TEXT,
     dataCriacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT chkEmailTransportadora CHECK (emailTransportadora_cliente LIKE '%@%.%')
@@ -43,8 +43,7 @@ CREATE TABLE veiculo (
     CONSTRAINT fkVeiculoTransportadora FOREIGN KEY (fkTransportadora_cliente) 
         REFERENCES transportadora_cliente(idTransportadora_cliente)
 );
-SELECT f.nomeFuncionario, f.imagemPerfil_funcionario, v.idVeiculo, v.placaVeiculo, v.modelo
-	FROM funcionario AS f JOIN veiculo AS v ON v.fkFuncionario = f.idFuncionario WHERE f.fkTransportadora_cliente = 1;
+
 -- Tabela sensor
 CREATE TABLE sensor (
     idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -119,7 +118,11 @@ VALUES
 (2, 'LM35', 'TEMPERATURA', 'Centro'),
 (2, 'DHT11', 'UMIDADE', 'Centro'),
 (2, 'LM35', 'TEMPERATURA', 'Centro'),
-(2, 'DHT11', 'UMIDADE', 'Centro'),
+(2, 'DHT11', 'UMIDADE', 'Centro');
+
+
+INSERT INTO sensor (fkVeiculo, tipoSensor, funcaoSensor, localizacao)
+VALUES
 -- Veículo 3
 (3, 'DHT11', 'TEMPERATURA', 'Traseira'),
 (3, 'DHT11', 'UMIDADE', 'Traseira'),
@@ -147,3 +150,5 @@ select * from transportadora_cliente;
 select * from sensor;
 select * from veiculo;
 select * from leitura_sensor order by dataHora desc;
+
+SELECT * FROM funcionario WHERE fkTransportadora_cliente = 1;
