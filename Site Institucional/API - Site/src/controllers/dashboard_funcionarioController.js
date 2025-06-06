@@ -139,11 +139,30 @@ function excluirFuncionario(req, res) {
     }
 }
 
+function cadastrarFuncionario(req, res) {
+
+    var imagem = req.file.filename
+    var email = req.body.emailFuncionario
+    var nome = req.body.nomeFuncionario
+    var cpf = req.body.cpfFuncionario
+    var telefone = req.body.telefoneFuncionario
+    var idTransportadora = req.body.fkTransportadora
+
+
+    dashboard_funcionarioModel.cadastrarFuncionario(idTransportadora, email, nome, cpf, telefone, imagem)
+        .then(resultado => {
+            res.status(201).send("Usuario criado com sucesso");
+        }).catch(err => {
+            res.status(500).send(err);
+        });
+}
+
 module.exports = {
     listarFuncionarios,
     listarFuncionariosPesquisa,
     excluirSensor,
     listarVeiculosFuncionario,
     excluirVeiculo,
-    excluirFuncionario
+    excluirFuncionario,
+    cadastrarFuncionario
 }

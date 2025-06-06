@@ -147,11 +147,15 @@
                     <div>
                         Foto do funcionário
                         <label for="input_fotoFuncionario">
-                            <input type="file" id="input_fotoFuncionario">
+                            <input type="file" id="input_fotoFuncionario" oninput="cadastroImagemExibir()">
                             <span>Selecionar Arquivo</span>
                         </label>
                     </div>
-                    <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
+                    <div id="imagemFuncionario">
+                        <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
+                        <div class="tudo_certo" id="tudo_certo"></div>
+                    </div>
+
                 </div>
                 <div class="campo">
                     email
@@ -169,6 +173,7 @@
                     telefone
                     <input type="text" id="input_telefoneFuncionario">
                 </div>
+                <div id="div_erro"></div>
                 <button onclick="cadastrar()">
                     CADASTRAR
                 </button>
@@ -445,12 +450,103 @@
         excluir_funcionario()
     }
 
+    function adicionarFuncionario() {
+        if (contador_excluir == 0) {
+            div_addFuncionario.style.display = "flex"
+            contador_excluir++
+        } else {
+            div_addFuncionario.style.display = "none"
+            contador_excluir--
+        }
+    }
 
+    function cadastrar() {
+        var emailFuncionario = input_emailFuncionario.value
+        var nomeFuncionario = input_nomeFuncionario.value
+        var cpfFuncionario = input_cpfFuncionario.value
+        var telefoneFuncionario = input_telefoneFuncionario.value
+        var fotoFuncionario = input_fotoFuncionario.value
 
+        if (nomeFuncionario === `` || emailFuncionario === `` || cpfFuncionario === `` || telefoneFuncionario === `` || fotoFuncionario === ``) {
+            div_erro.innerHTML = `<p style="color: red;">Preencha todos os campos para realizar o cadastro</p>`;
+            return;
+        }
 
+        if (!emailFuncionario.endsWith(".com") || emailFuncionario.indexOf("@") === -1) {
+            div_erro.innerHTML = `<p style="color: red;">Email incorreto</p>`;
+            return;
+        }
 
+        if (!telefoneFuncionario.length == 11) {
+            div_erro.innerHTML = `<p style="color: red;">Telefone deve ter 11 dígitos</p>`
+        }
 
+        if (!cpfFuncionario.length == 11) {
+            div_erro.innerHTML = `<p style="color: red;">CPF deve ter 11 dígitos</p>`;
+        }
 
+        else {
+            const formData = new FormData()
+            formData.append('fotoFuncionario', input_fotoFuncionario.files[0])
+            formData.append('emailFuncionario', emailFuncionario)
+            formData.append('nomeFuncionario', nomeFuncionario)
+            formData.append('cpfFuncionario', cpfFuncionario)
+            formData.append('telefoneFuncionario', telefoneFuncionario)
+            formData.append('fkTransportadora', idUsuario)
+
+            fetch("/fotoPerfilFuncionario/cadastrarFuncionario", {
+                method: "POST",
+                body: formData
+            }).then(res => {
+
+                if (!res.ok) {
+                    throw new Error("Erro ao cadastrar");
+                }
+
+                div_erro.innerHTML = `<p style="color: green;">Funcionário cadastrado</p>`
+
+                setTimeout(() => {
+                    adicionarFuncionario()
+                    listarFuncionarios()
+                }, 1000)
+
+            }).catch(err => {
+                console.log(err)
+                div_erro.innerHTML = `<p style="color: red;">CPF/email já está em uso</p>`;
+            })
+        }
+
+    }
+
+    function cadastroImagemExibir() {
+        var arquivo = input_fotoFuncionario.files[0]
+
+        var nomeArquivo = input_fotoFuncionario.value.toLowerCase();
+
+        if (
+            !input_fotoFuncionario.value.endsWith(".png") &&
+            !input_fotoFuncionario.value.endsWith(".jpeg") &&
+            !input_fotoFuncionario.value.endsWith(".jpg") &&
+            !input_fotoFuncionario.value.endsWith(".gif") &&
+            !input_fotoFuncionario.value.endsWith(".webp") &&
+            !input_fotoFuncionario.value.endsWith(".mp4") &&
+            !input_fotoFuncionario.value.endsWith(".svg")) {
+
+            imagemFuncionario.innerHTML = `<div class ="tudo_certo">Tipo de arquivo não suportado</div>`
+        } else if (arquivo) {
+            tudo_certo.innerHTML = ""
+
+            var leitor = new FileReader()
+
+            leitor.onload = function (e) {
+                imagemFuncionario.innerHTML = `
+                    <img src="${e.target.result}" alt="Prévia da imagem">`
+            }
+
+            leitor.readAsDataURL(arquivo)
+
+        }
+    }
 
 
 </script>

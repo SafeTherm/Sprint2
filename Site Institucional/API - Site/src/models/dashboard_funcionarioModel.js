@@ -50,6 +50,17 @@ function excluirFuncionario(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function cadastrarFuncionario(idTransportadora, email, nome, cpf, telefone, imagem) {
+  var instrucaoSql = `
+  INSERT INTO funcionario (fkTransportadora_cliente, emailFuncionario, nomeFuncionario, cpfFuncionario,
+  telefoneFuncionario, imagemPerfil_funcionario) VALUES
+    (${idTransportadora}, '${email}', '${nome}', '${cpf}', '${telefone}', '${imagem}')`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+
 // Atualize o module.exports para incluir a nova função
 module.exports = {
   listarFuncionarios,
@@ -57,5 +68,6 @@ module.exports = {
   excluirSensor,
   listarVeiculosFuncionario,
   excluirVeiculo,
-  excluirFuncionario
+  excluirFuncionario,
+  cadastrarFuncionario
 };
