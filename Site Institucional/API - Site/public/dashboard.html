@@ -172,62 +172,6 @@
               <h3>ABC1D23</h3>
               <h3>Alerta</h3>
             </div>
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>Alerta</h3>
-            </div>
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>Alerta</h3>
-            </div>
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>Alerta</h3>
-            </div>
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>Alerta</h3>
-            </div>
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>Alerta</h3>
-            </div>
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>Alerta</h3>
-            </div>
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>fim</h3>
-            </div>
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>fim</h3>
-            </div>
           </div>
         </div>
       </div>
@@ -264,11 +208,11 @@
           />
     `;
 
-    informacoesUser()
+    informacoesUser();
   };
 
   // function funional.
-  
+
   function informacoesUser() {
     fetch(`/dashboardUser/infosUser/${idUsuario}`)
       .then((res) => res.json())
@@ -298,11 +242,33 @@
             </div>
           `;
       });
-  }
+      
+    }
 
+  // dados sendo puxados necessário organização do banco de dados e criação de função.
+    idVeiculo =  sessionStorage.ID_SELECAO_VEICULO;
+    console.log(idVeiculo)
+      fetch(`/dashboardUser/umidadeHistorico/${idVeiculo}`)
+      .then((res) => res.json())
+        .then((umidade) => {
+           const dadosUmidade = umidade[0];
+          
+           for(let i = 0; i < umidade.length; i++){
+              if(umidade[i].valor > 70 || umidade[i].valor < 40){
+                console.log(i + "º RISCO: " + umidade[i].valor)
+              }else if((umidade[i].valor >= 40 && umidade[i].valor < 50) || (umidade[i].valor > 60 && umidade[i].valor < 70)){
+                console.log(i + "º ATENÇÃO: " + umidade[i].valor)
+              }else{
+                console.log(i + "º IDEAL: " + umidade[i].valor)
+              }
+           }
+        })
+    
+    
+
+  // logout usuario
   function abrirLogout() {
     btnLogout.classList.toggle("effeitoLogout");
-
     if (btnLogout.classList.contains("effeitoLogout")) {
       divLogout.style.display = "flex";
       divLogout.classList.add("animacaoUser");
@@ -312,11 +278,10 @@
     }
   }
 
+  // animação dos gráficos + cards 5min e 10min fazer o backend
   var selecaoGrafico = "";
-
   function selecionarGrafico() {
     let graficoSelecionado = gaficosSelect.value;
-
     selecaoGrafico = graficoSelecionado;
     console.log(selecaoGrafico);
 
@@ -349,7 +314,6 @@
     }
     selectDaMedia(selecaoGrafico);
   }
-
   function selectDaMedia(grafico) {
     let mediaSelecionada = selecaoMedia.value;
     var graficoSelect = selecaoGrafico;
@@ -517,14 +481,15 @@
     }
   }
 
+
+  //abrir historico para visualizar notificações de alertas
   function abrirHitorico() {
     const clicado = document.getElementById("historicoSensor");
     clicado.classList.toggle("adicionar");
   }
 
-  // Grafico para serem estilizados.
+  // Grafico prontos para receber dados do banco após conclusão de historico.
   const umidadeSup = document.getElementById("myUmidadeSup");
-
   new Chart(umidadeSup, {
     type: "line",
     data: {
@@ -552,7 +517,6 @@
   });
 
   const umidadeInf = document.getElementById("myUmidadeInf");
-
   new Chart(umidadeInf, {
     type: "line",
     data: {
@@ -580,7 +544,6 @@
   });
 
   const temperaturaSup = document.getElementById("myTemperaturaSup");
-
   new Chart(temperaturaSup, {
     type: "line",
     data: {
@@ -608,7 +571,6 @@
   });
 
   const temperaturaInf = document.getElementById("myTemperaturaInf");
-
   new Chart(temperaturaInf, {
     type: "line",
     data: {
