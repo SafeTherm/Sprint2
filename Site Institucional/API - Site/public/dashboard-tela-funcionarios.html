@@ -10,31 +10,37 @@
 </head>
 
 <body>
-    <div class="menu">
-        <div class="box-nav-logo">
-            <a href="index.html">
-                <h1><img src="assets/img/logo.png">Safe <span>Therm</span></h1>
-            </a>
-        </div>
-        <div class="icon_barra">
-            <a href="">
-                <img src="assets/img/icon_listaFunc.svg" alt="">
-                FUNCIONÁRIOS
-            </a>
-        </div>
-        <div class="icon_barra">
-            <a href="">
-                <img src="assets/img/icon_veiculo.svg" alt="">
-                VEÍCULOS
-            </a>
-        </div>
-        <div class="icon_barra_sair">
-            <button onclick="sair()">
-                <img src="assets/img/icon_sair.svg" alt="">
-                SAIR
-            </button>
-        </div>
+  <div class="menu">
+    <div class="box-nav-logo">
+      <a href="index.html">
+        <h1><img src="assets/img/logo.png" />Safe <span>Therm</span></h1>
+      </a>
     </div>
+    <div class="icon_barra">
+      <a href="dashboard-geral.html">
+        <img src="assets/img/icon_dashboard.svg" alt="" />
+        HOME
+      </a>
+    </div>
+    <div class="icon_barra">
+      <a href="dashboard-tela-funcionarios.html">
+        <img src="assets/img/icon_listaFunc.svg" alt="" />
+        FUNCIONÁRIOS
+      </a>
+    </div>
+    <div class="icon_barra">
+      <a href="">
+        <img src="assets/img/icon_veiculo.svg" alt="" />
+        VEÍCULOS
+      </a>
+    </div>
+    <div class="icon_barra_sair">
+      <button onclick="sair()">
+        <img src="assets/img/icon_sair.svg" alt="" />
+        SAIR
+      </button>
+    </div>
+  </div>
 
 
     <section class="conteudo">
@@ -180,9 +186,6 @@
             </div>
         </div>
 
-
-
-
         <div class="excluir" style="display: none;" id="div_excluirFuncionario">
             <div class="tituloExcluir">
                 EXCLUIR FUNCIONÁRIO
@@ -272,7 +275,6 @@
         }
     }
 
-
     function listarFuncionarios() {
 
         div_exibirFuncionarios.innerHTML = ""
@@ -323,7 +325,6 @@
                 }
             })
     }
-
 
 
     var funcionarioParaExcluir = null

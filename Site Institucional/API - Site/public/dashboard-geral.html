@@ -17,6 +17,12 @@
       </a>
     </div>
     <div class="icon_barra">
+      <a href="dashboard-geral.html">
+        <img src="assets/img/icon_dashboard.svg" alt="" />
+        HOME
+      </a>
+    </div>
+    <div class="icon_barra">
       <a href="dashboard-tela-funcionarios.html">
         <img src="assets/img/icon_listaFunc.svg" alt="" />
         FUNCIONÁRIOS
@@ -338,13 +344,13 @@
     }
   }
 
+  var contador_verificacao_sensorOK = 0
   var lista_veiculos = [];
   function alertaSensor() {
     fetch(`/dashboard/alertaSensor/veiculosRota/${idUsuario}`)
       .then((res) => res.json())
       .then((qtdVeiculosRota) => {
         if (qtdVeiculosRota.length > 0) {
-          console.log(`Esse é alertaSensor: ${qtdVeiculosRota[0].idVeiculo}`);
 
           for (let i = 0; i < qtdVeiculosRota.length; i++) {
             let idVeiculo = qtdVeiculosRota[i].idVeiculo;
@@ -359,6 +365,7 @@
                   let statusCase = sensoresRotaDefeito[j].statusSensorCase;
 
                   if (statusCase === "COM DEFEITO") {
+                    contador_verificacao_sensorOK++
                     fetch(`dashboard/alertaSensor/infoMotorista/${idVeiculo}`)
                       .then((res) => res.json())
                       .then((dadosFunc) => {
@@ -398,8 +405,7 @@
                                 </div>`;
 
                           for (let k = 0; k < sensoresRotaDefeito.length; k++) {
-                            let localizacao =
-                              sensoresRotaDefeito[k].localizacao;
+                            let localizacao = sensoresRotaDefeito[k].localizacao;
                             let status = sensoresRotaDefeito[k].statusSensor;
                             let idSensor = sensoresRotaDefeito[k].idSensor;
                             let statusCaseSub =
@@ -470,7 +476,6 @@
                             </div>`;
                         }
                       });
-
                     break;
                   }
                 }
@@ -493,11 +498,13 @@
               .then((res) => res.json())
               .then((sensorListaVeiculos) => {
 
+
                 console.log(`Esse é sensores com defeito: ${sensorListaVeiculos}`)
                 for (let j = 0; j < sensorListaVeiculos.length; j++) {
                   let statusDoSensor = sensorListaVeiculos[j].statusSensor;
 
                   if (statusDoSensor != "ATIVO") {
+                    contador_verificacao_sensorOK++
                     fetch(`dashboard/alertaSensor/infoMotorista/${veiculo}`)
                       .then((res) => res.json())
                       .then((dadosFunc) => {
@@ -576,14 +583,18 @@
                       });
 
                     break;
-                  } else {
-                    div_alerta_exibirSensor.innerHTML = `
+                  }
+                  console.log("esse é o contador desativado: " + contador_verificacao_sensorOK)
+                }
+                if (contador_verificacao_sensorOK == 0) {
+                  div_alerta_exibirSensor.innerHTML = `
                       <div class="nenhumSensorComDefeito">
                         Nenhum sensor com defeito 
                       </div>`
-                  }
+                  contador_verificacao_sensorOK = 0
                 }
               });
+
           }
         }
       });
