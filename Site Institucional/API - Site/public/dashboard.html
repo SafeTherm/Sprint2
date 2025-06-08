@@ -1,182 +1,165 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SafeTherm - Dashboard especifica</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="css/dashboards.css" />
-    <link
-      rel="stylesheet"
-      href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css"
-    />
-  </head>
 
-  <body>
-    <!-- Fazer menu após concluir o backend -->
-    <div class="menu"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeTherm - Dashboard especifica</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/dashboards.css" />
+  <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css" />
+</head>
 
-    <section class="conteudo">
-      <header>
-        <nav>
-          <input type="text" placeholder="pesquisar placa do veiculo..." />
-          <button onclick=""></button>
-        </nav>
-        <div class="user_perfil" id="user_perfil">
-          <button
-            class="selectUser"
-            onclick="abrirLogout()"
-            id="btnLogout"
-          ></button>
-          <div id="divLogout">
-            <a href="">Funcionários</a>
-            <a href="">Veículos</a>
-            <button onclick="">SAIR</button>
-          </div>
-          <div id="infos_user">
-            <h3>Roberta Silva</h3>
-            <h4>roberta@therm.com</h4>
-          </div>
-          <img
-            src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
-            alt=""
-          />
+<body>
+  <!-- Fazer menu após concluir o backend -->
+  <div class="menu"></div>
+
+  <section class="conteudo">
+    <header>
+      <nav>
+        <input type="text" placeholder="pesquisar placa do veiculo..." />
+        <button onclick=""></button>
+      </nav>
+      <div class="user_perfil" id="user_perfil">
+        <button class="selectUser" onclick="abrirLogout()" id="btnLogout"></button>
+        <div id="divLogout">
+          <a href="">Funcionários</a>
+          <a href="">Veículos</a>
+          <button onclick="">SAIR</button>
         </div>
-      </header>
+        <div id="infos_user">
+          <h3>Roberta Silva</h3>
+          <h4>roberta@therm.com</h4>
+        </div>
+        <img
+          src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+          alt="" />
+      </div>
+    </header>
 
-      <div class="graficosGerados">
-        <div class="infosMotorista" id="infosMotorista">
-          <img
-            src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
-            alt=""
-          />
-          <div class="motoristaInfo">
-            <h1>MOTORISTA: <span>Fabiano Gomes dos Santos Oliveira</span></h1>
-            <h1>TELEFONE: <span>(11) 00000-0000</span></h1>
-            <h1>EMAIL: <span>fabiano.gomes@safetherm.com.br</span></h1>
+    <div class="graficosGerados">
+      <div class="infosMotorista" id="infosMotorista">
+        <img
+          src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+          alt="" />
+        <div class="motoristaInfo">
+          <h1>MOTORISTA: <span>Fabiano Gomes dos Santos Oliveira</span></h1>
+          <h1>TELEFONE: <span>(11) 00000-0000</span></h1>
+          <h1>EMAIL: <span>fabiano.gomes@safetherm.com.br</span></h1>
+        </div>
+        <div class="caminhao">
+          <h1>VEICULO</h1>
+          <h1>MODELO: <span>Fiat Ducato</span></h1>
+          <h1>PLACA: <span>ABC1D23</span></h1>
+        </div>
+      </div>
+      <div class="conteudoGrafico">
+        <div class="cardsEsquerda">
+          <div class="card" id="realUmidade">
+            <div class="circleAtivo"></div>
           </div>
-          <div class="caminhao">
-            <h1>VEICULO</h1>
-            <h1>MODELO: <span>Fiat Ducato</span></h1>
-            <h1>PLACA: <span>ABC1D23</span></h1>
+          <div class="card" id="cincoUmidade">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="dezUmidade">
+            <div class="circleDesativo"></div>
+          </div>
+
+          <!-- definição para cards de temperatura inferiores na Esquerda -->
+          <div class="card" id="realTemperaturaE">
+            <div class="circleAtivo"></div>
+          </div>
+          <div class="card" id="cincoTemperaturaE">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="dezTemperaturaE">
+            <div class="circleDesativo"></div>
           </div>
         </div>
-        <div class="conteudoGrafico">
-          <div class="cardsEsquerda">
-            <div class="card" id="realUmidade">
-              <div class="circleAtivo"></div>
-            </div>
-            <div class="card" id="cincoUmidade">
-              <div class="circleDesativo"></div>
-            </div>
-            <div class="card" id="dezUmidade">
-              <div class="circleDesativo"></div>
-            </div>
-
-            <!-- definição para cards de temperatura inferiores na Esquerda -->
-            <div class="card" id="realTemperaturaE">
-              <div class="circleAtivo"></div>
-            </div>
-            <div class="card" id="cincoTemperaturaE">
-              <div class="circleDesativo"></div>
-            </div>
-            <div class="card" id="dezTemperaturaE">
-              <div class="circleDesativo"></div>
-            </div>
-          </div>
-          <div class="graficArea">
-            <div class="boxSelects">
-              <select
-                name="sel"
-                id="selecaoMedia"
-                class="selecaoMedia"
-                onchange="selectDaMedia()"
-              >
-                <option>Qual tempo deseja?</option>
-                <option value="real">Dados em tempo real</option>
-                <option value="cincoMin">Dados nos ultímos 5min</option>
-                <option value="dezMin">Dados nos ultímos 10min</option>
-              </select>
-              <select
-                name="sel"
-                id="gaficosSelect"
-                onchange="selecionarGrafico()"
-                class="selecaoSensores"
-              >
-                <option>Quais gráficos deseja?</option>
-                <option value="Sup">Todos os Sensores Superiores</option>
-                <option value="Umi">Apenas sensores de Umidade</option>
-                <option value="Inf">Todos os Sensores Inferiores</option>
-                <option value="Temp">Apenas sensores de Temperatura</option>
-                <option value="Todos">Todos os Sensores</option>
-              </select>
-            </div>
-
-            <div class="graficos" id="umidadeSuperior">
-              <h3 class="statusCard">
-                Umidade superior <span id="statusUmiSup">(Ativo)</span>
-              </h3>
-              <canvas id="myUmidadeSup" class="graficoEstilo"></canvas>
-            </div>
-            <div class="graficos" id="umidadeInferior">
-              <h3 class="statusCard">
-                Umidade inferior <span id="statusUmiInf">(Ativo)</span>
-              </h3>
-              <canvas id="myUmidadeInf" class="graficoEstilo"></canvas>
-            </div>
-            <div class="graficos" id="temperaturaSuperior">
-              <h3 class="statusCard">
-                Temperatura superior <span id="statusTempSup">(Ativo)</span>
-              </h3>
-              <canvas id="myTemperaturaSup" class="graficoEstilo"></canvas>
-            </div>
-            <div class="graficos" id="temperaturaInferior">
-              <h3 class="statusCard">
-                Temperatura inferior
-                <span id="statusTempInf">(Ativo)</span>
-              </h3>
-              <canvas id="myTemperaturaInf" class="graficoEstilo"></canvas>
-            </div>
+        <div class="graficArea">
+          <div class="boxSelects">
+            <select name="sel" id="selecaoMedia" class="selecaoMedia" onchange="selectDaMedia()">
+              <option>Qual tempo deseja?</option>
+              <option value="real">Dados em tempo real</option>
+              <option value="cincoMin">Dados nos ultímos 5min</option>
+              <option value="dezMin">Dados nos ultímos 10min</option>
+            </select>
+            <select name="sel" id="gaficosSelect" onchange="selecionarGrafico()" class="selecaoSensores">
+              <option>Quais gráficos deseja?</option>
+              <option value="Sup">Todos os Sensores Superiores</option>
+              <option value="Umi">Apenas sensores de Umidade</option>
+              <option value="Inf">Todos os Sensores Inferiores</option>
+              <option value="Temp">Apenas sensores de Temperatura</option>
+              <option value="Todos">Todos os Sensores</option>
+            </select>
           </div>
 
-          <div class="cardsDireita">
-            <div class="card" id="realTemperatura">
-              <div class="circleAtivo"></div>
-            </div>
-            <div class="card" id="cincoTemperatura">
-              <div class="circleDesativo"></div>
-            </div>
-            <div class="card" id="dezTemperatura">
-              <div class="circleDesativo"></div>
-            </div>
+          <div class="graficos" id="umidadeSuperior">
+            <h3 class="statusCard">
+              Umidade superior <span id="statusUmiSup">(Ativo)</span>
+            </h3>
+            <canvas id="myUmidadeSup" class="graficoEstilo"></canvas>
+          </div>
+          <div class="graficos" id="umidadeInferior">
+            <h3 class="statusCard">
+              Umidade inferior <span id="statusUmiInf">(Ativo)</span>
+            </h3>
+            <canvas id="myUmidadeInf" class="graficoEstilo"></canvas>
+          </div>
+          <div class="graficos" id="temperaturaSuperior">
+            <h3 class="statusCard">
+              Temperatura superior <span id="statusTempSup">(Ativo)</span>
+            </h3>
+            <canvas id="myTemperaturaSup" class="graficoEstilo"></canvas>
+          </div>
+          <div class="graficos" id="temperaturaInferior">
+            <h3 class="statusCard">
+              Temperatura inferior
+              <span id="statusTempInf">(Ativo)</span>
+            </h3>
+            <canvas id="myTemperaturaInf" class="graficoEstilo"></canvas>
+          </div>
+        </div>
+
+        <div class="cardsDireita">
+          <div class="card" id="realTemperatura">
+            <div class="circleAtivo"></div>
+          </div>
+          <div class="card" id="cincoTemperatura">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="dezTemperatura">
+            <div class="circleDesativo"></div>
           </div>
         </div>
       </div>
-      <div class="conteudoHistorico">
-        <button onclick="abrirHitorico()" id="btnHistorico">
-          abrir historico
-        </button>
-        <div class="boxHistorico" id="historicoSensor">
-          <div class="topoTitulos">
-            <h1>Data/hora</h1>
-            <h1>Temperatura</h1>
-            <h1>Umidade</h1>
-            <h1>Veículo</h1>
-            <h1>Status</h1>
-          </div>
-          <div class="scroll">
-            <div class="listarDados">
-              <h3>08/05/2025, 22:31</h3>
-              <h3>5.6ºC</h3>
-              <h3>50%</h3>
-              <h3>ABC1D23</h3>
-              <h3>Alerta</h3>
-            </div>
-          </div>
+    </div>
+    <div class="conteudoHistorico">
+      <button onclick="abrirHitorico()" id="btnHistorico">
+        abrir historico
+      </button>
+      <div class="boxHistorico" id="historicoSensor">
+        <div class="topoTitulos">
+          <h1>Data/hora</h1>
+          <h1>Temperatura</h1>
+          <h1>Umidade</h1>
+          <h1>Veículo</h1>
+          <h1>Status</h1>
+        </div>
+        <div class="scroll" id="listaDadosAlertas">
+          <!-- <div class="listarDados">
+            <h3>08/05/2025, 22:31</h3>
+            <h3>5.6ºC</h3>
+            <h3>50%</h3>
+            <h3>ABC1D23</h3>
+            <h3>Alerta</h3>
+          </div> -->
         </div>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+</body>
+
 </html>
 <script>
   var idUsuario = sessionStorage.ID_SELECAO_FUNCIONARIO;
@@ -209,6 +192,7 @@
     `;
 
     informacoesUser();
+    sensoresHistorico();
   };
 
   // function funional.
@@ -242,29 +226,96 @@
             </div>
           `;
       });
-      
-    }
+
+  }
 
   // dados sendo puxados necessário organização do banco de dados e criação de função.
-    idVeiculo =  sessionStorage.ID_SELECAO_VEICULO;
-    console.log(idVeiculo)
-      fetch(`/dashboardUser/umidadeHistorico/${idVeiculo}`)
+
+
+
+
+
+
+
+
+
+  
+  // inserir esse setInterval quando os graficos estiverem funcionando!
+  // assim será possivel validar o historico sempre q a temperatura ultrapassar emitindo assim um alerta também!
+  // na dashboard especifica.
+  
+  // setInterval(() => {
+    //   sensoresHistorico();
+    // }, 2000);
+  idVeiculo = sessionStorage.ID_SELECAO_VEICULO;
+  console.log(idVeiculo);
+
+  function sensoresHistorico() {
+    listaDadosAlertas.innerHTML = "";
+    fetch(`/dashboardUser/umidadeHistorico/${idVeiculo}`)
       .then((res) => res.json())
-        .then((umidade) => {
-           const dadosUmidade = umidade[0];
-          
-           for(let i = 0; i < umidade.length; i++){
-              if(umidade[i].valor > 70 || umidade[i].valor < 40){
-                console.log(i + "º RISCO: " + umidade[i].valor)
-              }else if((umidade[i].valor >= 40 && umidade[i].valor < 50) || (umidade[i].valor > 60 && umidade[i].valor < 70)){
-                console.log(i + "º ATENÇÃO: " + umidade[i].valor)
-              }else{
-                console.log(i + "º IDEAL: " + umidade[i].valor)
+      .then((umidade) => {
+        fetch(`/dashboardUser/temperaturaHistorico/${idVeiculo}`)
+          .then((res) => res.json())
+          .then((temperatura) => {
+            for (let i = 0; i < umidade.length && temperatura.length; i++) {
+
+              //formatando umidade dataHora
+              const dataPartesUmidade = umidade[i].dataHora.split('T')[0].split('-');
+              const horaPartesUmidade = umidade[i].dataHora.split('T')[1].split(':');
+              const dataUmidade = `${dataPartesUmidade[2]}/${dataPartesUmidade[1]}/${dataPartesUmidade[0]}, ${horaPartesUmidade[0]}:${horaPartesUmidade[1]}`;
+  
+              //formatando temperatura dataHora
+              const dataPartesTemperatura = temperatura[i].dataHora.split('T')[0].split('-');
+              const horaPartesTemperatura = temperatura[i].dataHora.split('T')[1].split(':');
+              const dataTemperatura = `${dataPartesTemperatura[2]}/${dataPartesTemperatura[1]}/${dataPartesTemperatura[0]}, ${horaPartesTemperatura[0]}:${horaPartesTemperatura[1]}`;
+
+              if (umidade[i].valor > 70 || umidade[i].valor < 40) {
+                listaDadosAlertas.innerHTML += `
+              <div class="listarDados">
+                <h3>${dataUmidade}</h3>
+                <h3>${temperatura[i].valor}</h3>
+                <h3>${umidade[i].valor}</h3>
+                <h3>${umidade[i].placaVeiculo}</h3>
+                <h3>Alerta Umidade</h3>
+              </div>
+            `
+              } else if ((umidade[i].valor >= 40 && umidade[i].valor < 50) || (umidade[i].valor > 60 && umidade[i].valor < 70)) {
+                listaDadosAlertas.innerHTML += `
+              <div class="listarDados">
+                <h3>${dataUmidade}</h3>
+                <h3>${temperatura[i].valor}</h3>
+                <h3>${umidade[i].valor}</h3>
+                <h3>${umidade[i].placaVeiculo}</h3>
+                <h3>Atenção Umidade</h3>
+              </div>
+            `
+              } else if ((temperatura[i].valor > 6 && temperatura[i].valor < 7) || (temperatura[i].valor > 2 && temperatura[i].valor < 4)) {
+                listaDadosAlertas.innerHTML += `
+              <div class="listarDados">
+                <h3>${dataTemperatura}</h3>
+                <h3>${temperatura[i].valor}</h3>
+                <h3>${umidade[i].valor}</h3>
+                <h3>${umidade[i].placaVeiculo}</h3>
+                <h3>Atenção Temperatura</h3>
+              </div>
+              `
+              } else if (temperatura[i].valor < 2 && temperatura[i].valor > 7) {
+                listaDadosAlertas.innerHTML += `
+              <div class="listarDados">
+                <h3>${dataTemperatura}</h3>
+                <h3>${temperatura[i].valor}</h3>
+                <h3>${umidade[i].valor}</h3>
+                <h3>${umidade[i].placaVeiculo}</h3>
+                <h3>Alerta Temperatura</h3>
+              </div>
+              `
               }
-           }
-        })
-    
-    
+            }
+          });
+      })
+  }
+
 
   // logout usuario
   function abrirLogout() {
