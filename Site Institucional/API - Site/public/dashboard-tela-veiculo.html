@@ -147,13 +147,13 @@
 
         <div class="excluir" style="display: none;" id="div_excluirFuncionario">
             <div class="tituloExcluir">
-                EXCLUIR FUNCIONÁRIO
+                EXCLUIR VEÍCULO
             </div>
             <div class="pergunta_excluir" style="color: red; font-weight: bolder;">
                 TEM CERTEZA QUE QUER EXCLUIR ESSE
-                <div>FUNCIONÁRIO?</div>
-                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR O VEÍCULO E O SENSORES DESSE
-                    VEÍCULO JUNTO COM ALERTAS E LEITURAS DO SENSORES DELE)</div>
+                <div>VEÍCULO?</div>
+                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR OS SENSORES DESSE
+                    VEÍCULO JUNTO COM OS RESPECTIVOS ALERTAS E CAPTURA DE DADOS)</div>
                 <div class="botao_condicao_excluir">
                     <button onclick="excluir_veiculo_verdade()">
                         SIM
@@ -400,12 +400,9 @@
                     console.log(`#ERRO: ${resposta}`);
                 });
         }
-
-
-
-
-
-
     }
 
+    function excluir_veiculo_falso() {
+        excluir_veiculo()
+    }
 </script>

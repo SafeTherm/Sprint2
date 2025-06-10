@@ -33,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 999;
 }
 
 .conteudo {
@@ -347,7 +348,7 @@ a h1 img {
 .excluir {
   position: absolute;
   z-index: 999;
-  background-color: #f0f0f0;
+  background-color: #232323;
   width: 400px;
   top: 30%;
   left: 35%;
@@ -359,11 +360,13 @@ a h1 img {
   font-family: "Inter";
   border: #000 solid 2px;
   box-shadow: #00000036 5px 5px 5px 5px;
+  color: #fff;
 }
 
 .tituloExcluir {
   font-size: 1.5rem;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 .pergunta_excluir {
@@ -437,6 +440,7 @@ a h1 img {
   background-color: #232323;
   padding: 5px;
   color: #fff;
+  background-color: #ff7f00;
 }
 
 #input_fotoFuncionario {
@@ -453,7 +457,7 @@ a h1 img {
 }
 
 .campo_imagem span {
-  background-color: #000;
+  background-color: #ff7f00;
   padding: 3px;
   border-radius: 5px;
   color: #fff;
@@ -462,6 +466,7 @@ a h1 img {
 .campo_imagem label {
   width: 100%;
   display: flex;
+  margin-top: 5px;
 }
 
 .campo_imagem img {
@@ -498,7 +503,7 @@ a h1 img {
 }
 
 .nenhum_funcionario {
-  background-color: #232323;
+  background-color: #ff7f00;
   color: #fff;
   padding: 15px;
   border-radius: 10px;
