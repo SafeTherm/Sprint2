@@ -14,7 +14,7 @@ where idFuncionario = ${idUsuarioSelect};`;
   return database.executar(instrucaoSql);
 }
 
-function umidadeHistorico(idVeiculo){
+function umidadeHistorico(idVeiculo) {
   var instrucaoSql = `
     select dataHora, placaVeiculo, s.tipoSensor ,l.valor from leitura_sensor as l
     join sensor as s on l.fkSensor = s.idSensor
@@ -26,7 +26,7 @@ function umidadeHistorico(idVeiculo){
   console.log("Executando a instrução SQL para O historico de umidade: \n" + instrucaoSql)
   return database.executar(instrucaoSql);
 }
-function temperaturaHistorico(idVeiculo){
+function temperaturaHistorico(idVeiculo) {
   var instrucaoSql = `
     select dataHora, placaVeiculo, s.tipoSensor ,l.valor from leitura_sensor as l
     join sensor as s on l.fkSensor = s.idSensor
@@ -38,9 +38,123 @@ function temperaturaHistorico(idVeiculo){
   return database.executar(instrucaoSql);
 }
 
+
+function veiculoTemperatura(idVeiculo) {
+  var instrucaoSql = `
+    select s.idSensor, s.tipoSensor from leitura_sensor as l
+      JOIN sensor as s
+      on l.fkSensor = s.idSensor
+      JOIN veiculo as v
+      on s.fkVeiculo = v.idVeiculo
+    where v.idVeiculo = ${idVeiculo} and s.tipoSensor = 'LM35';
+  `
+   
+  console.log("Executando a instrução SQL para capturar id do sensor de temperatura: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+
+}
+
+function veiculoUmidade(idVeiculo) {
+  var instrucaoSql = `
+    select s.idSensor, s.tipoSensor from leitura_sensor as l
+      JOIN sensor as s
+      on l.fkSensor = s.idSensor
+      JOIN veiculo as v
+      on s.fkVeiculo = v.idVeiculo
+    where v.idVeiculo = ${idVeiculo} and s.tipoSensor = 'DHT11';
+  `
+
+  console.log("Executando a instrução SQL para capturar id do sensor de umidade: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+
+}
+
+
+function graficTempSup(idSensor){
+    var instrucaoSql = `
+        select 
+          s.idSensor, s.tipoSensor, 
+          s.localizacao, s.statusSensor, l.valor,
+            l.dataHora
+        from leitura_sensor as l
+          JOIN sensor as s
+            on l.fkSensor = s.idSensor
+        where s.idSensor = ${idSensor} AND s.localizacao = "Superior"
+        order by s.idSensor DESC
+        limit 6;
+      `
+    console.log("Executando a instrução SQL para capturar dados do sensor de temperatura para o grafico superior: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+}
+
+
+function graficUmiSup(idSensor){
+    var instrucaoSql = `
+        select 
+          s.idSensor, s.tipoSensor, 
+          s.localizacao, s.statusSensor, l.valor,
+            l.dataHora
+        from leitura_sensor as l
+          JOIN sensor as s
+            on l.fkSensor = s.idSensor
+        where s.idSensor = ${idSensor} AND s.localizacao = "Superior"
+        order by s.idSensor DESC
+        limit 6;
+      `
+    console.log("Executando a instrução SQL para capturar dados do sensor de umidade para o grafico superior: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+}
+
+function graficTempInf(idSensor){
+    var instrucaoSql = `
+        select 
+          s.idSensor, s.tipoSensor, 
+          s.localizacao, s.statusSensor, l.valor,
+            l.dataHora
+        from leitura_sensor as l
+          JOIN sensor as s
+            on l.fkSensor = s.idSensor
+        where s.idSensor = ${idSensor} AND s.localizacao = "Inferior"
+        order by s.idSensor DESC
+        limit 6;
+      `
+    console.log("Executando a instrução SQL para capturar dados do sensor de temperatura para o grafico inferior: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+}
+
+function graficUmiInf(idSensor){
+    var instrucaoSql = `
+        select 
+          s.idSensor, s.tipoSensor, 
+          s.localizacao, s.statusSensor, l.valor,
+            l.dataHora
+        from leitura_sensor as l
+          JOIN sensor as s
+            on l.fkSensor = s.idSensor
+        where s.idSensor = ${idSensor} AND s.localizacao = "Inferior"
+        order by s.idSensor DESC
+        limit 6;
+      `
+    console.log("Executando a instrução SQL para capturar dados do sensor de umidade para o grafico inferior: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+}
+
+
+
+
+
+
+
+
 // Atualize o module.exports para incluir a nova função
 module.exports = {
   infosUser,
   umidadeHistorico,
-  temperaturaHistorico
+  temperaturaHistorico,
+  veiculoTemperatura,
+  veiculoUmidade,
+  graficTempSup,
+  graficUmiSup,
+  graficTempInf,
+  graficUmiInf
 };

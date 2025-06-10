@@ -15,5 +15,34 @@ router.get("/umidadeHistorico/:id", function (req, res) {
 router.get("/temperaturaHistorico/:id", function (req, res) {
     dashboardUserController.temperaturaHistorico(req, res);
 });
+// capturar ids do sensor temperatura LM35
+router.get("/veiculoTemperatura/:id", function (req, res) {
+    dashboardUserController.veiculoTemperatura(req, res);
+});
+
+// capturar ids do sensor umidade DHT11
+router.get("/veiculoUmidade/:id", function (req, res) {
+    dashboardUserController.veiculoUmidade(req, res);
+});
+
+// capturar dados graficoSup do sensor temperuta LM35
+router.get("/graficTempSup/:id", function (req, res) {
+    dashboardUserController.graficTempSup(req, res);
+});
+
+// capturar dados graficoSup do sensor umidade DHT11
+router.get("/graficUmiSup/:id", function (req, res) {
+    dashboardUserController.graficUmiSup(req, res);
+});
+
+// capturar dados graficoInf do sensor temperuta LM35
+router.get("/graficTempInf/:id", function (req, res) {
+    dashboardUserController.graficTempInf(req, res);
+});
+
+// capturar dados graficoInf do sensor umidade DHT11
+router.get("/graficUmiInf/:id", function (req, res) {
+    dashboardUserController.graficUmiInf(req, res);
+});
 
 module.exports = router;

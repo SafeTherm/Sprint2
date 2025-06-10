@@ -193,6 +193,10 @@
 
     informacoesUser();
     sensoresHistorico();
+    temperaturaSupIds();
+    umidadeSupIds();
+    temperaturaInfIds();
+    umidadeInfIds();
   };
 
   // function funional.
@@ -239,14 +243,14 @@
 
 
 
-  
+
   // inserir esse setInterval quando os graficos estiverem funcionando!
   // assim será possivel validar o historico sempre q a temperatura ultrapassar emitindo assim um alerta também!
   // na dashboard especifica.
-  
+
   // setInterval(() => {
-    //   sensoresHistorico();
-    // }, 2000);
+  //   sensoresHistorico();
+  // }, 2000);
   idVeiculo = sessionStorage.ID_SELECAO_VEICULO;
   console.log(idVeiculo);
 
@@ -264,7 +268,7 @@
               const dataPartesUmidade = umidade[i].dataHora.split('T')[0].split('-');
               const horaPartesUmidade = umidade[i].dataHora.split('T')[1].split(':');
               const dataUmidade = `${dataPartesUmidade[2]}/${dataPartesUmidade[1]}/${dataPartesUmidade[0]}, ${horaPartesUmidade[0]}:${horaPartesUmidade[1]}`;
-  
+
               //formatando temperatura dataHora
               const dataPartesTemperatura = temperatura[i].dataHora.split('T')[0].split('-');
               const horaPartesTemperatura = temperatura[i].dataHora.split('T')[1].split(':');
@@ -533,118 +537,321 @@
   }
 
 
+
+
+  // atualizando sensores
+  // setInterval(() => {
+  //   temperaturaSupIds();
+  //   umidadeSupIds();
+  //   temperaturaInfIds();
+  //   umidadeInfIds();
+  //   console.log("atualizando sensores")
+  // }, 10000);
+
+
+  //function capturar ids e grafico temperatura Superior
+  let chartTemperaturaSup = null;
+
+  function temperaturaSupIds() {
+    fetch(`dashboardUser/veiculoTemperatura/${idVeiculo}`)
+      .then((res) => res.json())
+      .then((temperatura) => {
+        let sensoresEncontrados = []
+        for (let i = 0; i < temperatura.length; i++) {
+          let idSensor = temperatura[i].idSensor;
+          if (!sensoresEncontrados.includes(idSensor)) {
+            sensoresEncontrados.push(idSensor);
+          }
+        }
+        fetch(`dashboardUser/graficTempSup/${sensoresEncontrados[0]}`)
+          .then((res) => res.json())
+          .then((dadosTempSup) => {
+            let listarDadosTempSup = []
+            let listarIntervalo = []
+            for (let i = 0; i < dadosTempSup.length; i++) {
+              let horaMinuto = dadosTempSup[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
+              listarIntervalo.push(horaMinuto);
+              listarDadosTempSup.push(dadosTempSup[i].valor)
+
+            }
+
+          // Grafico prontos para receber dados do banco após conclusão de historico.
+          const temperaturaSup = document.getElementById("myTemperaturaSup");
+
+          // Destroi o gráfico anterior
+          if (chartTemperaturaSup) {
+            chartTemperaturaSup.destroy();
+          }
+
+          // Criando novo gráfico
+            chartTemperaturaSup = new Chart(temperaturaSup, {
+              type: "line",
+              data: {
+                labels: listarIntervalo,
+                datasets: [
+                  {
+                    label: "Temperatura - Superior",
+                    data: listarDadosTempSup,
+                    backgroundColor: "#FF7F00",
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    hoverBackgroundColor: "#333",
+                    hoverBorderColor: "#333",
+                  },
+                ],
+              },
+              options: {
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              },
+            });
+          });
+      })
+
+  }
+
+
+  let chartUmidadeSup = null;
+  //function capturar ids e grafico umidade Superior
+  function umidadeSupIds() {
+    fetch(`dashboardUser/veiculoUmidade/${idVeiculo}`)
+      .then((res) => res.json())
+      .then((umidade) => {
+        let sensoresEncontrados = []
+        for (let i = 0; i < umidade.length; i++) {
+          let idSensor = umidade[i].idSensor;
+          if (!sensoresEncontrados.includes(idSensor)) {
+            sensoresEncontrados.push(idSensor);
+          }
+        }
+
+        fetch(`dashboardUser/graficUmiSup/${sensoresEncontrados[0]}`)
+          .then((res) => res.json())
+          .then((dadosUmiSup) => {
+            let listarDadosUmiSup = []
+            let listarIntervalo = []
+            for (let i = 0; i < dadosUmiSup.length; i++) {
+              let horaMinuto = dadosUmiSup[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
+              listarIntervalo.push(horaMinuto);
+              listarDadosUmiSup.push(dadosUmiSup[i].valor)
+
+            }
+
+            // Grafico prontos para receber dados do banco após conclusão de historico.
+            const umidadeSup = document.getElementById("myUmidadeSup");
+            // Destroi o gráfico anterior
+          if (chartUmidadeSup) {
+            chartUmidadeSup.destroy();
+          }
+            chartUmidadeSup = new Chart(umidadeSup, {
+              type: "line",
+              data: {
+                labels: listarIntervalo,
+                datasets: [
+                  {
+                    label: "Umidade - Superior",
+                    data: listarDadosUmiSup,
+                    backgroundColor: "#00bfff",
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    hoverBackgroundColor: "#333",
+                    hoverBorderColor: "#333",
+                  },
+                ],
+              },
+              options: {
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              },
+            });
+
+
+
+          })
+
+
+
+
+
+
+
+
+
+      })
+  }
+
+
+  let chartTemperaturaInf = null;
+  //function capturar ids e grafico temperatura Inferior
+  function temperaturaInfIds() {
+
+    fetch(`dashboardUser/veiculoTemperatura/${idVeiculo}`)
+      .then((res) => res.json())
+      .then((temperatura) => {
+        let sensoresEncontrados = []
+        for (let i = 0; i < temperatura.length; i++) {
+          let idSensor = temperatura[i].idSensor;
+          if (!sensoresEncontrados.includes(idSensor)) {
+            sensoresEncontrados.push(idSensor);
+          }
+        }
+        // Valores encontrados por que eu sou muito bom.
+        fetch(`dashboardUser/graficTempInf/${sensoresEncontrados[1]}`)
+          .then((res) => res.json())
+          .then((dadosTempInf) => {
+            let listarDadosTempInf = []
+            let listarIntervalo = []
+            for (let i = 0; i < dadosTempInf.length; i++) {
+              let horaMinuto = dadosTempInf[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
+              listarIntervalo.push(horaMinuto);
+              listarDadosTempInf.push(dadosTempInf[i].valor)
+
+            }
+
+            // Grafico prontos para receber dados do banco após conclusão de historico.
+            const temperaturaInf = document.getElementById("myTemperaturaInf");
+
+            // Destroi o gráfico anterior
+          if (chartTemperaturaInf) {
+            chartTemperaturaInf.destroy();
+          }
+            chartTemperaturaInf = new Chart(temperaturaInf, {
+              type: "line",
+              data: {
+                labels: listarIntervalo,
+                datasets: [
+                  {
+                    label: "Temperatura - Inferior",
+                    data: listarDadosTempInf,
+                    backgroundColor: "#FF7F00",
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    hoverBackgroundColor: "#333",
+                    hoverBorderColor: "#333",
+                  },
+                ],
+              },
+              options: {
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              },
+            });
+          });
+      })
+
+  }
+
+  let chartUmidadeInf = null;
+  //function capturar ids e grafico umidade Inferior
+  function umidadeInfIds() {
+    fetch(`dashboardUser/veiculoUmidade/${idVeiculo}`)
+      .then((res) => res.json())
+      .then((umidade) => {
+        let sensoresEncontrados = []
+        for (let i = 0; i < umidade.length; i++) {
+          let idSensor = umidade[i].idSensor;
+          if (!sensoresEncontrados.includes(idSensor)) {
+            sensoresEncontrados.push(idSensor);
+          }
+        }
+        fetch(`dashboardUser/graficUmiInf/${sensoresEncontrados[1]}`)
+          .then((res) => res.json())
+          .then((dadosUmiInf) => {
+            let listarDadosUmiInf = []
+            let listarIntervalo = []
+            for (let i = 0; i < dadosUmiInf.length; i++) {
+              let horaMinuto = dadosUmiInf[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
+              listarIntervalo.push(horaMinuto);
+              listarDadosUmiInf.push(dadosUmiInf[i].valor)
+            }
+
+            // Grafico prontos para receber dados do banco após conclusão de historico.
+            const umidadeInf = document.getElementById("myUmidadeInf");
+            // Destroi o gráfico anterior
+          if (chartUmidadeInf) {
+            chartUmidadeInf.destroy();
+          }
+           chartUmidadeInf = new Chart(umidadeInf, {
+              type: "line",
+              data: {
+                labels: listarIntervalo,
+                datasets: [
+                  {
+                    label: "Umidade - Inferior",
+                    data: listarDadosUmiInf,
+                    backgroundColor: "#00bfff",
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    hoverBackgroundColor: "#333",
+                    hoverBorderColor: "#333",
+                  },
+                ],
+              },
+              options: {
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                  },
+                },
+              },
+            });
+
+
+
+          })
+
+
+
+
+
+
+
+
+
+      })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //abrir historico para visualizar notificações de alertas
   function abrirHitorico() {
     const clicado = document.getElementById("historicoSensor");
     clicado.classList.toggle("adicionar");
   }
 
-  // Grafico prontos para receber dados do banco após conclusão de historico.
-  const umidadeSup = document.getElementById("myUmidadeSup");
-  new Chart(umidadeSup, {
-    type: "line",
-    data: {
-      labels: [202401, 202402, 202403, 202404, 202405, 202406],
-      datasets: [
-        {
-          label: "Umidade - Superior",
-          data: [23, 24, 12, 10, 9, 15],
-          backgroundColor: "#00bfff",
-          borderRadius: 8,
-          borderSkipped: false,
-          hoverBackgroundColor: "#333",
-          hoverBorderColor: "#333",
-        },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
 
-  const umidadeInf = document.getElementById("myUmidadeInf");
-  new Chart(umidadeInf, {
-    type: "line",
-    data: {
-      labels: [202401, 202402, 202403, 202404, 202405, 202406],
-      datasets: [
-        {
-          label: "Umidade - Inferior",
-          data: [23, 24, 12, 10, 9, 15],
-          backgroundColor: "#00bfff",
-          borderRadius: 8,
-          borderSkipped: false,
-          hoverBackgroundColor: "#333",
-          hoverBorderColor: "#333",
-        },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
 
-  const temperaturaSup = document.getElementById("myTemperaturaSup");
-  new Chart(temperaturaSup, {
-    type: "line",
-    data: {
-      labels: [202401, 202402, 202403, 202404, 202405, 202406],
-      datasets: [
-        {
-          label: "Temperatura - Superior",
-          data: [23, 24, 12, 10, 9, 15],
-          backgroundColor: "#FF7F00",
-          borderRadius: 8,
-          borderSkipped: false,
-          hoverBackgroundColor: "#333",
-          hoverBorderColor: "#333",
-        },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
 
-  const temperaturaInf = document.getElementById("myTemperaturaInf");
-  new Chart(temperaturaInf, {
-    type: "line",
-    data: {
-      labels: [202401, 202402, 202403, 202404, 202405, 202406],
-      datasets: [
-        {
-          label: "Temperatura - Inferior",
-          data: [23, 24, 12, 10, 9, 15],
-          backgroundColor: "#FF7F00",
-          borderRadius: 8,
-          borderSkipped: false,
-          hoverBackgroundColor: "#333",
-          hoverBorderColor: "#333",
-        },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
+
+
+
+
 </script>

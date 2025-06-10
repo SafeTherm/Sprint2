@@ -81,8 +81,169 @@ function temperaturaHistorico(req, res){
 
 
 
+function veiculoTemperatura(req, res){
+    var idVeiculo = req.params.id
+
+    if (idVeiculo == undefined) {
+        res.status(400).sendo("o de idVeiculo está indefinido para acessar informações da dash")
+    } else {
+        dashboardUserModel.veiculoTemperatura(idVeiculo)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao carregar ids de temperatura! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+
+}
+function veiculoUmidade(req, res){
+    var idVeiculo = req.params.id
+
+    if (idVeiculo == undefined) {
+        res.status(400).sendo("o de idVeiculo está indefinido para acessar informações da dash")
+    } else {
+        dashboardUserModel.veiculoUmidade(idVeiculo)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao carregar ids de temperatura! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+
+}
+
+function graficTempSup(req, res){
+    var idSensor = req.params.id
+
+    if (idSensor == undefined) {
+        res.status(400).sendo("o de idSensor está indefinido para acessar informações da dash")
+    } else {
+        dashboardUserModel.graficTempSup(idSensor)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao carregar dados do sensor temperatura sup! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+
+}
+function graficUmiSup(req, res){
+    var idSensor = req.params.id
+
+    if (idSensor == undefined) {
+        res.status(400).sendo("o de idSensor está indefinido para acessar informações da dash")
+    } else {
+        dashboardUserModel.graficUmiSup(idSensor)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao carregar dados do sensor umidade sup! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+
+}
+
+
+
+
+
+
+
+function graficTempInf(req, res){
+    var idSensor = req.params.id
+
+    if (idSensor == undefined) {
+        res.status(400).sendo("o de idSensor está indefinido para acessar informações da dash")
+    } else {
+        dashboardUserModel.graficTempInf(idSensor)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao carregar dados do sensor temperatura Inf! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+
+}
+function graficUmiInf(req, res){
+    var idSensor = req.params.id
+
+    if (idSensor == undefined) {
+        res.status(400).sendo("o de idSensor está indefinido para acessar informações da dash")
+    } else {
+        dashboardUserModel.graficUmiInf(idSensor)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao carregar dados do sensor umidade inf! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+
+}
+
+
+
 module.exports = {
     infosUser,
     umidadeHistorico,
-    temperaturaHistorico
+    temperaturaHistorico,
+    veiculoTemperatura, 
+    veiculoUmidade,
+    graficTempSup,
+    graficUmiSup,
+    graficTempInf,
+    graficUmiInf
 }
