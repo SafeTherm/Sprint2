@@ -568,7 +568,7 @@
             let listarDadosTempSup = []
             let listarIntervalo = []
             for (let i = dadosTempSup.length -1; i >= 0; i--) {
-              let horaMinuto = dadosTempSup[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
+              let horaMinuto = dadosTempSup[i].dataHora.slice(11, 19); // Pega da posição 11 até 16 -> "HH:MM"
               listarIntervalo.push(horaMinuto);
               listarDadosTempSup.push(dadosTempSup[i].valor)
             }
@@ -633,14 +633,14 @@
             let listarDadosUmiSup = []
             let listarIntervalo = []
             for (let i = dadosUmiSup.length -1; i >= 0; i--) {
-              let horaMinuto = dadosUmiSup[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
+              let horaMinuto = dadosUmiSup[i].dataHora.slice(11, 19); // Pega da posição 11 até 16 -> "HH:MM"
               listarIntervalo.push(horaMinuto);
               listarDadosUmiSup.push(dadosUmiSup[i].valor)
             }
 
             
-              console.log("Verificando dado: ", listarDadosUmiSup[0])
-              if ((listarDadosUmiSup[0] > 60 && listarDadosUmiSup[0] < 70) || (listarDadosUmiSup[0] >= 40 && listarDadosUmiSup[0] < 50)) {
+              console.log("Verificando dado: ", listarDadosUmiSup)
+              if ((listarDadosUmiSup[5] > 60 && listarDadosUmiSup[5] < 70) || (listarDadosUmiSup[5] >= 40 && listarDadosUmiSup[5] < 50)) {
                   console.log("atenção")
               }else if(listarDadosUmiSup[0] >= 50 && listarDadosUmiSup[0] <= 60){
                   //cenario de sensores OK!
@@ -648,6 +648,7 @@
               }else{
                   console.log("Risco")
               }
+              
             
 
             // Grafico prontos para receber dados do banco após conclusão de historico.
@@ -719,7 +720,7 @@
             let listarDadosTempInf = []
             let listarIntervalo = []
             for (let i = dadosTempInf.length -1; i >= 0; i--) {
-              let horaMinuto = dadosTempInf[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
+              let horaMinuto = dadosTempInf[i].dataHora.slice(11, 19); // Pega da posição 11 até 16 -> "HH:MM"
               listarIntervalo.push(horaMinuto);
               listarDadosTempInf.push(dadosTempInf[i].valor)
 
@@ -782,7 +783,7 @@
             let listarDadosUmiInf = []
             let listarIntervalo = []
             for (let i = dadosUmiInf.length -1; i >= 0; i--) {
-              let horaMinuto = dadosUmiInf[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
+              let horaMinuto = dadosUmiInf[i].dataHora.slice(11, 19); // Pega da posição 11 até 16 -> "HH:MM"
               listarIntervalo.push(horaMinuto);
               listarDadosUmiInf.push(dadosUmiInf[i].valor)
             }
