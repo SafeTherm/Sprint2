@@ -80,7 +80,7 @@ function graficTempSup(idSensor){
           JOIN sensor as s
             on l.fkSensor = s.idSensor
         where s.idSensor = ${idSensor} AND s.localizacao = "Superior"
-        order by s.idSensor DESC
+        order by l.idLeitura  DESC
         limit 6;
       `
     console.log("Executando a instrução SQL para capturar dados do sensor de temperatura para o grafico superior: \n" + instrucaoSql)
@@ -98,7 +98,7 @@ function graficUmiSup(idSensor){
           JOIN sensor as s
             on l.fkSensor = s.idSensor
         where s.idSensor = ${idSensor} AND s.localizacao = "Superior"
-        order by s.idSensor DESC
+        order by l.idLeitura  DESC
         limit 6;
       `
     console.log("Executando a instrução SQL para capturar dados do sensor de umidade para o grafico superior: \n" + instrucaoSql)
@@ -115,7 +115,7 @@ function graficTempInf(idSensor){
           JOIN sensor as s
             on l.fkSensor = s.idSensor
         where s.idSensor = ${idSensor} AND s.localizacao = "Inferior"
-        order by s.idSensor DESC
+        order by l.idLeitura  DESC
         limit 6;
       `
     console.log("Executando a instrução SQL para capturar dados do sensor de temperatura para o grafico inferior: \n" + instrucaoSql)
@@ -132,7 +132,7 @@ function graficUmiInf(idSensor){
           JOIN sensor as s
             on l.fkSensor = s.idSensor
         where s.idSensor = ${idSensor} AND s.localizacao = "Inferior"
-        order by s.idSensor DESC
+        order by l.idLeitura  DESC
         limit 6;
       `
     console.log("Executando a instrução SQL para capturar dados do sensor de umidade para o grafico inferior: \n" + instrucaoSql)
