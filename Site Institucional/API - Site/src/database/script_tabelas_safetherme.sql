@@ -71,7 +71,7 @@ CREATE TABLE leitura_sensor (
 CREATE TABLE alerta (
     idAlerta INT AUTO_INCREMENT PRIMARY KEY,
     fkLeitura INT NOT NULL,
-    tipoAlerta ENUM('TEMPERATURA_ALTA', 'TEMPERATURA_BAIXA', 'UMIDADE_ALTA', 'UMIDADE_BAIXA') NOT NULL,
+    tipoAlerta ENUM('ALERTA', 'ATENÇÃO') NOT NULL,
     descricao VARCHAR(255),
     dataAlerta DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_alerta_leitura FOREIGN KEY (fkLeitura) 

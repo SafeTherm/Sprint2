@@ -47,7 +47,7 @@
         <header>
 
             <div class="pesquisar-placa">
-                <input type="text" id="input_placa" placeholder="pesquisar funcionario..." oninput="pesquisaFunc()">
+                <input type="text" id="input_placa" placeholder="placa do veículo..." oninput="pesquisaFunc()">
                 <div>
                     <img src="assets/img/lupa.svg" alt="">
                 </div>
@@ -266,23 +266,24 @@
                                 </button>
                             </div>
                         </div>`
+                        console.log(`idVeiculo, listarVeiculo: ${idVeiculo}`)
                     }
                 } else {
                     div_cards.innerHTML = `
                     <div class="nenhumFuncionario">
                         <div class="nenhum_funcionario">
-                            NENHUM FUNCIONÁRIO CADASTRADO
+                            NENHUM VEÍCULO CADASTRADO
                         </div>
                     </div>`
                 }
             })
     }
 
-    var funcionarioParaExcluir = null
+    var veiculoParaExcluir = null
     var contador_excluir = 0
     function excluir_veiculo(idVeiculo) {
         if (contador_excluir == 0) {
-            funcionarioParaExcluir = idVeiculo
+            veiculoParaExcluir = idVeiculo
             div_excluirFuncionario.style.display = "flex"
             contador_excluir++
         } else {
@@ -292,7 +293,119 @@
     }
 
     function excluir_veiculo_verdade() {
-        
+        console.log(veiculoParaExcluir)
+
+        fetch(`/dashboard_funcionario/excluirAlertas`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idVeiculo: veiculoParaExcluir
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    console.log(`alertas Exluido com sucesso`)
+
+                    fetch(`/dashboard_funcionario/excluirLeiturasSensor`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            idVeiculo: veiculoParaExcluir
+                        }),
+                    })
+                        .then(function (resposta) {
+                            console.log("resposta: ", resposta);
+
+                            if (resposta.ok) {
+
+                                console.log(`leituras Exluido com sucesso`)
+
+                                fetch(`/dashboard_funcionario/excluirSensor`, {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        idFuncionarioServer: veiculoParaExcluir
+                                    }),
+                                })
+                                    .then(function (resposta) {
+                                        console.log("resposta: ", resposta);
+
+                                        if (resposta.ok) {
+
+                                            console.log(`Sensor Exluido com sucesso`)
+                                            excluirVeiculo(veiculoParaExcluir)
+
+                                        } else {
+                                            throw "Houve um erro ao tentar excluir um sensor!";
+                                        }
+                                    })
+                                    .catch(function (resposta) {
+                                        console.log(`#ERRO: ${resposta}`);
+                                    });
+
+                            } else {
+                                throw "Houve um erro ao tentar excluir leituras de todos os sensores do veiculo!";
+                            }
+                        })
+                        .catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                        });
+                } else {
+                    throw "Houve um erro ao tentar excluir alertas de todos os sensores do veiculo!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+
+        function excluirVeiculo(veiculoParaExcluir) {
+
+            fetch(`/dashboard_funcionario/excluirVeiculo`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idVeiculoServer: veiculoParaExcluir
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        div_tudoCerto.innerHTML = `<div style="color: green; font-size: 0.8rem;">Veículo excluido com sucesso</div>`;
+
+                        setTimeout(() => {
+                            div_tudoCerto.innerHTML = ""
+                            excluir_veiculo()
+                            listarVeiculos()
+                        }, "2000");
+                        console.log(`Veículo Exluido com sucesso`)
+
+                    } else {
+                        throw "Houve um erro ao tentar excluir um veiculo!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+        }
+
+
+
+
+
+
     }
 
 </script>
