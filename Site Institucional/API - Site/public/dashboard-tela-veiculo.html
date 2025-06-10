@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/dashboards-tela-funcionario.css">
+    <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css">
+</head>
+
+<body>
+    <div class="menu">
+        <div class="box-nav-logo">
+            <a href="index.html">
+                <h1><img src="assets/img/logo.png" />Safe <span>Therm</span></h1>
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="dashboard-geral.html">
+                <img src="assets/img/icon_dashboard.svg" alt="" />
+                HOME
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="dashboard-tela-funcionarios.html">
+                <img src="assets/img/icon_listaFunc.svg" alt="" />
+                FUNCIONÁRIOS
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="dashboard-tela-veiculo.html">
+                <img src="assets/img/icon_veiculo.svg" alt="" />
+                VEÍCULOS
+            </a>
+        </div>
+        <div class="icon_barra_sair">
+            <button onclick="sair()">
+                <img src="assets/img/icon_sair.svg" alt="" />
+                SAIR
+            </button>
+        </div>
+    </div>
+
+
+    <section class="conteudo">
+        <header>
+
+            <div class="pesquisar-placa">
+                <input type="text" id="input_placa" placeholder="pesquisar funcionario..." oninput="pesquisaFunc()">
+                <div>
+                    <img src="assets/img/lupa.svg" alt="">
+                </div>
+
+
+
+                <div class="resultado_pesquisa" style="display: none;" id="div_resultado_pesquisa">
+                </div>
+
+            </div>
+
+            <div class="user_perfil" id="div_userPerfil">
+                <div id="infos-user">
+                    <h3>Roberta Silva</h3>
+                    <h4>roberta@therm.com</h4>
+                </div>
+                <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
+            </div>
+        </header>
+        <div class="tituloVeiculoEmpresa">
+            Lista de veículos
+        </div>
+        <div class="cards" id="div_cards">
+
+            <div class="subTitulos">
+                <div class="card_subTitulo_sub">
+                    Responsável
+                </div>
+                <div class="card_subTitulo_sub">
+                    Placa
+                </div>
+                <div class="card_subTitulo_sub">
+                    Modelo
+                </div>
+                <div class="card_subTitulo_excluir_sub">
+                    <div class="imagem_excluir">
+                        Excluir
+                    </div>
+                </div>
+            </div>
+
+            <div class="exbir_funcionario" id="div_exibirFuncionarios">
+            </div>
+
+        </div>
+
+        <div class="adicionar_funcionario">
+            <button onclick="adicionarFuncionario()">
+                <img src="assets/img/adicionar_funcionário.svg" alt="">
+            </button>
+        </div>
+
+        <div class="excluir" style="display: none;" id="div_addFuncionario">
+            <div class="tituloExcluir">
+                ADICIONAR FUNCIONÁRIO
+            </div>
+            <div class="subTitulo_cardAdd">
+                CAMPOS PARA CADASTRO:
+            </div>
+            <div class="campos_cadastro">
+                <div class="campo_imagem">
+                    <div>
+                        Foto do funcionário
+                        <label for="input_fotoFuncionario">
+                            <input type="file" id="input_fotoFuncionario" oninput="cadastroImagemExibir()">
+                            <span>Selecionar Arquivo</span>
+                        </label>
+                    </div>
+                    <div id="imagemFuncionario">
+                        <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
+                        <div class="tudo_certo" id="tudo_certo"></div>
+                    </div>
+
+                </div>
+                <div class="campo">
+                    email
+                    <input type="text" id="input_emailFuncionario">
+                </div>
+                <div class="campo">
+                    nome
+                    <input type="text" id="input_nomeFuncionario">
+                </div>
+                <div class="campo">
+                    cpf
+                    <input type="text" id="input_cpfFuncionario">
+                </div>
+                <div class="campo">
+                    telefone
+                    <input type="text" id="input_telefoneFuncionario">
+                </div>
+                <div id="div_erro"></div>
+                <button onclick="cadastrar()">
+                    CADASTRAR
+                </button>
+            </div>
+        </div>
+
+        <div class="excluir" style="display: none;" id="div_excluirFuncionario">
+            <div class="tituloExcluir">
+                EXCLUIR FUNCIONÁRIO
+            </div>
+            <div class="pergunta_excluir" style="color: red; font-weight: bolder;">
+                TEM CERTEZA QUE QUER EXCLUIR ESSE
+                <div>FUNCIONÁRIO?</div>
+                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR O VEÍCULO E O SENSORES DESSE
+                    VEÍCULO JUNTO COM ALERTAS E LEITURAS DO SENSORES DELE)</div>
+                <div class="botao_condicao_excluir">
+                    <button onclick="excluir_veiculo_verdade()">
+                        SIM
+                    </button>
+                    <button onclick="excluir_veiculo_falso()" id="botao_nao_excluir">
+                        NÃO
+                    </button>
+                </div>
+                <div id="div_tudoCerto"></div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>
+
+<script>
+    var idUsuario = sessionStorage.ID_USUARIO
+    var nomeUsuario = sessionStorage.NOME_USUARIO
+    var emailUsuario = sessionStorage.EMAIL_USUARIO
+    var fotoPerfil = sessionStorage.FOTO_PERFIL
+
+    window.onload = function () {
+
+        console.log(nomeUsuario)
+        div_userPerfil.innerHTML = `
+            <div id="infos-user">
+                <h3>${nomeUsuario}</h3>
+                <h4>${emailUsuario}</h4>
+            </div>
+            <img src="assets/imagens de perfil/${fotoPerfil}" alt="">`
+
+        listarVeiculos()
+    }
+
+    function pesquisaFunc() {
+        var conteudo_pesquisa = input_placa.value
+
+        if (conteudo_pesquisa === "") {
+            listarVeiculos()
+        } else {
+            div_exibirFuncionarios.innerHTML = ""
+
+            fetch(`/dashboard_veiculo/listarVeiculos/barraPesquisa/${idUsuario}/${conteudo_pesquisa}`)
+                .then(res => res.json())
+                .then(listaDeVeiculos_pesquisa => {
+
+                    for (let i = 0; i < listaDeVeiculos_pesquisa.length; i++) {
+
+                        let nomeFuncionario = listaDeVeiculos_pesquisa[i].nomeFuncionario
+                        let placaVeiculo = listaDeVeiculos_pesquisa[i].placaVeiculo
+                        let modelo = listaDeVeiculos_pesquisa[i].modelo
+                        let idVeiculo = listaDeVeiculos_pesquisa[i].idVeiculo
+
+                        div_exibirFuncionarios.innerHTML += `
+                        <div class="infoFuncionarios">
+                            <div class="card_subTitulo">
+                                ${nomeFuncionario}
+                            </div>
+                            <div class="card_subTitulo">
+                                ${placaVeiculo}
+                            </div>
+                            <div class="card_subTitulo">
+                                ${modelo}
+                            </div>
+                            <div class="card_subTitulo_excluir">
+                                <button onclick="excluir_veiculo(${idVeiculo})">
+                                    <img src="assets/img/lixeira_preta.svg" alt="">
+                                </button>
+                            </div>
+                        </div>`
+                    }
+                })
+        }
+    }
+
+    function listarVeiculos() {
+
+        div_exibirFuncionarios.innerHTML = ""
+
+        fetch(`/dashboard_veiculo/listarVeiculos/${idUsuario}`)
+            .then(res => res.json())
+            .then(listaDeVeiculos => {
+                console.log(listaDeVeiculos)
+
+                if (listaDeVeiculos.length > 0) {
+
+                    for (let i = 0; i < listaDeVeiculos.length; i++) {
+
+                        let nomeFuncionario = listaDeVeiculos[i].nomeFuncionario
+                        let placaVeiculo = listaDeVeiculos[i].placaVeiculo
+                        let modelo = listaDeVeiculos[i].modelo
+                        let idVeiculo = listaDeVeiculos[i].idVeiculo
+
+                        div_exibirFuncionarios.innerHTML += `
+                        <div class="infoFuncionarios">
+                            <div class="card_subTitulo">
+                                ${nomeFuncionario}
+                            </div>
+                            <div class="card_subTitulo">
+                                ${placaVeiculo}
+                            </div>
+                            <div class="card_subTitulo">
+                                ${modelo}
+                            </div>
+                            <div class="card_subTitulo_excluir">
+                                <button onclick="excluir_veiculo(${idVeiculo})">
+                                    <img src="assets/img/lixeira_preta.svg" alt="">
+                                </button>
+                            </div>
+                        </div>`
+                    }
+                } else {
+                    div_cards.innerHTML = `
+                    <div class="nenhumFuncionario">
+                        <div class="nenhum_funcionario">
+                            NENHUM FUNCIONÁRIO CADASTRADO
+                        </div>
+                    </div>`
+                }
+            })
+    }
+
+    var funcionarioParaExcluir = null
+    var contador_excluir = 0
+    function excluir_veiculo(idVeiculo) {
+        if (contador_excluir == 0) {
+            funcionarioParaExcluir = idVeiculo
+            div_excluirFuncionario.style.display = "flex"
+            contador_excluir++
+        } else {
+            div_excluirFuncionario.style.display = "none"
+            contador_excluir--
+        }
+    }
+
+    function excluir_veiculo_verdade() {
+        
+    }
+
+</script>

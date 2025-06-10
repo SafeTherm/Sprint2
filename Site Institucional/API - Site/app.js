@@ -20,6 +20,7 @@ var dashboardRouter = require("./src/routes/dashboard")
 var dashboard_funcionarioRouter = require("./src/routes/dashboard_funcionario")
 var dashboardUserRouter = require("./src/routes/dashboardUser")
 var fotoPerfilFuncionarioRouter = require("./src/routes/fotoPerfilFuncionario")
+var dashboard_veiculoRouter = require("./src/routes/dashboard_veiculo")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +33,7 @@ app.use("/dashboard", dashboardRouter);
 app.use("/dashboard_funcionario", dashboard_funcionarioRouter);
 app.use("/dashboardUser", dashboardUserRouter);
 app.use("/fotoPerfilFuncionario", fotoPerfilFuncionarioRouter);
+app.use("/dashboard_veiculo", dashboard_veiculoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
