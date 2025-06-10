@@ -50,6 +50,29 @@ function excluirFuncionario(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function excluirAlertas(idVeiculo) {
+  var instrucaoSql = `
+  DELETE a
+FROM alerta a
+JOIN leitura_sensor ls ON a.fkLeitura = ls.idLeitura
+JOIN sensor s ON ls.fkSensor = s.idSensor
+WHERE s.fkVeiculo = ${idVeiculo};`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
+
+function excluirLeiturasSensor(idVeiculo) {
+  var instrucaoSql = `
+  DELETE ls
+FROM leitura_sensor ls
+JOIN sensor s ON ls.fkSensor = s.idSensor
+WHERE s.fkVeiculo = ${idVeiculo};`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
+
 function cadastrarFuncionario(idTransportadora, email, nome, cpf, telefone, imagem) {
   var instrucaoSql = `
   INSERT INTO funcionario (fkTransportadora_cliente, emailFuncionario, nomeFuncionario, cpfFuncionario,
@@ -69,5 +92,7 @@ module.exports = {
   listarVeiculosFuncionario,
   excluirVeiculo,
   excluirFuncionario,
-  cadastrarFuncionario
+  cadastrarFuncionario,
+  excluirAlertas,
+  excluirLeiturasSensor
 };

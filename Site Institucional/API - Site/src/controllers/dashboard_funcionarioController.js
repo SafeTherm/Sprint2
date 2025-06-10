@@ -139,6 +139,42 @@ function excluirFuncionario(req, res) {
     }
 }
 
+function excluirAlertas(req, res) {
+    var idVeiculo = req.body.idVeiculo;
+
+    if (idVeiculo === undefined) {
+        res.status(400).send("Seu idVeiculo está undefined!");
+    } else {
+        dashboard_funcionarioModel.excluirAlertas(idVeiculo)
+            .then(resultado => {
+                res.json(resultado);
+            })
+            .catch(erro => {
+                console.log(erro);
+                console.log("\nHouve um erro ao excluir os alertas dos sensores! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
+function excluirLeiturasSensor(req, res) {
+    var idVeiculo = req.body.idVeiculo;
+
+    if (idVeiculo === undefined) {
+        res.status(400).send("Seu idVeiculo está undefined!");
+    } else {
+        dashboard_funcionarioModel.excluirLeiturasSensor(idVeiculo)
+            .then(resultado => {
+                res.json(resultado);
+            })
+            .catch(erro => {
+                console.log(erro);
+                console.log("\nHouve um erro ao excluir os alertas dos sensores! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 function cadastrarFuncionario(req, res) {
 
     var imagem = req.file.filename
@@ -164,5 +200,7 @@ module.exports = {
     listarVeiculosFuncionario,
     excluirVeiculo,
     excluirFuncionario,
-    cadastrarFuncionario
+    cadastrarFuncionario,
+    excluirAlertas,
+    excluirLeiturasSensor
 }

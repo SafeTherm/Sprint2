@@ -27,4 +27,12 @@ router.post("/excluirFuncionario", function (req, res) {
     dashboard_funcionarioController.excluirFuncionario(req, res);
 });
 
+router.post("/excluirAlertas", function (req, res) {
+    dashboard_funcionarioController.excluirAlertas(req, res);
+});
+
+router.post("/excluirLeiturasSensor", function (req, res) {
+    dashboard_funcionarioController.excluirLeiturasSensor(req, res);
+});
+
 module.exports = router;

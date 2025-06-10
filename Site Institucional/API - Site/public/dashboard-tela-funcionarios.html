@@ -10,37 +10,37 @@
 </head>
 
 <body>
-  <div class="menu">
-    <div class="box-nav-logo">
-      <a href="index.html">
-        <h1><img src="assets/img/logo.png" />Safe <span>Therm</span></h1>
-      </a>
+    <div class="menu">
+        <div class="box-nav-logo">
+            <a href="index.html">
+                <h1><img src="assets/img/logo.png" />Safe <span>Therm</span></h1>
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="dashboard-geral.html">
+                <img src="assets/img/icon_dashboard.svg" alt="" />
+                HOME
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="dashboard-tela-funcionarios.html">
+                <img src="assets/img/icon_listaFunc.svg" alt="" />
+                FUNCIONÁRIOS
+            </a>
+        </div>
+        <div class="icon_barra">
+            <a href="">
+                <img src="assets/img/icon_veiculo.svg" alt="" />
+                VEÍCULOS
+            </a>
+        </div>
+        <div class="icon_barra_sair">
+            <button onclick="sair()">
+                <img src="assets/img/icon_sair.svg" alt="" />
+                SAIR
+            </button>
+        </div>
     </div>
-    <div class="icon_barra">
-      <a href="dashboard-geral.html">
-        <img src="assets/img/icon_dashboard.svg" alt="" />
-        HOME
-      </a>
-    </div>
-    <div class="icon_barra">
-      <a href="dashboard-tela-funcionarios.html">
-        <img src="assets/img/icon_listaFunc.svg" alt="" />
-        FUNCIONÁRIOS
-      </a>
-    </div>
-    <div class="icon_barra">
-      <a href="">
-        <img src="assets/img/icon_veiculo.svg" alt="" />
-        VEÍCULOS
-      </a>
-    </div>
-    <div class="icon_barra_sair">
-      <button onclick="sair()">
-        <img src="assets/img/icon_sair.svg" alt="" />
-        SAIR
-      </button>
-    </div>
-  </div>
 
 
     <section class="conteudo">
@@ -53,28 +53,8 @@
                 </div>
 
 
-                <!-- essa div é display none, com o oninput ela aparece -->
+
                 <div class="resultado_pesquisa" style="display: none;" id="div_resultado_pesquisa">
-
-
-                    <!-- div com += -->
-                    <div class="info_funcionarios">
-                        <img src="" alt="">
-                        <div class="informacoes_func">
-                            <div class="nome">
-                                nome do funcionario
-                            </div>
-                            <div class="info_veiculo">
-                                <div class="placa">
-                                    veículo: CXPT-2EW3
-                                </div>
-                                <div class="tipo_veiculo">
-                                    caminhão: Fiat Ducato
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
@@ -111,26 +91,6 @@
             </div>
 
             <div class="exbir_funcionario" id="div_exibirFuncionarios">
-                <!-- <div class="infoFuncionarios">
-                    <div class="imagemPerfilFunc">
-                        <img src="" alt="">
-                    </div>
-                    <div class="card_subTitulo">
-                        Nome
-                    </div>
-                    <div class="card_subTitulo">
-                        Email
-                    </div>
-                    <div class="card_subTitulo">
-                        Telefone
-                    </div>
-                    <div class="card_subTitulo_excluir">
-                        <button onclick="excluir_funcionario()">
-                            <img src="assets/img/lixeira_preta.svg" alt="">
-                        </button>
-                    </div>
-                </div> -->
-
             </div>
 
         </div>
@@ -193,7 +153,7 @@
             <div class="pergunta_excluir" style="color: red; font-weight: bolder;">
                 TEM CERTEZA QUE QUER EXCLUIR ESSE
                 <div>FUNCIONÁRIO?</div>
-                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR O VEÍCLO TAMBÉM)?</div>
+                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR O VEÍCULO E O SENSORES DESSE VEÍCULO JUNTO COM ALERTAS E LEITURAS DO SENSORES DELE)</div>
                 <div class="botao_condicao_excluir">
                     <button onclick="excluir_funcionario_verdade()">
                         SIM
@@ -353,13 +313,13 @@
                     for (let i = 0; i < veiculosFuncionario.length; i++) {
                         let idVeiculo = veiculosFuncionario[i].idVeiculo
 
-                        fetch(`/dashboard_funcionario/excluirSensor`, {
+                        fetch(`/dashboard_funcionario/excluirAlertas`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
                             },
                             body: JSON.stringify({
-                                idFuncionarioServer: idVeiculo
+                                idVeiculo: idVeiculo
                             }),
                         })
                             .then(function (resposta) {
@@ -367,16 +327,70 @@
 
                                 if (resposta.ok) {
 
-                                    console.log(`Sensor Exluido com sucesso`)
-                                    excluirVeiculo(idVeiculo)
+                                    console.log(`alertas Exluido com sucesso`)
+
+                                    fetch(`/dashboard_funcionario/excluirLeiturasSensor`, {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify({
+                                            idVeiculo: idVeiculo
+                                        }),
+                                    })
+                                        .then(function (resposta) {
+                                            console.log("resposta: ", resposta);
+
+                                            if (resposta.ok) {
+
+                                                console.log(`leituras Exluido com sucesso`)
+
+
+                                                fetch(`/dashboard_funcionario/excluirSensor`, {
+                                                    method: "POST",
+                                                    headers: {
+                                                        "Content-Type": "application/json",
+                                                    },
+                                                    body: JSON.stringify({
+                                                        idFuncionarioServer: idVeiculo
+                                                    }),
+                                                })
+                                                    .then(function (resposta) {
+                                                        console.log("resposta: ", resposta);
+
+                                                        if (resposta.ok) {
+
+                                                            console.log(`Sensor Exluido com sucesso`)
+                                                            excluirVeiculo(idVeiculo)
+
+                                                        } else {
+                                                            throw "Houve um erro ao tentar excluir um sensor!";
+                                                        }
+                                                    })
+                                                    .catch(function (resposta) {
+                                                        console.log(`#ERRO: ${resposta}`);
+                                                    });
+
+                                            } else {
+                                                throw "Houve um erro ao tentar excluir leituras de todos os sensores do veiculo!";
+                                            }
+                                        })
+                                        .catch(function (resposta) {
+                                            console.log(`#ERRO: ${resposta}`);
+                                        });
+
+
 
                                 } else {
-                                    throw "Houve um erro ao tentar excluir um sensor!";
+                                    throw "Houve um erro ao tentar excluir alertas de todos os sensores do veiculo!";
                                 }
                             })
                             .catch(function (resposta) {
                                 console.log(`#ERRO: ${resposta}`);
                             });
+
+
+
                     }
                 } else {
                     excluir_funcionarioDo_banco()
