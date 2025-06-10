@@ -549,9 +549,8 @@
   // }, 1000);
 
 
-  //function capturar ids e grafico temperatura Superior
   let chartTemperaturaSup = null;
-
+  //function capturar ids e grafico temperatura Superior
   function temperaturaSupIds() {
     fetch(`dashboardUser/veiculoTemperatura/${idVeiculo}`)
       .then((res) => res.json())
@@ -568,11 +567,10 @@
           .then((dadosTempSup) => {
             let listarDadosTempSup = []
             let listarIntervalo = []
-            for (let i = 0; i < dadosTempSup.length; i++) {
+            for (let i = dadosTempSup.length -1; i >= 0; i--) {
               let horaMinuto = dadosTempSup[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
               listarIntervalo.push(horaMinuto);
               listarDadosTempSup.push(dadosTempSup[i].valor)
-
             }
 
             // Grafico prontos para receber dados do banco após conclusão de historico.
@@ -615,7 +613,6 @@
 
   }
 
-
   let chartUmidadeSup = null;
   //function capturar ids e grafico umidade Superior
   function umidadeSupIds() {
@@ -635,7 +632,7 @@
           .then((dadosUmiSup) => {
             let listarDadosUmiSup = []
             let listarIntervalo = []
-            for (let i = 0; i < dadosUmiSup.length; i++) {
+            for (let i = dadosUmiSup.length -1; i >= 0; i--) {
               let horaMinuto = dadosUmiSup[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
               listarIntervalo.push(horaMinuto);
               listarDadosUmiSup.push(dadosUmiSup[i].valor)
@@ -701,7 +698,6 @@
       })
   }
 
-
   let chartTemperaturaInf = null;
   //function capturar ids e grafico temperatura Inferior
   function temperaturaInfIds() {
@@ -722,7 +718,7 @@
           .then((dadosTempInf) => {
             let listarDadosTempInf = []
             let listarIntervalo = []
-            for (let i = 0; i < dadosTempInf.length; i++) {
+            for (let i = dadosTempInf.length -1; i >= 0; i--) {
               let horaMinuto = dadosTempInf[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
               listarIntervalo.push(horaMinuto);
               listarDadosTempInf.push(dadosTempInf[i].valor)
@@ -785,7 +781,7 @@
           .then((dadosUmiInf) => {
             let listarDadosUmiInf = []
             let listarIntervalo = []
-            for (let i = 0; i < dadosUmiInf.length; i++) {
+            for (let i = dadosUmiInf.length -1; i >= 0; i--) {
               let horaMinuto = dadosUmiInf[i].dataHora.slice(11, 16); // Pega da posição 11 até 16 -> "HH:MM"
               listarIntervalo.push(horaMinuto);
               listarDadosUmiInf.push(dadosUmiInf[i].valor)
