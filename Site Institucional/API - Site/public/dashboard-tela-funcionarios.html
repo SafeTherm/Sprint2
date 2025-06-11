@@ -153,7 +153,8 @@
             <div class="pergunta_excluir" style="color: red; font-weight: bolder;">
                 TEM CERTEZA QUE QUER EXCLUIR ESSE
                 <div>FUNCIONÁRIO?</div>
-                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR O VEÍCULO E SEUS RESPECTIVOS SENSORES JUNTO COM O SEUS ALERTAS E CAPTURA DE DADOS)</div>
+                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR O VEÍCULO E SEUS RESPECTIVOS
+                    SENSORES JUNTO COM O SEUS ALERTAS E CAPTURA DE DADOS)</div>
                 <div class="botao_condicao_excluir">
                     <button onclick="excluir_funcionario_verdade()">
                         SIM
@@ -522,7 +523,7 @@
 
                 setTimeout(() => {
                     adicionarFuncionario()
-                    listarFuncionarios()
+                    location.reload()
                 }, 1000)
 
             }).catch(err => {
