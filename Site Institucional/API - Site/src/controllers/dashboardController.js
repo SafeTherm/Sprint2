@@ -242,6 +242,30 @@ function media_veiculos(req, res) {
     }
 }
 
+function notificacao_recente(req, res) {
+    var idTransportadora = req.params.id
+
+    if (idTransportadora == undefined) {
+        res.status(400).sendo("Seu idTransportadora está indefinido")
+    } else {
+        dashboardModel.notificacao_recente(idTransportadora)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a busca pelas notificações recentes! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+}
+
 module.exports = {
     listarFrota,
     emRota,
@@ -252,5 +276,6 @@ module.exports = {
     alterarStatusDefeito,
     listarVeiculos,
     listarSensoresDefeito,
-    media_veiculos
+    media_veiculos,
+    notificacao_recente
 }

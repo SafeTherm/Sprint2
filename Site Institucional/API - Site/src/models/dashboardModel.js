@@ -133,6 +133,29 @@ GROUP BY v.idVeiculo, v.placaVeiculo;`;
   return database.executar(instrucaoSql)
 }
 
+function notificacao_recente(idTransportadora) {
+  var instrucaoSql = `
+      SELECT 
+      a.idAlerta,
+      a.tipoAlerta,
+      a.descricao,
+      DATE_FORMAT(a.dataAlerta, '%d/%m/%Y %H:%i') AS dataHoraAlerta,
+      v.idVeiculo,
+      v.placaVeiculo,
+      s.localizacao
+  FROM alerta a
+  JOIN leitura_sensor ls ON a.fkLeitura = ls.idLeitura
+  JOIN sensor s ON ls.fkSensor = s.idSensor
+  JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
+  JOIN transportadora_cliente t ON v.fkTransportadora_cliente = t.idTransportadora_cliente
+  WHERE a.dataAlerta >= NOW() - INTERVAL 30 MINUTE
+    AND t.idTransportadora_cliente = ${idTransportadora}
+  ORDER BY a.dataAlerta DESC;`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
 // Atualize o module.exports para incluir a nova função
 module.exports = {
   listarFrota,
@@ -144,5 +167,6 @@ module.exports = {
   alterarStatusDefeito,
   listarVeiculos,
   listarSensoresDefeito,
-  media_veiculos
+  media_veiculos,
+  notificacao_recente
 };

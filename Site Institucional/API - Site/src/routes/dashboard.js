@@ -44,4 +44,8 @@ router.get("/veiculos/media/:id", function (req, res) {
     dashboardController.media_veiculos(req, res);
 });
 
+router.get("/notificacao_recente/:id", function (req, res) {
+    dashboardController.notificacao_recente(req, res);
+});
+
 module.exports = router;
