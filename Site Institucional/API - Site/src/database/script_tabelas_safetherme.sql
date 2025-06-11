@@ -29,7 +29,6 @@ CREATE TABLE funcionario (
         REFERENCES transportadora_cliente(idTransportadora_cliente)
 );
 
-SELECT f.nomeFuncionario, v.placaVeiculo, v.modelo from funcionario f JOIN veiculo v ON v.fkFuncionario = f.idFuncionario WHERE f.fkTransportadora_cliente = 1;
 -- Tabela veiculo
 CREATE TABLE veiculo (
     idVeiculo INT  AUTO_INCREMENT,
@@ -240,3 +239,23 @@ select * from leitura_sensor order by dataHora desc;
 select * from alerta;
 
 SELECT * FROM funcionario WHERE fkTransportadora_cliente = 1;
+
+
+SELECT 
+    a.idAlerta,
+    a.tipoAlerta,
+    a.descricao,
+    a.dataAlerta,
+    ts.nomeTransportadora_cliente,
+    v.placaVeiculo,
+    s.localizacao,
+    ls.valor,
+    ls.dataHora
+FROM alerta a
+JOIN leitura_sensor ls ON a.fkLeitura = ls.idLeitura
+JOIN sensor s ON ls.fkSensor = s.idSensor
+JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
+JOIN transportadora_cliente ts ON v.fkTransportadora_cliente = ts.idTransportadora_cliente
+WHERE v.fkTransportadora_cliente = 1
+  AND DATE(a.dataAlerta) = CURDATE()
+ORDER BY a.dataAlerta DESC;

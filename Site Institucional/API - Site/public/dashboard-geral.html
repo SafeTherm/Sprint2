@@ -660,68 +660,73 @@
 
                       let idVeiculo = media_veiculos[0].idVeiculo;
 
-                      let media_temperatura = Number(
-                        media_veiculos[0].media_temperatura
-                      ).toFixed(2);
-                      let media_umidade = Number(
-                        media_veiculos[0].media_umidade
-                      ).toFixed(2);
-                      let dataOriginal = new Date(
-                        media_veiculos[0].data_leitura
-                      );
-                      let data = dataOriginal.toLocaleDateString("pt-BR", {
+                      let media_temperatura = Number(media_veiculos[0].media_temperatura).toFixed(2);
+                      let media_umidade = Number(media_veiculos[0].media_umidade).toFixed(2);
+
+                      // --> Gera data/hora atual do navegador com segundos
+                      let agora = new Date();
+                      let dataFormatada = agora.toLocaleString("pt-BR", {
                         timeZone: "America/Sao_Paulo",
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
                       });
 
                       mensagem += `                                            
-                                <div class="infoVeiculo2">
-                                    <div class="cardVeiculo_titulo">
-                                        MÉDIA EM TEMPO REAL: ${data}    
-                                    </div>
-                                    <div>
-                                        media temperatura: ${media_temperatura}
-                                    </div>
-                                    <div>
-                                        media umidade: ${media_umidade}
-                                    </div>
-                                </div>
-                            </div>
-                         
-                            <div class="back">
-                                <div class="statusVeiculo">
-                                    <div class="bolinha_status"></div>
-                                    <div class="status">
-                                        SENSOR ATIVO
-                                    </div>
-                                </div>
-                            
-                                <div class="infoVeiculo1">
-                                    <div class="Veiculo_imgFunc">
-                                        <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
-                                    </div>
-                                    <div class="subInfoVeiculo">
-                                        <div class="VeiculoNomeFunc">
-                                            ${nomeFuncionario}
-                                        </div>
-                                        <div class="Veiculo">
-                                            veículo: ${placaVeiculo}
-                                        </div>
-                                        <div class="VeiculoTipo">
-                                            caminhão: ${modelo}
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="infoVeiculo2">
-                                    <div class="botao_acessar">
-                                        <button onclick="acessar(${idFuncionario}, ${idVeiculo})">
-                                            acessar
-                                        </button>
-                                    </div>
-                                </div>
-                            
-                            </div>
-                        </div>`;
+      <div class="infoVeiculo2">
+          <div class="cardVeiculo_titulo">
+              MÉDIA DOS ÚLTIMOS 5 MIN: 
+              <div>
+                ${dataFormatada}
+              </div>    
+          </div>
+          <div>
+              média temperatura: ${media_temperatura}
+          </div>
+          <div>
+              média umidade: ${media_umidade}
+          </div>
+      </div>
+    </div>
+     
+    <div class="back">
+        <div class="statusVeiculo">
+            <div class="bolinha_status"></div>
+            <div class="status">
+                SENSOR ATIVO
+            </div>
+        </div>
+    
+        <div class="infoVeiculo1">
+            <div class="Veiculo_imgFunc">
+                <img src="assets/imagens de perfil/${imagemPerfil_funcionario}" alt="">
+            </div>
+            <div class="subInfoVeiculo">
+                <div class="VeiculoNomeFunc">
+                    ${nomeFuncionario}
+                </div>
+                <div class="Veiculo">
+                    veículo: ${placaVeiculo}
+                </div>
+                <div class="VeiculoTipo">
+                    caminhão: ${modelo}
+                </div>
+            </div>
+        </div>
+    
+        <div class="infoVeiculo2">
+            <div class="botao_acessar">
+                <button onclick="acessar(${idFuncionario}, ${idVeiculo})">
+                    acessar
+                </button>
+            </div>
+        </div>
+    
+    </div>
+  </div>`;
 
                       div_exibirCards_veiculos.innerHTML += mensagem;
                     });
@@ -789,15 +794,26 @@
                         let idVeiculo = media_veiculos[0].idVeiculo;
                         let media_temperatura = Number(media_veiculos[0].media_temperatura).toFixed(2);
                         let media_umidade = Number(media_veiculos[0].media_umidade).toFixed(2);
-                        let dataOriginal = new Date(media_veiculos[0].data_leitura);
-                        let data = dataOriginal.toLocaleDateString("pt-BR", {
+
+                        // --> Gera data/hora atual do navegador com segundos
+                        let agora = new Date();
+                        let dataFormatada = agora.toLocaleString("pt-BR", {
                           timeZone: "America/Sao_Paulo",
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit'
                         });
 
                         mensagem += `                                            
                                 <div class="infoVeiculo2">
                                     <div class="cardVeiculo_titulo">
-                                        MÉDIA EM TEMPO REAL: ${data}    
+                                        MÉDIA DOS ULTIMOS 5 MIN: 
+                                        <div>
+                                          ${dataFormatada}   
+                                        </div> 
                                     </div>
                                     <div>
                                         media temperatura: ${media_temperatura}
@@ -849,7 +865,7 @@
                         mensagem += `                                            
                                 <div class="infoVeiculo2">
                                     <div class="cardVeiculo_titulo">
-                                        MÉDIA EM TEMPO REAL:    
+                                        MÉDIA DOS ULTIMOS 5 MIN:    
                                     </div>
                                     <div>
                                         media temperatura:
@@ -921,5 +937,5 @@
 
 
 
-  
+
 </script>

@@ -53,16 +53,16 @@ const serial = async (valoresSensorTemperatura, valoresSensorUmidade) => {
             if (HABILITAR_OPERACAO_INSERIR) {
                 try {
                     const [resTempSup] = await poolBancoDados.execute(
-                        'INSERT INTO leitura_sensor (fkSensor, valor) VALUES (?, ?)', [13, temperaturaSuperior]
+                        'INSERT INTO leitura_sensor (fkSensor, valor) VALUES (?, ?)', [1, temperaturaSuperior]
                     );
                     const [resUmidSup] = await poolBancoDados.execute(
-                        'INSERT INTO leitura_sensor (fkSensor, valor) VALUES (?, ?)', [14, umidadeSuperior]
+                        'INSERT INTO leitura_sensor (fkSensor, valor) VALUES (?, ?)', [2, umidadeSuperior]
                     );
                     const [resTempInf] = await poolBancoDados.execute(
-                        'INSERT INTO leitura_sensor (fkSensor, valor) VALUES (?, ?)', [15, temperaturaInferior]
+                        'INSERT INTO leitura_sensor (fkSensor, valor) VALUES (?, ?)', [3, temperaturaInferior]
                     );
                     const [resUmidInf] = await poolBancoDados.execute(
-                        'INSERT INTO leitura_sensor (fkSensor, valor) VALUES (?, ?)', [16, umidadeInferior]
+                        'INSERT INTO leitura_sensor (fkSensor, valor) VALUES (?, ?)', [4, umidadeInferior]
                     );
 
                     console.log("Valores inseridos com sucesso");

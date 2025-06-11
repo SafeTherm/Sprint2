@@ -116,16 +116,18 @@ function listarSensoresDefeito(idVeiculo) {
 function media_veiculos(idVeiculo) {
   var instrucaoSql = `
     SELECT 
-      v.idVeiculo,
-      v.placaVeiculo,
-      DATE(ls.dataHora) AS data_leitura,
-      AVG(CASE WHEN s.funcaoSensor = 'TEMPERATURA' THEN ls.valor END) AS media_temperatura,
-      AVG(CASE WHEN s.funcaoSensor = 'UMIDADE' THEN ls.valor END) AS media_umidade
-        FROM veiculo v
-        JOIN sensor s ON v.idVeiculo = s.fkVeiculo
-        JOIN leitura_sensor ls ON s.idSensor = ls.fkSensor
-        WHERE v.idVeiculo = ${idVeiculo}
-      GROUP BY v.idVeiculo, v.placaVeiculo, DATE(ls.dataHora);`;
+    v.idVeiculo,
+    v.placaVeiculo,
+    NOW() AS data_consulta,
+    AVG(CASE WHEN s.funcaoSensor = 'TEMPERATURA' THEN ls.valor END) AS media_temperatura,
+    AVG(CASE WHEN s.funcaoSensor = 'UMIDADE' THEN ls.valor END) AS media_umidade
+FROM veiculo v
+JOIN sensor s ON v.idVeiculo = s.fkVeiculo
+JOIN leitura_sensor ls ON s.idSensor = ls.fkSensor
+WHERE 
+    v.idVeiculo = ${idVeiculo}
+    AND ls.dataHora >= NOW() - INTERVAL 5 MINUTE
+GROUP BY v.idVeiculo, v.placaVeiculo;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql)
   return database.executar(instrucaoSql)
