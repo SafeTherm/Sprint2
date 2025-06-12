@@ -50,6 +50,11 @@ router.get("/verificarCaptura/:id", function (req, res) {
     dashboardUserController.verificarCaptura(req, res);
 });
 
+// verificação de dados, analisa se está tendo insert dos dados dos sensores;
+router.post("/atualizandoStatus", function (req, res) {
+    dashboardUserController.atualizandoStatus(req, res);
+});
+
 
 
 module.exports = router;

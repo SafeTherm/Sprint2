@@ -587,13 +587,12 @@
   }
 
   // atualizando sensores
-  // setInterval(() => {
-  //   temperaturaSupIds();
-  //   umidadeSupIds();
-  //   temperaturaInfIds();
-  //   umidadeInfIds();
-  // }, 1000);
-
+  setInterval(() => {
+    temperaturaSupIds();
+    umidadeSupIds();
+    temperaturaInfIds();
+    umidadeInfIds();
+  }, 1000);
   let chartTemperaturaSup = null;
   //function capturar ids e grafico temperatura Superior
   function temperaturaSupIds() {
@@ -634,7 +633,7 @@
               fetch(`/dashboardUser/verificarCaptura/${sensoresEncontrados[0]}`)
                 .then((res) => res.json())
                 .then((dadosCapturados) => {
-                  console.log(sensoresEncontrados[0])
+                  let idSensor = sensoresEncontrados[0]
                   console.log(dadosCapturados)
                   if (dadosCapturados.length != 0) {
                     console.log("dados inseridos")
@@ -677,6 +676,33 @@
                     funcionamentoTempSup.innerHTML = `
                       COM DEFEITO
                     `;
+
+
+                    fetch(
+                                `/dashboardUser/atualizandoStatus`,
+                                {
+                                  method: "POST",
+                                  headers: {
+                                    "Content-Type": "application/json",
+                                  },
+                                  body: JSON.stringify({
+                                    idSensorServer: idSensor,
+                                  }),
+                                }
+                              )
+                                .then(function (resposta) {
+                                  console.log("resposta: ", resposta);
+                                  if (resposta.ok) {
+                                    console.log(
+                                      `Alteração do status do sensor concluída`
+                                    );
+                                  } else {
+                                    throw "Erro ao alterar status do sensor";
+                                  }
+                                })
+                                .catch(function (resposta) {
+                                  console.log(`#ERRO: ${resposta}`);
+                                });
                   }
                 })
 
@@ -764,7 +790,8 @@
               fetch(`/dashboardUser/verificarCaptura/${sensoresEncontrados[0]}`)
                 .then((res) => res.json())
                 .then((dadosCapturados) => {
-                  console.log(sensoresEncontrados[0])
+                  idSensor = sensoresEncontrados[0];
+                  console.log("id do Sensor: ", idSensor);
                   console.log(dadosCapturados)
                   if (dadosCapturados.length != 0) {
                     console.log("dados inseridos")
@@ -809,6 +836,38 @@
                       COM DEFEITO
                     `;
                   }
+
+
+
+                    fetch(
+                                `/dashboardUser/atualizandoStatus`,
+                                {
+                                  method: "POST",
+                                  headers: {
+                                    "Content-Type": "application/json",
+                                  },
+                                  body: JSON.stringify({
+                                    idSensorServer: idSensor,
+                                  }),
+                                }
+                              )
+                                .then(function (resposta) {
+                                  console.log("resposta: ", resposta);
+                                  if (resposta.ok) {
+                                    console.log(
+                                      `Alteração do status do sensor concluída`
+                                    );
+                                  } else {
+                                    throw "Erro ao alterar status do sensor";
+                                  }
+                                })
+                                .catch(function (resposta) {
+                                  console.log(`#ERRO: ${resposta}`);
+                                });
+
+
+
+
                 })
 
               // Grafico prontos para receber dados do banco após conclusão de historico.
@@ -889,7 +948,7 @@
               fetch(`/dashboardUser/verificarCaptura/${sensoresEncontrados[1]}`)
                 .then((res) => res.json())
                 .then((dadosCapturados) => {
-                  console.log(sensoresEncontrados[1])
+                  idSensor = sensoresEncontrados[1];
                   console.log(dadosCapturados)
                   if (dadosCapturados.length != 0) {
                     console.log("dados inseridos")
@@ -932,6 +991,32 @@
                     funcionamentoTempInf.innerHTML = `
                       COM DEFEITO
                     `;
+
+                    fetch(
+                                `/dashboardUser/atualizandoStatus`,
+                                {
+                                  method: "POST",
+                                  headers: {
+                                    "Content-Type": "application/json",
+                                  },
+                                  body: JSON.stringify({
+                                    idSensorServer: idSensor,
+                                  }),
+                                }
+                              )
+                                .then(function (resposta) {
+                                  console.log("resposta: ", resposta);
+                                  if (resposta.ok) {
+                                    console.log(
+                                      `Alteração do status do sensor concluída`
+                                    );
+                                  } else {
+                                    throw "Erro ao alterar status do sensor";
+                                  }
+                                })
+                                .catch(function (resposta) {
+                                  console.log(`#ERRO: ${resposta}`);
+                                });
                   }
                 })
 
@@ -1015,11 +1100,11 @@
               fetch(`/dashboardUser/verificarCaptura/${sensoresEncontrados[1]}`)
                 .then((res) => res.json())
                 .then((dadosCapturados) => {
-                  console.log(sensoresEncontrados[1])
+                  idSensor = sensoresEncontrados[1];
                   console.log(dadosCapturados)
                   if (dadosCapturados.length != 0) {
                     console.log("dados inseridos")
-                    statusUmiInf.innerHTML = "(Manutenção)"
+                    statusUmiInf.innerHTML = "(Ativo)"
                     statusUmiInf.style.color = "#067500";
                     if (
                       (listarDadosUmiInf[5] > 60 && listarDadosUmiInf[5] < 70) ||
@@ -1059,6 +1144,32 @@
                     funcionamentoUmiInf.innerHTML = `
                       COM DEFEITO
                     `;
+
+                    fetch(
+                                `/dashboardUser/atualizandoStatus`,
+                                {
+                                  method: "POST",
+                                  headers: {
+                                    "Content-Type": "application/json",
+                                  },
+                                  body: JSON.stringify({
+                                    idSensorServer: idSensor,
+                                  }),
+                                }
+                              )
+                                .then(function (resposta) {
+                                  console.log("resposta: ", resposta);
+                                  if (resposta.ok) {
+                                    console.log(
+                                      `Alteração do status do sensor concluída`
+                                    );
+                                  } else {
+                                    throw "Erro ao alterar status do sensor";
+                                  }
+                                })
+                                .catch(function (resposta) {
+                                  console.log(`#ERRO: ${resposta}`);
+                                });
                   }
                 })
 

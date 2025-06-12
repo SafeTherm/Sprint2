@@ -254,6 +254,25 @@ function verificarCaptura(req, res){
 
 
 
+function atualizandoStatus(req, res) {
+    var idSensor = req.body.idSensorServer;
+
+    if (idSensor === undefined) {
+        res.status(400).send("Seu idSensor está undefined!");
+    } else {
+        dashboardUserModel.atualizandoStatus(idSensor)
+            .then(resultado => {
+                res.json(resultado);
+            })
+            .catch(erro => {
+                console.log(erro);
+                console.log("\nHouve um erro ao altera o status do sensor! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
+
 
 
 
@@ -268,5 +287,6 @@ module.exports = {
     graficUmiSup,
     graficTempInf,
     graficUmiInf,
-    verificarCaptura
+    verificarCaptura,
+    atualizandoStatus
 }

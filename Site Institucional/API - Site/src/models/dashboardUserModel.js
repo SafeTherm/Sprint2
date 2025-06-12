@@ -155,6 +155,15 @@ function verificarCaptura(idSensor) {
 
 
 
+function atualizandoStatus(idSensor) {
+  var instrucaoSql = `
+    UPDATE sensor SET statusSensor = 'MANUTENCAO' WHERE idSensor = ${idSensor};`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
+
+
 
 
 
@@ -171,5 +180,6 @@ module.exports = {
   graficUmiSup,
   graficTempInf,
   graficUmiInf,
-  verificarCaptura
+  verificarCaptura,
+  atualizandoStatus
 };

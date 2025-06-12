@@ -303,7 +303,7 @@
           .then((res) => res.json())
           .then((qtdVeiculosRota) => {
             var veiculosEmRota = qtdVeiculosRota[0].veiculosEmRota;
-
+            
             console.log(veiculosEmRota);
 
             div_cardFrota.innerHTML += `
@@ -625,6 +625,8 @@
             `Esse é o idVeiculo ROTA: ${qtdVeiculosRota[0].idVeiculo}`
           );
 
+          
+
           for (let i = 0; i < qtdVeiculosRota.length; i++) {
             let idVeiculo = qtdVeiculosRota[i].idVeiculo;
             lista_veiculos_card.push(idVeiculo);
@@ -640,6 +642,7 @@
                   let placaVeiculo = dadosFunc[0].placaVeiculo;
                   let modelo = dadosFunc[0].modelo;
                   let idFuncionario = dadosFunc[0].idFuncionario;
+                  
 
                   mensagem += `
                     <div class="cardVeiculos">
