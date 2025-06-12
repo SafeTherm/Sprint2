@@ -1002,6 +1002,12 @@
           }
 
         }
+        if (notificacao.length == 0) {
+          div_exibirAlerta_recente.innerHTML = `
+            <div class="nenhumSensorComDefeito">
+              Nenhum sensor com defeito 
+            </div>`
+        }
       })
   }
 

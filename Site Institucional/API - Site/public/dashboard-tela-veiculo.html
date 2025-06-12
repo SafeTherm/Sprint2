@@ -74,13 +74,13 @@
 
             <div class="subTitulos">
                 <div class="card_subTitulo_sub">
-                    Responsável
-                </div>
-                <div class="card_subTitulo_sub">
                     Placa
                 </div>
                 <div class="card_subTitulo_sub">
                     Modelo
+                </div>
+                <div class="card_subTitulo_sub">
+                    Responsável
                 </div>
                 <div class="card_subTitulo_excluir_sub">
                     <div class="imagem_excluir">
@@ -95,73 +95,49 @@
         </div>
 
         <div class="adicionar_funcionario">
-            <button onclick="adicionarFuncionario()">
+            <button onclick="adicionarVeiculo()">
                 <img src="assets/img/adicionar_funcionário.svg" alt="">
             </button>
         </div>
 
-        <div class="excluir" style="display: none;" id="div_addFuncionario">
-            <div class="tituloExcluir">
-                ADICIONAR FUNCIONÁRIO
-            </div>
-            <div class="subTitulo_cardAdd">
-                CAMPOS PARA CADASTRO:
-            </div>
-            <div class="campos_cadastro">
-                <div class="campo_imagem">
-                    <div>
-                        Foto do funcionário
-                        <label for="input_fotoFuncionario">
-                            <input type="file" id="input_fotoFuncionario" oninput="cadastroImagemExibir()">
-                            <span>Selecionar Arquivo</span>
-                        </label>
-                    </div>
-                    <div id="imagemFuncionario">
-                        <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
-                        <div class="tudo_certo" id="tudo_certo"></div>
-                    </div>
+        <div class="modal" id="modalCadastroVeiculo" style="display: none;">
+            <div class="modal-content">
+                <h2>CADASTRAR VEÍCULO</h2>
 
-                </div>
-                <div class="campo">
-                    email
-                    <input type="text" id="input_emailFuncionario">
-                </div>
-                <div class="campo">
-                    nome
-                    <input type="text" id="input_nomeFuncionario">
-                </div>
-                <div class="campo">
-                    cpf
-                    <input type="text" id="input_cpfFuncionario">
-                </div>
-                <div class="campo">
-                    telefone
-                    <input type="text" id="input_telefoneFuncionario">
-                </div>
-                <div id="div_erro"></div>
-                <button onclick="cadastrar()">
-                    CADASTRAR
-                </button>
+                <label for="select_funcionario">Responsável (Funcionário):</label>
+                <select id="select_funcionario">
+                    <option value="">Selecione um funcionário</option>
+                </select>
+
+                <label for="input_placaVeiculo">Placa do veículo:</label>
+                <input type="text" id="input_placaVeiculo" placeholder="ABC1D23">
+
+                <label for="input_modeloVeiculo">Modelo do veículo:</label>
+                <input type="text" id="input_modeloVeiculo" placeholder="Ex: Sprinter 415 CDI">
+
+                <div id="mensagem_erroVeiculo" style="color: red; font-size: 0.8rem;"></div>
+                <button onclick="cadastrarVeiculo()">Cadastrar</button>
+                <button onclick="fecharModalVeiculo()">Cancelar</button>
             </div>
         </div>
 
-        <div class="excluir" style="display: none;" id="div_excluirFuncionario">
-            <div class="tituloExcluir">
-                EXCLUIR VEÍCULO
-            </div>
-            <div class="pergunta_excluir" style="color: red; font-weight: bolder;">
-                TEM CERTEZA QUE QUER EXCLUIR ESSE
-                <div>VEÍCULO?</div>
-                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR OS SENSORES DESSE
-                    VEÍCULO JUNTO COM OS RESPECTIVOS ALERTAS E CAPTURA DE DADOS)</div>
-                <div class="botao_condicao_excluir">
-                    <button onclick="excluir_veiculo_verdade()">
-                        SIM
-                    </button>
-                    <button onclick="excluir_veiculo_falso()" id="botao_nao_excluir">
-                        NÃO
-                    </button>
+        <div class="modal" id="div_excluirFuncionario" style="display: none;">
+            <div class="modal-content">
+                <h2 style="color: red;">EXCLUIR VEÍCULO</h2>
+
+                <p class="mensagem-exclusao">
+                    TEM CERTEZA QUE QUER EXCLUIR ESTE VEÍCULO?
+                </p>
+
+                <p class="mensagem-alerta">
+                    (ISSO IRÁ EXCLUIR OS SENSORES DESTE VEÍCULO JUNTO COM OS RESPECTIVOS ALERTAS E CAPTURAS DE DADOS)
+                </p>
+
+                <div class="botoes-exclusao">
+                    <button class="botao-sim" onclick="excluir_veiculo_verdade()">SIM</button>
+                    <button class="botao-nao" onclick="excluir_veiculo_falso()">NÃO</button>
                 </div>
+
                 <div id="div_tudoCerto"></div>
             </div>
         </div>
@@ -212,13 +188,14 @@
                         div_exibirFuncionarios.innerHTML += `
                         <div class="infoFuncionarios">
                             <div class="card_subTitulo">
-                                ${nomeFuncionario}
-                            </div>
-                            <div class="card_subTitulo">
+                                
                                 ${placaVeiculo}
                             </div>
                             <div class="card_subTitulo">
-                                ${modelo}
+                                ${modelo}  
+                            </div>
+                            <div class="card_subTitulo">
+                                ${nomeFuncionario}
                             </div>
                             <div class="card_subTitulo_excluir">
                                 <button onclick="excluir_veiculo(${idVeiculo})">
@@ -252,13 +229,13 @@
                         div_exibirFuncionarios.innerHTML += `
                         <div class="infoFuncionarios">
                             <div class="card_subTitulo">
-                                ${nomeFuncionario}
-                            </div>
-                            <div class="card_subTitulo">
                                 ${placaVeiculo}
                             </div>
                             <div class="card_subTitulo">
                                 ${modelo}
+                            </div>
+                            <div class="card_subTitulo">
+                                ${nomeFuncionario}
                             </div>
                             <div class="card_subTitulo_excluir">
                                 <button onclick="excluir_veiculo(${idVeiculo})">
@@ -403,6 +380,115 @@
     }
 
     function excluir_veiculo_falso() {
+
         excluir_veiculo()
     }
+
+
+    function adicionarVeiculo() {
+        modalCadastroVeiculo.style.display = "flex"
+        select_listaDeFuncionario()
+    }
+
+    function fecharModalVeiculo() {
+        modalCadastroVeiculo.style.display = "none"
+    }
+
+    function select_listaDeFuncionario() {
+
+        var select = document.getElementById("select_funcionario")
+        select.innerHTML = `
+        <option value="">Selecione um funcionário</option>`
+
+        fetch(`/dashboard_veiculo/select_listarFuncionario/${idUsuario}`)
+            .then(res => res.json())
+            .then(listaDeFuncionarios => {
+                console.log(listaDeFuncionarios)
+
+                for (let i = 0; i < listaDeFuncionarios.length; i++) {
+
+                    let idFuncionario = listaDeFuncionarios[i].idFuncionario
+                    let nomeFuncionario = listaDeFuncionarios[i].nomeFuncionario
+
+                    select.innerHTML += `
+                    <option value="${idFuncionario}">${nomeFuncionario}</option>`
+                }
+            })
+    }
+
+
+    function cadastrarVeiculo() {
+        var idTransportadora = idUsuario;
+        var idFuncionario = select_funcionario.value;
+        var placa = input_placaVeiculo.value;
+        var modelo = input_modeloVeiculo.value;
+
+        if (idFuncionario == "" || placa == "" || modelo == "") {
+            mensagem_erroVeiculo.innerHTML = `Preencha todos os campos!`;
+        } else if (placa.length != 7) {
+            mensagem_erroVeiculo.innerHTML = `Quantidade de caracteres da placa do veículo incorreta!`;
+        } else {
+            fetch(`/dashboard_veiculo/cadastrarVeiculo`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idTransportadora: idTransportadora,
+                    idFuncionario: idFuncionario,
+                    placa: placa,
+                    modelo: modelo
+                })
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Erro ao cadastrar");
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    console.log("ID do veículo cadastrado:", data.idVeiculo);
+                    var idVeiculo = data.idVeiculo;
+                    cadastrarSensorVeiculo(idVeiculo);
+
+                    mensagem_erroVeiculo.innerHTML = `<p style="color: green;">Veículo cadastrado</p>`;
+
+                    setTimeout(() => {
+                        fecharModalVeiculo();
+                        location.reload();
+                    }, 1000);
+                })
+                .catch(err => {
+                    console.log(err);
+                    mensagem_erroVeiculo.innerHTML = `<p style="color: red;">Veículo já está em uso</p>`;
+                });
+        }
+    }
+
+    function cadastrarSensorVeiculo(idVeiculo) {
+
+        var idVeiculoServer = idVeiculo
+        console.log(idVeiculoServer)
+
+        fetch(`/dashboard_veiculo/cadastrarSensorVeiculo`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idVeiculo: idVeiculoServer
+            })
+        }).then(res => {
+
+            if (!res.ok) {
+                throw new Error("Erro ao cadastrar sensor");
+            }
+
+            console.log(`Sensores cadastrados com sucesso`)
+
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
 </script>

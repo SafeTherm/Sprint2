@@ -101,68 +101,59 @@
             </button>
         </div>
 
-        <div class="excluir" style="display: none;" id="div_addFuncionario">
-            <div class="tituloExcluir">
-                ADICIONAR FUNCIONÁRIO
-            </div>
-            <div class="subTitulo_cardAdd">
-                CAMPOS PARA CADASTRO:
-            </div>
-            <div class="campos_cadastro">
-                <div class="campo_imagem">
-                    <div>
-                        Foto do funcionário
-                        <label for="input_fotoFuncionario">
-                            <input type="file" id="input_fotoFuncionario" oninput="cadastroImagemExibir()">
-                            <span>Selecionar Arquivo</span>
-                        </label>
-                    </div>
+        <div class="modal" id="modalCadastroFuncionario" style="display: none;">
+            <div class="modal-content">
+                <h2>CADASTRAR FUNCIONÁRIO</h2>
+
+                <label for="input_fotoFuncionario">Foto do Funcionário:</label>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <label class="custom-file-upload">
+                        <input type="file" id="input_fotoFuncionario" oninput="cadastroImagemExibir()">
+                        Selecionar Arquivo
+                    </label>
                     <div id="imagemFuncionario">
-                        <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="">
+                        <img src="assets/imagens de perfil/perfil_anonimo.jpeg" alt="Prévia da imagem"
+                            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
                         <div class="tudo_certo" id="tudo_certo"></div>
                     </div>
+                </div>
 
-                </div>
-                <div class="campo">
-                    email
-                    <input type="text" id="input_emailFuncionario">
-                </div>
-                <div class="campo">
-                    nome
-                    <input type="text" id="input_nomeFuncionario">
-                </div>
-                <div class="campo">
-                    cpf
-                    <input type="text" id="input_cpfFuncionario">
-                </div>
-                <div class="campo">
-                    telefone
-                    <input type="text" id="input_telefoneFuncionario">
-                </div>
-                <div id="div_erro"></div>
-                <button onclick="cadastrar()">
-                    CADASTRAR
-                </button>
+                <label for="input_emailFuncionario">Email:</label>
+                <input type="text" id="input_emailFuncionario" placeholder="exemplo@email.com">
+
+                <label for="input_nomeFuncionario">Nome:</label>
+                <input type="text" id="input_nomeFuncionario" placeholder="Nome completo">
+
+                <label for="input_cpfFuncionario">CPF:</label>
+                <input type="text" id="input_cpfFuncionario" placeholder="000.000.000-00">
+
+                <label for="input_telefoneFuncionario">Telefone:</label>
+                <input type="text" id="input_telefoneFuncionario" placeholder="(00) 00000-0000">
+
+                <div id="div_erro" style="color: red; font-size: 0.8rem;"></div>
+
+                <button onclick="cadastrar()">Cadastrar</button>
+                <button onclick="fecharModalFuncionario()">Cancelar</button>
             </div>
         </div>
 
-        <div class="excluir" style="display: none;" id="div_excluirFuncionario">
-            <div class="tituloExcluir">
-                EXCLUIR FUNCIONÁRIO
-            </div>
-            <div class="pergunta_excluir" style="color: red; font-weight: bolder;">
-                TEM CERTEZA QUE QUER EXCLUIR ESSE
-                <div>FUNCIONÁRIO?</div>
-                <div style="color: rgb(255, 204, 0); font-size: 0.8rem;">(ISSO IRÁ EXCLUIR O VEÍCULO E SEUS RESPECTIVOS
-                    SENSORES JUNTO COM O SEUS ALERTAS E CAPTURA DE DADOS)</div>
-                <div class="botao_condicao_excluir">
-                    <button onclick="excluir_funcionario_verdade()">
-                        SIM
-                    </button>
-                    <button onclick="excluir_funcionario_falso()" id="botao_nao_excluir">
-                        NÃO
-                    </button>
+        <div class="modal" id="div_excluirFuncionario" style="display: none;">
+            <div class="modal-content">
+                <h2 style="color: red;">EXCLUIR FUNCIONÁRIO</h2>
+
+                <p class="mensagem-exclusao">
+                    TEM CERTEZA QUE QUER EXCLUIR ESTE FUNCIONÁRIO?
+                </p>
+
+                <p class="mensagem-alerta">
+                    (ISSO IRÁ EXCLUIR O VEÍCULO E SEUS RESPECTIVOS SENSORES JUNTO COM OS ALERTAS E CAPTURAS DE DADOS)
+                </p>
+
+                <div class="botoes-exclusao">
+                    <button class="botao-sim" onclick="excluir_funcionario_verdade()">SIM</button>
+                    <button class="botao-nao" onclick="excluir_funcionario_falso()">NÃO</button>
                 </div>
+
                 <div id="div_tudoCerto"></div>
             </div>
         </div>
@@ -467,13 +458,11 @@
     }
 
     function adicionarFuncionario() {
-        if (contador_excluir == 0) {
-            div_addFuncionario.style.display = "flex"
-            contador_excluir++
-        } else {
-            div_addFuncionario.style.display = "none"
-            contador_excluir--
-        }
+        modalCadastroFuncionario.style.display = "flex"
+    }
+
+    function fecharModalFuncionario() {
+        modalCadastroFuncionario.style.display = "none"
     }
 
     function cadastrar() {
@@ -522,7 +511,7 @@
                 div_erro.innerHTML = `<p style="color: green;">Funcionário cadastrado</p>`
 
                 setTimeout(() => {
-                    adicionarFuncionario()
+                    fecharModalFuncionario()
                     location.reload()
                 }, 1000)
 
@@ -535,7 +524,7 @@
     }
 
     function cadastroImagemExibir() {
-        var arquivo = input_fotoFuncionario.files[0]
+        var arquivo = input_fotoFuncionario.files[0];
 
         var nomeArquivo = input_fotoFuncionario.value.toLowerCase();
 
@@ -550,17 +539,16 @@
 
             imagemFuncionario.innerHTML = `<div class ="tudo_certo">Tipo de arquivo não suportado</div>`
         } else if (arquivo) {
-            tudo_certo.innerHTML = ""
-
-            var leitor = new FileReader()
+            var leitor = new FileReader();
 
             leitor.onload = function (e) {
                 imagemFuncionario.innerHTML = `
-                    <img src="${e.target.result}" alt="Prévia da imagem">`
-            }
+                <img src="${e.target.result}" alt="Prévia da imagem" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
+                <div class="tudo_certo" id="tudo_certo"></div>
+            `;
+            };
 
-            leitor.readAsDataURL(arquivo)
-
+            leitor.readAsDataURL(arquivo);
         }
     }
 
