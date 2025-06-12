@@ -249,6 +249,55 @@ function verificarCaptura(req, res){
                 }
             )
     }
+}
+function verificarRota(req, res){
+    var idSensor = req.params.id
+
+    if (idSensor == undefined) {
+        res.status(400).sendo("o idSensor está indefinido para acessar informações da dash")
+    } else {
+        dashboardUserModel.verificarRota(idSensor)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao carregar dados de captura dos sensores! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+
+}
+
+
+function capturaDosIds(req, res){
+    var idSensor = req.params.id
+
+    if (idSensor == undefined) {
+        res.status(400).sendo("o idSensor está indefinido para acessar informações da dash")
+    } else {
+        dashboardUserModel.capturaDosIds(idSensor)
+            .then(
+                function (resultado) {
+                    res.json(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao carregar dados de captura dos sensores! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
 
 }
 
@@ -288,5 +337,7 @@ module.exports = {
     graficTempInf,
     graficUmiInf,
     verificarCaptura,
-    atualizandoStatus
+    atualizandoStatus,
+    capturaDosIds,
+    verificarRota
 }

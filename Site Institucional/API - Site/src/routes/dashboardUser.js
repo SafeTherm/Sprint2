@@ -51,6 +51,16 @@ router.get("/verificarCaptura/:id", function (req, res) {
 });
 
 // verificação de dados, analisa se está tendo insert dos dados dos sensores;
+router.get("/capturaDosIds/:id", function (req, res) {
+    dashboardUserController.capturaDosIds(req, res);
+});
+
+// verificação de dados, analisa se está tendo insert dos dados dos sensores;
+router.get("/verificarRota/:id", function (req, res) {
+    dashboardUserController.verificarRota(req, res);
+});
+
+// verificação de dados, analisa se está tendo insert dos dados dos sensores;
 router.post("/atualizandoStatus", function (req, res) {
     dashboardUserController.atualizandoStatus(req, res);
 });

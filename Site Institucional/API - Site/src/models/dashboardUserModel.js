@@ -165,6 +165,37 @@ function atualizandoStatus(idSensor) {
 
 
 
+function verificarRota(idSensor) {
+  var instrucaoSql = `
+      SELECT * 
+      FROM leitura_sensor
+      WHERE dataHora >= NOW() - INTERVAL 20 SECOND AND fkSensor = ${idSensor};
+    `;
+
+    console.log("Executando a instrução SQL para capturar se está tendo tendo insert dos dados: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+
+}
+
+
+
+
+function capturaDosIds(idVeiculo) {
+  var instrucaoSql = `
+     select s.idSensor, s.tipoSensor from leitura_sensor as l
+      JOIN sensor as s
+      on l.fkSensor = s.idSensor
+      JOIN veiculo as v
+      on s.fkVeiculo = v.idVeiculo
+    where v.idVeiculo = ${idVeiculo};
+  `
+
+  console.log("Executando a instrução SQL para capturar id do sensor de temperatura: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+
+}
+
+
 
 
 
@@ -181,5 +212,7 @@ module.exports = {
   graficTempInf,
   graficUmiInf,
   verificarCaptura,
-  atualizandoStatus
+  atualizandoStatus,
+  verificarRota,
+  capturaDosIds
 };

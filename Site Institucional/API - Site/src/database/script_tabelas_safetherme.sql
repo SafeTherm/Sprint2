@@ -50,7 +50,7 @@ CREATE TABLE sensor (
     tipoSensor ENUM('DHT11', 'LM35') NOT NULL,
     funcaoSensor ENUM('TEMPERATURA', 'UMIDADE') NOT NULL,
     localizacao VARCHAR(50) NOT NULL COMMENT 'Posição no veículo',
-    statusSensor ENUM('ATIVO', 'MANUTENCAO') DEFAULT 'ATIVO',
+    statusSensor ENUM('ATIVO', 'MANUTENCAO', 'DESATIVADO') DEFAULT 'ATIVO',
     dtInstalacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_sensor_veiculo FOREIGN KEY (fkVeiculo) 
         REFERENCES veiculo(idVeiculo)
