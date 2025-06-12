@@ -77,6 +77,7 @@ CREATE TABLE alerta (
         REFERENCES leitura_sensor(idLeitura)
 );
 
+select * from sensor;
 -- Inserindo dados na tabela transportadora_cliente
 INSERT INTO transportadora_cliente (nomeTransportadora_cliente, cnpjTransportadora_cliente, telefoneTransportadora_cliente, emailTransportadora_cliente, senhaTransportadora_cliente)
 VALUES 
@@ -137,8 +138,8 @@ VALUES
 -- Inserindo leituras para sensores dos veículos em uso (sensores de ids 1–2, 3–4, 7–8, 9–10, 13–14)
 -- Sensor 1 e 2 (Veículo 1)
 INSERT INTO leitura_sensor (fkSensor, valor, dataHora) VALUES
-(1, 6.5, NOW() - INTERVAL 1 MINUTE),	
-(2, 75.0, NOW() - INTERVAL 1 MINUTE);
+(1, 6.5, NOW()),	
+(2, 75.0, NOW());
 -- Sensor 3 e 4 (Veículo 1)
 INSERT INTO leitura_sensor (fkSensor, valor, dataHora) VALUES
 (5, 7.1, NOW() - INTERVAL 1 MINUTE),
@@ -237,25 +238,3 @@ select * from sensor;
 select * from veiculo;
 select * from leitura_sensor order by dataHora desc;
 select * from alerta;
-
-SELECT * FROM funcionario WHERE fkTransportadora_cliente = 1;
-
-
-SELECT 
-    a.idAlerta,
-    a.tipoAlerta,
-    a.descricao,
-    a.dataAlerta,
-    ts.nomeTransportadora_cliente,
-    v.placaVeiculo,
-    s.localizacao,
-    ls.valor,
-    ls.dataHora
-FROM alerta a
-JOIN leitura_sensor ls ON a.fkLeitura = ls.idLeitura
-JOIN sensor s ON ls.fkSensor = s.idSensor
-JOIN veiculo v ON s.fkVeiculo = v.idVeiculo
-JOIN transportadora_cliente ts ON v.fkTransportadora_cliente = ts.idTransportadora_cliente
-WHERE v.fkTransportadora_cliente = 1
-  AND DATE(a.dataAlerta) = CURDATE()
-ORDER BY a.dataAlerta DESC;
