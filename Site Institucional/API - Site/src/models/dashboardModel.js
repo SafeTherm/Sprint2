@@ -20,7 +20,7 @@ FROM (
     JOIN leitura_sensor l ON s.idSensor = l.fkSensor
     WHERE v.fkTransportadora_cliente = ${idTransportadora}
     GROUP BY v.idVeiculo
-    HAVING MAX(l.dataHora) >= NOW() - INTERVAL 10 SECOND
+    HAVING MAX(l.dataHora) >= NOW() - INTERVAL 2 MINUTE
 ) AS veiculosAtivos;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql)
@@ -43,7 +43,7 @@ function alertaSensorVrota(idTransportadora) {
       JOIN sensor s ON v.idVeiculo = s.fkVeiculo
       JOIN leitura_sensor l ON s.idSensor = l.fkSensor
       WHERE v.fkTransportadora_cliente = ${idTransportadora}
-        AND l.dataHora >= NOW() - INTERVAL 10 SECOND
+        AND l.dataHora >= NOW() - INTERVAL 2 MINUTE
       GROUP BY v.idVeiculo;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql)
@@ -61,7 +61,7 @@ function defeitoSensor(idVeiculo) {
               statusSensor,
               MAX(l.dataHora) AS ultimaLeitura,
               CASE 
-                  WHEN MAX(l.dataHora) IS NULL OR MAX(l.dataHora) < NOW() - INTERVAL 3 SECOND 
+                  WHEN MAX(l.dataHora) IS NULL OR MAX(l.dataHora) < NOW() - INTERVAL 2 MINUTE 
                       THEN 'COM DEFEITO'
                   ELSE 'ATIVO' END AS statusSensorCase FROM sensor 
           	LEFT JOIN leitura_sensor l ON l.fkSensor = idSensor
@@ -150,7 +150,7 @@ function notificacao_recente(idTransportadora) {
   JOIN transportadora_cliente t ON v.fkTransportadora_cliente = t.idTransportadora_cliente
   WHERE a.dataAlerta >= NOW() - INTERVAL 30 MINUTE
     AND t.idTransportadora_cliente = ${idTransportadora}
-  ORDER BY a.dataAlerta DESC;`;
+  ORDER BY a.dataAlerta DESC LIMIT 10;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql)
   return database.executar(instrucaoSql)
@@ -170,3 +170,11 @@ module.exports = {
   media_veiculos,
   notificacao_recente
 };
+
+
+
+
+
+
+
+

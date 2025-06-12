@@ -138,8 +138,8 @@ VALUES
 -- Inserindo leituras para sensores dos veículos em uso (sensores de ids 1–2, 3–4, 7–8, 9–10, 13–14)
 -- Sensor 1 e 2 (Veículo 1)
 INSERT INTO leitura_sensor (fkSensor, valor, dataHora) VALUES
-(1, 6.5, NOW()),	
-(2, 75.0, NOW());
+(1, 6.5, NOW(3)),	
+(2, 75.0, NOW(3));
 -- Sensor 3 e 4 (Veículo 1)
 INSERT INTO leitura_sensor (fkSensor, valor, dataHora) VALUES
 (5, 7.1, NOW() - INTERVAL 1 MINUTE),

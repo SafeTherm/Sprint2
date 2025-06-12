@@ -255,6 +255,7 @@ a h1 img {
   background-color: #F8F8F8;
   border-radius: 15px;
   padding: 20px;
+  height: 100%;
   padding-left: 10px;
   padding-right: 10px;
 }

@@ -80,7 +80,7 @@
         <div class="titulo">
           Notificações recentes
           <div class="NotificacaoRecente_sub">
-            Ultimos 30 min:
+            Ultimos 10 notificações dos ultimos 30 min:
           </div>
         </div>
 
@@ -277,10 +277,14 @@
       </div>
       <img src="assets/imagens de perfil/${fotoPerfil}" alt="">`;
 
+    setInterval(() => {
+      notificacao_alertaRecente();
+    }, 2000);
+
+    notificacao_alertaRecente();
     listarFrota();
     alertaSensor();
     veiculosEmpresa();
-    notificacao_alertaRecente();
   };
 
   function listarFrota() {
@@ -672,7 +676,7 @@
                       let idVeiculo = media_veiculos[0].idVeiculo;
 
                       let media_temperatura = Number(media_veiculos[0].media_temperatura).toFixed(2);
-                      let media_umidade = Number(media_veiculos[0].media_umidade).toFixed(2);
+                      let media_umidade = parseInt(Number(media_veiculos[0].media_umidade));
 
                       // --> Gera data/hora atual do navegador com segundos
                       let agora = new Date();
@@ -695,10 +699,10 @@
               </div>    
           </div>
           <div>
-              média temperatura: ${media_temperatura}
+              média temperatura: ${media_temperatura}°C
           </div>
           <div>
-              média umidade: ${media_umidade}
+              média umidade: ${media_umidade}%
           </div>
       </div>
     </div>
@@ -952,7 +956,7 @@
       .then(res => res.json())
       .then((notificacao) => {
         console.log(notificacao)
-
+        div_exibirAlerta_recente.innerHTML = ""
 
         for (let i = 0; i < notificacao.length; i++) {
           let tipoAlerta = notificacao[i].tipoAlerta
@@ -1002,7 +1006,7 @@
           }
 
         }
-        if (notificacao.length == 0) {
+        if (notificacao.length === 0) {
           div_exibirAlerta_recente.innerHTML = `
             <div class="nenhumSensorComDefeito">
               Nenhum sensor com defeito 
@@ -1012,7 +1016,9 @@
   }
 
 
-
+  function chamado() {
+    window.location = "https://sptech-safetherm.atlassian.net/servicedesk/customer/portal/1"
+  }
 
 
 </script>
