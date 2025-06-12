@@ -45,4 +45,11 @@ router.get("/graficUmiInf/:id", function (req, res) {
     dashboardUserController.graficUmiInf(req, res);
 });
 
+// verificação de dados, analisa se está tendo insert dos dados dos sensores;
+router.get("/verificarCaptura/:id", function (req, res) {
+    dashboardUserController.verificarCaptura(req, res);
+});
+
+
+
 module.exports = router;

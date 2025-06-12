@@ -48,7 +48,7 @@ function veiculoTemperatura(idVeiculo) {
       on s.fkVeiculo = v.idVeiculo
     where v.idVeiculo = ${idVeiculo} and s.tipoSensor = 'LM35';
   `
-   
+
   console.log("Executando a instrução SQL para capturar id do sensor de temperatura: \n" + instrucaoSql)
   return database.executar(instrucaoSql);
 
@@ -70,8 +70,8 @@ function veiculoUmidade(idVeiculo) {
 }
 
 
-function graficTempSup(idSensor){
-    var instrucaoSql = `
+function graficTempSup(idSensor) {
+  var instrucaoSql = `
         select 
           s.idSensor, s.tipoSensor, 
           s.localizacao, s.statusSensor, l.valor,
@@ -83,13 +83,13 @@ function graficTempSup(idSensor){
         order by l.idLeitura  DESC
         limit 6;
       `
-    console.log("Executando a instrução SQL para capturar dados do sensor de temperatura para o grafico superior: \n" + instrucaoSql)
-    return database.executar(instrucaoSql)
+  console.log("Executando a instrução SQL para capturar dados do sensor de temperatura para o grafico superior: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
 
-function graficUmiSup(idSensor){
-    var instrucaoSql = `
+function graficUmiSup(idSensor) {
+  var instrucaoSql = `
         select 
           s.idSensor, s.tipoSensor, 
           s.localizacao, s.statusSensor, l.valor,
@@ -101,12 +101,12 @@ function graficUmiSup(idSensor){
         order by l.idLeitura  DESC
         limit 6;
       `
-    console.log("Executando a instrução SQL para capturar dados do sensor de umidade para o grafico superior: \n" + instrucaoSql)
-    return database.executar(instrucaoSql)
+  console.log("Executando a instrução SQL para capturar dados do sensor de umidade para o grafico superior: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
-function graficTempInf(idSensor){
-    var instrucaoSql = `
+function graficTempInf(idSensor) {
+  var instrucaoSql = `
         select 
           s.idSensor, s.tipoSensor, 
           s.localizacao, s.statusSensor, l.valor,
@@ -118,12 +118,12 @@ function graficTempInf(idSensor){
         order by l.idLeitura  DESC
         limit 6;
       `
-    console.log("Executando a instrução SQL para capturar dados do sensor de temperatura para o grafico inferior: \n" + instrucaoSql)
-    return database.executar(instrucaoSql)
+  console.log("Executando a instrução SQL para capturar dados do sensor de temperatura para o grafico inferior: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
 }
 
-function graficUmiInf(idSensor){
-    var instrucaoSql = `
+function graficUmiInf(idSensor) {
+  var instrucaoSql = `
         select 
           s.idSensor, s.tipoSensor, 
           s.localizacao, s.statusSensor, l.valor,
@@ -135,8 +135,22 @@ function graficUmiInf(idSensor){
         order by l.idLeitura  DESC
         limit 6;
       `
-    console.log("Executando a instrução SQL para capturar dados do sensor de umidade para o grafico inferior: \n" + instrucaoSql)
+  console.log("Executando a instrução SQL para capturar dados do sensor de umidade para o grafico inferior: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
+}
+
+
+
+function verificarCaptura(idSensor) {
+  var instrucaoSql = `
+      SELECT * 
+      FROM leitura_sensor
+      WHERE dataHora >= NOW() - INTERVAL 3 SECOND AND fkSensor = ${idSensor};
+    `;
+
+    console.log("Executando a instrução SQL para capturar se está tendo tendo insert dos dados: \n" + instrucaoSql)
     return database.executar(instrucaoSql)
+
 }
 
 
@@ -156,5 +170,6 @@ module.exports = {
   graficTempSup,
   graficUmiSup,
   graficTempInf,
-  graficUmiInf
+  graficUmiInf,
+  verificarCaptura
 };

@@ -1,192 +1,217 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SafeTherm - Dashboard especifica</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="css/dashboards.css" />
-    <link
-      rel="stylesheet"
-      href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css"
-    />
-  </head>
 
-  <body>
-    <!-- Fazer menu após concluir o backend -->
-    <div class="menu"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeTherm - Dashboard especifica</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/dashboards.css" />
+  <link rel="stylesheet" href="assets/post-no-bills-jaffna-cufonfonts-webfont/style.css" />
+</head>
 
-    <section class="conteudo">
-      <header>
-        <nav>
-          <input type="text" placeholder="pesquisar placa do veiculo..." />
-          <button onclick=""></button>
-        </nav>
-        <div class="user_perfil" id="user_perfil">
-          <button
-            class="selectUser"
-            onclick="abrirLogout()"
-            id="btnLogout"
-          ></button>
-          <div id="divLogout">
-            <a href="">Funcionários</a>
-            <a href="">Veículos</a>
-            <button onclick="">SAIR</button>
-          </div>
-          <div id="infos_user">
-            <h3>Roberta Silva</h3>
-            <h4>roberta@therm.com</h4>
-          </div>
-          <img
-            src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
-            alt=""
-          />
+<body>
+  <!-- Fazer menu após concluir o backend -->
+  <div class="menu"></div>
+
+  <section class="conteudo">
+    <header>
+      <nav>
+        <input type="text" placeholder="pesquisar placa do veiculo..." />
+        <button onclick=""></button>
+      </nav>
+      <div class="user_perfil" id="user_perfil">
+        <button class="selectUser" onclick="abrirLogout()" id="btnLogout"></button>
+        <div id="divLogout">
+          <a href="">Funcionários</a>
+          <a href="">Veículos</a>
+          <button onclick="">SAIR</button>
         </div>
-      </header>
+        <div id="infos_user">
+          <h3>Roberta Silva</h3>
+          <h4>roberta@therm.com</h4>
+        </div>
+        <img
+          src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+          alt="" />
+      </div>
+    </header>
 
-      <div class="graficosGerados">
-        <div class="infosMotorista" id="infosMotorista">
-          <img
-            src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
-            alt=""
-          />
-          <div class="motoristaInfo">
-            <h1>MOTORISTA: <span>Fabiano Gomes dos Santos Oliveira</span></h1>
-            <h1>TELEFONE: <span>(11) 00000-0000</span></h1>
-            <h1>EMAIL: <span>fabiano.gomes@safetherm.com.br</span></h1>
+    <div class="graficosGerados">
+      <div class="infosMotorista" id="infosMotorista">
+        <img
+          src="https://lenscope.com.br/blog/wp-content/uploads/2022/06/w24-Tipos-de-rosto_-os-formatos-de-rosto-que-existem-e-como-identificar-o-seu.png"
+          alt="" />
+        <div class="motoristaInfo">
+          <h1>MOTORISTA: <span>Fabiano Gomes dos Santos Oliveira</span></h1>
+          <h1>TELEFONE: <span>(11) 00000-0000</span></h1>
+          <h1>EMAIL: <span>fabiano.gomes@safetherm.com.br</span></h1>
+        </div>
+        <div class="caminhao">
+          <h1>VEICULO</h1>
+          <h1>MODELO: <span>Fiat Ducato</span></h1>
+          <h1>PLACA: <span>ABC1D23</span></h1>
+        </div>
+      </div>
+      <div class="conteudoGrafico">
+        <div class="cardsEsquerda">
+          <div class="card" id="realUmidade">
+            <div class="circleAtivo"></div>
+
+
+
+            <!-- -- umidade da carga em tempo real:
+              SELECT
+                AVG(sub.valor) AS media_valor
+                FROM (
+              SELECT
+                l.valor
+                FROM
+                leitura_sensor AS l
+              JOIN
+                sensor AS s ON l.fkSensor = s.idSensor
+              JOIN
+                veiculo AS v ON s.fkVeiculo = v.idVeiculo
+              WHERE
+                v.idVeiculo = 1
+                AND s.tipoSensor = 'DHT11'
+              ORDER BY
+                l.dataHora DESC
+                LIMIT 6
+            ) AS sub; -->
+
+
+
           </div>
-          <div class="caminhao">
-            <h1>VEICULO</h1>
-            <h1>MODELO: <span>Fiat Ducato</span></h1>
-            <h1>PLACA: <span>ABC1D23</span></h1>
+          <div class="card" id="cincoUmidade">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="dezUmidade">
+            <div class="circleDesativo"></div>
+          </div>
+
+          <!-- definição para cards de temperatura inferiores na Esquerda -->
+          <div class="card" id="realTemperaturaE">
+            <div class="circleAtivo"></div>
+          </div>
+          <div class="card" id="cincoTemperaturaE">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="dezTemperaturaE">
+            <div class="circleDesativo"></div>
           </div>
         </div>
-        <div class="conteudoGrafico">
-          <div class="cardsEsquerda">
-            <div class="card" id="realUmidade">
-              <div class="circleAtivo"></div>
-            </div>
-            <div class="card" id="cincoUmidade">
-              <div class="circleDesativo"></div>
-            </div>
-            <div class="card" id="dezUmidade">
-              <div class="circleDesativo"></div>
-            </div>
-
-            <!-- definição para cards de temperatura inferiores na Esquerda -->
-            <div class="card" id="realTemperaturaE">
-              <div class="circleAtivo"></div>
-            </div>
-            <div class="card" id="cincoTemperaturaE">
-              <div class="circleDesativo"></div>
-            </div>
-            <div class="card" id="dezTemperaturaE">
-              <div class="circleDesativo"></div>
-            </div>
-          </div>
-          <div class="graficArea">
-            <div class="boxSelects">
-              <select
-                name="sel"
-                id="selecaoMedia"
-                class="selecaoMedia"
-                onchange="selectDaMedia()"
-              >
-                <option>Qual tempo deseja?</option>
-                <option value="real">Dados em tempo real</option>
-                <option value="cincoMin">Dados nos ultímos 5min</option>
-                <option value="dezMin">Dados nos ultímos 10min</option>
-              </select>
-              <select
-                name="sel"
-                id="gaficosSelect"
-                onchange="selecionarGrafico()"
-                class="selecaoSensores"
-              >
-                <option>Quais gráficos deseja?</option>
-                <option value="Sup">Todos os Sensores Superiores</option>
-                <option value="Umi">Apenas sensores de Umidade</option>
-                <option value="Inf">Todos os Sensores Inferiores</option>
-                <option value="Temp">Apenas sensores de Temperatura</option>
-                <option value="Todos">Todos os Sensores</option>
-              </select>
-            </div>
-
-            <div class="graficos" id="umidadeSuperior">
-              <h3 class="statusCard">
-                Umidade superior <span id="statusUmiSup">(Ativo)</span>
-              </h3>
-              <canvas id="myUmidadeSup" class="graficoEstilo"></canvas>
-              <h1 id="infoUmiSup" style="color: rgb(153, 153, 153); z-index: 20; position: absolute; text-align: center; width: 100%; left: 0;">NENHUM DADO SENDO CAPTURADO</h1>
-            </div>
-            <div class="graficos" id="umidadeInferior">
-              <h3 class="statusCard">
-                Umidade inferior <span id="statusUmiInf">(Ativo)</span>
-              </h3>
-              <canvas id="myUmidadeInf" class="graficoEstilo"></canvas>
-              <h1 id="infoUmiInf" style="color: rgb(153, 153, 153); z-index: 20; position: absolute; text-align: center; width: 100%; left: 0;">NENHUM DADO SENDO CAPTURADO</h1>
-            </div>
-            <div class="graficos" id="temperaturaSuperior">
-              <h3 class="statusCard">
-                Temperatura superior <span id="statusTempSup">(Ativo)</span>
-              </h3>
-              <canvas id="myTemperaturaSup" class="graficoEstilo"></canvas>
-              <h1 id="infoTempSup" style="color: rgb(153, 153, 153); z-index: 20; position: absolute; text-align: center; width: 100%; left: 0;">NENHUM DADO SENDO CAPTURADO</h1>
-            </div>
-            <div class="graficos" id="temperaturaInferior">
-              <h3 class="statusCard">
-                Temperatura inferior
-                <span id="statusTempInf">(Ativo)</span>
-              </h3>
-              <canvas id="myTemperaturaInf" class="graficoEstilo"></canvas>
-              <h1 id="infoTempInf" style="color: rgb(153, 153, 153); z-index: 20; position: absolute; text-align: center; width: 100%; left: 0;">NENHUM DADO SENDO CAPTURADO</h1>
-            </div>
+        <div class="graficArea">
+          <div class="boxSelects">
+            <select name="sel" id="selecaoMedia" class="selecaoMedia" onchange="selectDaMedia()">
+              <option>Qual tempo deseja?</option>
+              <option value="real">Dados em tempo real</option>
+              <option value="cincoMin">Dados nos ultímos 5min</option>
+              <option value="dezMin">Dados nos ultímos 10min</option>
+            </select>
+            <select name="sel" id="gaficosSelect" onchange="selecionarGrafico()" class="selecaoSensores">
+              <option>Quais gráficos deseja?</option>
+              <option value="Sup">Todos os Sensores Superiores</option>
+              <option value="Umi">Apenas sensores de Umidade</option>
+              <option value="Inf">Todos os Sensores Inferiores</option>
+              <option value="Temp">Apenas sensores de Temperatura</option>
+              <option value="Todos">Todos os Sensores</option>
+            </select>
           </div>
 
-          <div class="cardsDireita">
-            <div class="card" id="realTemperatura">
-              <div class="circleAtivo"></div>
-            </div>
-            <div class="card" id="cincoTemperatura">
-              <div class="circleDesativo"></div>
-            </div>
-            <div class="card" id="dezTemperatura">
-              <div class="circleDesativo"></div>
-            </div>
+          <div class="graficos" id="umidadeSuperior">
+            <h3 class="statusCard">
+              Umidade superior <span id="statusUmiSup">(Ativo)</span>
+            </h3>
+            <canvas id="myUmidadeSup" class="graficoEstilo"></canvas>
+            <h1 id="infoUmiSup"
+              style="color: rgb(153, 153, 153); z-index: 20; position: absolute; text-align: center; width: 100%; left: 0;">
+              NENHUM DADO SENDO CAPTURADO</h1>
+            <h1 class="funcionamento">captura de dados: <span id="funcionamentoUmiSup">nenhum parâmetro</span></h1>
+          </div>
+          <div class="graficos" id="umidadeInferior">
+            <h3 class="statusCard">
+              Umidade inferior <span id="statusUmiInf">(Ativo)</span>
+            </h3>
+            <canvas id="myUmidadeInf" class="graficoEstilo"></canvas>
+            <h1 id="infoUmiInf"
+              style="color: rgb(153, 153, 153); z-index: 20; position: absolute; text-align: center; width: 100%; left: 0;">
+              NENHUM DADO SENDO CAPTURADO</h1>
+            <h1 class="funcionamento">captura de dados: <span id="funcionamentoUmiInf">nenhum parâmetro</span></h1>
+
+          </div>
+          <div class="graficos" id="temperaturaSuperior">
+            <h3 class="statusCard">
+              Temperatura superior <span id="statusTempSup">(Ativo)</span>
+            </h3>
+            <canvas id="myTemperaturaSup" class="graficoEstilo"></canvas>
+            <h1 id="infoTempSup"
+              style="color: rgb(153, 153, 153); z-index: 20; position: absolute; text-align: center; width: 100%; left: 0;">
+              NENHUM DADO SENDO CAPTURADO</h1>
+            <h1 class="funcionamento">captura de dados: <span id="funcionamentoTempSup">nenhum parâmetro</span></h1>
+          </div>
+          <div class="graficos" id="temperaturaInferior">
+            <h3 class="statusCard">
+              Temperatura inferior
+              <span id="statusTempInf">(Ativo)</span>
+            </h3>
+            <canvas id="myTemperaturaInf" class="graficoEstilo"></canvas>
+            <h1 id="infoTempInf"
+              style="color: rgb(153, 153, 153); z-index: 20; position: absolute; text-align: center; width: 100%; left: 0;">
+              NENHUM DADO SENDO CAPTURADO</h1>
+            <h1 class="funcionamento">captura de dados: <span id="funcionamentoTempInf">nenhum parâmetro</span></h1>
+          </div>
+        </div>
+
+        <div class="cardsDireita">
+          <div class="card" id="realTemperatura">
+            <div class="circleAtivo"></div>
+          </div>
+          <div class="card" id="cincoTemperatura">
+            <div class="circleDesativo"></div>
+          </div>
+          <div class="card" id="dezTemperatura">
+            <div class="circleDesativo"></div>
           </div>
         </div>
       </div>
-      <div class="conteudoHistorico">
-        <button onclick="abrirHitorico()" id="btnHistorico">
-          abrir historico
-        </button>
-        <div class="boxHistorico" id="historicoSensor">
-          <div class="topoTitulos">
-            <h1>Data/hora</h1>
-            <h1>Temperatura</h1>
-            <h1>Umidade</h1>
-            <h1>Veículo</h1>
-            <h1>Status</h1>
-          </div>
-          <div class="scroll" id="listaDadosAlertas">
-            <!-- <div class="listarDados">
+    </div>
+    <div class="conteudoHistorico">
+      <button onclick="abrirHitorico()" id="btnHistorico">
+        abrir historico
+      </button>
+      <div class="boxHistorico" id="historicoSensor">
+        <div class="topoTitulos">
+          <h1>Data/hora</h1>
+          <h1>Temperatura</h1>
+          <h1>Umidade</h1>
+          <h1>Veículo</h1>
+          <h1>Status</h1>
+        </div>
+        <div class="scroll" id="listaDadosAlertas">
+          <!-- <div class="listarDados">
             <h3>08/05/2025, 22:31</h3>
             <h3>5.6ºC</h3>
             <h3>50%</h3>
             <h3>ABC1D23</h3>
             <h3>Alerta</h3>
           </div> -->
-          </div>
         </div>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+</body>
+
 </html>
 <script>
   var idUsuario = sessionStorage.ID_SELECAO_FUNCIONARIO;
   var nomeUsuario = sessionStorage.NOME_USUARIO;
   var emailUsuario = sessionStorage.EMAIL_USUARIO;
   var fotoPerfil = sessionStorage.FOTO_PERFIL;
+
+  // cards exibindo normalmente
+  realTemperatura.style.display = "flex";
+  realUmidade.style.display = "flex";
 
   // formatando usuario logado | usuario em sessão
 
@@ -296,10 +321,10 @@
                 listaDadosAlertas.innerHTML += `
               <div class="listarDados">
                 <h3>${dataUmidade}</h3>
-                <h3>${temperatura[i].valor}</h3>
-                <h3>${umidade[i].valor}</h3>
+                <h3>${temperatura[i].valor.slice(0, 3)}ºC</h3>
+                <h3 style="color: #FF0000">${parseInt(umidade[i].valor)}%</h3>
                 <h3>${umidade[i].placaVeiculo}</h3>
-                <h3>Alerta Umidade</h3>
+                <h3 style="color: #FF0000">Alerta Umidade</h3>
               </div>
             `;
               } else if (
@@ -309,33 +334,35 @@
                 listaDadosAlertas.innerHTML += `
               <div class="listarDados">
                 <h3>${dataUmidade}</h3>
-                <h3>${temperatura[i].valor}</h3>
-                <h3>${umidade[i].valor}</h3>
+                <h3>${temperatura[i].valor.slice(0, 3)}ºC</h3>
+                <h3 style="color: #F5CD28">${parseInt(umidade[i].valor)}%</h3>
                 <h3>${umidade[i].placaVeiculo}</h3>
-                <h3>Atenção Umidade</h3>
+                <h3 style="color: #F5CD28">Atenção Umidade</h3>
               </div>
             `;
-              } else if (
+              }
+
+              if (
                 (temperatura[i].valor > 6 && temperatura[i].valor < 7) ||
                 (temperatura[i].valor > 2 && temperatura[i].valor < 4)
               ) {
                 listaDadosAlertas.innerHTML += `
               <div class="listarDados">
                 <h3>${dataTemperatura}</h3>
-                <h3>${temperatura[i].valor}</h3>
-                <h3>${umidade[i].valor}</h3>
+                <h3 style="color: #F5CD28">${temperatura[i].valor.slice(0, 3)}ºC</h3>
+                <h3>${parseInt(umidade[i].valor)}%</h3>
                 <h3>${umidade[i].placaVeiculo}</h3>
-                <h3>Atenção Temperatura</h3>
+                <h3 style="color: #F5CD28">Atenção Temperatura</h3>
               </div>
               `;
               } else if (temperatura[i].valor < 2 && temperatura[i].valor > 7) {
                 listaDadosAlertas.innerHTML += `
               <div class="listarDados">
                 <h3>${dataTemperatura}</h3>
-                <h3>${temperatura[i].valor}</h3>
-                <h3>${umidade[i].valor}</h3>
+                <h3 style="color: #FF0000">${temperatura[i].valor.slice(0, 3)}ºC</h3>
+                <h3>${parseInt(umidade[i].valor)}%</h3>
                 <h3>${umidade[i].placaVeiculo}</h3>
-                <h3>Alerta Temperatura</h3>
+                <h3" style="color: #FF0000">Alerta Temperatura</h3>
               </div>
               `;
               }
@@ -565,7 +592,6 @@
   //   umidadeSupIds();
   //   temperaturaInfIds();
   //   umidadeInfIds();
-  //   console.log("atualizando sensores")
   // }, 1000);
 
   let chartTemperaturaSup = null;
@@ -586,13 +612,13 @@
           console.log(
             "Nenhum dado do sensor Temperatura Superior sendo capiturado!"
           );
+          realTemperatura.style.display = "none";
+          realUmidade.style.display = "none";
           infoTempSup.style.display = "block"
           statusTempSup.innerHTML = "(DESATIVADO)"
           statusTempSup.style.color = "#c9c9c9";
         } else {
           infoTempSup.style.display = "none"
-          statusTempSup.innerHTML = "(Ativo)"
-          statusTempSup.style.color = "#067500";
           fetch(`dashboardUser/graficTempSup/${sensoresEncontrados[0]}`)
             .then((res) => res.json())
             .then((dadosTempSup) => {
@@ -603,6 +629,56 @@
                 listarIntervalo.push(horaMinuto);
                 listarDadosTempSup.push(dadosTempSup[i].valor);
               }
+
+
+              fetch(`/dashboardUser/verificarCaptura/${sensoresEncontrados[0]}`)
+                .then((res) => res.json())
+                .then((dadosCapturados) => {
+                  console.log(sensoresEncontrados[0])
+                  console.log(dadosCapturados)
+                  if (dadosCapturados.length != 0) {
+                    console.log("dados inseridos")
+                    statusTempSup.innerHTML = "(Ativo)"
+                    statusTempSup.style.color = "#067500";
+                    if (
+                      (listarDadosTempSup[5] > 6 && listarDadosTempSup[5] < 7) ||
+                      (listarDadosTempSup[5] >= 2 && listarDadosTempSup[5] < 4)
+                    ) {
+                      // console.log("atenção");
+                      funcionamentoTempSup.style.color = "#F5CD28"
+                      funcionamentoTempSup.innerHTML = `
+                        Atenção
+                        ${listarDadosTempSup[5].slice(0, 3)} ºC
+                      `;
+                    }
+                    if (
+                      listarDadosTempSup[5] >= 4 &&
+                      listarDadosTempSup[5] <= 6
+                    ) {
+                      funcionamentoTempSup.style.color = "#067500"
+                      funcionamentoTempSup.innerHTML = `
+                        Ideal
+                        ${listarDadosTempSup[5].slice(0, 3)} ºC
+                      `;
+                    }
+                    if (listarDadosTempSup[5] > 7 || listarDadosTempSup[5] < 2) {
+                      // console.log("Risco");
+                      funcionamentoTempSup.style.color = "#FF0000"
+                      funcionamentoTempSup.innerHTML = `
+                        Risco
+                        ${listarDadosTempSup[5].slice(0, 3)} ºC
+                      `;
+                    }
+                  } else {
+                    console.log("sem dados Temperatura Superior sendo capturados.")
+                    statusTempSup.innerHTML = "(Manutenção)"
+                    statusTempSup.style.color = "#ff472f";
+                    funcionamentoTempSup.style.color = "#FF0000"
+                    funcionamentoTempSup.innerHTML = `
+                      COM DEFEITO
+                    `;
+                  }
+                })
 
               // Grafico prontos para receber dados do banco após conclusão de historico.
               const temperaturaSup =
@@ -664,14 +740,13 @@
             "Nenhum dado do sensor Umidade Superior sendo capiturado!"
           );
 
+          realTemperatura.style.display = "flex";
+          realUmidade.style.display = "flex";
           infoUmiSup.style.display = "block"
           statusUmiSup.innerHTML = "(DESATIVADO)"
           statusUmiSup.style.color = "#c9c9c9";
         } else {
           infoUmiSup.style.display = "none"
-          statusUmiSup.innerHTML = "(Ativo)"
-          statusUmiSup.style.color = "#067500";
-
           fetch(`dashboardUser/graficUmiSup/${sensoresEncontrados[0]}`)
             .then((res) => res.json())
             .then((dadosUmiSup) => {
@@ -683,20 +758,58 @@
                 listarDadosUmiSup.push(dadosUmiSup[i].valor);
               }
 
-              if (
-                (listarDadosUmiSup[5] > 60 && listarDadosUmiSup[5] < 70) ||
-                (listarDadosUmiSup[5] >= 40 && listarDadosUmiSup[5] < 50)
-              ) {
-                console.log("atenção");
-              } else if (
-                listarDadosUmiSup[0] >= 50 &&
-                listarDadosUmiSup[0] <= 60
-              ) {
-                //cenario de sensores OK!
-                //caso queira fazer alguma validação ou apresentação
-              } else {
-                console.log("Risco");
-              }
+
+
+              // verificação se está tendo captura de dados / caso contrario entra em manutenção
+              fetch(`/dashboardUser/verificarCaptura/${sensoresEncontrados[0]}`)
+                .then((res) => res.json())
+                .then((dadosCapturados) => {
+                  console.log(sensoresEncontrados[0])
+                  console.log(dadosCapturados)
+                  if (dadosCapturados.length != 0) {
+                    console.log("dados inseridos")
+                    statusUmiSup.innerHTML = "(Ativo)"
+                    statusUmiSup.style.color = "#067500";
+                    if (
+                      (listarDadosUmiSup[5] > 60 && listarDadosUmiSup[5] < 70) ||
+                      (listarDadosUmiSup[5] >= 40 && listarDadosUmiSup[5] < 50)
+                    ) {
+                      // console.log("atenção");
+                      funcionamentoUmiSup.style.color = "#F5CD28"
+                      funcionamentoUmiSup.innerHTML = `
+                        Atenção
+                        ${listarDadosUmiSup[5].slice(0, 2)}%
+                      `;
+                    }
+                    if (
+                      listarDadosUmiSup[5] >= 50 &&
+                      listarDadosUmiSup[5] <= 60
+                    ) {
+                      funcionamentoUmiSup.style.color = "#067500"
+                      funcionamentoUmiSup.innerHTML = `
+                        Ideal
+                        ${listarDadosUmiSup[5].slice(0, 2)}%
+                      `;
+                    }
+                    if (listarDadosUmiSup[5] > 70 || listarDadosUmiSup[5] < 40) {
+                      // console.log("Risco");
+                      funcionamentoUmiSup.style.color = "#FF0000"
+                      funcionamentoUmiSup.innerHTML = `
+                        Risco
+                        ${listarDadosUmiSup[5].slice(0, 2)}%
+                      `;
+
+                    }
+                  } else {
+                    console.log("sem dados umidade Superior sendo capturados.")
+                    statusUmiSup.innerHTML = "(Manutenção)"
+                    statusUmiSup.style.color = "#ff472f";
+                    funcionamentoUmiSup.style.color = "#FF0000"
+                    funcionamentoUmiSup.innerHTML = `
+                      COM DEFEITO
+                    `;
+                  }
+                })
 
               // Grafico prontos para receber dados do banco após conclusão de historico.
               const umidadeSup = document.getElementById("myUmidadeSup");
@@ -753,14 +866,14 @@
           console.log(
             "Nenhum dado do sensor Temperatura Inferior sendo capiturado!"
           );
-          
+
+          realTemperatura.style.display = "none";
+          realUmidade.style.display = "none";
           infoTempInf.style.display = "block"
           statusTempInf.innerHTML = "(DESATIVADO)"
           statusTempInf.style.color = "#c9c9c9";
-        }else{
+        } else {
           infoTempInf.style.display = "none"
-          statusTempInf.innerHTML = "(Ativo)"
-          statusTempInf.style.color = "#067500";
           // Valores encontrados por que eu sou muito bom.
           fetch(`dashboardUser/graficTempInf/${sensoresEncontrados[1]}`)
             .then((res) => res.json())
@@ -772,10 +885,59 @@
                 listarIntervalo.push(horaMinuto);
                 listarDadosTempInf.push(dadosTempInf[i].valor);
               }
-  
+
+              fetch(`/dashboardUser/verificarCaptura/${sensoresEncontrados[1]}`)
+                .then((res) => res.json())
+                .then((dadosCapturados) => {
+                  console.log(sensoresEncontrados[1])
+                  console.log(dadosCapturados)
+                  if (dadosCapturados.length != 0) {
+                    console.log("dados inseridos")
+                    statusTempInf.innerHTML = "(Ativo)"
+                    statusTempInf.style.color = "#067500";
+                    if (
+                      (listarDadosTempInf[5] > 6 && listarDadosTempInf[5] < 7) ||
+                      (listarDadosTempInf[5] >= 2 && listarDadosTempInf[5] < 4)
+                    ) {
+                      // console.log("atenção");
+                      funcionamentoTempInf.style.color = "#F5CD28"
+                      funcionamentoTempInf.innerHTML = `
+                        Atenção
+                        ${listarDadosTempInf[5].slice(0, 3)} ºC
+                      `;
+                    }
+                    if (
+                      listarDadosTempInf[5] >= 4 &&
+                      listarDadosTempInf[5] <= 6
+                    ) {
+                      funcionamentoTempInf.style.color = "#067500"
+                      funcionamentoTempInf.innerHTML = `
+                        Ideal
+                        ${listarDadosTempInf[5].slice(0, 3)} ºC
+                      `;
+                    }
+                    if (listarDadosTempInf[5] > 7 || listarDadosTempInf[5] < 2) {
+                      // console.log("Risco");
+                      funcionamentoTempInf.style.color = "#FF0000"
+                      funcionamentoTempInf.innerHTML = `
+                        Risco
+                        ${listarDadosTempInf[5].slice(0, 3)} ºC
+                      `;
+                    }
+                  } else {
+                    console.log("sem dados Temperatura Inferior sendo capturados.")
+                    statusTempInf.innerHTML = "(Manutenção)"
+                    statusTempInf.style.color = "#ff472f";
+                    funcionamentoTempInf.style.color = "#FF0000"
+                    funcionamentoTempInf.innerHTML = `
+                      COM DEFEITO
+                    `;
+                  }
+                })
+
               // Grafico prontos para receber dados do banco após conclusão de historico.
               const temperaturaInf = document.getElementById("myTemperaturaInf");
-  
+
               // Destroi o gráfico anterior
               if (chartTemperaturaInf) {
                 chartTemperaturaInf.destroy();
@@ -832,13 +994,13 @@
           console.log(
             "Nenhum dado do sensor Umidade Inferior sendo capiturado!"
           );
+          realTemperatura.style.display = "none";
+          realUmidade.style.display = "none";
           infoUmiInf.style.display = "block"
           statusUmiInf.innerHTML = "(DESATIVADO)"
           statusUmiInf.style.color = "#c9c9c9";
-        }else{
+        } else {
           infoUmiInf.style.display = "none"
-           statusUmiInf.innerHTML = "(Ativo)"
-          statusUmiInf.style.color = "#067500";
           fetch(`dashboardUser/graficUmiInf/${sensoresEncontrados[1]}`)
             .then((res) => res.json())
             .then((dadosUmiInf) => {
@@ -849,23 +1011,57 @@
                 listarIntervalo.push(horaMinuto);
                 listarDadosUmiInf.push(dadosUmiInf[i].valor);
               }
-  
-              console.log("Verificando dado: ", listarDadosUmiInf[0]);
-              if (
-                (listarDadosUmiInf[0] > 60 && listarDadosUmiInf[0] < 70) ||
-                (listarDadosUmiInf[0] >= 40 && listarDadosUmiInf[0] < 50)
-              ) {
-                console.log("atenção");
-              } else if (
-                listarDadosUmiInf[0] >= 50 &&
-                listarDadosUmiInf[0] <= 60
-              ) {
-                //cenario de sensores OK!
-                //caso queira fazer alguma validação ou apresentação
-              } else {
-                console.log("Risco");
-              }
-  
+
+              fetch(`/dashboardUser/verificarCaptura/${sensoresEncontrados[1]}`)
+                .then((res) => res.json())
+                .then((dadosCapturados) => {
+                  console.log(sensoresEncontrados[1])
+                  console.log(dadosCapturados)
+                  if (dadosCapturados.length != 0) {
+                    console.log("dados inseridos")
+                    statusUmiInf.innerHTML = "(Manutenção)"
+                    statusUmiInf.style.color = "#067500";
+                    if (
+                      (listarDadosUmiInf[5] > 60 && listarDadosUmiInf[5] < 70) ||
+                      (listarDadosUmiInf[5] >= 40 && listarDadosUmiInf[5] < 50)
+                    ) {
+                      // console.log("atenção");
+                      funcionamentoUmiInf.style.color = "#F5CD28"
+                      funcionamentoUmiInf.innerHTML = `
+                        Atenção
+                        ${listarDadosUmiInf[5].slice(0, 2)}%
+                      `;
+                    }
+                    if (
+                      listarDadosUmiInf[5] >= 50 &&
+                      listarDadosUmiInf[5] <= 60
+                    ) {
+                      funcionamentoUmiInf.style.color = "#067500"
+                      funcionamentoUmiInf.innerHTML = `
+                        Ideal
+                        ${listarDadosUmiInf[5].slice(0, 2)}%
+                      `;
+                    }
+                    if (listarDadosUmiInf[5] > 70 || listarDadosUmiInf[5] < 40) {
+                      // console.log("Risco");
+                      funcionamentoUmiInf.style.color = "#FF0000"
+                      funcionamentoUmiInf.innerHTML = `
+                        Risco
+                        ${listarDadosUmiInf[5].slice(0, 2)}%
+                      `;
+
+                    }
+                  } else {
+                    console.log("sem dados umidade Inferior sendo capturados.")
+                    statusUmiInf.innerHTML = "(Manutenção)"
+                    statusUmiInf.style.color = "#ff472f";
+                    funcionamentoUmiInf.style.color = "#FF0000";
+                    funcionamentoUmiInf.innerHTML = `
+                      COM DEFEITO
+                    `;
+                  }
+                })
+
               // Grafico prontos para receber dados do banco após conclusão de historico.
               const umidadeInf = document.getElementById("myUmidadeInf");
               // Destroi o gráfico anterior
@@ -909,4 +1105,5 @@
     const clicado = document.getElementById("historicoSensor");
     clicado.classList.toggle("adicionar");
   }
+
 </script>
