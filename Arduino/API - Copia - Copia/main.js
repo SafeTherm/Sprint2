@@ -20,17 +20,17 @@ const serial = async (valoresSensorTemperatura, valoresSensorUmidade) => {
         if (valor > 70) {
             await poolBancoDados.execute(
                 'INSERT INTO alerta (fkLeitura, tipoAlerta, descricao) VALUES (?, ?, ?)',
-                [idLeitura, 'ALERTA', 'Umidade acima do ideal (>70%)']
+                [idLeitura, 'ALERTA', 'Umidade acima do ideal (IDEAL 40% - 60%)']
             );
         } else if (valor < 40) {
             await poolBancoDados.execute(
                 'INSERT INTO alerta (fkLeitura, tipoAlerta, descricao) VALUES (?, ?, ?)',
-                [idLeitura, 'ALERTA', 'Umidade abaixo do ideal (<40%)']
+                [idLeitura, 'ALERTA', 'Umidade abaixo do ideal (IDEAL 40% - 60%)']
             );
         } else if ((valor >= 40 && valor < 50) || (valor > 60 && valor <= 70)) {
             await poolBancoDados.execute(
                 'INSERT INTO alerta (fkLeitura, tipoAlerta, descricao) VALUES (?, ?, ?)',
-                [idLeitura, 'ATENÇÃO', 'Umidade em zona de atenção (entre 40-50% ou 60-70%)']
+                [idLeitura, 'ATENÇÃO', 'Umidade em zona de atenção (IDEAL 40% - 60%)']
             );
         }
     };
@@ -39,17 +39,17 @@ const serial = async (valoresSensorTemperatura, valoresSensorUmidade) => {
         if (valor > 7) {
             await poolBancoDados.execute(
                 'INSERT INTO alerta (fkLeitura, tipoAlerta, descricao) VALUES (?, ?, ?)',
-                [idLeitura, 'ALERTA', 'Temperatura acima do ideal (>7°C)']
+                [idLeitura, 'ALERTA', 'Temperatura acima do ideal (IDEAL 4°C - 6°C)']
             );
         } else if (valor < 2) {
             await poolBancoDados.execute(
                 'INSERT INTO alerta (fkLeitura, tipoAlerta, descricao) VALUES (?, ?, ?)',
-                [idLeitura, 'ALERTA', 'Temperatura abaixo do ideal (<2°C)']
+                [idLeitura, 'ALERTA', 'Temperatura abaixo do ideal (IDEAL 4°C - 6°C)']
             );
         } else if ((valor > 6 && valor <= 7) || (valor >= 2 && valor < 4)) {
             await poolBancoDados.execute(
                 'INSERT INTO alerta (fkLeitura, tipoAlerta, descricao) VALUES (?, ?, ?)',
-                [idLeitura, 'ATENÇÃO', 'Temperatura em zona de atenção (entre 2-4°C ou 6-7°C)']
+                [idLeitura, 'ATENÇÃO', 'Temperatura em zona de atenção (IDEAL 4°C - 6°C)']
             );
         }
     };
