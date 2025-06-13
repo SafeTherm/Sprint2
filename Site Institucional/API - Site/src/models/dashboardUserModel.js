@@ -148,8 +148,8 @@ function verificarCaptura(idSensor) {
       WHERE dataHora >= NOW() - INTERVAL 3 SECOND AND fkSensor = ${idSensor};
     `;
 
-    console.log("Executando a instrução SQL para capturar se está tendo tendo insert dos dados: \n" + instrucaoSql)
-    return database.executar(instrucaoSql)
+  console.log("Executando a instrução SQL para capturar se está tendo tendo insert dos dados: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
 
 }
 
@@ -172,8 +172,8 @@ function verificarRota(idSensor) {
       WHERE dataHora >= NOW() - INTERVAL 10 SECOND AND fkSensor = ${idSensor};
     `;
 
-    console.log("Executando a instrução SQL para capturar se está tendo tendo insert dos dados: \n" + instrucaoSql)
-    return database.executar(instrucaoSql)
+  console.log("Executando a instrução SQL para capturar se está tendo tendo insert dos dados: \n" + instrucaoSql)
+  return database.executar(instrucaoSql)
 
 }
 
@@ -197,6 +197,118 @@ function capturaDosIds(idVeiculo) {
 }
 
 
+function containerUmidadeReal(idVeiculo) {
+  var instrucaoSql = `
+  
+              SELECT
+                AVG(sub.valor) AS media_valor
+                FROM (
+              SELECT
+                l.valor
+                FROM
+                leitura_sensor AS l
+              JOIN
+                sensor AS s ON l.fkSensor = s.idSensor
+              JOIN
+                veiculo AS v ON s.fkVeiculo = v.idVeiculo
+              WHERE
+                v.idVeiculo = ${idVeiculo}
+                AND s.tipoSensor = 'DHT11'
+              ORDER BY
+                l.dataHora DESC
+                LIMIT 6
+            ) AS sub; 
+  `;
+
+  console.log("Executando a instrução SQL para capturar id dados Umidade: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
+
+function containerTeperaturaReal(idVeiculo) {
+  var instrucaoSql = `
+  
+              SELECT
+                AVG(sub.valor) AS media_valor
+                FROM (
+              SELECT
+                l.valor
+                FROM
+                leitura_sensor AS l
+              JOIN
+                sensor AS s ON l.fkSensor = s.idSensor
+              JOIN
+                veiculo AS v ON s.fkVeiculo = v.idVeiculo
+              WHERE
+                v.idVeiculo = ${idVeiculo}
+                AND s.tipoSensor = 'LM35'
+              ORDER BY
+                l.dataHora DESC
+                LIMIT 6
+            ) AS sub; 
+  `;
+
+  console.log("Executando a instrução SQL para capturar id dados Temperatura: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
+
+
+
+function containerTeperaturaCinco(idVeiculo) {
+  var instrucaoSql = `
+  
+              SELECT
+  AVG(sub.valor) AS media_valor
+FROM (
+  SELECT
+    l.valor
+  FROM
+    leitura_sensor AS l
+  JOIN
+    sensor AS s ON l.fkSensor = s.idSensor
+  JOIN
+    veiculo AS v ON s.fkVeiculo = v.idVeiculo
+  WHERE
+    v.idVeiculo = ${idVeiculo}
+    AND s.tipoSensor = 'LM35'
+    AND l.dataHora >= NOW() - INTERVAL 5 MINUTE
+  ORDER BY
+    l.dataHora DESC
+  LIMIT 6
+) AS sub;
+  `;
+
+  console.log("Executando a instrução SQL para capturar id dados Temperatura: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
+
+
+function containerUmidadeCinco(idVeiculo) {
+  var instrucaoSql = `
+  
+              SELECT
+  AVG(sub.valor) AS media_valor
+FROM (
+  SELECT
+    l.valor
+  FROM
+    leitura_sensor AS l
+  JOIN
+    sensor AS s ON l.fkSensor = s.idSensor
+  JOIN
+    veiculo AS v ON s.fkVeiculo = v.idVeiculo
+  WHERE
+    v.idVeiculo = ${idVeiculo}
+    AND s.tipoSensor = 'DHT11'
+    AND l.dataHora >= NOW() - INTERVAL 5 MINUTE
+  ORDER BY
+    l.dataHora DESC
+  LIMIT 6
+) AS sub;
+  `;
+
+  console.log("Executando a instrução SQL para capturar id dados Temperatura: \n" + instrucaoSql)
+  return database.executar(instrucaoSql);
+}
 
 
 
@@ -215,5 +327,9 @@ module.exports = {
   verificarCaptura,
   atualizandoStatus,
   verificarRota,
-  capturaDosIds
+  capturaDosIds,
+  containerUmidadeReal,
+  containerTeperaturaReal,
+  containerTeperaturaCinco,
+  containerUmidadeCinco
 };

@@ -283,7 +283,7 @@ function capturaDosIds(req, res){
         res.status(400).sendo("o idSensor está indefinido para acessar informações da dash")
     } else {
         dashboardUserModel.capturaDosIds(idSensor)
-            .then(
+        .then(
                 function (resultado) {
                     res.json(resultado)
                 }
@@ -297,20 +297,20 @@ function capturaDosIds(req, res){
                     res.status(500).json(erro.sqlMessage)
                 }
             )
+        }
+
     }
 
-}
-
-
-
-function atualizandoStatus(req, res) {
-    var idSensor = req.body.idSensorServer;
-
-    if (idSensor === undefined) {
-        res.status(400).send("Seu idSensor está undefined!");
+    
+    
+    function atualizandoStatus(req, res) {
+        var idSensor = req.body.idSensorServer;
+        
+        if (idSensor === undefined) {
+            res.status(400).send("Seu idSensor está undefined!");
     } else {
         dashboardUserModel.atualizandoStatus(idSensor)
-            .then(resultado => {
+        .then(resultado => {
                 res.json(resultado);
             })
             .catch(erro => {
@@ -318,11 +318,110 @@ function atualizandoStatus(req, res) {
                 console.log("\nHouve um erro ao altera o status do sensor! Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             });
+        }
     }
-}
+    
+    
+    
+    function containerUmidadeReal(req, res){
+        var idVeiculo = req.params.id
+    
+        if (idVeiculo == undefined) {
+            res.status(400).sendo("o idVeiculo está indefinido para acessar informações da dash tempo real de Umidade")
+        } else {
+            dashboardUserModel.containerUmidadeReal(idVeiculo)
+                .then(
+                    function (resultado) {
+                        res.json(resultado)
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao carregar dados de captura dos sensores! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage)
+                    }
+                )
+        }
+    
+    }
+    function containerTeperaturaReal(req, res){
+        var idVeiculo = req.params.id
+    
+        if (idVeiculo == undefined) {
+            res.status(400).sendo("o idVeiculo está indefinido para acessar informações da dash tempo real de Umidade")
+        } else {
+            dashboardUserModel.containerTeperaturaReal(idVeiculo)
+                .then(
+                    function (resultado) {
+                        res.json(resultado)
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao carregar dados de captura dos sensores! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage)
+                    }
+                )
+        }
+    
+    }
 
 
+    function containerTeperaturaCinco(req, res){
+        var idVeiculo = req.params.id
+    
+        if (idVeiculo == undefined) {
+            res.status(400).sendo("o idVeiculo está indefinido para acessar informações da dash tempo real de Umidade")
+        } else {
+            dashboardUserModel.containerTeperaturaCinco(idVeiculo)
+                .then(
+                    function (resultado) {
+                        res.json(resultado)
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao carregar dados de captura dos sensores! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage)
+                    }
+                )
+        }
+    
+    }
 
+    function containerUmidadeCinco(req, res){
+        var idVeiculo = req.params.id
+    
+        if (idVeiculo == undefined) {
+            res.status(400).sendo("o idVeiculo está indefinido para acessar informações da dash tempo real de Umidade")
+        } else {
+            dashboardUserModel.containerUmidadeCinco(idVeiculo)
+                .then(
+                    function (resultado) {
+                        res.json(resultado)
+                    }
+                ).catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log(
+                            "\nHouve um erro ao carregar dados de captura dos sensores! Erro: ",
+                            erro.sqlMessage
+                        );
+                        res.status(500).json(erro.sqlMessage)
+                    }
+                )
+        }
+    
+    }
 
 
 
@@ -339,5 +438,9 @@ module.exports = {
     verificarCaptura,
     atualizandoStatus,
     capturaDosIds,
-    verificarRota
+    verificarRota,
+    containerUmidadeReal,
+    containerTeperaturaReal,
+    containerTeperaturaCinco,
+    containerUmidadeCinco
 }

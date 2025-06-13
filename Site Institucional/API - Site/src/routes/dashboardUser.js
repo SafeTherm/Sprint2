@@ -65,4 +65,23 @@ router.post("/atualizandoStatus", function (req, res) {
     dashboardUserController.atualizandoStatus(req, res);
 });
 
+// verificação de dados, analisa se está tendo insert dos dados dos sensores;
+router.get("/containerUmidadeReal/:id", function (req, res) {
+    dashboardUserController.containerUmidadeReal(req, res);
+});
+
+// verificação de dados, analisa se está tendo insert dos dados dos sensores;
+router.get("/containerTeperaturaReal/:id", function (req, res) {
+    dashboardUserController.containerTeperaturaReal(req, res);
+});
+
+// verificação de dados, analisa se está tendo insert dos dados dos sensores;
+router.get("/containerTeperaturaCinco/:id", function (req, res) {
+    dashboardUserController.containerTeperaturaCinco(req, res);
+});
+// verificação de dados, analisa se está tendo insert dos dados dos sensores;
+router.get("/containerUmidadeCinco/:id", function (req, res) {
+    dashboardUserController.containerUmidadeCinco(req, res);
+});
+
 module.exports = router;
