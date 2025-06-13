@@ -65,6 +65,4 @@ router.post("/atualizandoStatus", function (req, res) {
     dashboardUserController.atualizandoStatus(req, res);
 });
 
-
-
 module.exports = router;

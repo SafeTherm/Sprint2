@@ -169,13 +169,14 @@ function verificarRota(idSensor) {
   var instrucaoSql = `
       SELECT * 
       FROM leitura_sensor
-      WHERE dataHora >= NOW() - INTERVAL 20 SECOND AND fkSensor = ${idSensor};
+      WHERE dataHora >= NOW() - INTERVAL 10 SECOND AND fkSensor = ${idSensor};
     `;
 
     console.log("Executando a instrução SQL para capturar se está tendo tendo insert dos dados: \n" + instrucaoSql)
     return database.executar(instrucaoSql)
 
 }
+
 
 
 
