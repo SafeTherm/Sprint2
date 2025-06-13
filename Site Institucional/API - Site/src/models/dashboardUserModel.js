@@ -41,7 +41,7 @@ function temperaturaHistorico(idVeiculo) {
 
 function veiculoTemperatura(idVeiculo) {
   var instrucaoSql = `
-    select s.idSensor, s.tipoSensor from leitura_sensor as l
+    select s.idSensor, s.tipoSensor, v.placaVeiculo from leitura_sensor as l
       JOIN sensor as s
       on l.fkSensor = s.idSensor
       JOIN veiculo as v
@@ -56,7 +56,7 @@ function veiculoTemperatura(idVeiculo) {
 
 function veiculoUmidade(idVeiculo) {
   var instrucaoSql = `
-    select s.idSensor, s.tipoSensor from leitura_sensor as l
+    select s.idSensor, s.tipoSensor, v.placaVeiculo from leitura_sensor as l
       JOIN sensor as s
       on l.fkSensor = s.idSensor
       JOIN veiculo as v

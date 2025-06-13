@@ -13,6 +13,7 @@
 <body>
   <!-- Fazer menu após concluir o backend -->
   <div class="menu">
+
     <div class="box-nav-logo">
       <a href="index.html">
         <h1><img src="assets/img/logo.png" />Safe <span>Therm</span></h1>
@@ -48,6 +49,21 @@
         SAIR
       </button>
     </div>
+  </div>
+
+  <div class="cardAlerta" id="alerta">
+    <h1 id="tituloCard">Alerta de Temperatura</h1>
+    <div class="container">
+      <img src="assets/icon/iconAlertaRed.svg" alt="" id="imgAlert">
+      <div class="sub_text">
+        <h1 id="subTitle">Temperatura fora dos limites</h1>
+        <h3>Placa veículo: <span id="placa"></span></h3>
+      </div>
+    </div>
+    <p id="descAlerta">A temperatura registrada está em <span id="irregular">9.2°C</span>, fora do limite permitido,
+      ideal seria: <span style="color: #515151; font-weight: bold;">4°C á 6°C</span>.</p>
+    <button>ignorar</button>
+    <a href="" id="colorBtn">Tomar ação</a>
   </div>
 
   <section class="conteudo">
@@ -962,6 +978,7 @@
     fetch(`dashboardUser/veiculoTemperatura/${idVeiculo}`)
       .then((res) => res.json())
       .then((temperatura) => {
+
         let sensoresEncontrados = [];
         for (let i = 0; i < temperatura.length; i++) {
           let idSensor = temperatura[i].idSensor;
@@ -1012,6 +1029,19 @@
                         Atenção
                         ${listarDadosTempSup[5].slice(0, 3)} ºC
                       `;
+
+
+                      alerta.style.display = "block"
+                      tituloCard.innerHTML = "Atenção necessária: Temperatura"
+                      irregular.style.color = "#F5CD28"
+                      colorBtn.style.backgroundColor = "#F5CD28"
+                      imgAlert.src = "assets/icon/iconAlertaYellow.svg"
+                      descAlerta.innerHTML = `A temperatura registrada está em <span id="irregular" style="color: #F5CD28;">${listarDadosTempSup[5].slice(0, 3) + "°C"}</span>, fora do limite permitido, ideal seria: <span style="color: #515151; font-weight: bold;">4°C á 6°C</span>.</p>`
+                      placa.innerHTML = `${temperatura[0].placaVeiculo}`
+
+                      setTimeout(() => {
+                        alerta.style.display = "none";
+                      }, 5000);
                     }
                     if (
                       listarDadosTempSup[5] >= 4 &&
@@ -1033,7 +1063,20 @@
                         Risco
                         ${listarDadosTempSup[5].slice(0, 3)} ºC
                       `;
+
+                      alerta.style.display = "block";
+                      alerta.style.display = "block"
+                      tituloCard.innerHTML = "Atenção necessária: Temperatura"
+                      irregular.style.color = "red"
+                      colorBtn.style.backgroundColor = "#ff3b30"
+                      imgAlert.src = "assets/icon/iconAlertaRed.svg"
+                      descAlerta.innerHTML = `A temperatura registrada está em <span id="irregular" style="color: red;">${listarDadosTempSup[5].slice(0, 3) + "°C"}</span>, fora do limite permitido, ideal seria: <span style="color: #515151; font-weight: bold;">4°C á 6°C</span>.</p>`
+                      placa.innerHTML = `${temperatura[0].placaVeiculo}`
+                      setTimeout(() => {
+                        alerta.style.display = "none";
+                      }, 5000);
                     }
+
                   } else {
                     statusTempSup.innerHTML = "(Manutenção)";
                     statusTempSup.style.color = "#ff472f";
@@ -1161,6 +1204,17 @@
                         Atenção
                         ${listarDadosUmiSup[5].slice(0, 2)}%
                       `;
+
+                      alerta.style.display = "block"
+                      tituloCard.innerHTML = "Atenção necessária: Umidade"
+                      irregular.style.color = "#F5CD28"
+                      colorBtn.style.backgroundColor = "#F5CD28"
+                      imgAlert.src = "assets/icon/iconAlertaYellow.svg"
+                      descAlerta.innerHTML = `A umidade registrada está em <span id="irregular" style="color: #F5CD28;">${listarDadosUmiSup[5].slice(0, 2) + "%"}</span>, fora do limite permitido, ideal seria: <span style="color: #515151; font-weight: bold;">50% á 60%</span>.</p>`
+                      placa.innerHTML = `${umidade[0].placaVeiculo}`
+                      setTimeout(() => {
+                        alerta.style.display = "none";
+                      }, 5000);
                     }
                     if (
                       listarDadosUmiSup[5] >= 50 &&
@@ -1182,6 +1236,18 @@
                         Risco
                         ${listarDadosUmiSup[5].slice(0, 2)}%
                       `;
+
+
+                      alerta.style.display = "block"
+                      tituloCard.innerHTML = "Atenção necessária: Umidade"
+                      irregular.style.color = "red"
+                      colorBtn.style.backgroundColor = "#ff3b30"
+                      imgAlert.src = "assets/icon/iconAlertaRed.svg"
+                      descAlerta.innerHTML = `A umidade registrada está em <span id="irregular" style="color: red;">${listarDadosUmiSup[5].slice(0, 2) + "%"}</span>, fora do limite permitido, ideal seria: <span style="color: #515151; font-weight: bold;">50% á 60%</span>.</p>`
+
+                      setTimeout(() => {
+                        alerta.style.display = "none";
+                      }, 5000);
                     }
                   } else {
                     statusUmiSup.innerHTML = "(Manutenção)";
@@ -1299,11 +1365,24 @@
                       (listarDadosTempInf[5] >= 2 && listarDadosTempInf[5] < 4)
                     ) {
                       // console.log("atenção");
-                      funcionamentoTempInf.style.color = "#F5CD28";
-                      funcionamentoTempInf.innerHTML = `
+                      funcionamentoTempSup.style.color = "#F5CD28";
+                      funcionamentoTempSup.innerHTML = `
                         Atenção
                         ${listarDadosTempInf[5].slice(0, 3)} ºC
                       `;
+
+
+                      alerta.style.display = "block"
+                      tituloCard.innerHTML = "Atenção necessária: Temperatura"
+                      irregular.style.color = "#F5CD28"
+                      colorBtn.style.backgroundColor = "#F5CD28"
+                      imgAlert.src = "assets/icon/iconAlertaYellow.svg"
+
+                      descAlerta.innerHTML = `A temperatura registrada está em <span id="irregular" style="color: #F5CD28;">${listarDadosTempInf[5].slice(0, 3) + "°C"}</span>, fora do limite permitido, ideal seria: <span style="color: #515151; font-weight: bold;">4°C á 6°C</span>.</p>`
+                      placa.innerHTML = `${temperatura[0].placaVeiculo}`
+                      setTimeout(() => {
+                        alerta.style.display = "none";
+                      }, 5000);
                     }
                     if (
                       listarDadosTempInf[5] >= 4 &&
@@ -1320,11 +1399,23 @@
                       listarDadosTempInf[5] < 2
                     ) {
                       // console.log("Risco");
-                      funcionamentoTempInf.style.color = "#FF0000";
-                      funcionamentoTempInf.innerHTML = `
+                      funcionamentoTempSup.style.color = "#FF0000";
+                      funcionamentoTempSup.innerHTML = `
                         Risco
                         ${listarDadosTempInf[5].slice(0, 3)} ºC
                       `;
+
+                      alerta.style.display = "block";
+                      alerta.style.display = "block"
+                      tituloCard.innerHTML = "Atenção necessária: Temperatura"
+                      irregular.style.color = "red"
+                      colorBtn.style.backgroundColor = "#ff3b30"
+                      imgAlert.src = "assets/icon/iconAlertaRed.svg"
+                      descAlerta.innerHTML = `A temperatura registrada está em <span id="irregular" style="color: red;">${listarDadosTempInf[5].slice(0, 3) + "°C"}</span>, fora do limite permitido, ideal seria: <span style="color: #515151; font-weight: bold;">4°C á 6°C</span>.</p>`
+                      placa.innerHTML = `${temperatura[0].placaVeiculo}`
+                      setTimeout(() => {
+                        alerta.style.display = "none";
+                      }, 5000);
                     }
                   } else {
                     statusTempInf.innerHTML = "(Manutenção)";
@@ -1448,18 +1539,34 @@
                       (listarDadosUmiInf[5] >= 40 && listarDadosUmiInf[5] < 50)
                     ) {
                       // console.log("atenção");
-                      funcionamentoUmiInf.style.color = "#F5CD28";
-                      funcionamentoUmiInf.innerHTML = `
+                      funcionamentoUmiSup.style.color = "#F5CD28";
+                      funcionamentoUmiSup.innerHTML = `
                         Atenção
                         ${listarDadosUmiInf[5].slice(0, 2)}%
                       `;
+
+                      alerta.style.display = "block"
+                      tituloCard.innerHTML = "Atenção necessária: Umidade"
+                      irregular.style.color = "#F5CD28"
+                      colorBtn.style.backgroundColor = "#F5CD28"
+                      imgAlert.src = "assets/icon/iconAlertaYellow.svg"
+                      placa.innerHTML = `${umidade[0].placaVeiculo}`
+                      descAlerta.innerHTML = `A umidade registrada está em <span id="irregular" style="color: #F5CD28;">${listarDadosUmiInf[5].slice(0, 2) + "%"}</span>, fora do limite permitido, ideal seria: <span style="color: #515151; font-weight: bold;">50% á 60%</span>.</p>`
+
+                      setTimeout(() => {
+                        alerta.style.display = "none";
+                      }, 5000);
+
+
+
+
                     }
                     if (
                       listarDadosUmiInf[5] >= 50 &&
                       listarDadosUmiInf[5] <= 60
                     ) {
-                      funcionamentoUmiInf.style.color = "#067500";
-                      funcionamentoUmiInf.innerHTML = `
+                      funcionamentoUmiSup.style.color = "#067500";
+                      funcionamentoUmiSup.innerHTML = `
                         Ideal
                         ${listarDadosUmiInf[5].slice(0, 2)}%
                       `;
@@ -1469,11 +1576,23 @@
                       listarDadosUmiInf[5] < 40
                     ) {
                       // console.log("Risco");
-                      funcionamentoUmiInf.style.color = "#FF0000";
-                      funcionamentoUmiInf.innerHTML = `
+                      funcionamentoUmiSup.style.color = "#FF0000";
+                      funcionamentoUmiSup.innerHTML = `
                         Risco
                         ${listarDadosUmiInf[5].slice(0, 2)}%
                       `;
+
+
+                      alerta.style.display = "block"
+                      tituloCard.innerHTML = "Atenção necessária: Umidade"
+                      irregular.style.color = "red"
+                      colorBtn.style.backgroundColor = "#ff3b30"
+                      imgAlert.src = "assets/icon/iconAlertaRed.svg"
+                      descAlerta.innerHTML = `A umidade registrada está em <span id="irregular" style="color: red;">${listarDadosUmiInf[5].slice(0, 2) + "%"}</span>, fora do limite permitido, ideal seria: <span style="color: #515151; font-weight: bold;">50% á 60%</span>.</p>`
+
+                      setTimeout(() => {
+                        alerta.style.display = "none";
+                      }, 5000);
                     }
                   } else {
                     // console.log("sem dados umidade Inferior sendo capturados.");

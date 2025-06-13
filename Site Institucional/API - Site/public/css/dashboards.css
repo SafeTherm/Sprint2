@@ -18,6 +18,119 @@ html {
   --laranja: #ff7f00;
 }
 
+
+
+
+
+
+.cardAlerta{
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 430px;
+  height: 200px;
+  border:  1px solid rgb(221, 221, 221);
+  box-shadow: 0px 0px 10px 2px rgb(221, 221, 221);
+  z-index: 100;
+  transform: translate(-25%, -50%);
+  border-radius: 10px;
+  background-color: var(--branco);
+}
+
+.cardAlerta #tituloCard{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 1.3rem;
+}
+
+
+
+.cardAlerta .container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 50px;
+  left: 20px;
+}
+
+.cardAlerta .container img {
+  width: 40px;
+  height: 40px;
+}
+
+.cardAlerta .sub_text h1 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2c2c2c;
+  margin: 0;
+}
+
+.cardAlerta .sub_text h3 {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #a1a1a1;
+  margin: 5px 0 0 0;
+}
+
+.cardAlerta #descAlerta {
+  position: absolute;
+  top: 110px;
+  left: 20px;
+  font-size: 0.95rem;
+  color: #6b6b6b;
+  width: 90%;
+}
+
+.cardAlerta #irregular {
+  color: red;
+  font-weight: bold;
+}
+
+.cardAlerta button,
+.cardAlerta a {
+  position: absolute;
+  bottom: 15px;
+  padding: 6px 16px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+
+.cardAlerta button {
+  background-color: #dbdbdb;
+  border: none;
+  left: 20px;
+  color: #888;
+  cursor: pointer;
+}
+
+.cardAlerta a {
+  background-color: #ff3b30;
+  color: white;
+  right: 20px;
+  font-size: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
   display: flex;
   flex-direction: row;
