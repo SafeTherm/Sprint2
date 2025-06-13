@@ -34,6 +34,12 @@
         VEÍCULOS
       </a>
     </div>
+    <div class="icon_barra">
+      <a href="https://sptech-safetherm.atlassian.net/servicedesk/customer/portal/1">
+        <img src="assets/img/icon_suporte.svg" alt="" />
+        SUPORTE
+      </a>
+    </div>
     <div class="icon_barra_sair">
       <button onclick="sair()">
         <img src="assets/img/icon_sair.svg" alt="" />
@@ -303,7 +309,7 @@
           .then((res) => res.json())
           .then((qtdVeiculosRota) => {
             var veiculosEmRota = qtdVeiculosRota[0].veiculosEmRota;
-            
+
             console.log(veiculosEmRota);
 
             div_cardFrota.innerHTML += `
@@ -338,7 +344,7 @@
             var modeloVeiculo = dados.modelo;
 
             div_resultado_pesquisa.innerHTML += `
-              <div class="info_funcionarios">
+              <div class="info_funcionarios" onclick="acessar_barra(${idFuncionario}, ${idVeiculo})">
               <img src="assets/imagens de perfil/${imagemFunc}" alt="">
               <div class="informacoes_func">
                   <div class="nome">
@@ -625,7 +631,7 @@
             `Esse é o idVeiculo ROTA: ${qtdVeiculosRota[0].idVeiculo}`
           );
 
-          
+
 
           for (let i = 0; i < qtdVeiculosRota.length; i++) {
             let idVeiculo = qtdVeiculosRota[i].idVeiculo;
@@ -642,7 +648,7 @@
                   let placaVeiculo = dadosFunc[0].placaVeiculo;
                   let modelo = dadosFunc[0].modelo;
                   let idFuncionario = dadosFunc[0].idFuncionario;
-                  
+
 
                   mensagem += `
                     <div class="cardVeiculos">
@@ -1023,5 +1029,13 @@
     window.location = "https://sptech-safetherm.atlassian.net/servicedesk/customer/portal/1"
   }
 
-
+  function acessar_barra(idFuncionario, idVeiculo) {
+    if (!idFuncionario || !idVeiculo) {
+      console.log("Erro ao acessor funcionario em especifico")
+    } else {
+      sessionStorage.ID_SELECAO_FUNCIONARIO = idFuncionario;
+      sessionStorage.ID_SELECAO_VEICULO = idVeiculo;
+      window.location = "dashboard.html";
+    }
+  }
 </script>

@@ -620,3 +620,7 @@ a h1 img {
   background-color: #797979;
   color: white;
 }
+
+.info_funcionarios {
+  cursor: pointer;
+}

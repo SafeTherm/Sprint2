@@ -12,7 +12,43 @@
 
 <body>
   <!-- Fazer menu após concluir o backend -->
-  <div class="menu"></div>
+  <div class="menu">
+    <div class="box-nav-logo">
+      <a href="index.html">
+        <h1><img src="assets/img/logo.png" />Safe <span>Therm</span></h1>
+      </a>
+    </div>
+    <div class="icon_barra">
+      <a href="dashboard-geral.html">
+        <img src="assets/img/icon_dashboard.svg" alt="" />
+        HOME
+      </a>
+    </div>
+    <div class="icon_barra">
+      <a href="dashboard-tela-funcionarios.html">
+        <img src="assets/img/icon_listaFunc.svg" alt="" />
+        FUNCIONÁRIOS
+      </a>
+    </div>
+    <div class="icon_barra">
+      <a href="dashboard-tela-veiculo.html">
+        <img src="assets/img/icon_veiculo.svg" alt="" />
+        VEÍCULOS
+      </a>
+    </div>
+    <div class="icon_barra">
+      <a href="https://sptech-safetherm.atlassian.net/servicedesk/customer/portal/1">
+        <img src="assets/img/icon_suporte.svg" alt="" />
+        SUPORTE
+      </a>
+    </div>
+    <div class="icon_barra_sair">
+      <button onclick="sair()">
+        <img src="assets/img/icon_sair.svg" alt="" />
+        SAIR
+      </button>
+    </div>
+  </div>
 
   <section class="conteudo">
     <header>
@@ -55,13 +91,13 @@
             <h1 id="titleReal">Média Umidade:</h1>
             <div class="circleAtivo"></div>
             <h1 id="dadosTempoRealUmi"></h1>
-            <h3>Status: <span id="statusTempoRealUmi"></span></h3>      
+            <h3>Status: <span id="statusTempoRealUmi"></span></h3>
           </div>
           <div class="card" id="cincoUmidade">
             <div class="circleDesativo"></div>
             <h1 id="titleReal">Média Umidade:</h1>
             <h1 id="dadosTempoCincoUmi"></h1>
-            <h3>Status: <span id="statusTempoCincoUmi"></span></h3>    
+            <h3>Status: <span id="statusTempoCincoUmi"></span></h3>
           </div>
           <div class="card" id="dezUmidade">
             <div class="circleDesativo"></div>
@@ -182,16 +218,16 @@
         <div class="cardsDireita">
           <div class="card" id="realTemperatura">
             <div class="circleAtivo"></div>
-             <h1 id="titleReal">Média Temperatura:</h1>
+            <h1 id="titleReal">Média Temperatura:</h1>
             <div class="circleAtivo"></div>
             <h1 id="dadosTempoRealTemp"></h1>
-            <h3>Status: <span id="statusTempoRealTemp"></span></h3>   
+            <h3>Status: <span id="statusTempoRealTemp"></span></h3>
           </div>
           <div class="card" id="cincoTemperatura">
             <div class="circleDesativo"></div>
             <h1 id="titleReal">Média Temperatura 5min:</h1>
             <h1 id="dadosTempoCinco"></h1>
-            <h3>Status: <span id="statusTempoRealTempCinco"></span></h3>      
+            <h3>Status: <span id="statusTempoRealTempCinco"></span></h3>
           </div>
           <div class="card" id="dezTemperatura">
             <div class="circleDesativo"></div>
@@ -656,9 +692,9 @@
               // Inicia intervalo apenas se ainda não estiver rodando
               if (!intervaloSensores) {
                 realTemperatura.style.display = "flex";
-              realUmidade.style.display = "flex";
-              
-              selecaoMedia.style.pointerEvents = "all";
+                realUmidade.style.display = "flex";
+
+                selecaoMedia.style.pointerEvents = "all";
                 myUmidadeInf.style.display = "flex";
                 myTemperaturaInf.style.display = "flex";
                 myUmidadeSup.style.display = "flex";
@@ -744,7 +780,7 @@
       .then(res => res.json())
       .then(umidadeTempoReal => {
 
-  
+
 
         let valorFormatado = Number(umidadeTempoReal[0].media_valor)
         let valor = parseInt(valorFormatado)
@@ -753,42 +789,42 @@
         dadosTempoRealUmi.innerHTML = valor + "%";
 
         if (
-                      (valor > 60 &&
-                        valor < 70) ||
-                      (valor >= 40 && valor < 50)
-                    ) {
-                      // console.log("atenção");
-                      statusTempoRealUmi.style.color = "##F5CD28"
-                      statusTempoRealUmi.innerHTML = "Atenção"
-                    }
-                    if (
-                      valor >= 50 &&
-                      valor <= 60
-                    ) {
-                      // ideal
-                      
-                      statusTempoRealUmi.style.color = "#067500"
-                      statusTempoRealUmi.innerHTML = "Seguro"
+          (valor > 60 &&
+            valor < 70) ||
+          (valor >= 40 && valor < 50)
+        ) {
+          // console.log("atenção");
+          statusTempoRealUmi.style.color = "##F5CD28"
+          statusTempoRealUmi.innerHTML = "Atenção"
+        }
+        if (
+          valor >= 50 &&
+          valor <= 60
+        ) {
+          // ideal
 
-                    }
-                    if (
-                      valor > 70 ||
-                      valor < 40
-                    ) {
-                      // console.log("Risco");
-                      // risco
-                      statusTempoRealUmi.style.color = "#FF0000"
-                      statusTempoRealUmi.innerHTML = "Risco"
+          statusTempoRealUmi.style.color = "#067500"
+          statusTempoRealUmi.innerHTML = "Seguro"
 
-                    }
+        }
+        if (
+          valor > 70 ||
+          valor < 40
+        ) {
+          // console.log("Risco");
+          // risco
+          statusTempoRealUmi.style.color = "#FF0000"
+          statusTempoRealUmi.innerHTML = "Risco"
+
+        }
 
       });
-    
-      fetch(`dashboardUser/containerUmidadeCinco/${idVeiculo}`)
+
+    fetch(`dashboardUser/containerUmidadeCinco/${idVeiculo}`)
       .then(res => res.json())
       .then(umidadeTempoCinco => {
 
-  
+
 
         let valorFormatadoCinco = Number(umidadeTempoCinco[0].media_valor)
         let valorCinco = parseInt(valorFormatadoCinco)
@@ -797,34 +833,34 @@
         dadosTempoCincoUmi.innerHTML = valorCinco + "%";
 
         if (
-                      (valorCinco > 60 &&
-                        valorCinco < 70) ||
-                      (valorCinco >= 40 && valorCinco < 50)
-                    ) {
-                      // console.log("atenção");
-                      statusTempoCincoUmi.style.color = "##F5CD28"
-                      statusTempoCincoUmi.innerHTML = "Atenção"
-                    }
-                    if (
-                      valorCinco >= 50 &&
-                      valorCinco <= 60
-                    ) {
-                      // ideal
-                      
-                      statusTempoCincoUmi.style.color = "#067500"
-                      statusTempoCincoUmi.innerHTML = "Seguro"
+          (valorCinco > 60 &&
+            valorCinco < 70) ||
+          (valorCinco >= 40 && valorCinco < 50)
+        ) {
+          // console.log("atenção");
+          statusTempoCincoUmi.style.color = "##F5CD28"
+          statusTempoCincoUmi.innerHTML = "Atenção"
+        }
+        if (
+          valorCinco >= 50 &&
+          valorCinco <= 60
+        ) {
+          // ideal
 
-                    }
-                    if (
-                      valorCinco > 70 ||
-                      valorCinco < 40
-                    ) {
-                      // console.log("Risco");
-                      // risco
-                      statusTempoCincoUmi.style.color = "#FF0000"
-                      statusTempoCincoUmi.innerHTML = "Risco"
+          statusTempoCincoUmi.style.color = "#067500"
+          statusTempoCincoUmi.innerHTML = "Seguro"
 
-                    }
+        }
+        if (
+          valorCinco > 70 ||
+          valorCinco < 40
+        ) {
+          // console.log("Risco");
+          // risco
+          statusTempoCincoUmi.style.color = "#FF0000"
+          statusTempoCincoUmi.innerHTML = "Risco"
+
+        }
 
       });
 
@@ -833,43 +869,43 @@
       .then(res => res.json())
       .then(temperaturaTempoReal => {
 
-  
+
 
         let valorFormatadoTemp = Number(temperaturaTempoReal[0].media_valor)
         let valorTemp = parseInt(valorFormatadoTemp)
         console.log(valorTemp)
 
         dadosTempoRealTemp.innerHTML = valorTemp + "°C";
-         
-        if (    
-                      (valorTemp > 6 &&
-                        valorTemp <= 7) ||
-                      (valorTemp >= 2 && valorTemp < 4)
-                    ) {
-                      // console.log("atenção");
-                      statusTempoRealTemp.style.color = "##F5CD28"
-                      statusTempoRealTemp.innerHTML = "Atenção"
-                    }
-                    if (
-                      valorTemp >= 4 &&
-                      valorTemp <= 6
-                    ) {
-                      // ideal
-                      
-                      statusTempoRealTemp.style.color = "#067500"
-                      statusTempoRealTemp.innerHTML = "Seguro"
 
-                    }
-                    if (
-                      valorTemp > 7 ||
-                      valorTemp < 2
-                    ) {
-                      // console.log("Risco");
-                      // risco
-                      statusTempoRealTemp.style.color = "#FF0000"
-                      statusTempoRealTemp.innerHTML = "Risco"
+        if (
+          (valorTemp > 6 &&
+            valorTemp <= 7) ||
+          (valorTemp >= 2 && valorTemp < 4)
+        ) {
+          // console.log("atenção");
+          statusTempoRealTemp.style.color = "##F5CD28"
+          statusTempoRealTemp.innerHTML = "Atenção"
+        }
+        if (
+          valorTemp >= 4 &&
+          valorTemp <= 6
+        ) {
+          // ideal
 
-                    }
+          statusTempoRealTemp.style.color = "#067500"
+          statusTempoRealTemp.innerHTML = "Seguro"
+
+        }
+        if (
+          valorTemp > 7 ||
+          valorTemp < 2
+        ) {
+          // console.log("Risco");
+          // risco
+          statusTempoRealTemp.style.color = "#FF0000"
+          statusTempoRealTemp.innerHTML = "Risco"
+
+        }
 
       });
 
@@ -878,47 +914,47 @@
       .then(res => res.json())
       .then(containerTeperaturaCinco => {
 
-  
+
 
         let valorFormatadoTempCinco = Number(containerTeperaturaCinco[0].media_valor)
         let valorTempCinco = parseInt(valorFormatadoTempCinco)
         console.log(valorTempCinco)
 
         dadosTempoCinco.innerHTML = valorTempCinco + "°C";
-         
-        if (    
-                      (valorTempCinco > 6 &&
-                        valorTempCinco <= 7) ||
-                      (valorTempCinco >= 2 && valorTempCinco < 4)
-                    ) {
-                      // console.log("atenção");
-                      statusTempoRealTempCinco.style.color = "##F5CD28"
-                      statusTempoRealTempCinco.innerHTML = "Atenção"
-                    }
-                    if (
-                      valorTempCinco >= 4 &&
-                      valorTempCinco <= 6
-                    ) {
-                      // ideal
-                      
-                      statusTempoRealTempCinco.style.color = "#067500"
-                      statusTempoRealTempCinco.innerHTML = "Seguro"
 
-                    }
-                    if (
-                      valorTempCinco > 7 ||
-                      valorTempCinco < 2
-                    ) {
-                      // console.log("Risco");
-                      // risco
-                      statusTempoRealTempCinco.style.color = "#FF0000"
-                      statusTempoRealTempCinco.innerHTML = "Risco"
+        if (
+          (valorTempCinco > 6 &&
+            valorTempCinco <= 7) ||
+          (valorTempCinco >= 2 && valorTempCinco < 4)
+        ) {
+          // console.log("atenção");
+          statusTempoRealTempCinco.style.color = "##F5CD28"
+          statusTempoRealTempCinco.innerHTML = "Atenção"
+        }
+        if (
+          valorTempCinco >= 4 &&
+          valorTempCinco <= 6
+        ) {
+          // ideal
 
-                    }
+          statusTempoRealTempCinco.style.color = "#067500"
+          statusTempoRealTempCinco.innerHTML = "Seguro"
+
+        }
+        if (
+          valorTempCinco > 7 ||
+          valorTempCinco < 2
+        ) {
+          // console.log("Risco");
+          // risco
+          statusTempoRealTempCinco.style.color = "#FF0000"
+          statusTempoRealTempCinco.innerHTML = "Risco"
+
+        }
 
       });
   }
-  
+
 
   let chartTemperaturaSup = null;
   //function capturar ids e grafico temperatura Superior
