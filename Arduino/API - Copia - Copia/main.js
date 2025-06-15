@@ -8,12 +8,16 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 const serial = async (valoresSensorTemperatura, valoresSensorUmidade) => {
     const poolBancoDados = mysql.createPool({
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
+        host: '10.18.32.141',
+        user: 'aluno',
+        password: 'Sptech#2024',
         database: 'transporte_de_medicamentos_termolabeis',
-        port: 3306
+        port: 3307
     }).promise();
+
+
+
+
 
     // Funções de alerta
     const checarUmidade = async (valor, idLeitura) => {

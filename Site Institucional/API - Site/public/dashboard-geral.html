@@ -489,7 +489,7 @@
                                     
                                         <div class="botaoChamado">
                                             <button onclick="chamado()">
-                                                chamado
+                                                problema?
                                             </button>
                                         </div>
                                     </div>
@@ -594,7 +594,7 @@
                                     
                                         <div class="botaoChamado">
                                             <button onclick="chamado()">
-                                                chamado
+                                                problema?
                                             </button>
                                         </div>
                                     </div>
@@ -643,8 +643,7 @@
                 var mensagem = "";
                 if (dadosFunc.length > 0) {
                   let nomeFuncionario = dadosFunc[0].nomeFuncionario;
-                  let imagemPerfil_funcionario =
-                    dadosFunc[0].imagemPerfil_funcionario;
+                  let imagemPerfil_funcionario = dadosFunc[0].imagemPerfil_funcionario;
                   let placaVeiculo = dadosFunc[0].placaVeiculo;
                   let modelo = dadosFunc[0].modelo;
                   let idFuncionario = dadosFunc[0].idFuncionario;
@@ -743,7 +742,7 @@
     
         <div class="infoVeiculo2">
             <div class="botao_acessar">
-                <button onclick="acessar(${idFuncionario}, ${idVeiculo})">
+                <button onclick="acessar(${idFuncionario}, ${idVeiculo}, '${imagemPerfil_funcionario}')">
                     acessar
                 </button>
             </div>
@@ -875,7 +874,7 @@
                             
                                 <div class="infoVeiculo2">
                                     <div class="botao_acessar">
-                                        <button onclick="acessar(${idFuncionario}, ${idVeiculo})">
+                                        <button onclick="acessar(${idFuncionario}, ${idVeiculo}, '${imagemPerfil_funcionario}')">
                                             acessar
                                         </button>
                                     </div>
@@ -927,7 +926,7 @@
                             
                                 <div class="infoVeiculo2">
                                     <div class="botao_acessar">
-                                        <button onclick="acessar(${idFuncionario}, ${veiculo})">
+                                        <button onclick="acessar(${idFuncionario}, ${veiculo}, '${imagemPerfil_funcionario}')">
                                             acessar
                                         </button>
                                     </div>
@@ -947,13 +946,14 @@
       });
   }
 
-  function acessar(idFuncionario, idVeiculo) {
-
+  function acessar(idFuncionario, idVeiculo, imagemPerfil_funcionario) {
+    console.log(`essa é iamge func: ${imagemPerfil_funcionario}`)
     if (!idFuncionario || !idVeiculo) {
       console.log("Erro ao acessor funcionario em especifico")
     } else {
       sessionStorage.ID_SELECAO_FUNCIONARIO = idFuncionario;
       sessionStorage.ID_SELECAO_VEICULO = idVeiculo;
+      sessionStorage.IMAGEMFUNCIONARIO = imagemPerfil_funcionario
       window.location = "dashboard.html";
     }
   }
@@ -1018,7 +1018,7 @@
         if (notificacao.length === 0) {
           div_exibirAlerta_recente.innerHTML = `
             <div class="nenhumSensorComDefeito">
-              Nenhum sensor com defeito 
+              Nenhum alerta recente 
             </div>`
         }
       })
@@ -1029,13 +1029,20 @@
     window.location = "https://sptech-safetherm.atlassian.net/servicedesk/customer/portal/1"
   }
 
-  function acessar_barra(idFuncionario, idVeiculo) {
+  function acessar_barra(idFuncionario, idVeiculo, imagemPerfil_funcionario) {
     if (!idFuncionario || !idVeiculo) {
       console.log("Erro ao acessor funcionario em especifico")
     } else {
       sessionStorage.ID_SELECAO_FUNCIONARIO = idFuncionario;
       sessionStorage.ID_SELECAO_VEICULO = idVeiculo;
+      sessionStorage.IMAGEMFUNCIONARIO = imagemPerfil_funcionario
       window.location = "dashboard.html";
     }
+  }
+
+  function sair() {
+    sessionStorage.ID_USUARIO = undefined
+
+    window.location = "index.html"
   }
 </script>

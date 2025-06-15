@@ -34,6 +34,12 @@
                 VEÍCULOS
             </a>
         </div>
+        <div class="icon_barra">
+            <a href="https://sptech-safetherm.atlassian.net/servicedesk/customer/portal/1">
+                <img src="assets/img/icon_suporte.svg" alt="" />
+                SUPORTE
+            </a>
+        </div>
         <div class="icon_barra_sair">
             <button onclick="sair()">
                 <img src="assets/img/icon_sair.svg" alt="" />
@@ -491,4 +497,9 @@
         })
     }
 
+    function sair() {
+        sessionStorage.ID_USUARIO = undefined
+
+        window.location = "index.html"
+    }
 </script>
